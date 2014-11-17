@@ -1,3 +1,6 @@
+.DS_Store
+.Trashes
+*.swp
 # Xcode
 #
 build/
