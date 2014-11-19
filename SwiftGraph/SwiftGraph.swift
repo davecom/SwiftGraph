@@ -16,10 +16,10 @@ protocol Edge {
 }
 
 /// A basic unweighted edge.
-struct UnweightedEdge: Edge, Equatable {
+class UnweightedEdge: Edge, Equatable {
     var u: Int
     var v: Int
-    let weighted: Bool = false
+    var weighted: Bool { return false }
     let directed: Bool
     var reversed:Edge {
         return UnweightedEdge(u: v, v: u, directed: directed)
@@ -37,21 +37,16 @@ func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
 }
 
 /// A weighted edge, who's weight subscribes to Comparable.
-struct WeightedEdge<W: Comparable>: Edge, Equatable {
-    var u: Int
-    var v: Int
-    let weighted: Bool = true
-    let directed: Bool
+class WeightedEdge<W: Comparable>: UnweightedEdge, Equatable {
+    override var weighted: Bool { return true }
     let weight: W
-    var reversed:Edge {
+    override var reversed:Edge {
         return WeightedEdge(u: v, v: u, directed: directed, weight: weight)
     }
     
     init(u: Int, v: Int, directed: Bool, weight: W) {
-        self.u = u
-        self.v = v
-        self.directed = directed
         self.weight = weight
+        super.init(u: u, v: v, directed: directed)
     }
 }
 
@@ -272,7 +267,7 @@ class Graph<V: Equatable>: Printable {
                 edges[j].removeAtIndex(f)
             }
         }
-        println(self)
+        //println(self)
         //remove the actual vertex and its edges
         edges.removeAtIndex(index)
         vertices.removeAtIndex(index)
@@ -368,6 +363,31 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
 class WeightedGraph<T: Equatable, W: Comparable>: Graph<T> {
+    override init() {
+        super.init()
+    }
+    
+    override init(vertices: [T]) {
+        super.init(vertices: vertices)
+    }
+    
+    /// Find all of the neighbors of a vertex at a given index.
+    ///
+    /// :param: index The index for the vertex to find the neighbors of.
+    /// :returns: An array of tuples including the vertices as the first element and the weights as the second element.
+    func neighborsForIndexWithWeights(index: Int) -> [(T, W)] {
+        var distanceTuples: [(T, W)] = [(T, W)]();
+        for edge in edges[index] {
+            if let edge = edge as? WeightedEdge<W> {
+                distanceTuples += [(vertices[edge.v], edge.weight)]
+            }
+        }
+        return distanceTuples;
+        //if let edges = edges[index] as? [WeightedEdge<W>] {
+        //    return edges.map({(self.vertices[$0.v], $0.weight)})
+        //}
+        //return []
+    }
     
     /// Add an edge to the graph. It must be weighted or the call will be ignored.
     ///
@@ -439,5 +459,14 @@ class WeightedGraph<T: Equatable, W: Comparable>: Graph<T> {
                 }
             }
         }
+    }
+    
+    //Implement Printable protocol
+    override var description: String {
+        var d: String = ""
+        for var i = 0; i < vertices.count; i++ {
+            d += "\(vertices[i]) -> \(neighborsForIndexWithWeights(i))\n"
+        }
+        return d
     }
 }

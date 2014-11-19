@@ -16,14 +16,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        var g: UnweightedGraph<String> = UnweightedGraph<String>()
+        var g: WeightedGraph<String, Int> = WeightedGraph<String, Int>()
         g.addVertex("Atlanta")
         g.addVertex("New York")
         g.addVertex("Miami")
-        g.addEdge("Atlanta", to: "New York")
-        g.addEdge("Miami", to: "Atlanta")
-        g.addEdge("New York", to: "Miami")
-        g.removeVertex("Atlanta")
+        g.addEdge("Atlanta", to: "New York", weight:2)
+        g.addEdge("Miami", to: "Atlanta", weight: 4)
+        g.addEdge("New York", to: "Miami", weight: 6)
+        //g.removeVertex("Atlanta")
         println(g)
     }
 
