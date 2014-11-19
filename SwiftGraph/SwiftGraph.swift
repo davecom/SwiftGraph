@@ -2,12 +2,28 @@
 //  SwiftGraph.swift
 //  SwiftGraph
 //
-//  Created by David Kopec on 11/16/14.
-//  Copyright (c) 2014 Oak Snow Consulting. All rights reserved.
+//  Copyright (c) 2014 David Kopec
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 
 /// A protocol that all edges in a graph must conform to.
-protocol Edge {
+protocol Edge: Printable {
     var u: Int {get set}  //made modifiable for changing when removing vertices
     var v: Int {get set}  //made modifiable for changing when removing vertices
     var weighted: Bool {get}
@@ -16,7 +32,7 @@ protocol Edge {
 }
 
 /// A basic unweighted edge.
-class UnweightedEdge: Edge, Equatable {
+class UnweightedEdge: Edge, Equatable, Printable {
     var u: Int
     var v: Int
     var weighted: Bool { return false }
@@ -29,6 +45,14 @@ class UnweightedEdge: Edge, Equatable {
         self.u = u
         self.v = v
         self.directed = directed
+    }
+    
+    //Implement Printable protocol
+    var description: String {
+        if directed {
+            return "\(u) -> \(v)"
+        }
+        return "\(u) <-> \(v)"
     }
 }
 
@@ -47,6 +71,14 @@ class WeightedEdge<W: Comparable>: UnweightedEdge, Equatable {
     init(u: Int, v: Int, directed: Bool, weight: W) {
         self.weight = weight
         super.init(u: u, v: v, directed: directed)
+    }
+    
+    //Implement Printable protocol
+    override var description: String {
+        if directed {
+            return "\(u) \(weight)> \(v)"
+        }
+        return "\(u) <\(weight)> \(v)"
     }
 }
 
@@ -84,7 +116,7 @@ class Graph<V: Equatable>: Printable {
     ///
     /// :param: index The index of the vertex.
     /// :returns: The vertex at i.
-    func getVertex(index: Int) -> V {
+    func vertexAtIndex(index: Int) -> V {
         return vertices[index]
     }
     
@@ -383,10 +415,6 @@ class WeightedGraph<T: Equatable, W: Comparable>: Graph<T> {
             }
         }
         return distanceTuples;
-        //if let edges = edges[index] as? [WeightedEdge<W>] {
-        //    return edges.map({(self.vertices[$0.v], $0.weight)})
-        //}
-        //return []
     }
     
     /// Add an edge to the graph. It must be weighted or the call will be ignored.
@@ -469,4 +497,145 @@ class WeightedGraph<T: Equatable, W: Comparable>: Graph<T> {
         }
         return d
     }
+}
+
+/// Implements a stack - helper class that uses an array internally.
+class Stack<T> {
+    var container: [T] = [T]()
+    var isEmpty: Bool { return container.isEmpty }
+    func push(thing: T) { container.append(thing) }
+    func pop() -> T { return container.removeLast() }
+}
+
+/// Implements a queue - helper class that uses an array internally.
+class Queue<T> {
+    var container: [T] = [T]()
+    var isEmpty: Bool { return container.isEmpty }
+    func push(thing: T) { container.append(thing) }
+    func pop() -> T { return container.removeAtIndex(0) }
+}
+
+/// Find a route from one vertex to another using a depth first search.
+///
+/// :params: from The index of the starting vertex.
+/// :params: to The index of the ending vertex.
+/// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
+func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
+    // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
+    var visited: [Bool] = [Bool](count: graph.vertexCount, repeatedValue: false)
+    var stack: Stack<Int> = Stack<Int>()
+    var pathDict: [Int: Edge] = [Int: Edge]()
+    stack.push(from)
+    var found: Bool = false
+    while !stack.isEmpty {
+        let v: Int = stack.pop()
+        if v == to {
+            found = true
+            break
+        }
+        visited[v] = true
+        for e in graph.edgesForIndex(v) {
+            if !visited[e.v] {
+                stack.push(e.v)
+                pathDict[e.v] = e
+            }
+        }
+    }
+    // figure out route of edges based on pathDict
+    if found {
+        var edgePath: [Edge] = [Edge]()
+        var e: Edge = pathDict[to]!
+        edgePath.append(e)
+        while (e.u != from) {
+            e = pathDict[e.u]!
+            edgePath.append(e)
+        }
+        return edgePath.reverse()
+    }
+    
+    return []
+}
+
+/// Find a route from one vertex to another using a depth first search.
+///
+/// :params: from The starting vertex.
+/// :params: to The ending vertex.
+/// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
+func dfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
+    if let u = graph.indexOfVertex(from) {
+        if let v = graph.indexOfVertex(to) {
+            return dfs(u, v, graph)
+        }
+    }
+    return []
+}
+
+/// Find a route from one vertex to another using a breadth first search.
+///
+/// :params: from The index of the starting vertex.
+/// :params: to The index of the ending vertex.
+/// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
+func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
+    // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
+    var visited: [Bool] = [Bool](count: graph.vertexCount, repeatedValue: false)
+    var queue: Queue<Int> = Queue<Int>()
+    var pathDict: [Int: Edge] = [Int: Edge]()
+    queue.push(from)
+    var found: Bool = false
+    while !queue.isEmpty {
+        let v: Int = queue.pop()
+        if v == to {
+            found = true
+            break
+        }
+        
+        for e in graph.edgesForIndex(v) {
+            if !visited[e.v] {
+                visited[e.v] = true
+                queue.push(e.v)
+                pathDict[e.v] = e
+            }
+        }
+    }
+    // figure out route of edges based on pathDict
+    if found {
+        var edgePath: [Edge] = [Edge]()
+        var e: Edge = pathDict[to]!
+        edgePath.append(e)
+        while (e.u != from) {
+            e = pathDict[e.u]!
+            edgePath.append(e)
+        }
+        return edgePath.reverse()
+    }
+    
+    return []
+}
+
+/// Find a route from one vertex to another using a depth first search.
+///
+/// :params: from The starting vertex.
+/// :params: to The ending vertex.
+/// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
+func bfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
+    if let u = graph.indexOfVertex(from) {
+        if let v = graph.indexOfVertex(to) {
+            return bfs(u, v, graph)
+        }
+    }
+    return []
+}
+
+/// Utility function that takes an array of Edges and converts it to an ordered list of vertices
+///
+/// :params: edges Array of edges to convert.
+/// :params: graph The graph the edges exist within.
+/// :returns: An array of vertices from the graph.
+func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T] {
+    var vs: [T] = [T]()
+    if let first = edges.first {
+        vs.append(graph.vertexAtIndex(first.u))
+        vs += edges.map({graph.vertexAtIndex($0.v)})
+    }
+    return vs
 }

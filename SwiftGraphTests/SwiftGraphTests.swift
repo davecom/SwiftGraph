@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Oak Snow Consulting. All rights reserved.
 //
 
-import Cocoa
 import XCTest
 
 class SwiftGraphTests: XCTestCase {
@@ -21,7 +20,7 @@ class SwiftGraphTests: XCTestCase {
         super.tearDown()
     }
     
-    func testCites() {
+    func testCitesInverseAfterRemove() {
         // This is an example of a functional test case.
         var g: UnweightedGraph<String> = UnweightedGraph<String>()
         g.addVertex("Atlanta")

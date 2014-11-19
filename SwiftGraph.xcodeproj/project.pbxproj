@@ -13,6 +13,7 @@
 		55E6200A1A194C80000A5F7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E620091A194C80000A5F7B /* Images.xcassets */; };
 		55E6200D1A194C80000A5F7B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6200B1A194C80000A5F7B /* MainMenu.xib */; };
 		55E620191A194C80000A5F7B /* SwiftGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620181A194C80000A5F7B /* SwiftGraphTests.swift */; };
+		55FEDBC91A1D40BC00F266A0 /* SwiftGraphSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		55E620121A194C80000A5F7B /* SwiftGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E620171A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55E620181A194C80000A5F7B /* SwiftGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
+		55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSearchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				55E620181A194C80000A5F7B /* SwiftGraphTests.swift */,
+				55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */,
 				55E620161A194C80000A5F7B /* Supporting Files */,
 			);
 			path = SwiftGraphTests;
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55FEDBC91A1D40BC00F266A0 /* SwiftGraphSearchTests.swift in Sources */,
 				558DD81B1A1CFF5500CFC2E3 /* SwiftGraph.swift in Sources */,
 				55E620191A194C80000A5F7B /* SwiftGraphTests.swift in Sources */,
 			);
