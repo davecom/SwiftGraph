@@ -60,8 +60,19 @@ func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
     return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed
 }
 
+// This protocol is needed for djikstra's algorithm - we need weights in weighted graphs
+// to be able to be added together
+protocol Summable {
+    func +(lhs: Self, rhs: Self) -> Self
+}
+
+extension Int: Summable {}
+extension Double: Summable {}
+extension Float: Summable {}
+extension String: Summable {}
+
 /// A weighted edge, who's weight subscribes to Comparable.
-class WeightedEdge<W: Comparable>: UnweightedEdge, Equatable {
+class WeightedEdge<W: protocol<Comparable, Summable>>: UnweightedEdge, Equatable {
     override var weighted: Bool { return true }
     let weight: W
     override var reversed:Edge {
@@ -394,7 +405,7 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
 }
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-class WeightedGraph<T: Equatable, W: Comparable>: Graph<T> {
+class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     override init() {
         super.init()
     }
@@ -508,11 +519,41 @@ class Stack<T> {
 }
 
 /// Implements a queue - helper class that uses an array internally.
-class Queue<T> {
+class Queue<T: Equatable> {
     var container: [T] = [T]()
     var isEmpty: Bool { return container.isEmpty }
+    var count: Int { return container.count }
     func push(thing: T) { container.append(thing) }
     func pop() -> T { return container.removeAtIndex(0) }
+    func contains(thing: T) -> Bool {
+        if find(container, thing) != nil {
+            return true
+        }
+        return false
+    }
+}
+
+func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
+    var edgePath: [Edge] = [Edge]()
+    var e: Edge = pathDict[to]!
+    edgePath.append(e)
+    while (e.u != from) {
+        e = pathDict[e.u]!
+        edgePath.append(e)
+    }
+    return edgePath.reverse()
+}
+
+// version for djikstra
+func pathDictToPath<W: protocol<Comparable, Summable>>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
+    var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
+    var e: WeightedEdge<W> = pathDict[to]!
+    edgePath.append(e)
+    while (e.u != from) {
+        e = pathDict[e.u]!
+        edgePath.append(e)
+    }
+    return edgePath.reverse()
 }
 
 /// Find a route from one vertex to another using a depth first search.
@@ -543,14 +584,7 @@ func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     }
     // figure out route of edges based on pathDict
     if found {
-        var edgePath: [Edge] = [Edge]()
-        var e: Edge = pathDict[to]!
-        edgePath.append(e)
-        while (e.u != from) {
-            e = pathDict[e.u]!
-            edgePath.append(e)
-        }
-        return edgePath.reverse()
+        return pathDictToPath(from, to, pathDict)
     }
     
     return []
@@ -599,14 +633,7 @@ func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     }
     // figure out route of edges based on pathDict
     if found {
-        var edgePath: [Edge] = [Edge]()
-        var e: Edge = pathDict[to]!
-        edgePath.append(e)
-        while (e.u != from) {
-            e = pathDict[e.u]!
-            edgePath.append(e)
-        }
-        return edgePath.reverse()
+        return pathDictToPath(from, to, pathDict)
     }
     
     return []
@@ -638,4 +665,73 @@ func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T] {
         vs += edges.map({graph.vertexAtIndex($0.v)})
     }
     return vs
+}
+
+//version for djikstra with weighted edges
+func edgesToVertices<T: Equatable, W: protocol<Comparable, Summable>>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
+    var vs: [T] = [T]()
+    if let first = edges.first {
+        vs.append(graph.vertexAtIndex(first.u))
+        vs += edges.map({graph.vertexAtIndex($0.v)})
+    }
+    return vs
+}
+
+/// Finds the shortest paths from some route vertex to every other vertex in the graph. Note this doesn't yet use a priority queue, so it is very slow.
+///
+/// :params: graph The WeightedGraph to look within.
+/// :params: root The index of the root node to build the shortest paths from.
+/// :returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
+func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int) -> ([W?], [Int: WeightedEdge<W>]) {
+    var distances: [W?] = [W?](count: graph.vertexCount, repeatedValue: nil)
+    var queue: Queue<Int> = Queue<Int>()
+    var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]()
+    queue.push(root)
+
+    while !queue.isEmpty {
+        let u: Int = queue.pop()
+        
+        for e in graph.edgesForIndex(u) {
+            if let we = e as? WeightedEdge<W> {
+                //if queue.contains(we.v) {
+                    var alt: W
+                    if let dist = distances[we.u] {
+                        alt = we.weight + dist
+                    } else {
+                        alt = we.weight
+                    }
+                    if let dist = distances[we.v] {
+                        if alt < dist {
+                            distances[we.v] = alt
+                            pathDict[we.v] = we
+                        }
+                    } else {
+                        if !(we.v == root) {
+                            distances[we.v] = alt
+                            pathDict[we.v] = we
+                            queue.push(we.v)
+                        }
+                    }
+                //}
+            }
+        }
+    }
+    
+    return (distances, pathDict)
+}
+
+func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: T) -> ([W?], [Int: WeightedEdge<W>]) {
+    if let u = graph.indexOfVertex(root) {
+        return djikstra(graph, u)
+    }
+    return ([], [:])
+}
+
+/// Helper function to get easier access to djikstra results.
+func distanceArrayToVertexDict<T: Equatable, W: protocol<Comparable, Summable>>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
+    var distanceDict: [T: W?] = [T: W?]()
+    for var i = 0; i < distances.count; i++ {
+        distanceDict[graph.vertexAtIndex(i)] = distances[i]
+    }
+    return distanceDict
 }

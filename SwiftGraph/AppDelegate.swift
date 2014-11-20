@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         g.addEdge("Atlanta", to: "New York", weight:2)
         g.addEdge("Miami", to: "Atlanta", weight: 4)
         g.addEdge("New York", to: "Miami", weight: 6)
-        //g.removeVertex("Atlanta")
+        g.removeVertex("Atlanta")
         println(g)
     }
 
