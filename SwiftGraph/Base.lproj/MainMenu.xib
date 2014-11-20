@@ -13,6 +13,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="SwiftGraph" customModuleProvider="target">
             <connections>
+                <outlet property="ntView" destination="1BR-jM-RzX" id="2SG-QK-PKh"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -669,18 +670,36 @@
         <window title="SwiftGraph" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="360" height="420"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="contentRect" x="335" y="390" width="360" height="449"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="420"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="449"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1BR-jM-RzX" customClass="NineTailView" customModule="SwiftGraph" customModuleProvider="target">
-                        <rect key="frame" x="20" y="80" width="320" height="320"/>
+                        <rect key="frame" x="20" y="109" width="320" height="320"/>
                     </customView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0q0-Hi-TXP">
+                        <rect key="frame" x="122" y="13" width="117" height="32"/>
+                        <buttonCell key="cell" type="push" title="Solve" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tc4-sS-ZVz">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="solve:" target="Voe-Tx-rLC" id="F7V-j9-hxd"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEl-NU-zSz">
+                        <rect key="frame" x="18" y="54" width="324" height="41"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Click the coins above to flip them. Then clik &quot;solve&quot; to watch the program solve the puzzle." id="DKF-Wc-HCz">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="245" y="367"/>
+            <point key="canvasLocation" x="245" y="381.5"/>
         </window>
     </objects>
 </document>
