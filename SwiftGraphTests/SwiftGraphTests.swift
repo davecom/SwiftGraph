@@ -33,11 +33,11 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertEqual(g.neighborsForVertex("Miami")!, g.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miam and New York Connected bi-directionally")
     }
     
-    func testPerformanceExample() {
+    //func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+     //   self.measureBlock() {
             // Put the code you want to measure the time of here.
-        }
-    }
+     //   }
+    //}
     
 }
