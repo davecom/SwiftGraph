@@ -12,9 +12,9 @@ Simply copy `SwiftGraph.swift` into your project. When the Swift packaging story
 ## Tips and Tricks
 * To get a sense of how to use SwiftGraph, checkout the unit tests
 * Inserting an edge by vertex indices is much faster than inserting an edge by vertex objects that need to have their indices looked up
-* Generally looking for the index of a vertex is O(n) time, with n being the number of vertices in the graph
+* Generally, looking for the index of a vertex is O(n) time, with n being the number of vertices in the graph
 * SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one vertex and another in a graph
-* The impelementation of djikstra's algorithm in `djikstra` does not use a priority queue at this time, so it's quite slow
+* The impelementation of djikstra's algorithm in `djikstra()` does not use a priority queue at this time, so it's quite slow
 * Is the sample program (Nine Tails) beachballing and taking a few seconds to load for you? Edit the Run scheme to be Release instead of Debug
 
 ## Documentation
