@@ -5,6 +5,10 @@
 //  Created by David Kopec on 11/16/14.
 //  Copyright (c) 2014 Oak Snow Consulting. All rights reserved.
 //
+
+// NOTE: This sample app may run a bit slowly when compiled for DEBUG/without compiler optimizations turned on.
+// For a better sense of how to use SwiftGraph see the unit tests.
+
 import AppKit
 import QuartzCore
 import Cocoa
@@ -12,22 +16,12 @@ import Cocoa
 class NineTailView: NSView {
     var position: NineTailPosition = NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]) {
         didSet {
-            //position = newValue
             for var i = 0; i < position.positionMatrix.count; i++ {
                 for var j = 0; j < position.positionMatrix[0].count; j++ {
-                    
-                    /*var changeImageAnimation: CABasicAnimation = CABasicAnimation(keyPath: "contents")
-                    changeImageAnimation.fromValue = pennyLayers[i][j].contents
-                    let newImage: NSImage = NSImage(named: position.positionMatrix[i][j].rawValue)!
-                    changeImageAnimation.toValue = newImage
-                    changeImageAnimation.duration = 3.0
-                    pennyLayers[i][j].addAnimation(changeImageAnimation, forKey: "contents")*/
-                    
                     CATransaction.begin()
                     CATransaction.setValue(NSNumber(float: 2.5), forKey: kCATransactionAnimationDuration)
                     pennyLayers[i][j].contents = NSImage(named: position.positionMatrix[i][j].rawValue)!
                     CATransaction.commit()
-                    //pennyLayers[i][j].contents = newImage
                 }
             }
             
@@ -135,81 +129,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let ntGraph: UnweightedGraph<NineTailPosition> = UnweightedGraph<NineTailPosition>()
     var path: [NineTailPosition] = [NineTailPosition]()
     var timer:NSTimer?
-
-    // based on Introduction to Java Programming by Liang p 1052 Java function getNode()
-    /*func positionForIndex(inout index: Int) -> NineTailPosition {
-        var matrix:[[Coin]] = [[Coin]]()
-        //initialize matrix
-        for var i = 0; i < 3; i++ {
-            matrix[i] = [Coin]()
-            for var j = 0; j < 3; j++ {
-                matrix[i].append(.Heads)
-            }
-        }
-        
-        //Again this is an algorithm from Liang Introduction to Java Programming p 1052
-        for var i = 0; i < 9; i++ {
-            let digit: Int = index % 2
-            if digit != 0 {
-                matrix[8-i] = .Tails
-            }
-            index = index / 2
-        }
-    }*/
     
-    func addPositionAndChildren(position: NineTailPosition) {
-        if !ntGraph.vertexInGraph(position) {
-            ntGraph.addVertex(position)
-            
+    func addPositionAndChildren(position: NineTailPosition, parent: Int) {
+        let index: Int? = ntGraph.indexOfVertex(position)
+        if let place = index {
+            ntGraph.addEdge(parent, to: place, directed: true)
+        } else {
+            let child: Int = ntGraph.addVertex(position)
+            if (parent != -1) {
+                ntGraph.addEdge(parent, to: child, directed: true)
+            }
             for var i = 0; i < 3; i++ {
                 for var j = 0; j < 3; j++ {
                     let flipped = position.flip(i, column: j)
-                    addPositionAndChildren(flipped)
-                    ntGraph.addEdge(position, to: flipped, directed: true)
+                    addPositionAndChildren(flipped, parent: child)
+                    
                 }
             }
         }
-    }
-    
-    func addPositionAndChildren2(position: NineTailPosition) {
-        var verticesToAdd: [NineTailPosition] = [NineTailPosition]()
-        //var edgesToAdd: [UnweightedEdge] = [UnweightedEdge]()
-        var last: NineTailPosition? = nil
-        ntGraph.addVertex(position)
-        verticesToAdd.append(position)
-        while (!verticesToAdd.isEmpty) {
-            let position:NineTailPosition = verticesToAdd.removeLast()
-            let parentIndex:Int = ntGraph.indexOfVertex(position)!
-            for var i = 0; i < 3; i++ {
-                for var j = 0; j < 3; j++ {
-                    let flipped = position.flip(i, column: j)
-                    if !ntGraph.vertexInGraph(flipped) {
-                        verticesToAdd.append(flipped)
-                        ntGraph.addVertex(flipped)
-                        ntGraph.addEdge(parentIndex, to: ntGraph.vertexCount - 1, directed: true)
-                        //edgesToAdd.append(UnweightedEdge(u: p, v: flipped, directed: true))
-                    }
-                }
-            }
-        }
-        /*for e: UnweightedEdge in edgesToAdd {
-            ntGraph.addEdge(e)
-        }*/
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        window.makeKeyAndOrderFront(self)
         ntView.needsDisplay = true  //redraw it if it wasn't automatically
-        //ntView.position = NineTailPosition(matrix: [[.Heads, .Heads, .Tails],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]])
         //add all the vertices
-        addPositionAndChildren(NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]))
-        println(ntGraph)
-        
-
+        addPositionAndChildren(NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]), parent: -1)
     }
     
     func timerFire(timer: NSTimer) {
         if !path.isEmpty {
-            //println("Changing position")
             ntView.position = path.removeAtIndex(0)
         } else {
             timer.invalidate()
@@ -219,7 +167,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func solve(sender: AnyObject) {
         var temp = bfs(ntView.position, NineTailPosition(matrix: [[.Tails, .Tails, .Tails],[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]), ntGraph)
         path = edgesToVertices(temp, ntGraph)
-        //print(path)
         timer = NSTimer.scheduledTimerWithTimeInterval(2.5, target: self, selector: "timerFire:", userInfo: nil, repeats: true)
     }
     

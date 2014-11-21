@@ -215,9 +215,11 @@ class Graph<V: Equatable>: Printable {
     /// Add a vertex to the graph.
     ///
     /// :param: v The vertex to be added.
-    func addVertex(v: V) {
+    /// :returns: The index where the vertex was added.
+    func addVertex(v: V) -> Int {
         vertices.append(v)
         edges.append([Edge]())
+        return vertices.count - 1
     }
     
     /// Add an edge to the graph. It should take
@@ -534,6 +536,9 @@ class Queue<T: Equatable> {
 }
 
 func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
+    if pathDict.count == 0 {
+        return []
+    }
     var edgePath: [Edge] = [Edge]()
     var e: Edge = pathDict[to]!
     edgePath.append(e)
