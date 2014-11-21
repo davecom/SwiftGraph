@@ -2,7 +2,7 @@
 
 SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on both iOS and OS X projects. It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
 
-It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and djikstra's algorithm.
+It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and djikstra's algorithm. *However, it is not yet battle-tested and may still have some significant performance gaps.*
 
 Please note: the included nine tails demo runs quite slowly (you'll see a beachball) unless Swift compiler optimizations are turned on. Turn them on by changing your run scheme in Xcode from 'Debug' to 'Release.'
 
