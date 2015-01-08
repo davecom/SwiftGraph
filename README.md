@@ -18,7 +18,7 @@ Simply copy `SwiftGraph.swift` into your project. When the Swift packaging story
 * Is the sample program (Nine Tails) beachballing and taking a few seconds to load for you? Edit the Run scheme to be Release instead of Debug
 
 ## Documentation
-There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode.  Unfortunately there's no good way to turn that documentation into HTML/Markdown at this time. Until tools come out to do this, here's some more basic information:
+There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are (not very good) HTML docs generated via [Jazzy](https://github.com/realm/jazzy) available in the `docs` directory and [online](https://davecom.github.io/SwiftGraph/docs/). In addition, here's some more basic information:
 
 ### Edges
 Edges connect the vertices in your graph to one another.
