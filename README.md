@@ -1,6 +1,66 @@
-SwiftGraph
-==========
+# SwiftGraph
 
-SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on both iOS and OS X projects. It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the class of the vertices, and the class of weights.
+SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on both iOS and OS X projects. It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
 
-It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and djikstra's algorithm.
+It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and djikstra's algorithm. *However, it is not yet battle-tested and may still have some significant performance gaps.*
+
+Please note: the included nine tails demo runs quite slowly (you'll see a beachball) unless Swift compiler optimizations are turned on. Turn them on by changing your run scheme in Xcode from 'Debug' to 'Release.'
+
+## Installation
+Simply copy `SwiftGraph.swift` into your project. When the Swift packaging story improves, SwiftGraph will improve with it, but for now it seemed the easiest thing to do was to put the entire library in one file.
+
+## Tips and Tricks
+* To get a sense of how to use SwiftGraph, checkout the unit tests
+* Inserting an edge by vertex indices is much faster than inserting an edge by vertex objects that need to have their indices looked up
+* Generally, looking for the index of a vertex is O(n) time, with n being the number of vertices in the graph
+* SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one vertex and another in a graph
+* The impelementation of djikstra's algorithm in `djikstra()` does not use a priority queue at this time, so it's quite slow
+* Is the sample program (Nine Tails) beachballing and taking a few seconds to load for you? Edit the Run scheme to be Release instead of Debug
+
+## Documentation
+There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode.  Unfortunately there's no good way to turn that documentation into HTML/Markdown at this time. Until tools come out to do this, here's some more basic information:
+
+### Edges
+Edges connect the vertices in your graph to one another.
+
+* `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer. Further, an edge knows if it's directed, or weighted. An edge can create a reversed version of itself.
+* `UnweightedEdge` - This is a concrete implementation of `Edge` for unweighted graphs.
+* `WeightedEdge` - A subclass of `UnweightedEdge` that adds weights. Weights are a generic type - they can be anything that implements `Comparable` and `Summable`.  `Summable` is anything that implements the `+` operator.  To add `Summable` support to a data type that already has the plus operator, simply write something like (support in SwiftGraph is already included for `Int`, `Float`, `Double`, and `String`):
+```
+extension Int: Summable {}
+```
+
+### Graphs
+Graphs are the data structures at the heart of SwiftGraph. All vertices are assigned an integer index when they are inserted into a graph and it's generally faster to refer to them by their index than by the vertex's actual object. 
+
+Note: At this time, graphs are *not* thread-safe. However, once a graph is constructed, if you will only be doing lookups and searches through it (no removals of vertices/edges and no additions of vertices/edges) then you should be able to do that from multiple threads. A fully thread-safe graph implementation is a possible future direction.
+
+* `Graph` - This is the base class for all graphs.  Generally, you should use one of its canonical subclasses, `UnweightedGraph` or `WeightedGraph`, because they offer more functionality. The vertices in a `Graph` (defined as a generic at graph creation time) can be of any type that conforms to `Equatable`. `Graph` has methods for:
+  * Adding a vertex
+  * Getting the index of a vertex
+  * Finding the neighbors of an index/vertex
+  * Finding the edges of an index/vertex
+  * Checking if an edge from one index/vertex to another index/vertex exists
+  * Checking if a vertex is in the graph
+  * Adding an edge
+  * Removing all edges between two indexes/vertices
+  * Removing a particular vertex (all other edge relationships are automatically updated at the same time (because the indices of their connections changes) so this is slow - O(v + e) where v is the number of vertices and e is the number of edges)
+* `UnweightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `UnweightedEdge`.
+* `WeightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights.
+
+### Functions
+* `bfs()` - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
+* `dfs()` - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
+* `djikstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `djikstra()` unit tests in `DjikstraGraphTests.swift` for a demo of this. Note: this implementation of djikstra's algorithm does not use a priority queue, so it's quite slow.
+
+## Authorship & License
+SwiftGraph is written by David Kopec and released under the MIT License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
+
+## Future Direction
+Future directions for this project to take could include:
+* Improved performance
+* A faster implemention of `djikstra()`, using a priority queue
+* Additional convenience methods
+* Additional search functions
+* A thread-safe subclass of `Graph`
+* Refactoring `Graph` into a protocol instead of a class
