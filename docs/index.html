@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script type="text/javascript">
+    window.jazzy = {'docset': false}
+    if (typeof window.dash != 'undefined') {
+      document.documentElement.className += ' dash'
+      window.jazzy.docset = true
+    }
+    if (navigator.userAgent.match(/xcode/i)) {
+      document.documentElement.className += ' xcode'
+      window.jazzy.docset = true
+    }
+    </script>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+  </head>
+  <body id="reference" class="Swift">
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p class="header-text"><a href="index.html"> Docs</a> (48% documented)</p>
+        <p id="header-links"><a href="https://github.com/davecom/SwiftGraph"><img id="header-icon" src="img/gh.png" height="16px" width="16px" />View on GitHub</a></p>
+      </div>
+    </header>
+    <section id="valence">
+      <div class="content-wrapper">
+        <p id="hierarchial_navigation">
+        <a href="index.html" id="design_resources_link"> Reference</a>
+        <img id="carat" src="img/carat.png" height="10px" width="6px" />
+          Reference
+        </p>
+      </div>
+    </section>
+    <div class="content-wrapper">
+      <nav class="book-parts">
+        <ul class="nav-parts">
+          <li class="part-name tasks">
+          <a href="Classes.html">Classes</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Classes/Graph.html">Graph</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Classes.html#/s:C10SwiftGraph5Queue">Queue</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Classes.html#/s:C10SwiftGraph5Stack">Stack</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Classes.html#/s:C10SwiftGraph14UnweightedEdge">UnweightedEdge</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Classes/UnweightedGraph.html">UnweightedGraph</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Classes.html#/s:C10SwiftGraph12WeightedEdge">WeightedEdge</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Classes/WeightedGraph.html">WeightedGraph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="Extensions.html">Extensions</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Extensions.html#/s:Si">Int</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Extensions.html#/s:SS">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="Functions.html">Functions</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F10SwiftGraph3bfsUSs9Equatable__FTQ_Q_GCS_5GraphQ___GSaPS_4Edge__">bfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F10SwiftGraph3bfsUSs9Equatable__FTSiSiGCS_5GraphQ___GSaPS_4Edge__">bfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F10SwiftGraph3dfsUSs9Equatable__FTSiSiGCS_5GraphQ___GSaPS_4Edge__">dfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F10SwiftGraph3dfsUSs9Equatable__FTQ_Q_GCS_5GraphQ___GSaPS_4Edge__">dfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F10SwiftGraph25distanceArrayToVertexDictUSs8Hashable_Ss10ComparableS_8Summable__FTGSaGSqQ0___GCS_13WeightedGraphQ_Q0___GVSs10DictionaryQ_GSqQ0___">distanceArrayToVertexDict(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F10SwiftGraph8djikstraUSs9Equatable_Ss10ComparableS_8Summable__FTGCS_13WeightedGraphQ_Q0__Si_TGSaGSqQ0___GVSs10DictionarySiGCS_12WeightedEdgeQ0____">djikstra(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Functions.html#/s:F10SwiftGraph15edgesToVerticesUSs9Equatable__FTGSaPS_4Edge__GCS_5GraphQ___GSaQ__">edgesToVertices(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="Protocols.html">Protocols</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Protocols.html#/s:P10SwiftGraph4Edge">Edge</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="pixel-line"></div>
+      <div class="rubber-band-gap"></div>
+      <article class="chapter">
+      <a name="/"></a>
+        <h1 class="chapter-name"></h1>
+        <section>
+          <section class="section">
+            <div class='readme'><a href='#swiftgraph' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='swiftgraph'>SwiftGraph</h1>
+<p class="para">SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on both iOS and OS X projects. It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the class of the vertices, and the class of weights.</p><p class="para">It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and djikstra&rsquo;s algorithm.</p></div>
+          </section>
+        </section>
+        <section id="footer">
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-01-07)</p>
+          <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.0.20</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

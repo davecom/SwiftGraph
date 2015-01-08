@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Graph Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script type="text/javascript">
+    window.jazzy = {'docset': false}
+    if (typeof window.dash != 'undefined') {
+      document.documentElement.className += ' dash'
+      window.jazzy.docset = true
+    }
+    if (navigator.userAgent.match(/xcode/i)) {
+      document.documentElement.className += ' xcode'
+      window.jazzy.docset = true
+    }
+    </script>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body id="reference" class="Swift">
+    <a name="//apple_ref/swift/Class/Graph" class="dashAnchor"></a>
+    <a title="Graph Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p class="header-text"><a href="../index.html"> Docs</a> (48% documented)</p>
+        <p id="header-links"><a href="https://github.com/davecom/SwiftGraph"><img id="header-icon" src="../img/gh.png" height="16px" width="16px" />View on GitHub</a></p>
+      </div>
+    </header>
+    <section id="valence">
+      <div class="content-wrapper">
+        <p id="hierarchial_navigation">
+        <a href="../index.html" id="design_resources_link"> Reference</a>
+        <img id="carat" src="../img/carat.png" height="10px" width="6px" />
+        Graph Class Reference
+        </p>
+      </div>
+    </section>
+    <div class="content-wrapper">
+      <nav class="book-parts">
+        <ul class="nav-parts">
+          <li class="part-name tasks">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Classes/Graph.html">Graph</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes.html#/s:C10SwiftGraph5Queue">Queue</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes.html#/s:C10SwiftGraph5Stack">Stack</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes.html#/s:C10SwiftGraph14UnweightedEdge">UnweightedEdge</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes/UnweightedGraph.html">UnweightedGraph</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes.html#/s:C10SwiftGraph12WeightedEdge">WeightedEdge</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Classes/WeightedGraph.html">WeightedGraph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Extensions.html#/s:Si">Int</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Extensions.html#/s:SS">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="../Functions.html">Functions</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F10SwiftGraph3bfsUSs9Equatable__FTQ_Q_GCS_5GraphQ___GSaPS_4Edge__">bfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F10SwiftGraph3bfsUSs9Equatable__FTSiSiGCS_5GraphQ___GSaPS_4Edge__">bfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F10SwiftGraph3dfsUSs9Equatable__FTSiSiGCS_5GraphQ___GSaPS_4Edge__">dfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F10SwiftGraph3dfsUSs9Equatable__FTQ_Q_GCS_5GraphQ___GSaPS_4Edge__">dfs(_:_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F10SwiftGraph25distanceArrayToVertexDictUSs8Hashable_Ss10ComparableS_8Summable__FTGSaGSqQ0___GCS_13WeightedGraphQ_Q0___GVSs10DictionaryQ_GSqQ0___">distanceArrayToVertexDict(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F10SwiftGraph8djikstraUSs9Equatable_Ss10ComparableS_8Summable__FTGCS_13WeightedGraphQ_Q0__Si_TGSaGSqQ0___GVSs10DictionarySiGCS_12WeightedEdgeQ0____">djikstra(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Functions.html#/s:F10SwiftGraph15edgesToVerticesUSs9Equatable__FTGSaPS_4Edge__GCS_5GraphQ___GSaQ__">edgesToVertices(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="part-name tasks">
+          <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Protocols.html#/s:P10SwiftGraph4Edge">Edge</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="pixel-line"></div>
+      <div class="rubber-band-gap"></div>
+      <article class="chapter">
+      <a name="/"></a>
+        <h1 class="chapter-name">Graph</h1>
+        <section>
+          <section class="section">
+            <p class="para">The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can have some method implementations in common. You should generally use one of its two canonical subclasses, <em>UnweightedGraph</em> and <em>WeightedGraph</em>, because they offer more functionality and convenience.</p>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Unnamed"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vC10SwiftGraph5Graph11vertexCountSi">
+                    <a name="//apple_ref/swift/Property/vertexCount" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vC10SwiftGraph5Graph11vertexCountSi">vertexCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">How many vertices are in the graph?</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">vertexCount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:vC10SwiftGraph5Graph17immutableVerticesGSaQ__">
+                    <a name="//apple_ref/swift/Property/immutableVertices" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:vC10SwiftGraph5Graph17immutableVerticesGSaQ__">immutableVertices</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">An immutable array containing all of the vertices in the graph.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">immutableVertices</span><span class="p">:</span> <span class="p">[</span><span class="kt">V</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph13vertexAtIndexUSs9Equatable__FGS0_Q__FSiQ_">
+                    <a name="//apple_ref/swift/Method/vertexAtIndex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph13vertexAtIndexUSs9Equatable__FGS0_Q__FSiQ_">vertexAtIndex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Get a vertex by its index.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">vertexAtIndex</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The index of the vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">The vertex at i.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph13indexOfVertexUSs9Equatable__FGS0_Q__FQ_GSqSi_">
+                    <a name="//apple_ref/swift/Method/indexOfVertex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph13indexOfVertexUSs9Equatable__FGS0_Q__FQ_GSqSi_">indexOfVertex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Find the first occurence of a vertex if it exists.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">indexOfVertex</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The vertex you are looking for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">The index of the vertex. Return nil if it can&rsquo;t find it.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph17neighborsForIndexUSs9Equatable__FGS0_Q__FSiGSaQ__">
+                    <a name="//apple_ref/swift/Method/neighborsForIndex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph17neighborsForIndexUSs9Equatable__FGS0_Q__FSiGSaQ__">neighborsForIndex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Find all of the neighbors of a vertex at a given index.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">neighborsForIndex</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">V</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The index for the vertex to find the neighbors of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">An array of the neighbor vertices.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph18neighborsForVertexUSs9Equatable__FGS0_Q__FQ_GSqGSaQ___">
+                    <a name="//apple_ref/swift/Method/neighborsForVertex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph18neighborsForVertexUSs9Equatable__FGS0_Q__FQ_GSqGSaQ___">neighborsForVertex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Find all of the neighbors of a given Vertex.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">neighborsForVertex</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">V</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The vertex to find the neighbors of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">An optional array of the neighbor vertices.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph13edgesForIndexUSs9Equatable__FGS0_Q__FSiGSaPS_4Edge__">
+                    <a name="//apple_ref/swift/Method/edgesForIndex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph13edgesForIndexUSs9Equatable__FGS0_Q__FSiGSaPS_4Edge__">edgesForIndex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Find all of the edges of a vertex at a given index.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">edgesForIndex</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Edge</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The index for the vertex to find the children of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph14edgesForVertexUSs9Equatable__FGS0_Q__FQ_GSqGSaPS_4Edge___">
+                    <a name="//apple_ref/swift/Method/edgesForVertex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph14edgesForVertexUSs9Equatable__FGS0_Q__FQ_GSqGSaPS_4Edge___">edgesForVertex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Find all of the edges of a given vertex.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">edgesForVertex</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Edge</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The vertex to find the edges of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph10edgeExistsUSs9Equatable__FGS0_Q__FTSi2toSi_Sb">
+                    <a name="//apple_ref/swift/Method/edgeExists(_:to:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph10edgeExistsUSs9Equatable__FGS0_Q__FTSi2toSi_Sb">edgeExists(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Is there an edge from one vertex to another?</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">edgeExists</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The index of the starting edge.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The index of the ending edge.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">A Bool that is true if such an edge exists, and false otherwise.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph10edgeExistsUSs9Equatable__FGS0_Q__FTQ_2toQ__Sb">
+                    <a name="//apple_ref/swift/Method/edgeExists(_:to:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph10edgeExistsUSs9Equatable__FGS0_Q__FTQ_2toQ__Sb">edgeExists(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">edgeExists</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">V</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The first vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The second vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">A Bool that is true if such an edge exists, and false otherwise.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph13vertexInGraphUSs9Equatable__FGS0_Q__FQ_Sb">
+                    <a name="//apple_ref/swift/Method/vertexInGraph(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph13vertexInGraphUSs9Equatable__FGS0_Q__FQ_Sb">vertexInGraph(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Find the first occurence of a vertex.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">vertexInGraph</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The vertex you are looking for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph9addVertexUSs9Equatable__FGS0_Q__FQ_Si">
+                    <a name="//apple_ref/swift/Method/addVertex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph9addVertexUSs9Equatable__FGS0_Q__FQ_Si">addVertex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Add a vertex to the graph.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">addVertex</span><span class="p">(</span><span class="nv">v</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">v</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The vertex to be added.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="result-description">
+                        <h4>Return Value</h4>
+                        <p class="para">The index where the vertex was added.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph7addEdgeUSs9Equatable__FGS0_Q__FPS_4Edge_T_">
+                    <a name="//apple_ref/swift/Method/addEdge(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph7addEdgeUSs9Equatable__FGS0_Q__FPS_4Edge_T_">addEdge(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Add an edge to the graph. It should take</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">addEdge</span><span class="p">(</span><span class="nv">e</span><span class="p">:</span> <span class="kt">Edge</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">e</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The edge to add.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph14removeAllEdgesUSs9Equatable__FGS0_Q__FTSi2toSi_T_">
+                    <a name="//apple_ref/swift/Method/removeAllEdges(_:to:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph14removeAllEdgesUSs9Equatable__FGS0_Q__FTSi2toSi_T_">removeAllEdges(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Removes all edges in both directions between vertices at indexes from &amp; to.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">removeAllEdges</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The starting vertex&rsquo;s index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The ending vertex&rsquo;s index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph14removeAllEdgesUSs9Equatable__FGS0_Q__FTQ_2toQ__T_">
+                    <a name="//apple_ref/swift/Method/removeAllEdges(_:to:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph14removeAllEdgesUSs9Equatable__FGS0_Q__FTQ_2toQ__T_">removeAllEdges(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Removes all edges in both directions between two vertices.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">removeAllEdges</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">V</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The ending vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph19removeVertexAtIndexUSs9Equatable__FGS0_Q__FSiT_">
+                    <a name="//apple_ref/swift/Method/removeVertexAtIndex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph19removeVertexAtIndexUSs9Equatable__FGS0_Q__FSiT_">removeVertexAtIndex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Removes a vertex at a specified index, all of the edges attached to it, and renumbers the indexes of the rest of the edges.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">removeVertexAtIndex</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The index of the vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FC10SwiftGraph5Graph12removeVertexUSs9Equatable__FGS0_Q__FQ_T_">
+                    <a name="//apple_ref/swift/Method/removeVertex(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FC10SwiftGraph5Graph12removeVertexUSs9Equatable__FGS0_Q__FQ_T_">removeVertex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Removes the first occurence of a vertex, all of the edges attached to it, and renumbers the indexes of the rest of the edges.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">removeVertex</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The vertex to be removed..</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p class="copyright">&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-01-07)</p>
+          <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.0.20</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
