@@ -2,7 +2,7 @@
 //  SwiftGraph.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014 David Kopec
+//  Copyright (c) 2014-2015 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -644,7 +644,7 @@ func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     return []
 }
 
-/// Find a route from one vertex to another using a depth first search.
+/// Find a route from one vertex to another using a breadth first search.
 ///
 /// :params: from The starting vertex.
 /// :params: to The ending vertex.
