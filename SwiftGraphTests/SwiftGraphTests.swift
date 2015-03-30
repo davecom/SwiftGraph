@@ -33,6 +33,19 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertEqual(g.neighborsForVertex("Miami")!, g.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miam and New York Connected bi-directionally")
     }
     
+    func testSequenceTypeAndCollectionType() {
+        var g: UnweightedGraph<String> = UnweightedGraph<String>()
+        g.addVertex("Atlanta")
+        g.addVertex("New York")
+        g.addVertex("Miami")
+        var tempList: [String] = []
+        for v in g {
+            tempList.append(v)
+        }
+        XCTAssertEqual(tempList, ["Atlanta", "New York", "Miami"], "Iterated Successfully")
+        XCTAssertEqual(g[1], "New York", "Subscripted Successfully")
+    }
+    
     //func testPerformanceExample() {
         // This is an example of a performance test case.
      //   self.measureBlock() {

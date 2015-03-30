@@ -100,7 +100,7 @@ func ==<W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
 /// The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can
 /// have some method implementations in common. You should generally use one of its two canonical subclasses,
 /// *UnweightedGraph* and *WeightedGraph*, because they offer more functionality and convenience.
-class Graph<V: Equatable>: Printable {
+class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     private var vertices: [V] = [V]()
     private var edges: [[Edge]] = [[Edge]]() //adjacency lists
     
@@ -334,6 +334,34 @@ class Graph<V: Equatable>: Printable {
             d += "\(vertices[i]) -> \(neighborsForIndex(i))\n"
         }
         return d
+    }
+    
+    //Implement SequenceType
+    typealias Generator = GeneratorOf<V>
+    
+    func generate() -> Generator {
+        var index = 0
+        return GeneratorOf {
+            if index < self.vertices.count {
+                return self.vertexAtIndex(index++)
+            }
+            return nil
+        }
+    }
+    
+    //Implement CollectionType
+    typealias Index = Int
+    
+    var startIndex: Int {
+        return 0
+    }
+    
+    var endIndex: Int {
+        return vertexCount
+    }
+    
+    subscript(i: Int) -> V {
+        return vertexAtIndex(i)
     }
 }
 
