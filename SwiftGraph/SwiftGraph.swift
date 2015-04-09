@@ -423,10 +423,10 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
     ///
     /// :param: edge The edge to be removed.
     func removeEdge(edge: UnweightedEdge) {
-        if let i = find(edges[edge.u] as [UnweightedEdge], edge) {
+        if let i = find(edges[edge.u] as! [UnweightedEdge], edge) {
             edges[edge.u].removeAtIndex(i)
             if !edge.directed {
-                if let i = find(edges[edge.v] as [UnweightedEdge], edge.reversed as UnweightedEdge) {
+                if let i = find(edges[edge.v] as! [UnweightedEdge], edge.reversed as! UnweightedEdge) {
                     edges[edge.v].removeAtIndex(i)
                 }
             }
@@ -520,10 +520,10 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     ///
     /// :param: edge The edge to be removed.
     func removeEdge(edge: WeightedEdge<W>) {
-        if let i = find(edges[edge.u] as [WeightedEdge<W>], edge) {
+        if let i = find(edges[edge.u] as! [WeightedEdge<W>], edge) {
             edges[edge.u].removeAtIndex(i)
             if !edge.directed {
-                if let i = find(edges[edge.v] as [WeightedEdge<W>], edge.reversed as WeightedEdge) {
+                if let i = find(edges[edge.v] as! [WeightedEdge<W>], edge.reversed as! WeightedEdge) {
                     edges[edge.v].removeAtIndex(i)
                 }
             }
