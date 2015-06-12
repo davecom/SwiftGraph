@@ -5,9 +5,7 @@ SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, 
 It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and djikstra's algorithm. *However, it is not yet battle-tested and may still have some significant performance gaps.*
 
 ## Installation
-<<<<<<< HEAD
 Simply copy `SwiftGraph.swift` into your project or use the CocoaPod `SwiftGraph`. SwiftGraph requires Swift 1.2 (Xcode 6.3).
->>>>>>> 724819e223fe10277132830bece054c5af5ec3b3
 
 ## Tips and Tricks
 * To get a sense of how to use SwiftGraph, checkout the unit tests
