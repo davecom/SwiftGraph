@@ -7,7 +7,7 @@ It includes copious in-source documentation, some unit tests, as well as utility
 Please note: the included nine tails demo runs quite slowly (you'll see a beachball) unless Swift compiler optimizations are turned on. Turn them on by changing your run scheme in Xcode from 'Debug' to 'Release.'
 
 ## Installation
-Simply copy `SwiftGraph.swift` into your project. When the Swift packaging story improves, SwiftGraph will improve with it, but for now it seemed the easiest thing to do was to put the entire library in one file.
+Simply copy `SwiftGraph.swift` into your project or use the CocoaPod `SwiftGraph`.
 
 ## Tips and Tricks
 * To get a sense of how to use SwiftGraph, checkout the unit tests
