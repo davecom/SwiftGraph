@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 /// A protocol that all edges in a graph must conform to.
-protocol Edge: Printable {
+public protocol Edge: Printable {
     var u: Int {get set}  //made modifiable for changing when removing vertices
     var v: Int {get set}  //made modifiable for changing when removing vertices
     var weighted: Bool {get}
@@ -32,23 +32,23 @@ protocol Edge: Printable {
 }
 
 /// A basic unweighted edge.
-class UnweightedEdge: Edge, Equatable, Printable {
-    var u: Int
-    var v: Int
-    var weighted: Bool { return false }
-    let directed: Bool
-    var reversed:Edge {
+public class UnweightedEdge: Edge, Equatable, Printable {
+    public var u: Int
+    public var v: Int
+    public var weighted: Bool { return false }
+    public let directed: Bool
+    public var reversed:Edge {
         return UnweightedEdge(u: v, v: u, directed: directed)
     }
     
-    init(u: Int, v: Int, directed: Bool) {
+    public init(u: Int, v: Int, directed: Bool) {
         self.u = u
         self.v = v
         self.directed = directed
     }
     
     //Implement Printable protocol
-    var description: String {
+    public var description: String {
         if directed {
             return "\(u) -> \(v)"
         }
@@ -56,13 +56,13 @@ class UnweightedEdge: Edge, Equatable, Printable {
     }
 }
 
-func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
+public func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
     return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed
 }
 
 // This protocol is needed for djikstra's algorithm - we need weights in weighted graphs
 // to be able to be added together
-protocol Summable {
+public protocol Summable {
     func +(lhs: Self, rhs: Self) -> Self
 }
 
@@ -72,20 +72,20 @@ extension Float: Summable {}
 extension String: Summable {}
 
 /// A weighted edge, who's weight subscribes to Comparable.
-class WeightedEdge<W: protocol<Comparable, Summable>>: UnweightedEdge, Equatable {
-    override var weighted: Bool { return true }
-    let weight: W
-    override var reversed:Edge {
+public class WeightedEdge<W: protocol<Comparable, Summable>>: UnweightedEdge, Equatable {
+    public override var weighted: Bool { return true }
+    public let weight: W
+    public override var reversed:Edge {
         return WeightedEdge(u: v, v: u, directed: directed, weight: weight)
     }
     
-    init(u: Int, v: Int, directed: Bool, weight: W) {
+    public init(u: Int, v: Int, directed: Bool, weight: W) {
         self.weight = weight
         super.init(u: u, v: v, directed: directed)
     }
     
     //Implement Printable protocol
-    override var description: String {
+    public override var description: String {
         if directed {
             return "\(u) \(weight)> \(v)"
         }
@@ -93,31 +93,31 @@ class WeightedEdge<W: protocol<Comparable, Summable>>: UnweightedEdge, Equatable
     }
 }
 
-func ==<W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+public func ==<W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
     return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
 }
 
 /// The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can
 /// have some method implementations in common. You should generally use one of its two canonical subclasses,
 /// *UnweightedGraph* and *WeightedGraph*, because they offer more functionality and convenience.
-class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
+public class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     private var vertices: [V] = [V]()
     private var edges: [[Edge]] = [[Edge]]() //adjacency lists
     
     /// How many vertices are in the graph?
-    var vertexCount: Int {
+    public var vertexCount: Int {
         return vertices.count
     }
     
     /// An immutable array containing all of the vertices in the graph.
-    var immutableVertices: [V] {
+    public var immutableVertices: [V] {
         return vertices
     }
     
-    init() {
+    public init() {
     }
     
-    init(vertices: [V]) {
+    public init(vertices: [V]) {
         for vertex in vertices {
             addVertex(vertex)
         }
@@ -127,7 +127,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     ///
     /// :param: index The index of the vertex.
     /// :returns: The vertex at i.
-    func vertexAtIndex(index: Int) -> V {
+    public func vertexAtIndex(index: Int) -> V {
         return vertices[index]
     }
     
@@ -136,7 +136,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// :param: vertex The vertex you are looking for.
     /// :returns: The index of the vertex. Return nil if it can't find it.
     
-    func indexOfVertex(vertex: V) -> Int? {
+    public func indexOfVertex(vertex: V) -> Int? {
         if let i = find(vertices, vertex) {
             return i
         }
@@ -147,7 +147,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     ///
     /// :param: index The index for the vertex to find the neighbors of.
     /// :returns: An array of the neighbor vertices.
-    func neighborsForIndex(index: Int) -> [V] {
+    public func neighborsForIndex(index: Int) -> [V] {
         return edges[index].map({self.vertices[$0.v]})
     }
     
@@ -155,7 +155,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     ///
     /// :param: vertex The vertex to find the neighbors of.
     /// :returns: An optional array of the neighbor vertices.
-    func neighborsForVertex(vertex: V) -> [V]? {
+    public func neighborsForVertex(vertex: V) -> [V]? {
         if let i = indexOfVertex(vertex) {
             return neighborsForIndex(i)
         }
@@ -165,14 +165,14 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// Find all of the edges of a vertex at a given index.
     ///
     /// :param: index The index for the vertex to find the children of.
-    func edgesForIndex(index: Int) -> [Edge] {
+    public func edgesForIndex(index: Int) -> [Edge] {
         return edges[index]
     }
     
     /// Find all of the edges of a given vertex.
     ///
     /// :param: vertex The vertex to find the edges of.
-    func edgesForVertex(vertex: V) -> [Edge]? {
+    public func edgesForVertex(vertex: V) -> [Edge]? {
         if let i = indexOfVertex(vertex) {
             return edgesForIndex(i)
         }
@@ -184,7 +184,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// :param: from The index of the starting edge.
     /// :param: to The index of the ending edge.
     /// :returns: A Bool that is true if such an edge exists, and false otherwise.
-    func edgeExists(from: Int, to: Int) -> Bool {
+    public func edgeExists(from: Int, to: Int) -> Bool {
         return contains(edges[from].map({$0.v}), to)
     }
     
@@ -193,7 +193,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// :param: from The first vertex.
     /// :param: to The second vertex.
     /// :returns: A Bool that is true if such an edge exists, and false otherwise.
-    func edgeExists(from: V, to: V) -> Bool {
+    public func edgeExists(from: V, to: V) -> Bool {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 return edgeExists(u, to: v)
@@ -205,7 +205,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// Find the first occurence of a vertex.
     ///
     /// :param: vertex The vertex you are looking for.
-    func vertexInGraph(vertex: V) -> Bool {
+    public func vertexInGraph(vertex: V) -> Bool {
         if let i = indexOfVertex(vertex) {
             return true
         }
@@ -216,7 +216,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     ///
     /// :param: v The vertex to be added.
     /// :returns: The index where the vertex was added.
-    func addVertex(v: V) -> Int {
+    public func addVertex(v: V) -> Int {
         vertices.append(v)
         edges.append([Edge]())
         return vertices.count - 1
@@ -225,7 +225,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// Add an edge to the graph. It should take
     ///
     /// :param: e The edge to add.
-    func addEdge(e: Edge) {
+    public func addEdge(e: Edge) {
         edges[e.u].append(e)
         if !e.directed {
             edges[e.v].append(e.reversed)
@@ -236,7 +236,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     ///
     /// :param: from The starting vertex's index.
     /// :param: to The ending vertex's index.
-    func removeAllEdges(from: Int, to: Int) {
+    public func removeAllEdges(from: Int, to: Int) {
         for var i = 0; i < edges[from].count; i++ {
             if edges[from][i].v == from {
                 edges[from].removeAtIndex(i)
@@ -254,7 +254,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     ///
     /// :param: from The starting vertex.
     /// :param: to The ending vertex.
-    func removeAllEdges(from: V, to: V) {
+    public func removeAllEdges(from: V, to: V) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 for var i = 0; i < edges[u].count; i++ {
@@ -275,7 +275,7 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// Removes a vertex at a specified index, all of the edges attached to it, and renumbers the indexes of the rest of the edges.
     ///
     /// :param: index The index of the vertex.
-    func removeVertexAtIndex(index: Int) {
+    public func removeVertexAtIndex(index: Int) {
         //remove all edges ending at the vertex, first doing the ones below it
         //renumber edges that end after the index
         for var j = 0; j < index; j++ {
@@ -321,14 +321,14 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     /// Removes the first occurence of a vertex, all of the edges attached to it, and renumbers the indexes of the rest of the edges.
     ///
     /// :param: vertex The vertex to be removed..
-    func removeVertex(vertex: V) {
+    public func removeVertex(vertex: V) {
         if let i = indexOfVertex(vertex) {
             removeVertexAtIndex(i)
         }
     }
     
     //Implement Printable protocol
-    var description: String {
+    public var description: String {
         var d: String = ""
         for var i = 0; i < vertices.count; i++ {
             d += "\(vertices[i]) -> \(neighborsForIndex(i))\n"
@@ -337,9 +337,9 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     }
     
     //Implement SequenceType
-    typealias Generator = GeneratorOf<V>
+    public typealias Generator = GeneratorOf<V>
     
-    func generate() -> Generator {
+    public func generate() -> Generator {
         var index = 0
         return GeneratorOf {
             if index < self.vertices.count {
@@ -350,28 +350,28 @@ class Graph<V: Equatable>: Printable, SequenceType, CollectionType {
     }
     
     //Implement CollectionType
-    typealias Index = Int
+    public typealias Index = Int
     
-    var startIndex: Int {
+    public var startIndex: Int {
         return 0
     }
     
-    var endIndex: Int {
+    public var endIndex: Int {
         return vertexCount
     }
     
-    subscript(i: Int) -> V {
+    public subscript(i: Int) -> V {
         return vertexAtIndex(i)
     }
 }
 
 /// A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-class UnweightedGraph<T: Equatable>: Graph<T> {
-    override init() {
+public class UnweightedGraph<T: Equatable>: Graph<T> {
+    public override init() {
         super.init()
     }
     
-    override init(vertices: [T]) {
+    public override init(vertices: [T]) {
         super.init(vertices: vertices)
     }
     
@@ -379,7 +379,7 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
     ///
     /// :param: from The starting vertex's index.
     /// :param: to The ending vertex's index.
-    func addEdge(from: Int, to: Int) {
+    public func addEdge(from: Int, to: Int) {
         addEdge(UnweightedEdge(u: from, v: to, directed: false))
     }
     
@@ -387,7 +387,7 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
     ///
     /// :param: from The starting vertex.
     /// :param: to The ending vertex.
-    func addEdge(from: T, to: T) {
+    public func addEdge(from: T, to: T) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 addEdge(UnweightedEdge(u: u, v: v, directed: false))
@@ -400,7 +400,7 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
     /// :param: from The starting vertex's index.
     /// :param: to The ending vertex's index.
     /// :param: directed Is the edge directed?
-    func addEdge(from: Int, to: Int, directed: Bool) {
+    public func addEdge(from: Int, to: Int, directed: Bool) {
         addEdge(UnweightedEdge(u: from, v: to, directed: directed))
     }
     
@@ -409,7 +409,7 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
     /// :param: from The starting vertex.
     /// :param: to The ending vertex.
     /// :param: directed Is the edge directed?
-    func addEdge(from: T, to: T, directed: Bool) {
+    public func addEdge(from: T, to: T, directed: Bool) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 addEdge(UnweightedEdge(u: u, v: v, directed: directed))
@@ -422,7 +422,7 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
     /// Removes a specific unweighted edge in both directions (if it's not directional). Or just one way if it's directed.
     ///
     /// :param: edge The edge to be removed.
-    func removeEdge(edge: UnweightedEdge) {
+    public func removeEdge(edge: UnweightedEdge) {
         if let i = find(edges[edge.u] as! [UnweightedEdge], edge) {
             edges[edge.u].removeAtIndex(i)
             if !edge.directed {
@@ -435,12 +435,12 @@ class UnweightedGraph<T: Equatable>: Graph<T> {
 }
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
-    override init() {
+public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
+    public override init() {
         super.init()
     }
     
-    override init(vertices: [T]) {
+    public override init(vertices: [T]) {
         super.init(vertices: vertices)
     }
     
@@ -448,7 +448,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     ///
     /// :param: index The index for the vertex to find the neighbors of.
     /// :returns: An array of tuples including the vertices as the first element and the weights as the second element.
-    func neighborsForIndexWithWeights(index: Int) -> [(T, W)] {
+    public func neighborsForIndexWithWeights(index: Int) -> [(T, W)] {
         var distanceTuples: [(T, W)] = [(T, W)]();
         for edge in edges[index] {
             if let edge = edge as? WeightedEdge<W> {
@@ -461,7 +461,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     /// Add an edge to the graph. It must be weighted or the call will be ignored.
     ///
     /// :param: edge The edge to add.
-    override func addEdge(edge: Edge) {
+    public override func addEdge(edge: Edge) {
         if !edge.weighted {
             println("Error: Tried adding non-weighted Edge to WeightedGraph. Ignoring call.")
             return
@@ -474,7 +474,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     /// :param: from The starting vertex's index.
     /// :param: to The ending vertex's index.
     /// :param: weight The weight of the edge to be added.
-    func addEdge(from: Int, to: Int, weight:W) {
+    public func addEdge(from: Int, to: Int, weight:W) {
         addEdge(WeightedEdge<W>(u: from, v: to, directed: false, weight:weight))
     }
     
@@ -483,7 +483,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     /// :param: from The starting vertex.
     /// :param: to The ending vertex.
     /// :param: weight
-    func addEdge(from: T, to: T, weight:W) {
+    public func addEdge(from: T, to: T, weight:W) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 addEdge(WeightedEdge<W>(u: u, v: v, directed: false, weight: weight))
@@ -497,7 +497,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     /// :param: to The ending vertex's index.
     /// :param: directed Is the edge directed?
     /// :param: weight the Weight of the edge to add.
-    func addEdge(from: Int, to: Int, directed: Bool, weight:W) {
+    public func addEdge(from: Int, to: Int, directed: Bool, weight:W) {
         addEdge(WeightedEdge<W>(u: from, v: to, directed: directed, weight: weight))
     }
     
@@ -506,7 +506,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     /// :param: from The starting vertex.
     /// :param: to The ending vertex.
     /// :param: directed Is the edge directed?
-    func addEdge(from: T, to: T, directed: Bool, weight: W) {
+    public func addEdge(from: T, to: T, directed: Bool, weight: W) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 addEdge(WeightedEdge<W>(u: u, v: v, directed: directed, weight:weight))
@@ -519,7 +519,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     /// Removes a specific weighted edge in both directions (if it's not directional). Or just one way if it's directed.
     ///
     /// :param: edge The edge to be removed.
-    func removeEdge(edge: WeightedEdge<W>) {
+    public func removeEdge(edge: WeightedEdge<W>) {
         if let i = find(edges[edge.u] as! [WeightedEdge<W>], edge) {
             edges[edge.u].removeAtIndex(i)
             if !edge.directed {
@@ -531,7 +531,7 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
     }
     
     //Implement Printable protocol
-    override var description: String {
+    public override var description: String {
         var d: String = ""
         for var i = 0; i < vertices.count; i++ {
             d += "\(vertices[i]) -> \(neighborsForIndexWithWeights(i))\n"
@@ -541,21 +541,21 @@ class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
 }
 
 /// Implements a stack - helper class that uses an array internally.
-class Stack<T> {
-    var container: [T] = [T]()
-    var isEmpty: Bool { return container.isEmpty }
-    func push(thing: T) { container.append(thing) }
-    func pop() -> T { return container.removeLast() }
+public class Stack<T> {
+    private var container: [T] = [T]()
+    public var isEmpty: Bool { return container.isEmpty }
+    public func push(thing: T) { container.append(thing) }
+    public func pop() -> T { return container.removeLast() }
 }
 
 /// Implements a queue - helper class that uses an array internally.
-class Queue<T: Equatable> {
-    var container: [T] = [T]()
-    var isEmpty: Bool { return container.isEmpty }
-    var count: Int { return container.count }
-    func push(thing: T) { container.append(thing) }
-    func pop() -> T { return container.removeAtIndex(0) }
-    func contains(thing: T) -> Bool {
+public class Queue<T: Equatable> {
+    private var container: [T] = [T]()
+    public var isEmpty: Bool { return container.isEmpty }
+    public var count: Int { return container.count }
+    public func push(thing: T) { container.append(thing) }
+    public func pop() -> T { return container.removeAtIndex(0) }
+    public func contains(thing: T) -> Bool {
         if find(container, thing) != nil {
             return true
         }
@@ -563,7 +563,7 @@ class Queue<T: Equatable> {
     }
 }
 
-func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
+public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
     if pathDict.count == 0 {
         return []
     }
@@ -578,7 +578,7 @@ func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
 }
 
 // version for djikstra
-func pathDictToPath<W: protocol<Comparable, Summable>>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
+public func pathDictToPath<W: protocol<Comparable, Summable>>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
     var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
     var e: WeightedEdge<W> = pathDict[to]!
     edgePath.append(e)
@@ -594,7 +594,7 @@ func pathDictToPath<W: protocol<Comparable, Summable>>(from: Int, to: Int, pathD
 /// :params: from The index of the starting vertex.
 /// :params: to The index of the ending vertex.
 /// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
-func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
+public func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
     var visited: [Bool] = [Bool](count: graph.vertexCount, repeatedValue: false)
     var stack: Stack<Int> = Stack<Int>()
@@ -628,7 +628,7 @@ func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
 /// :params: from The starting vertex.
 /// :params: to The ending vertex.
 /// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
-func dfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
+public func dfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
     if let u = graph.indexOfVertex(from) {
         if let v = graph.indexOfVertex(to) {
             return dfs(u, v, graph)
@@ -642,7 +642,7 @@ func dfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
 /// :params: from The index of the starting vertex.
 /// :params: to The index of the ending vertex.
 /// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
-func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
+public func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
     var visited: [Bool] = [Bool](count: graph.vertexCount, repeatedValue: false)
     var queue: Queue<Int> = Queue<Int>()
@@ -677,7 +677,7 @@ func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
 /// :params: from The starting vertex.
 /// :params: to The ending vertex.
 /// :returns: An array of Edges containing the entire route, or an empty array if no route could be found
-func bfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
+public func bfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
     if let u = graph.indexOfVertex(from) {
         if let v = graph.indexOfVertex(to) {
             return bfs(u, v, graph)
@@ -691,7 +691,7 @@ func bfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
 /// :params: edges Array of edges to convert.
 /// :params: graph The graph the edges exist within.
 /// :returns: An array of vertices from the graph.
-func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T] {
+public func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T] {
     var vs: [T] = [T]()
     if let first = edges.first {
         vs.append(graph.vertexAtIndex(first.u))
@@ -701,7 +701,7 @@ func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T] {
 }
 
 //version for djikstra with weighted edges
-func edgesToVertices<T: Equatable, W: protocol<Comparable, Summable>>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
+public func edgesToVertices<T: Equatable, W: protocol<Comparable, Summable>>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
     var vs: [T] = [T]()
     if let first = edges.first {
         vs.append(graph.vertexAtIndex(first.u))
@@ -715,7 +715,7 @@ func edgesToVertices<T: Equatable, W: protocol<Comparable, Summable>>(edges: [We
 /// :params: graph The WeightedGraph to look within.
 /// :params: root The index of the root node to build the shortest paths from.
 /// :returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
-func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int) -> ([W?], [Int: WeightedEdge<W>]) {
+public func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int) -> ([W?], [Int: WeightedEdge<W>]) {
     var distances: [W?] = [W?](count: graph.vertexCount, repeatedValue: nil)
     var queue: Queue<Int> = Queue<Int>()
     var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]()
@@ -753,7 +753,7 @@ func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedG
     return (distances, pathDict)
 }
 
-func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: T) -> ([W?], [Int: WeightedEdge<W>]) {
+public func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: T) -> ([W?], [Int: WeightedEdge<W>]) {
     if let u = graph.indexOfVertex(root) {
         return djikstra(graph, u)
     }
@@ -761,7 +761,7 @@ func djikstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedG
 }
 
 /// Helper function to get easier access to djikstra results.
-func distanceArrayToVertexDict<T: Equatable, W: protocol<Comparable, Summable>>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
+public func distanceArrayToVertexDict<T: Equatable, W: protocol<Comparable, Summable>>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
     var distanceDict: [T: W?] = [T: W?]()
     for var i = 0; i < distances.count; i++ {
         distanceDict[graph.vertexAtIndex(i)] = distances[i]
