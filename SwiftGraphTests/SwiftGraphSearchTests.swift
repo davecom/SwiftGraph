@@ -39,7 +39,7 @@ class SwiftGraphSearchTests: XCTestCase {
         cityGraph.addEdge("Atlanta", to: "Miami")
         cityGraph.addEdge("Houston", to: "Miami")
         cityGraph.addEdge("Houston", to: "Dallas")
-        println(cityGraph.description)
+        print(cityGraph.description)
     }
     
     override func tearDown() {
@@ -49,7 +49,7 @@ class SwiftGraphSearchTests: XCTestCase {
     
     func testDFS1() {
         // Seattle -> Miami
-        var result = dfs("Seattle", "Miami", cityGraph)
+        let result = dfs("Seattle", to: "Miami", graph: cityGraph)
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Miami", "Miami not the destination")
@@ -57,12 +57,12 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
-        println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(result, graph: cityGraph))  // not sure why description not called by println
     }
     
     func testDFS2() {
         // Boston -> LA
-        var result = dfs("Boston", "Los Angeles", cityGraph)
+        let result = dfs("Boston", to: "Los Angeles", graph: cityGraph)
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Los Angeles", "Los Angeles not the destination")
@@ -70,12 +70,12 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
-        println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(result, graph: cityGraph))  // not sure why description not called by println
     }
     
     func testBFS1() {
         // Seattle -> Miami
-        var result = bfs("Seattle", "Miami", cityGraph)
+        let result = bfs("Seattle", to: "Miami", graph: cityGraph)
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Miami", "Miami not the destination")
@@ -84,12 +84,12 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Seattle to Miami")
-        println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(result, graph: cityGraph))  // not sure why description not called by println
     }
     
     func testBFS2() {
         // Boston -> LA
-        var result = bfs("Boston", "Los Angeles", cityGraph)
+        let result = bfs("Boston", to: "Los Angeles", graph: cityGraph)
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Los Angeles", "Los Angeles not the destination")
@@ -98,7 +98,7 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Boston to Los Angeles")
-        println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(result, graph: cityGraph))  // not sure why description not called by println
     }
     
     /*func testPerformanceExample() {

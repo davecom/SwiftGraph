@@ -22,7 +22,7 @@ class SwiftGraphTests: XCTestCase {
     
     func testCitesInverseAfterRemove() {
         // This is an example of a functional test case.
-        var g: UnweightedGraph<String> = UnweightedGraph<String>()
+        let g: UnweightedGraph<String> = UnweightedGraph<String>()
         g.addVertex("Atlanta")
         g.addVertex("New York")
         g.addVertex("Miami")
@@ -34,7 +34,7 @@ class SwiftGraphTests: XCTestCase {
     }
     
     func testSequenceTypeAndCollectionType() {
-        var g: UnweightedGraph<String> = UnweightedGraph<String>()
+        let g: UnweightedGraph<String> = UnweightedGraph<String>()
         g.addVertex("Atlanta")
         g.addVertex("New York")
         g.addVertex("Miami")

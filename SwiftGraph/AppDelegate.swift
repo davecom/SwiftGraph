@@ -52,7 +52,7 @@ class NineTailView: NSView {
         let width: CGFloat = self.bounds.size.width
         let height: CGFloat = self.bounds.size.height
         
-        var bPath:NSBezierPath = NSBezierPath()
+        let bPath:NSBezierPath = NSBezierPath()
         bPath.moveToPoint(NSMakePoint(width/3, 0))
         bPath.lineToPoint(NSMakePoint(width/3, height))
         bPath.moveToPoint(NSMakePoint(width/3 * 2, 0))
@@ -165,8 +165,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func solve(sender: AnyObject) {
-        var temp = bfs(ntView.position, NineTailPosition(matrix: [[.Tails, .Tails, .Tails],[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]), ntGraph)
-        path = edgesToVertices(temp, ntGraph)
+        let temp = bfs(ntView.position, to: NineTailPosition(matrix: [[.Tails, .Tails, .Tails],[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]), graph: ntGraph)
+        path = edgesToVertices(temp, graph: ntGraph)
         timer = NSTimer.scheduledTimerWithTimeInterval(2.5, target: self, selector: "timerFire:", userInfo: nil, repeats: true)
     }
     
