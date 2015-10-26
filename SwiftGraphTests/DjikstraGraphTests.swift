@@ -1,5 +1,5 @@
 //
-//  DjikstraGraphTests.swift
+//  DijkstraGraphTests.swift
 //  SwiftGraph
 //
 //  Created by David Kopec on 11/19/14.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class DjikstraGraphTests: XCTestCase {
+class DijkstraGraphTests: XCTestCase {
     // pg 1016 Liang
     let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
     
@@ -47,68 +47,68 @@ class DjikstraGraphTests: XCTestCase {
         super.tearDown()
     }
     
-    func testDjikstra1() {
+    func testDijkstra1() {
         // Seattle -> Miami
-        let (distances, pathDict) = djikstra(cityGraph, root: "New York")
-        XCTAssertFalse(distances.isEmpty, "Djikstra result set is empty.")
+        let (distances, pathDict) = dijkstra(cityGraph, root: "New York")
+        XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
 
         //create map of distances to city names
         var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances, graph: cityGraph)
         if let temp = nameDistance["San Francisco"] {
             XCTAssertEqual(temp!, 3057, "San Francisco should be 3057 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Los Angeles"] {
             XCTAssertEqual(temp!, 2805, "Los Angeles should be 2805 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Seattle"] {
             XCTAssertEqual(temp!, 2884, "Seattle should be 2884 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Denver"] {
             XCTAssertEqual(temp!, 1790, "Denver should be 1790 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Kansas City"] {
             XCTAssertEqual(temp!, 1260, "Kansas City should be 1260 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Chicago"] {
             XCTAssertEqual(temp!, 787, "Chicago should be 787 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Boston"] {
             XCTAssertEqual(temp!, 214, "Boston should be 214 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         XCTAssertNil(nameDistance["New York"]!, "There should be no path to New York.")
         if let temp = nameDistance["Atlanta"] {
             XCTAssertEqual(temp!, 888, "Atlanta should be 888 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Miami"] {
             XCTAssertEqual(temp!, 1549, "Miami should be 1549 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Dallas"] {
             XCTAssertEqual(temp!, 1669, "Dallas should be 1669 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Houston"] {
             XCTAssertEqual(temp!, 1698, "Houston should be 1698 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         for (key, value) in nameDistance {
             print("\(key) : \(value)")
@@ -122,32 +122,32 @@ class DjikstraGraphTests: XCTestCase {
         //println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
     }
     
-    func testDjikstra2() {
-        let (distances, pathDict) = djikstra(cityGraph, root: "Miami")
-        XCTAssertFalse(distances.isEmpty, "Djikstra result set is empty.")
+    func testDijkstra2() {
+        let (distances, pathDict) = dijkstra(cityGraph, root: "Miami")
+        XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
         
         //create map of distances to city names
         var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances, graph: cityGraph)
         if let temp = nameDistance["Seattle"] {
             XCTAssertEqual(temp!, 3455, "Seattle should be 3455 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["Chicago"] {
             XCTAssertEqual(temp!, 2058, "Chicago should be 2058 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         XCTAssertNil(nameDistance["Miami"]!, "There should be no path to Miami.")
         if let temp = nameDistance["Atlanta"] {
             XCTAssertEqual(temp!, 661, "Atlanta should be 661 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         if let temp = nameDistance["New York"] {
             XCTAssertEqual(temp!, 1549, "Miami should be 1549 miles away.")
         } else {
-            XCTFail("Failed to find distance to city in graph using djikstra.")
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         for (key, value) in nameDistance {
             print("\(key) : \(value)")
@@ -162,10 +162,10 @@ class DjikstraGraphTests: XCTestCase {
 
     }
     
-    func testRemovalWithDjikstra() {
+    func testRemovalWithDijkstra() {
         let cityGraph2 = cityGraph
         cityGraph2.removeVertex("Kansas City")
-        let (distances, pathDict) = djikstra(cityGraph2, root: "Miami")
+        let (distances, pathDict) = dijkstra(cityGraph2, root: "Miami")
         let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances, graph: cityGraph2)
         
         for (key, value) in nameDistance {
