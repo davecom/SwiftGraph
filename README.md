@@ -60,7 +60,7 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
 ### Functions
 * `bfs()` - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
 * `dfs()` - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
-* `djikstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `djikstra()` unit tests in `DjikstraGraphTests.swift` for a demo of this. Note: this implementation of djikstra's algorithm does not use a priority queue, so it's quite slow.
+* `dijkstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this. Note: this implementation of djikstra's algorithm does not use a priority queue, so it's quite slow.
 
 ## Authorship & License
 SwiftGraph is written by David Kopec and released under the MIT License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
@@ -68,7 +68,7 @@ SwiftGraph is written by David Kopec and released under the MIT License (see `LI
 ## Future Direction
 Future directions for this project to take could include:
 * Improved performance
-* A faster implemention of `djikstra()`, using a priority queue
+* A faster implemention of `dijkstra()`, using a priority queue
 * Additional convenience methods
 * Additional search functions
 * A thread-safe subclass of `Graph`
