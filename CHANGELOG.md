@@ -1,3 +1,8 @@
+###1.0.3
+- Separated SwiftGraph into multiple files 
+- Fixed some documentation.
+- Made `edges` and `vertices` internal instead of private
+
 ###1.0.2
 Fixed the misspelling of Dijkstra
 

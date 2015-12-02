@@ -5,7 +5,7 @@ SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, 
 It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and dijkstra's algorithm. *However, it is not yet battle-tested and may still have some significant performance gaps.*
 
 ## Installation
-Simply copy `SwiftGraph.swift` into your project or use the CocoaPod `SwiftGraph`. SwiftGraph 1.0.1 and up requires Swift 2.0 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
+Simply copy all of the sources in the `Source` folder into your project or use the CocoaPod `SwiftGraph`. SwiftGraph 1.0.1 and up requires Swift 2.0 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
 
 ## Tips and Tricks
 * To get a sense of how to use SwiftGraph, checkout the unit tests
@@ -16,7 +16,7 @@ Simply copy `SwiftGraph.swift` into your project or use the CocoaPod `SwiftGraph
 * Is the sample program (Nine Tails) beachballing and taking a few seconds to load for you? Edit the Run scheme to be Release instead of Debug
 
 ## Documentation
-There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are (not very good) HTML docs generated via [Jazzy](https://github.com/realm/jazzy) available in the `docs` directory and [online](https://davecom.github.io/SwiftGraph/docs/). In addition, here's some more basic information:
+There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are up-to-date HTML docs available online thanks to the good folks at [CocoaPods](http://cocoadocs.org/docsets/SwiftGraph/) In addition, here's some more basic information:
 
 ### Edges
 Edges connect the vertices in your graph to one another.

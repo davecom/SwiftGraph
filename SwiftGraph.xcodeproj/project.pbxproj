@@ -7,8 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		558DD81B1A1CFF5500CFC2E3 /* SwiftGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7CC751A19508E00A6FBF0 /* SwiftGraph.swift */; };
-		55A7CC761A19508E00A6FBF0 /* SwiftGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7CC751A19508E00A6FBF0 /* SwiftGraph.swift */; };
+		5589B4631C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
+		5589B4641C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
+		5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
+		5589B4671C0E734F00D6664E /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
+		5589B4691C0E74CD00D6664E /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
+		5589B46A1C0E74CD00D6664E /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
+		5589B46C1C0E753E00D6664E /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
+		5589B46D1C0E753E00D6664E /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
+		5589B46F1C0E756200D6664E /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
+		5589B4701C0E756200D6664E /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
+		5589B4721C0E757100D6664E /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
+		5589B4731C0E757100D6664E /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
+		5589B4751C0E758500D6664E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
+		5589B4761C0E758500D6664E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
+		5589B4781C0E759800D6664E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
+		5589B4791C0E759800D6664E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
+		5589B47B1C0E75A700D6664E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
+		5589B47C1C0E75A700D6664E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
 		55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620071A194C80000A5F7B /* AppDelegate.swift */; };
 		55E6200A1A194C80000A5F7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E620091A194C80000A5F7B /* Images.xcassets */; };
 		55E6200D1A194C80000A5F7B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6200B1A194C80000A5F7B /* MainMenu.xib */; };
@@ -28,7 +44,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		55A7CC751A19508E00A6FBF0 /* SwiftGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraph.swift; sourceTree = "<group>"; };
+		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Source/Edge.swift; sourceTree = SOURCE_ROOT; };
+		5589B4651C0E734F00D6664E /* UnweightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedEdge.swift; path = Source/UnweightedEdge.swift; sourceTree = SOURCE_ROOT; };
+		5589B4681C0E74CD00D6664E /* WeightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedEdge.swift; path = Source/WeightedEdge.swift; sourceTree = SOURCE_ROOT; };
+		5589B46B1C0E753E00D6664E /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Source/Graph.swift; sourceTree = SOURCE_ROOT; };
+		5589B46E1C0E756200D6664E /* UnweightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedGraph.swift; path = Source/UnweightedGraph.swift; sourceTree = SOURCE_ROOT; };
+		5589B4711C0E757100D6664E /* WeightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedGraph.swift; path = Source/WeightedGraph.swift; sourceTree = SOURCE_ROOT; };
+		5589B4741C0E758500D6664E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = Source/Search.swift; sourceTree = SOURCE_ROOT; };
+		5589B4771C0E759800D6664E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Source/Stack.swift; sourceTree = SOURCE_ROOT; };
+		5589B47A1C0E75A700D6664E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Source/Queue.swift; sourceTree = SOURCE_ROOT; };
 		55E620021A194C80000A5F7B /* SwiftGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E620061A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55E620071A194C80000A5F7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +83,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5589B4801C0E773300D6664E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5589B4811C0E774300D6664E /* Edges */,
+				5589B4821C0E774F00D6664E /* Graphs */,
+				5589B4831C0E775800D6664E /* Search */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		5589B4811C0E774300D6664E /* Edges */ = {
+			isa = PBXGroup;
+			children = (
+				5589B4621C0E72CC00D6664E /* Edge.swift */,
+				5589B4651C0E734F00D6664E /* UnweightedEdge.swift */,
+				5589B4681C0E74CD00D6664E /* WeightedEdge.swift */,
+			);
+			name = Edges;
+			sourceTree = "<group>";
+		};
+		5589B4821C0E774F00D6664E /* Graphs */ = {
+			isa = PBXGroup;
+			children = (
+				5589B46B1C0E753E00D6664E /* Graph.swift */,
+				5589B46E1C0E756200D6664E /* UnweightedGraph.swift */,
+				5589B4711C0E757100D6664E /* WeightedGraph.swift */,
+			);
+			name = Graphs;
+			sourceTree = "<group>";
+		};
+		5589B4831C0E775800D6664E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5589B4741C0E758500D6664E /* Search.swift */,
+				5589B4771C0E759800D6664E /* Stack.swift */,
+				5589B47A1C0E75A700D6664E /* Queue.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		55E61FF91A194C7F000A5F7B = {
 			isa = PBXGroup;
 			children = (
@@ -80,8 +144,8 @@
 		55E620041A194C80000A5F7B /* SwiftGraph */ = {
 			isa = PBXGroup;
 			children = (
+				5589B4801C0E773300D6664E /* Sources */,
 				55E620071A194C80000A5F7B /* AppDelegate.swift */,
-				55A7CC751A19508E00A6FBF0 /* SwiftGraph.swift */,
 				55E620091A194C80000A5F7B /* Images.xcassets */,
 				55E6200B1A194C80000A5F7B /* MainMenu.xib */,
 				55E620051A194C80000A5F7B /* Supporting Files */,
@@ -217,8 +281,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55A7CC761A19508E00A6FBF0 /* SwiftGraph.swift in Sources */,
+				5589B4751C0E758500D6664E /* Search.swift in Sources */,
+				5589B46F1C0E756200D6664E /* UnweightedGraph.swift in Sources */,
+				5589B4721C0E757100D6664E /* WeightedGraph.swift in Sources */,
+				5589B47B1C0E75A700D6664E /* Queue.swift in Sources */,
+				5589B46C1C0E753E00D6664E /* Graph.swift in Sources */,
+				5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */,
+				5589B4781C0E759800D6664E /* Stack.swift in Sources */,
 				55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */,
+				5589B4631C0E72CC00D6664E /* Edge.swift in Sources */,
+				5589B4691C0E74CD00D6664E /* WeightedEdge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,9 +298,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5589B4761C0E758500D6664E /* Search.swift in Sources */,
+				5589B46D1C0E753E00D6664E /* Graph.swift in Sources */,
 				55FEDBCB1A1D799100F266A0 /* DjikstraGraphTests.swift in Sources */,
 				55FEDBC91A1D40BC00F266A0 /* SwiftGraphSearchTests.swift in Sources */,
-				558DD81B1A1CFF5500CFC2E3 /* SwiftGraph.swift in Sources */,
+				5589B47C1C0E75A700D6664E /* Queue.swift in Sources */,
+				5589B4791C0E759800D6664E /* Stack.swift in Sources */,
+				5589B4671C0E734F00D6664E /* UnweightedEdge.swift in Sources */,
+				5589B46A1C0E74CD00D6664E /* WeightedEdge.swift in Sources */,
+				5589B4731C0E757100D6664E /* WeightedGraph.swift in Sources */,
+				5589B4701C0E756200D6664E /* UnweightedGraph.swift in Sources */,
+				5589B4641C0E72CC00D6664E /* Edge.swift in Sources */,
 				55E620191A194C80000A5F7B /* SwiftGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
