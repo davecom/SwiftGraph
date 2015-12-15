@@ -121,7 +121,7 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     //Implement Printable protocol
     public override var description: String {
         var d: String = ""
-        for var i = 0; i < vertices.count; i++ {
+        for i in 0..<vertices.count {
             d += "\(vertices[i]) -> \(neighborsForIndexWithWeights(i))\n"
         }
         return d

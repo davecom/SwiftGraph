@@ -162,13 +162,13 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
     public func removeAllEdges(from: Int, to: Int) {
-        for var i = 0; i < edges[from].count; i++ {
+        for i in 0..<edges[from].count {
             if edges[from][i].v == from {
                 edges[from].removeAtIndex(i)
             }
         }
         
-        for var i = 0; i < edges[from].count; i++ {
+        for i in 0..<edges[from].count {
             if edges[from][i].v == to {
                 edges[from].removeAtIndex(i)
             }
@@ -182,13 +182,13 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     public func removeAllEdges(from: V, to: V) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
-                for var i = 0; i < edges[u].count; i++ {
+                for i in 0..<edges[u].count {
                     if edges[u][i].v == v {
                         edges[u].removeAtIndex(i)
                     }
                 }
                 
-                for var i = 0; i < edges[v].count; i++ {
+                for i in 0..<edges[v].count {
                     if edges[v][i].v == u {
                         edges[v].removeAtIndex(i)
                     }
@@ -203,9 +203,9 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     public func removeVertexAtIndex(index: Int) {
         //remove all edges ending at the vertex, first doing the ones below it
         //renumber edges that end after the index
-        for var j = 0; j < index; j++ {
+        for j in 0..<index {
             var toRemove: [Int] = [Int]()
-            for var l = 0; l < edges[j].count; l++ {
+            for l in 0..<edges[j].count {
                 if edges[j][l].v == index {
                     toRemove.append(l)
                     continue
@@ -221,9 +221,9 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
         
         //remove all edges after the vertex index wise
         //renumber all edges after the vertex index wise
-        for var j = (index + 1); j < edges.count; j++ {
+        for j in (index + 1)..<edges.count {
             var toRemove: [Int] = [Int]()
-            for var l = 0; l < edges[j].count; l++ {
+            for l in 0..<edges[j].count {
                 if edges[j][l].v == index {
                     toRemove.append(l)
                     continue
@@ -255,7 +255,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     //Implement Printable protocol
     public var description: String {
         var d: String = ""
-        for var i = 0; i < vertices.count; i++ {
+        for i in 0..<vertices.count {
             d += "\(vertices[i]) -> \(neighborsForIndex(i))\n"
         }
         return d

@@ -177,7 +177,7 @@ public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: We
 /// Helper function to get easier access to Dijkstra results.
 public func distanceArrayToVertexDict<T: Equatable, W: protocol<Comparable, Summable>>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
     var distanceDict: [T: W?] = [T: W?]()
-    for var i = 0; i < distances.count; i++ {
+    for i in 0..<distances.count {
         distanceDict[graph.vertexAtIndex(i)] = distances[i]
     }
     return distanceDict

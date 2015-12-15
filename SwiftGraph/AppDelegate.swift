@@ -16,8 +16,8 @@ import Cocoa
 class NineTailView: NSView {
     var position: NineTailPosition = NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]) {
         didSet {
-            for var i = 0; i < position.positionMatrix.count; i++ {
-                for var j = 0; j < position.positionMatrix[0].count; j++ {
+            for i in 0..<position.positionMatrix.count {
+                for j in 0..<position.positionMatrix[0].count  {
                     CATransaction.begin()
                     CATransaction.setValue(NSNumber(float: 2.5), forKey: kCATransactionAnimationDuration)
                     pennyLayers[i][j].contents = NSImage(named: position.positionMatrix[i][j].rawValue)!
@@ -32,14 +32,14 @@ class NineTailView: NSView {
         wantsLayer = true
         let width: CGFloat = self.bounds.size.width
         let height: CGFloat = self.bounds.size.height
-        for var i = 0; i < position.positionMatrix.count; i++ {
+        for i in 0..<position.positionMatrix.count {
             pennyLayers.append([CALayer]())
-            for var j = 0; j < position.positionMatrix[0].count; j++ {
+            for _ in 0..<position.positionMatrix[0].count {
                 pennyLayers[i].append(CALayer())
             }
         }
-        for var i = 0; i < position.positionMatrix.count; i++ {
-            for var j = 0; j < position.positionMatrix[0].count; j++ {
+        for i in 0..<position.positionMatrix.count {
+            for j in 0..<position.positionMatrix[0].count {
                 pennyLayers[i][j].contents = NSImage(named: "heads")
                 pennyLayers[i][j].frame = CGRectMake(CGFloat(CGFloat(i) * (width/3)), CGFloat(CGFloat(j) * (height/3)), (width/3), (height/3))
                 layer?.addSublayer(pennyLayers[i][j])
@@ -139,8 +139,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if (parent != -1) {
                 ntGraph.addEdge(parent, to: child, directed: true)
             }
-            for var i = 0; i < 3; i++ {
-                for var j = 0; j < 3; j++ {
+            for i in 0..<3 {
+                for j in 0..<3  {
                     let flipped = position.flip(i, column: j)
                     addPositionAndChildren(flipped, parent: child)
                     
