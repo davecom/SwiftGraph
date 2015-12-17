@@ -28,7 +28,7 @@ public class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
     public var v: Int
     public var weighted: Bool { return false }
     public let directed: Bool
-    public var reversed:Edge {
+    public var reversed: Edge {
         return UnweightedEdge(u: v, v: u, directed: directed)
     }
     

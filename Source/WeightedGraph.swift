@@ -37,20 +37,20 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     /// - parameter index: The index for the vertex to find the neighbors of.
     /// - returns: An array of tuples including the vertices as the first element and the weights as the second element.
     public func neighborsForIndexWithWeights(index: Int) -> [(T, W)] {
-        var distanceTuples: [(T, W)] = [(T, W)]();
+        var distanceTuples = [(T, W)]()
         for edge in edges[index] {
             if let edge = edge as? WeightedEdge<W> {
                 distanceTuples += [(vertices[edge.v], edge.weight)]
             }
         }
-        return distanceTuples;
+        return distanceTuples
     }
     
     /// Add an edge to the graph. It must be weighted or the call will be ignored.
     ///
     /// - parameter edge: The edge to add.
     public override func addEdge(edge: Edge) {
-        if !edge.weighted {
+        guard edge.weighted else {
             print("Error: Tried adding non-weighted Edge to WeightedGraph. Ignoring call.")
             return
         }
@@ -72,11 +72,8 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     /// - parameter to: The ending vertex.
     /// - parameter weight:
     public func addEdge(from: T, to: T, weight:W) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(WeightedEdge<W>(u: u, v: v, directed: false, weight: weight))
-            }
-        }
+        guard let u = indexOfVertex(from), let v = indexOfVertex(to) else { return }
+        addEdge(WeightedEdge<W>(u: u, v: v, directed: false, weight: weight))
     }
     
     /// This is a convenience method that adds a weighted edge.
@@ -95,11 +92,8 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     /// - parameter to: The ending vertex.
     /// - parameter directed: Is the edge directed?
     public func addEdge(from: T, to: T, directed: Bool, weight: W) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(WeightedEdge<W>(u: u, v: v, directed: directed, weight:weight))
-            }
-        }
+        guard let u = indexOfVertex(from), let v = indexOfVertex(to) else { return }
+        addEdge(WeightedEdge<W>(u: u, v: v, directed: directed, weight:weight))
     }
     
     //Have to have two of these because Edge protocol cannot adopt Equatable
