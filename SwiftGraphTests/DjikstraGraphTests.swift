@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import GraphiOS
 
 class DijkstraGraphTests: XCTestCase {
     // pg 1016 Liang

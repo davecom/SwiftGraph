@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import GraphiOS
 
 class SwiftGraphSearchTests: XCTestCase {
     // pg 1016 Liang
@@ -40,11 +41,6 @@ class SwiftGraphSearchTests: XCTestCase {
         cityGraph.addEdge("Houston", to: "Miami")
         cityGraph.addEdge("Houston", to: "Dallas")
         print(cityGraph.description)
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testDFS1() {
