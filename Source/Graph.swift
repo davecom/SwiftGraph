@@ -116,12 +116,8 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// - parameter to: The second vertex.
     /// - returns: A Bool that is true if such an edge exists, and false otherwise.
     public func edgeExists(from: V, to: V) -> Bool {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return edgeExists(u, to: v)
-            }
-        }
-        return false
+        guard let u = indexOfVertex(from), let v = indexOfVertex(to) else { return false }
+        return edgeExists(u, to: v)
     }
     
     /// Find the first occurence of a vertex.
@@ -174,19 +170,16 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     public func removeAllEdges(from: V, to: V) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                for i in 0..<edges[u].count {
-                    if edges[u][i].v == v {
-                        edges[u].removeAtIndex(i)
-                    }
-                }
-                
-                for i in 0..<edges[v].count {
-                    if edges[v][i].v == u {
-                        edges[v].removeAtIndex(i)
-                    }
-                }
+        guard let u = indexOfVertex(from), let v = indexOfVertex(to) else { return }
+        for i in 0..<edges[u].count {
+            if edges[u][i].v == v {
+                edges[u].removeAtIndex(i)
+            }
+        }
+        
+        for i in 0..<edges[v].count {
+            if edges[v][i].v == u {
+                edges[v].removeAtIndex(i)
             }
         }
     }
