@@ -62,10 +62,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// - returns: The index of the vertex. Return nil if it can't find it.
     
     public func indexOfVertex(vertex: V) -> Int? {
-        if let i = vertices.indexOf(vertex) {
-            return i
-        }
-        return nil;
+        return vertices.indexOf(vertex)
     }
     
     /// Find all of the neighbors of a vertex at a given index.
@@ -131,10 +128,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     ///
     /// - parameter vertex: The vertex you are looking for.
     public func vertexInGraph(vertex: V) -> Bool {
-        if let _ = indexOfVertex(vertex) {
-            return true
-        }
-        return false
+        return indexOfVertex(vertex) != nil
     }
     
     /// Add a vertex to the graph.
