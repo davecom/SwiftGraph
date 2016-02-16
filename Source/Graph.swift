@@ -211,7 +211,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
                     continue
                 }
                 if edges[j][l].v > index {
-                    edges[j][l].v--
+                    edges[j][l].v -= 1
                 }
             }
             for f in toRemove {
@@ -228,9 +228,9 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
                     toRemove.append(l)
                     continue
                 }
-                edges[j][l].u--
+                edges[j][l].u -= 1
                 if edges[j][l].v > index {
-                    edges[j][l].v--
+                    edges[j][l].v -= 1
                 }
             }
             for f in toRemove {
@@ -266,9 +266,10 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     
     public func generate() -> Generator {
         var index = 0
-        return anyGenerator {
+        return AnyGenerator {
             if index < self.vertices.count {
-                return self.vertexAtIndex(index++)
+                index += 1
+                return self.vertexAtIndex(index - 1)
             }
             return nil
         }

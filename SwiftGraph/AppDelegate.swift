@@ -111,8 +111,8 @@ struct NineTailPosition: Equatable  {
 }
 
 func ==(lhs: NineTailPosition, rhs: NineTailPosition) -> Bool {
-    for var i = 0; i < 3; i++ {
-        for var j = 0; j < 3; j++ {
+    for i in 0..<3 {
+        for j in 0..<3 {
             if lhs.positionMatrix[i][j] != rhs.positionMatrix[i][j] {
                 return false
             }
