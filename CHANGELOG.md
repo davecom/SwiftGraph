@@ -1,3 +1,7 @@
+###1.0.4
+- Fixed Swift 3 deprecations
+- Added SPM support
+
 ###1.0.3
 - Separated SwiftGraph into multiple files 
 - Fixed some documentation.

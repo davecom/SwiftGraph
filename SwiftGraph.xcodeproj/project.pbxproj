@@ -44,15 +44,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Source/Edge.swift; sourceTree = SOURCE_ROOT; };
-		5589B4651C0E734F00D6664E /* UnweightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedEdge.swift; path = Source/UnweightedEdge.swift; sourceTree = SOURCE_ROOT; };
-		5589B4681C0E74CD00D6664E /* WeightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedEdge.swift; path = Source/WeightedEdge.swift; sourceTree = SOURCE_ROOT; };
-		5589B46B1C0E753E00D6664E /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Source/Graph.swift; sourceTree = SOURCE_ROOT; };
-		5589B46E1C0E756200D6664E /* UnweightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedGraph.swift; path = Source/UnweightedGraph.swift; sourceTree = SOURCE_ROOT; };
-		5589B4711C0E757100D6664E /* WeightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedGraph.swift; path = Source/WeightedGraph.swift; sourceTree = SOURCE_ROOT; };
-		5589B4741C0E758500D6664E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = Source/Search.swift; sourceTree = SOURCE_ROOT; };
-		5589B4771C0E759800D6664E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Source/Stack.swift; sourceTree = SOURCE_ROOT; };
-		5589B47A1C0E75A700D6664E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Source/Queue.swift; sourceTree = SOURCE_ROOT; };
+		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/Edge.swift; sourceTree = SOURCE_ROOT; };
+		5589B4651C0E734F00D6664E /* UnweightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedEdge.swift; path = Sources/UnweightedEdge.swift; sourceTree = SOURCE_ROOT; };
+		5589B4681C0E74CD00D6664E /* WeightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedEdge.swift; path = Sources/WeightedEdge.swift; sourceTree = SOURCE_ROOT; };
+		5589B46B1C0E753E00D6664E /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Sources/Graph.swift; sourceTree = SOURCE_ROOT; };
+		5589B46E1C0E756200D6664E /* UnweightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedGraph.swift; path = Sources/UnweightedGraph.swift; sourceTree = SOURCE_ROOT; };
+		5589B4711C0E757100D6664E /* WeightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedGraph.swift; path = Sources/WeightedGraph.swift; sourceTree = SOURCE_ROOT; };
+		5589B4741C0E758500D6664E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = Sources/Search.swift; sourceTree = SOURCE_ROOT; };
+		5589B4771C0E759800D6664E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Sources/Stack.swift; sourceTree = SOURCE_ROOT; };
+		5589B47A1C0E75A700D6664E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Sources/Queue.swift; sourceTree = SOURCE_ROOT; };
 		55E620021A194C80000A5F7B /* SwiftGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E620061A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55E620071A194C80000A5F7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
