@@ -73,4 +73,3 @@ Future directions for this project to take could include:
 * Additional search functions
 * A thread-safe subclass of `Graph`
 * Refactoring `Graph` into a protocol instead of a class
-* Add SPM support
