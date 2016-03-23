@@ -266,7 +266,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     
     public func generate() -> Generator {
         var index = 0
-        return anyGenerator {
+        return AnyGenerator {
             if index < self.vertices.count {
                 index += 1
                 return self.vertexAtIndex(index - 1)
