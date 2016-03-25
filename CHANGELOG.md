@@ -1,3 +1,6 @@
+###1.0.5
+- Fixed build issues on Xcode 7.3
+
 ###1.0.4
 - Fixed Swift 3 deprecations
 - Added SPM support
