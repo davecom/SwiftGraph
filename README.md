@@ -1,11 +1,23 @@
 # SwiftGraph
 
-SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on both iOS and OS X projects. It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
+SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, OS X, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
 
-It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and dijkstra's algorithm. *However, it is not yet battle-tested and may still have some significant performance gaps.*
+It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and dijkstra's algorithm. It has appeared as a dependency in multiple open source projects, but lacks robust testing with large datasets.
 
 ## Installation
-Simply copy all of the sources in the `Sources` folder into your project or use the CocoaPod `SwiftGraph`. SwiftGraph support the Swift Package Manager (SPM) - use this repository as your dependency. SwiftGraph 1.0.1 and up requires Swift 2.0 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
+
+SwiftGraph 1.0.1 and up requires Swift 2.0 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
+
+### CocoaPods
+
+Use the CocoaPod `SwiftGraph`.
+
+### Swift Package Manager (SPM)
+
+Use this repository as your dependency.
+
+### Manual
+Copy all of the sources in the `Sources` folder into your project.
 
 ## Tips and Tricks
 * To get a sense of how to use SwiftGraph, checkout the unit tests
