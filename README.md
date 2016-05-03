@@ -81,7 +81,4 @@ SwiftGraph is written by David Kopec and released under the MIT License (see `LI
 Future directions for this project to take could include:
 * Improved performance
 * A faster implemention of `dijkstra()`, using a priority queue
-* Additional convenience methods
-* Additional search functions
-* A thread-safe subclass of `Graph`
-* Refactoring `Graph` into a protocol instead of a class
+* More extensive performance testing
