@@ -7,6 +7,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/davekopec'
   s.authors          = { 'David Kopec' => 'david@oaksnow.com' }
   s.source           = { :git => 'https://github.com/davecom/SwiftGraph.git', :tag => s.version }
+  s.dependency 'SwiftPriorityQueue'
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
   s.tvos.deployment_target = '9.0'
