@@ -7,30 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5589B4631C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
-		5589B4641C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
-		5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
-		5589B4671C0E734F00D6664E /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
-		5589B4691C0E74CD00D6664E /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
-		5589B46A1C0E74CD00D6664E /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
-		5589B46C1C0E753E00D6664E /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
-		5589B46D1C0E753E00D6664E /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
-		5589B46F1C0E756200D6664E /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
-		5589B4701C0E756200D6664E /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
-		5589B4721C0E757100D6664E /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
-		5589B4731C0E757100D6664E /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
-		5589B4751C0E758500D6664E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
-		5589B4761C0E758500D6664E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
-		5589B4781C0E759800D6664E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
-		5589B4791C0E759800D6664E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
-		5589B47B1C0E75A700D6664E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
-		5589B47C1C0E75A700D6664E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
-		55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620071A194C80000A5F7B /* AppDelegate.swift */; };
-		55E6200A1A194C80000A5F7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E620091A194C80000A5F7B /* Images.xcassets */; };
-		55E6200D1A194C80000A5F7B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6200B1A194C80000A5F7B /* MainMenu.xib */; };
 		55E620191A194C80000A5F7B /* SwiftGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620181A194C80000A5F7B /* SwiftGraphTests.swift */; };
 		55FEDBC91A1D40BC00F266A0 /* SwiftGraphSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */; };
 		55FEDBCB1A1D799100F266A0 /* DjikstraGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEDBCA1A1D799100F266A0 /* DjikstraGraphTests.swift */; };
+		D45EC1191CE1A55100F079A8 /* Pods_SwiftGraphExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013B888548F9604E8D0ADFDD /* Pods_SwiftGraphExample.framework */; };
+		D4D987241CE19DAE00F9B1CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D987221CE19DAE00F9B1CD /* MainMenu.xib */; };
+		D4D987261CE19E0300F9B1CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4D987251CE19E0300F9B1CD /* Images.xcassets */; };
+		D4D987321CE1A23100F9B1CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D987311CE1A23100F9B1CD /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,25 +27,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/Edge.swift; sourceTree = SOURCE_ROOT; };
-		5589B4651C0E734F00D6664E /* UnweightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedEdge.swift; path = Sources/UnweightedEdge.swift; sourceTree = SOURCE_ROOT; };
-		5589B4681C0E74CD00D6664E /* WeightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedEdge.swift; path = Sources/WeightedEdge.swift; sourceTree = SOURCE_ROOT; };
-		5589B46B1C0E753E00D6664E /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Sources/Graph.swift; sourceTree = SOURCE_ROOT; };
-		5589B46E1C0E756200D6664E /* UnweightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedGraph.swift; path = Sources/UnweightedGraph.swift; sourceTree = SOURCE_ROOT; };
-		5589B4711C0E757100D6664E /* WeightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedGraph.swift; path = Sources/WeightedGraph.swift; sourceTree = SOURCE_ROOT; };
-		5589B4741C0E758500D6664E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = Sources/Search.swift; sourceTree = SOURCE_ROOT; };
-		5589B4771C0E759800D6664E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Sources/Stack.swift; sourceTree = SOURCE_ROOT; };
-		5589B47A1C0E75A700D6664E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Sources/Queue.swift; sourceTree = SOURCE_ROOT; };
-		55E620021A194C80000A5F7B /* SwiftGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		55E620061A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55E620071A194C80000A5F7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55E620091A194C80000A5F7B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		55E6200C1A194C80000A5F7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		013B888548F9604E8D0ADFDD /* Pods_SwiftGraphExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGraphExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41CD944E12F613518AC421F4 /* Pods-SwiftGraphTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGraphTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGraphTests/Pods-SwiftGraphTests.release.xcconfig"; sourceTree = "<group>"; };
+		55E620021A194C80000A5F7B /* SwiftGraphExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGraphExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55E620061A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		55E620121A194C80000A5F7B /* SwiftGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E620171A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55E620181A194C80000A5F7B /* SwiftGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
 		55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSearchTests.swift; sourceTree = "<group>"; };
 		55FEDBCA1A1D799100F266A0 /* DjikstraGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DjikstraGraphTests.swift; sourceTree = "<group>"; };
+		B9F45FD7AB374AD0B9A6E2E5 /* Pods-SwiftGraphExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGraphExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGraphExample/Pods-SwiftGraphExample.debug.xcconfig"; sourceTree = "<group>"; };
+		C2AB146C5117A31A11C1034E /* Pods-SwiftGraphTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGraphTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGraphTests/Pods-SwiftGraphTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D4D987231CE19DAE00F9B1CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
+		D4D987251CE19E0300F9B1CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		D4D987281CE19EF600F9B1CD /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D4D987291CE19F0900F9B1CD /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
+		D4D9872A1CE19F0900F9B1CD /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
+		D4D9872B1CE19F0900F9B1CD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D4D9872C1CE19F0900F9B1CD /* SwiftGraph.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftGraph.podspec; path = ../SwiftGraph.podspec; sourceTree = "<group>"; };
+		D4D987311CE1A23100F9B1CD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		DBE7A579C5A32B36CC80D4F8 /* Pods-SwiftGraphExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGraphExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGraphExample/Pods-SwiftGraphExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45EC1191CE1A55100F079A8 /* Pods_SwiftGraphExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,73 +68,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5589B4801C0E773300D6664E /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				5589B4811C0E774300D6664E /* Edges */,
-				5589B4821C0E774F00D6664E /* Graphs */,
-				5589B4831C0E775800D6664E /* Search */,
-			);
-			name = Sources;
-			sourceTree = "<group>";
-		};
-		5589B4811C0E774300D6664E /* Edges */ = {
-			isa = PBXGroup;
-			children = (
-				5589B4621C0E72CC00D6664E /* Edge.swift */,
-				5589B4651C0E734F00D6664E /* UnweightedEdge.swift */,
-				5589B4681C0E74CD00D6664E /* WeightedEdge.swift */,
-			);
-			name = Edges;
-			sourceTree = "<group>";
-		};
-		5589B4821C0E774F00D6664E /* Graphs */ = {
-			isa = PBXGroup;
-			children = (
-				5589B46B1C0E753E00D6664E /* Graph.swift */,
-				5589B46E1C0E756200D6664E /* UnweightedGraph.swift */,
-				5589B4711C0E757100D6664E /* WeightedGraph.swift */,
-			);
-			name = Graphs;
-			sourceTree = "<group>";
-		};
-		5589B4831C0E775800D6664E /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				5589B4741C0E758500D6664E /* Search.swift */,
-				5589B4771C0E759800D6664E /* Stack.swift */,
-				5589B47A1C0E75A700D6664E /* Queue.swift */,
-			);
-			name = Search;
-			sourceTree = "<group>";
-		};
 		55E61FF91A194C7F000A5F7B = {
 			isa = PBXGroup;
 			children = (
-				55E620041A194C80000A5F7B /* SwiftGraph */,
-				55E620151A194C80000A5F7B /* SwiftGraphTests */,
+				D4D987271CE19EE800F9B1CD /* Pod Meta */,
+				55E620041A194C80000A5F7B /* Example */,
+				55E620151A194C80000A5F7B /* Tests */,
 				55E620031A194C80000A5F7B /* Products */,
+				74F16C1E16897F0C080BE0C9 /* Pods */,
+				E5483ECC56E25D677F53C85C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		55E620031A194C80000A5F7B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				55E620021A194C80000A5F7B /* SwiftGraph.app */,
+				55E620021A194C80000A5F7B /* SwiftGraphExample.app */,
 				55E620121A194C80000A5F7B /* SwiftGraphTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		55E620041A194C80000A5F7B /* SwiftGraph */ = {
+		55E620041A194C80000A5F7B /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				5589B4801C0E773300D6664E /* Sources */,
-				55E620071A194C80000A5F7B /* AppDelegate.swift */,
-				55E620091A194C80000A5F7B /* Images.xcassets */,
-				55E6200B1A194C80000A5F7B /* MainMenu.xib */,
+				D4D987221CE19DAE00F9B1CD /* MainMenu.xib */,
+				D4D987311CE1A23100F9B1CD /* AppDelegate.swift */,
+				D4D987251CE19E0300F9B1CD /* Images.xcassets */,
 				55E620051A194C80000A5F7B /* Supporting Files */,
 			);
+			name = Example;
 			path = SwiftGraph;
 			sourceTree = "<group>";
 		};
@@ -161,7 +109,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		55E620151A194C80000A5F7B /* SwiftGraphTests */ = {
+		55E620151A194C80000A5F7B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				55E620181A194C80000A5F7B /* SwiftGraphTests.swift */,
@@ -169,7 +117,8 @@
 				55FEDBCA1A1D799100F266A0 /* DjikstraGraphTests.swift */,
 				55E620161A194C80000A5F7B /* Supporting Files */,
 			);
-			path = SwiftGraphTests;
+			name = Tests;
+			path = ../Tests;
 			sourceTree = "<group>";
 		};
 		55E620161A194C80000A5F7B /* Supporting Files */ = {
@@ -180,33 +129,70 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		74F16C1E16897F0C080BE0C9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2AB146C5117A31A11C1034E /* Pods-SwiftGraphTests.debug.xcconfig */,
+				41CD944E12F613518AC421F4 /* Pods-SwiftGraphTests.release.xcconfig */,
+				B9F45FD7AB374AD0B9A6E2E5 /* Pods-SwiftGraphExample.debug.xcconfig */,
+				DBE7A579C5A32B36CC80D4F8 /* Pods-SwiftGraphExample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D4D987271CE19EE800F9B1CD /* Pod Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D4D987291CE19F0900F9B1CD /* CHANGELOG.md */,
+				D4D9872A1CE19F0900F9B1CD /* Package.swift */,
+				D4D9872B1CE19F0900F9B1CD /* README.md */,
+				D4D9872C1CE19F0900F9B1CD /* SwiftGraph.podspec */,
+				D4D987281CE19EF600F9B1CD /* Podfile */,
+			);
+			name = "Pod Meta";
+			sourceTree = "<group>";
+		};
+		E5483ECC56E25D677F53C85C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				013B888548F9604E8D0ADFDD /* Pods_SwiftGraphExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		55E620011A194C80000A5F7B /* SwiftGraph */ = {
+		55E620011A194C80000A5F7B /* SwiftGraphExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 55E6201C1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraph" */;
+			buildConfigurationList = 55E6201C1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraphExample" */;
 			buildPhases = (
+				313BFBB890F038C4E644669B /* 📦 Check Pods Manifest.lock */,
 				55E61FFE1A194C80000A5F7B /* Sources */,
 				55E61FFF1A194C80000A5F7B /* Frameworks */,
 				55E620001A194C80000A5F7B /* Resources */,
+				8BF85617AA8444ED17584B32 /* 📦 Embed Pods Frameworks */,
+				5DEAFC07831D2EF0AC76FB64 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SwiftGraph;
+			name = SwiftGraphExample;
 			productName = SwiftGraph;
-			productReference = 55E620021A194C80000A5F7B /* SwiftGraph.app */;
+			productReference = 55E620021A194C80000A5F7B /* SwiftGraphExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 		55E620111A194C80000A5F7B /* SwiftGraphTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55E6201F1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraphTests" */;
 			buildPhases = (
+				F67CE82E8A6964ABF18FF0A4 /* 📦 Check Pods Manifest.lock */,
 				55E6200E1A194C80000A5F7B /* Sources */,
 				55E6200F1A194C80000A5F7B /* Frameworks */,
 				55E620101A194C80000A5F7B /* Resources */,
+				C30E54D769429F041A431BE7 /* 📦 Embed Pods Frameworks */,
+				0053A479D8DF0552CA848BDB /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,7 +211,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0710;
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Oak Snow Consulting";
 				TargetAttributes = {
@@ -251,7 +237,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				55E620011A194C80000A5F7B /* SwiftGraph */,
+				55E620011A194C80000A5F7B /* SwiftGraphExample */,
 				55E620111A194C80000A5F7B /* SwiftGraphTests */,
 			);
 		};
@@ -262,8 +248,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55E6200A1A194C80000A5F7B /* Images.xcassets in Resources */,
-				55E6200D1A194C80000A5F7B /* MainMenu.xib in Resources */,
+				D4D987241CE19DAE00F9B1CD /* MainMenu.xib in Resources */,
+				D4D987261CE19E0300F9B1CD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,21 +262,105 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0053A479D8DF0552CA848BDB /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGraphTests/Pods-SwiftGraphTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		313BFBB890F038C4E644669B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5DEAFC07831D2EF0AC76FB64 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGraphExample/Pods-SwiftGraphExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BF85617AA8444ED17584B32 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGraphExample/Pods-SwiftGraphExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C30E54D769429F041A431BE7 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGraphTests/Pods-SwiftGraphTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F67CE82E8A6964ABF18FF0A4 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		55E61FFE1A194C80000A5F7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5589B4751C0E758500D6664E /* Search.swift in Sources */,
-				5589B46F1C0E756200D6664E /* UnweightedGraph.swift in Sources */,
-				5589B4721C0E757100D6664E /* WeightedGraph.swift in Sources */,
-				5589B47B1C0E75A700D6664E /* Queue.swift in Sources */,
-				5589B46C1C0E753E00D6664E /* Graph.swift in Sources */,
-				5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */,
-				5589B4781C0E759800D6664E /* Stack.swift in Sources */,
-				55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */,
-				5589B4631C0E72CC00D6664E /* Edge.swift in Sources */,
-				5589B4691C0E74CD00D6664E /* WeightedEdge.swift in Sources */,
+				D4D987321CE1A23100F9B1CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,17 +368,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5589B4761C0E758500D6664E /* Search.swift in Sources */,
-				5589B46D1C0E753E00D6664E /* Graph.swift in Sources */,
 				55FEDBCB1A1D799100F266A0 /* DjikstraGraphTests.swift in Sources */,
 				55FEDBC91A1D40BC00F266A0 /* SwiftGraphSearchTests.swift in Sources */,
-				5589B47C1C0E75A700D6664E /* Queue.swift in Sources */,
-				5589B4791C0E759800D6664E /* Stack.swift in Sources */,
-				5589B4671C0E734F00D6664E /* UnweightedEdge.swift in Sources */,
-				5589B46A1C0E74CD00D6664E /* WeightedEdge.swift in Sources */,
-				5589B4731C0E757100D6664E /* WeightedGraph.swift in Sources */,
-				5589B4701C0E756200D6664E /* UnweightedGraph.swift in Sources */,
-				5589B4641C0E72CC00D6664E /* Edge.swift in Sources */,
 				55E620191A194C80000A5F7B /* SwiftGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,16 +379,16 @@
 /* Begin PBXTargetDependency section */
 		55E620141A194C80000A5F7B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 55E620011A194C80000A5F7B /* SwiftGraph */;
+			target = 55E620011A194C80000A5F7B /* SwiftGraphExample */;
 			targetProxy = 55E620131A194C80000A5F7B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		55E6200B1A194C80000A5F7B /* MainMenu.xib */ = {
+		D4D987221CE19DAE00F9B1CD /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55E6200C1A194C80000A5F7B /* Base */,
+				D4D987231CE19DAE00F9B1CD /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -415,23 +476,28 @@
 		};
 		55E6201D1A194C80000A5F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9F45FD7AB374AD0B9A6E2E5 /* Pods-SwiftGraphExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		55E6201E1A194C80000A5F7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBE7A579C5A32B36CC80D4F8 /* Pods-SwiftGraphExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
@@ -441,6 +507,7 @@
 		};
 		55E620201A194C80000A5F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2AB146C5117A31A11C1034E /* Pods-SwiftGraphTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -452,16 +519,17 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwiftGraphTests/Info.plist;
+				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraph.app/Contents/MacOS/SwiftGraph";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraphExample.app/Contents/MacOS/SwiftGraphExample";
 			};
 			name = Debug;
 		};
 		55E620211A194C80000A5F7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41CD944E12F613518AC421F4 /* Pods-SwiftGraphTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -469,11 +537,11 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwiftGraphTests/Info.plist;
+				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraph.app/Contents/MacOS/SwiftGraph";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraphExample.app/Contents/MacOS/SwiftGraphExample";
 			};
 			name = Release;
 		};
@@ -489,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		55E6201C1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraph" */ = {
+		55E6201C1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraphExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55E6201D1A194C80000A5F7B /* Debug */,
