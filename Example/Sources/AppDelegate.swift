@@ -12,6 +12,7 @@
 import AppKit
 import QuartzCore
 import Cocoa
+import SwiftGraph
 
 class NineTailView: NSView {
     var position: NineTailPosition = NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]) {

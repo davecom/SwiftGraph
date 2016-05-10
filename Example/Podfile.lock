@@ -1,0 +1,19 @@
+PODS:
+  - SwiftGraph (1.0.5):
+    - SwiftPriorityQueue
+  - SwiftPriorityQueue (1.0.3)
+
+DEPENDENCIES:
+  - SwiftGraph (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftGraph:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SwiftGraph: 46498e7cbc267062ed0ad1529183a6f786eecac7
+  SwiftPriorityQueue: 3c3dd50743f33efa627cbe2ff8e274912b3962d2
+
+PODFILE CHECKSUM: d6be6e9f20acfa179fafc6f6adf0aaf8b11f1327
+
+COCOAPODS: 1.0.0.rc.2
