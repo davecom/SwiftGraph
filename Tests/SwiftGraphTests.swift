@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import SwiftGraph
 
 class SwiftGraphTests: XCTestCase {
     

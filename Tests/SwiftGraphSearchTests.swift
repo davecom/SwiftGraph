@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import SwiftGraph
 
 class SwiftGraphSearchTests: XCTestCase {
     // pg 1016 Liang
