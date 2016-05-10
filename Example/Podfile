@@ -1,0 +1,15 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+def import_pods
+    pod 'SwiftGraph', :path => '../'
+end
+
+
+target 'SwiftGraphExample' do
+    platform :osx, '10.10.0'
+    import_pods
+    target 'SwiftGraphTests' do
+        inherit! :search_paths
+    end
+end
