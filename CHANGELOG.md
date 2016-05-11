@@ -1,3 +1,7 @@
+###1.0.6
+- Switched `dikjstra()` to use a priority queue
+- Included the source file for SwiftPriorityQueue in the project
+
 ###1.0.5
 - Fixed build issues on Xcode 7.3
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftGraph'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.license          = 'MIT'
   s.summary          = 'A Graph Data Structure in Pure Swift'
   s.homepage         = 'https://github.com/davecom/SwiftGraph'

@@ -23,8 +23,7 @@ Copy all of the sources in the `Sources` folder into your project.
 * To get a sense of how to use SwiftGraph, checkout the unit tests
 * Inserting an edge by vertex indices is much faster than inserting an edge by vertex objects that need to have their indices looked up
 * Generally, looking for the index of a vertex is O(n) time, with n being the number of vertices in the graph
-* SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one vertex and another in a graph
-* The impelementation of dijkstra's algorithm in `dijkstra()` does not use a priority queue at this time, so it's quite slow
+* SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one vertex and another in a graph and `dijkstra()` for finding shortest paths in a weighted graph
 * Is the sample program (Nine Tails) beachballing and taking a few seconds to load for you? Edit the Run scheme to be Release instead of Debug
 
 ## Documentation
@@ -72,7 +71,7 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
 ### Functions
 * `bfs()` - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
 * `dfs()` - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
-* `dijkstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this. Note: this implementation of djikstra's algorithm does not use a priority queue, so it's quite slow.
+* `dijkstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
 
 ## Authorship & License
 SwiftGraph is written by David Kopec and released under the MIT License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
@@ -80,5 +79,4 @@ SwiftGraph is written by David Kopec and released under the MIT License (see `LI
 ## Future Direction
 Future directions for this project to take could include:
 * Improved performance
-* A faster implemention of `dijkstra()`, using a priority queue
 * More extensive performance testing
