@@ -49,7 +49,7 @@ class DijkstraGraphTests: XCTestCase {
     
     func testDijkstra1() {
         // Seattle -> Miami
-        let (distances, pathDict) = dijkstra(cityGraph, root: "New York")
+        let (distances, pathDict) = dijkstra(cityGraph, root: "New York", startDistance: 0)
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
 
         //create map of distances to city names
@@ -123,7 +123,7 @@ class DijkstraGraphTests: XCTestCase {
     }
     
     func testDijkstra2() {
-        let (distances, pathDict) = dijkstra(cityGraph, root: "Miami")
+        let (distances, pathDict) = dijkstra(cityGraph, root: "Miami", startDistance: 0)
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
         
         //create map of distances to city names
@@ -165,7 +165,7 @@ class DijkstraGraphTests: XCTestCase {
     func testRemovalWithDijkstra() {
         let cityGraph2 = cityGraph
         cityGraph2.removeVertex("Kansas City")
-        let (distances, pathDict) = dijkstra(cityGraph2, root: "Miami")
+        let (distances, pathDict) = dijkstra(cityGraph2, root: "Miami", startDistance: 0)
         let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances, graph: cityGraph2)
         
         for (key, value) in nameDistance {

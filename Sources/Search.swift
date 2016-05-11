@@ -2,7 +2,7 @@
 //  Search.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2015 David Kopec
+//  Copyright (c) 2014-2016 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -121,20 +121,36 @@ public func bfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
     return []
 }
 
+/// Represents a node in the priority queue used
+/// for selecting the next
+struct DijkstraNode<D: Comparable>: Comparable, Equatable {
+    let vertice: Int
+    let distance: D
+}
+
+func < <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
+    return lhs.distance < rhs.distance
+}
+
+func == <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
+    return lhs.distance == rhs.distance
+}
+
+
 /// Finds the shortest paths from some route vertex to every other vertex in the graph. Note this doesn't yet use a priority queue, so it is very slow.
 ///
-/// - paramseter graph: The WeightedGraph to look within.
+/// - parameter graph: The WeightedGraph to look within.
 /// - parameter root: The index of the root node to build the shortest paths from.
+/// - parameter startDistance: The distance to get to the root node (typically 0).
 /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
-public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int) -> ([W?], [Int: WeightedEdge<W>]) {
+public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
     var distances: [W?] = [W?](count: graph.vertexCount, repeatedValue: nil)
-    let queue: Queue<Int> = Queue<Int>()
+    var queue: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
     var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]()
-    queue.push(root)
+    queue.push(DijkstraNode(vertice: root, distance: startDistance))
     
     while !queue.isEmpty {
-        let u: Int = queue.pop()
-        
+        let u = queue.pop()!.vertice
         for e in graph.edgesForIndex(u) {
             if let we = e as? WeightedEdge<W> {
                 //if queue.contains(we.v) {
@@ -153,7 +169,7 @@ public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: We
                     if !(we.v == root) {
                         distances[we.v] = alt
                         pathDict[we.v] = we
-                        queue.push(we.v)
+                        queue.push(DijkstraNode(vertice: we.v, distance: alt))
                     }
                 }
                 //}
@@ -167,9 +183,9 @@ public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: We
 
 /// A convenience version of dijkstra() that allows the supply of root vertice 
 /// instead of the index of the root vertice.
-public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: T) -> ([W?], [Int: WeightedEdge<W>]) {
+public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: T, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
     if let u = graph.indexOfVertex(root) {
-        return dijkstra(graph, root: u)
+        return dijkstra(graph, root: u, startDistance: startDistance)
     }
     return ([], [:])
 }
