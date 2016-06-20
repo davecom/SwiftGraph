@@ -145,6 +145,7 @@ func == <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
 /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
 public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
     var distances: [W?] = [W?](count: graph.vertexCount, repeatedValue: nil)
+    distances[root] = startDistance
     var queue: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
     var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]()
     queue.push(DijkstraNode(vertice: root, distance: startDistance))

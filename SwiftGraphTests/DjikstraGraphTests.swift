@@ -89,7 +89,6 @@ class DijkstraGraphTests: XCTestCase {
         } else {
             XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
-        XCTAssertNil(nameDistance["New York"]!, "There should be no path to New York.")
         if let temp = nameDistance["Atlanta"] {
             XCTAssertEqual(temp!, 888, "Atlanta should be 888 miles away.")
         } else {
@@ -138,7 +137,6 @@ class DijkstraGraphTests: XCTestCase {
         } else {
             XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
-        XCTAssertNil(nameDistance["Miami"]!, "There should be no path to Miami.")
         if let temp = nameDistance["Atlanta"] {
             XCTAssertEqual(temp!, 661, "Atlanta should be 661 miles away.")
         } else {
