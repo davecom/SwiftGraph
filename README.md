@@ -6,7 +6,7 @@ It includes copious in-source documentation, some unit tests, as well as utility
 
 ## Installation
 
-SwiftGraph 1.0.1 and up requires Swift 2.0 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
+SwiftGraph 1.1 and above requires Swift 3 (Xcode 8). SwiftGraph 1.0.1 through 1.0.6 requires Swift 2.0 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
 
 ### CocoaPods
 
