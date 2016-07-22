@@ -2,7 +2,7 @@
 //  Queue.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2015 David Kopec
+//  Copyright (c) 2014-2016 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,10 @@ public class Queue<T: Equatable> {
     private var container: [T] = [T]()
     public var isEmpty: Bool { return container.isEmpty }
     public var count: Int { return container.count }
-    public func push(thing: T) { container.append(thing) }
-    public func pop() -> T { return container.removeAtIndex(0) }
-    public func contains(thing: T) -> Bool {
-        if container.indexOf(thing) != nil {
+    public func push(_ thing: T) { container.append(thing) }
+    public func pop() -> T { return container.remove(at: 0) }
+    public func contains(_ thing: T) -> Bool {
+        if container.index(of: thing) != nil {
             return true
         }
         return false

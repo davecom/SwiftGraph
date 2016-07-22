@@ -2,7 +2,7 @@
 //  Graph.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2015 David Kopec
+//  Copyright (c) 2014-2016 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 /// The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can
 /// have some method implementations in common. You should generally use one of its two canonical subclasses,
 /// *UnweightedGraph* and *WeightedGraph*, because they offer more functionality and convenience.
-public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, CollectionType {
+public class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
     var vertices: [V] = [V]()
     var edges: [[Edge]] = [[Edge]]() //adjacency lists
     
@@ -44,7 +44,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     
     public init(vertices: [V]) {
         for vertex in vertices {
-            addVertex(vertex)
+            _ = addVertex(vertex)
         }
     }
     
@@ -52,7 +52,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     ///
     /// - parameter index: The index of the vertex.
     /// - returns: The vertex at i.
-    public func vertexAtIndex(index: Int) -> V {
+    public func vertexAtIndex(_ index: Int) -> V {
         return vertices[index]
     }
     
@@ -61,8 +61,8 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// - parameter vertex: The vertex you are looking for.
     /// - returns: The index of the vertex. Return nil if it can't find it.
     
-    public func indexOfVertex(vertex: V) -> Int? {
-        if let i = vertices.indexOf(vertex) {
+    public func indexOfVertex(_ vertex: V) -> Int? {
+        if let i = vertices.index(of: vertex) {
             return i
         }
         return nil;
@@ -72,7 +72,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     ///
     /// - parameter index: The index for the vertex to find the neighbors of.
     /// - returns: An array of the neighbor vertices.
-    public func neighborsForIndex(index: Int) -> [V] {
+    public func neighborsForIndex(_ index: Int) -> [V] {
         return edges[index].map({self.vertices[$0.v]})
     }
     
@@ -80,7 +80,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     ///
     /// - parameter vertex: The vertex to find the neighbors of.
     /// - returns: An optional array of the neighbor vertices.
-    public func neighborsForVertex(vertex: V) -> [V]? {
+    public func neighborsForVertex(_ vertex: V) -> [V]? {
         if let i = indexOfVertex(vertex) {
             return neighborsForIndex(i)
         }
@@ -90,14 +90,14 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// Find all of the edges of a vertex at a given index.
     ///
     /// - parameter index: The index for the vertex to find the children of.
-    public func edgesForIndex(index: Int) -> [Edge] {
+    public func edgesForIndex(_ index: Int) -> [Edge] {
         return edges[index]
     }
     
     /// Find all of the edges of a given vertex.
     ///
     /// - parameter vertex: The vertex to find the edges of.
-    public func edgesForVertex(vertex: V) -> [Edge]? {
+    public func edgesForVertex(_ vertex: V) -> [Edge]? {
         if let i = indexOfVertex(vertex) {
             return edgesForIndex(i)
         }
@@ -121,7 +121,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     public func edgeExists(from: V, to: V) -> Bool {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
-                return edgeExists(u, to: v)
+                return edgeExists(from: u, to: v)
             }
         }
         return false
@@ -141,7 +141,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     ///
     /// - parameter v: The vertex to be added.
     /// - returns: The index where the vertex was added.
-    public func addVertex(v: V) -> Int {
+    public func addVertex(_ v: V) -> Int {
         vertices.append(v)
         edges.append([Edge]())
         return vertices.count - 1
@@ -150,7 +150,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// Add an edge to the graph. It should take
     ///
     /// - parameter e: The edge to add.
-    public func addEdge(e: Edge) {
+    public func addEdge(_ e: Edge) {
         edges[e.u].append(e)
         if !e.directed {
             edges[e.v].append(e.reversed)
@@ -161,16 +161,15 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     ///
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
-    public func removeAllEdges(from: Int, to: Int) {
-        for i in 0..<edges[from].count {
-            if edges[from][i].v == from {
-                edges[from].removeAtIndex(i)
-            }
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public func removeAllEdges(from: Int, to: Int, bidirectional: Bool = true) {
+        for i in 0..<edges[from].count where edges[from][i].v == to {
+            edges[from].remove(at: i)
         }
         
-        for i in 0..<edges[from].count {
-            if edges[from][i].v == to {
-                edges[from].removeAtIndex(i)
+        if bidirectional {
+            for i in 0..<edges[to].count where edges[to][i].v == from {
+                edges[to].remove(at: i)
             }
         }
     }
@@ -179,20 +178,11 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     ///
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
-    public func removeAllEdges(from: V, to: V) {
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public func removeAllEdges(from: V, to: V, bidirectional: Bool = true) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
-                for i in 0..<edges[u].count {
-                    if edges[u][i].v == v {
-                        edges[u].removeAtIndex(i)
-                    }
-                }
-                
-                for i in 0..<edges[v].count {
-                    if edges[v][i].v == u {
-                        edges[v].removeAtIndex(i)
-                    }
-                }
+                removeAllEdges(from: u, to: v, bidirectional: bidirectional)
             }
         }
     }
@@ -200,7 +190,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     /// Removes a vertex at a specified index, all of the edges attached to it, and renumbers the indexes of the rest of the edges.
     ///
     /// - parameter index: The index of the vertex.
-    public func removeVertexAtIndex(index: Int) {
+    public func removeVertexAtIndex(_ index: Int) {
         //remove all edges ending at the vertex, first doing the ones below it
         //renumber edges that end after the index
         for j in 0..<index {
@@ -215,7 +205,7 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
                 }
             }
             for f in toRemove {
-                edges[j].removeAtIndex(f)
+                edges[j].remove(at: f)
             }
         }
         
@@ -234,19 +224,19 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
                 }
             }
             for f in toRemove {
-                edges[j].removeAtIndex(f)
+                edges[j].remove(at: f)
             }
         }
         //println(self)
         //remove the actual vertex and its edges
-        edges.removeAtIndex(index)
-        vertices.removeAtIndex(index)
+        edges.remove(at: index)
+        vertices.remove(at: index)
     }
     
     /// Removes the first occurence of a vertex, all of the edges attached to it, and renumbers the indexes of the rest of the edges.
     ///
     /// - parameter vertex: The vertex to be removed..
-    public func removeVertex(vertex: V) {
+    public func removeVertex(_ vertex: V) {
         if let i = indexOfVertex(vertex) {
             removeVertexAtIndex(i)
         }
@@ -262,11 +252,11 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     }
     
     //Implement SequenceType
-    public typealias Generator = AnyGenerator<V>
+    public typealias Iterator = AnyIterator<V>
     
-    public func generate() -> Generator {
+    public func makeIterator() -> Iterator {
         var index = 0
-        return AnyGenerator {
+        return AnyIterator {
             if index < self.vertices.count {
                 index += 1
                 return self.vertexAtIndex(index - 1)
@@ -284,6 +274,10 @@ public class Graph<V: Equatable>: CustomStringConvertible, SequenceType, Collect
     
     public var endIndex: Int {
         return vertexCount
+    }
+    
+    public func index(after i: Graph.Index) -> Graph.Index {
+        return i + 1
     }
     
     public subscript(i: Int) -> V {

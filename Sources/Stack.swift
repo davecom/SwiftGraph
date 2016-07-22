@@ -2,7 +2,7 @@
 //  Stack.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2015 David Kopec
+//  Copyright (c) 2014-2016 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,6 @@
 public class Stack<T> {
     private var container: [T] = [T]()
     public var isEmpty: Bool { return container.isEmpty }
-    public func push(thing: T) { container.append(thing) }
+    public func push(_ thing: T) { container.append(thing) }
     public func pop() -> T { return container.removeLast() }
 }

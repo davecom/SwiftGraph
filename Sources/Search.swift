@@ -31,7 +31,7 @@
 /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
 public func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
-    var visited: [Bool] = [Bool](count: graph.vertexCount, repeatedValue: false)
+    var visited: [Bool] = [Bool](repeating: false, count: graph.vertexCount)
     let stack: Stack<Int> = Stack<Int>()
     var pathDict: [Int: Edge] = [Int: Edge]()
     stack.push(from)
@@ -52,7 +52,7 @@ public func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     }
     // figure out route of edges based on pathDict
     if found {
-        return pathDictToPath(from, to: to, pathDict: pathDict)
+        return pathDictToPath(from: from, to: to, pathDict: pathDict)
     }
     
     return []
@@ -66,7 +66,7 @@ public func dfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
 public func dfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
     if let u = graph.indexOfVertex(from) {
         if let v = graph.indexOfVertex(to) {
-            return dfs(u, to: v, graph: graph)
+            return dfs(from: u, to: v, graph: graph)
         }
     }
     return []
@@ -79,7 +79,7 @@ public func dfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
 /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
 public func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
-    var visited: [Bool] = [Bool](count: graph.vertexCount, repeatedValue: false)
+    var visited: [Bool] = [Bool](repeating: false, count: graph.vertexCount)
     let queue: Queue<Int> = Queue<Int>()
     var pathDict: [Int: Edge] = [Int: Edge]()
     queue.push(from)
@@ -101,7 +101,7 @@ public func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
     }
     // figure out route of edges based on pathDict
     if found {
-        return pathDictToPath(from, to: to, pathDict: pathDict)
+        return pathDictToPath(from: from, to: to, pathDict: pathDict)
     }
     
     return []
@@ -115,7 +115,7 @@ public func bfs<T: Equatable>(from: Int, to: Int, graph: Graph<T>) -> [Edge] {
 public func bfs<T: Equatable>(from: T, to: T, graph: Graph<T>) -> [Edge] {
     if let u = graph.indexOfVertex(from) {
         if let v = graph.indexOfVertex(to) {
-            return bfs(u, to: v, graph: graph)
+            return bfs(from: u, to: v, graph: graph)
         }
     }
     return []
@@ -144,7 +144,7 @@ func == <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
 /// - parameter startDistance: The distance to get to the root node (typically 0).
 /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
 public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
-    var distances: [W?] = [W?](count: graph.vertexCount, repeatedValue: nil)
+    var distances: [W?] = [W?](repeating: nil, count: graph.vertexCount)
     distances[root] = startDistance
     var queue: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
     var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]()
@@ -186,7 +186,7 @@ public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: We
 /// instead of the index of the root vertice.
 public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: T, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
     if let u = graph.indexOfVertex(root) {
-        return dijkstra(graph, root: u, startDistance: startDistance)
+        return dijkstra(graph: graph, root: u, startDistance: startDistance)
     }
     return ([], [:])
 }
@@ -237,7 +237,7 @@ public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
         e = pathDict[e.u]!
         edgePath.append(e)
     }
-    return Array(edgePath.reverse())
+    return Array(edgePath.reversed())
 }
 
 // version for Dijkstra
@@ -249,5 +249,5 @@ public func pathDictToPath<W: protocol<Comparable, Summable>>(from: Int, to: Int
         e = pathDict[e.u]!
         edgePath.append(e)
     }
-    return Array(edgePath.reverse())
+    return Array(edgePath.reversed())
 }

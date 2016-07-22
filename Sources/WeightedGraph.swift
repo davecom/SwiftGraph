@@ -2,7 +2,7 @@
 //  WeightedGraph.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2015 David Kopec
+//  Copyright (c) 2014-2016 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     ///
     /// - parameter index: The index for the vertex to find the neighbors of.
     /// - returns: An array of tuples including the vertices as the first element and the weights as the second element.
-    public func neighborsForIndexWithWeights(index: Int) -> [(T, W)] {
+    public func neighborsForIndexWithWeights(_ index: Int) -> [(T, W)] {
         var distanceTuples: [(T, W)] = [(T, W)]();
         for edge in edges[index] {
             if let edge = edge as? WeightedEdge<W> {
@@ -49,43 +49,21 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     /// Add an edge to the graph. It must be weighted or the call will be ignored.
     ///
     /// - parameter edge: The edge to add.
-    public override func addEdge(edge: Edge) {
-        if !edge.weighted {
+    public override func addEdge(_ edge: Edge) {
+        guard edge.weighted else {
             print("Error: Tried adding non-weighted Edge to WeightedGraph. Ignoring call.")
             return
         }
         super.addEdge(edge)
     }
     
-    /// This is a convenience method that adds a weighted, undirected edge.
-    ///
-    /// - parameter from: The starting vertex's index.
-    /// - parameter to: The ending vertex's index.
-    /// - parameter weight: The weight of the edge to be added.
-    public func addEdge(from: Int, to: Int, weight:W) {
-        addEdge(WeightedEdge<W>(u: from, v: to, directed: false, weight:weight))
-    }
-    
-    /// This is a convenience method that adds a weighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
-    ///
-    /// - parameter from: The starting vertex.
-    /// - parameter to: The ending vertex.
-    /// - parameter weight:
-    public func addEdge(from: T, to: T, weight:W) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(WeightedEdge<W>(u: u, v: v, directed: false, weight: weight))
-            }
-        }
-    }
-    
     /// This is a convenience method that adds a weighted edge.
     ///
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
-    /// - parameter directed: Is the edge directed?
+    /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
-    public func addEdge(from: Int, to: Int, directed: Bool, weight:W) {
+    public func addEdge(from: Int, to: Int, directed: Bool = false, weight:W) {
         addEdge(WeightedEdge<W>(u: from, v: to, directed: directed, weight: weight))
     }
     
@@ -93,8 +71,9 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     ///
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
-    /// - parameter directed: Is the edge directed?
-    public func addEdge(from: T, to: T, directed: Bool, weight: W) {
+    /// - parameter directed: Is the edge directed? (default false)
+    /// - parameter weight: the Weight of the edge to add.
+    public func addEdge(from: T, to: T, directed: Bool = false, weight: W) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 addEdge(WeightedEdge<W>(u: u, v: v, directed: directed, weight:weight))
@@ -107,12 +86,12 @@ public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Gra
     /// Removes a specific weighted edge in both directions (if it's not directional). Or just one way if it's directed.
     ///
     /// - parameter edge: The edge to be removed.
-    public func removeEdge(edge: WeightedEdge<W>) {
-        if let i = (edges[edge.u] as! [WeightedEdge<W>]).indexOf(edge) {
-            edges[edge.u].removeAtIndex(i)
+    public func removeEdge(_ edge: WeightedEdge<W>) {
+        if let i = (edges[edge.u] as! [WeightedEdge<W>]).index(of: edge) {
+            edges[edge.u].remove(at: i)
             if !edge.directed {
-                if let i = (edges[edge.v] as! [WeightedEdge<W>]).indexOf(edge.reversed as! WeightedEdge) {
-                    edges[edge.v].removeAtIndex(i)
+                if let i = (edges[edge.v] as! [WeightedEdge<W>]).index(of: edge.reversed as! WeightedEdge) {
+                    edges[edge.v].remove(at: i)
                 }
             }
         }

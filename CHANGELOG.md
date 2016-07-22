@@ -1,5 +1,12 @@
+###1.1.0
+- Requires Swift 3
+- Minor breaking API naming changes in-line with Swift 3 expectations
+- `dijkstra()` has a parameter for the starting distance to the root vertex (typically zero)
+- Updated the included SwiftPriorityQueue source file
+
 ###1.0.6
-- Switched `dikjstra()` to use a priority queue
+- Last version to support Swift 2
+- Switched `dijkstra()` to use a priority queue
 - Included the source file for SwiftPriorityQueue in the project
 
 ###1.0.5

@@ -3,7 +3,7 @@
 //  SwiftGraph
 //
 //  Created by David Kopec on 11/16/14.
-//  Copyright (c) 2014 Oak Snow Consulting. All rights reserved.
+//  Copyright (c) 2014-2016 Oak Snow Consulting. All rights reserved.
 //
 
 // NOTE: This sample app may run a bit slowly when compiled for DEBUG/without compiler optimizations turned on.
@@ -19,7 +19,7 @@ class NineTailView: NSView {
             for i in 0..<position.positionMatrix.count {
                 for j in 0..<position.positionMatrix[0].count  {
                     CATransaction.begin()
-                    CATransaction.setValue(NSNumber(float: 2.5), forKey: kCATransactionAnimationDuration)
+                    CATransaction.setValue(NSNumber(value: 2.5), forKey: kCATransactionAnimationDuration)
                     pennyLayers[i][j].contents = NSImage(named: position.positionMatrix[i][j].rawValue)!
                     CATransaction.commit()
                 }
@@ -41,34 +41,34 @@ class NineTailView: NSView {
         for i in 0..<position.positionMatrix.count {
             for j in 0..<position.positionMatrix[0].count {
                 pennyLayers[i][j].contents = NSImage(named: "heads")
-                pennyLayers[i][j].frame = CGRectMake(CGFloat(CGFloat(i) * (width/3)), CGFloat(CGFloat(j) * (height/3)), (width/3), (height/3))
+                pennyLayers[i][j].frame = CGRect(x: CGFloat(CGFloat(i) * (width/3)), y: CGFloat(CGFloat(j) * (height/3)), width: (width/3), height: (height/3))
                 layer?.addSublayer(pennyLayers[i][j])
             }
         }
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         let width: CGFloat = self.bounds.size.width
         let height: CGFloat = self.bounds.size.height
         
         let bPath:NSBezierPath = NSBezierPath()
-        bPath.moveToPoint(NSMakePoint(width/3, 0))
-        bPath.lineToPoint(NSMakePoint(width/3, height))
-        bPath.moveToPoint(NSMakePoint(width/3 * 2, 0))
-        bPath.lineToPoint(NSMakePoint(width/3 * 2, height))
-        bPath.moveToPoint(NSMakePoint(0, height/3))
-        bPath.lineToPoint(NSMakePoint(width, height/3))
-        bPath.moveToPoint(NSMakePoint(0, height/3 * 2))
-        bPath.lineToPoint(NSMakePoint(width, height/3 * 2))
+        bPath.move(to: NSMakePoint(width/3, 0))
+        bPath.line(to: NSMakePoint(width/3, height))
+        bPath.move(to: NSMakePoint(width/3 * 2, 0))
+        bPath.line(to: NSMakePoint(width/3 * 2, height))
+        bPath.move(to: NSMakePoint(0, height/3))
+        bPath.line(to: NSMakePoint(width, height/3))
+        bPath.move(to: NSMakePoint(0, height/3 * 2))
+        bPath.line(to: NSMakePoint(width, height/3 * 2))
         bPath.stroke()
         
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(_ theEvent: NSEvent) {
         let width: CGFloat = self.bounds.size.width
         let height: CGFloat = self.bounds.size.height
-        let mousePlace:NSPoint = self.convertPoint(theEvent.locationInWindow, fromView: nil)
+        let mousePlace:NSPoint = self.convert(theEvent.locationInWindow, from: nil)
         let row: Int = Int(mousePlace.x / (width / 3))
         let col: Int = Int(mousePlace.y / (height / 3))
         position = position.flip(row, column: col)
@@ -93,13 +93,13 @@ struct NineTailPosition: Equatable  {
         positionMatrix = matrix
     }
     
-    mutating func flipHelper(row: Int, column: Int) {
+    mutating func flipHelper(_ row: Int, column: Int) {
         //ignore off board requests
         if (row >= 0 && row < positionMatrix.count && column >= 0 && column < positionMatrix[0].count) {
             positionMatrix[row][column].flip()
         }
     }
-    func flip(row: Int, column: Int) -> NineTailPosition {
+    func flip(_ row: Int, column: Int) -> NineTailPosition {
         var newPosition = NineTailPosition(matrix: positionMatrix)
         newPosition.flipHelper(row, column: column)
         newPosition.flipHelper(row - 1, column: column)
@@ -128,16 +128,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var ntView: NineTailView!
     let ntGraph: UnweightedGraph<NineTailPosition> = UnweightedGraph<NineTailPosition>()
     var path: [NineTailPosition] = [NineTailPosition]()
-    var timer:NSTimer?
+    var timer:Timer?
     
-    func addPositionAndChildren(position: NineTailPosition, parent: Int) {
+    func addPositionAndChildren(_ position: NineTailPosition, parent: Int) {
         let index: Int? = ntGraph.indexOfVertex(position)
         if let place = index {
-            ntGraph.addEdge(parent, to: place, directed: true)
+            ntGraph.addEdge(from: parent, to: place, directed: true)
         } else {
             let child: Int = ntGraph.addVertex(position)
             if (parent != -1) {
-                ntGraph.addEdge(parent, to: child, directed: true)
+                ntGraph.addEdge(from: parent, to: child, directed: true)
             }
             for i in 0..<3 {
                 for j in 0..<3  {
@@ -149,29 +149,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         window.makeKeyAndOrderFront(self)
         ntView.needsDisplay = true  //redraw it if it wasn't automatically
         //add all the vertices
         addPositionAndChildren(NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]), parent: -1)
     }
     
-    func timerFire(timer: NSTimer) {
+    func timerFire(_ timer: Timer) {
         if !path.isEmpty {
-            ntView.position = path.removeAtIndex(0)
+            ntView.position = path.remove(at: 0)
         } else {
             timer.invalidate()
         }
     }
     
-    @IBAction func solve(sender: AnyObject) {
-        let temp = bfs(ntView.position, to: NineTailPosition(matrix: [[.Tails, .Tails, .Tails],[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]), graph: ntGraph)
-        path = edgesToVertices(temp, graph: ntGraph)
-        timer = NSTimer.scheduledTimerWithTimeInterval(2.5, target: self, selector: #selector(AppDelegate.timerFire(_:)), userInfo: nil, repeats: true)
+    @IBAction func solve(_ sender: AnyObject) {
+        let temp = bfs(from: ntView.position, to: NineTailPosition(matrix: [[.Tails, .Tails, .Tails],[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]), graph: ntGraph)
+        path = edgesToVertices(edges: temp, graph: ntGraph)
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(AppDelegate.timerFire(_:)), userInfo: nil, repeats: true)
     }
     
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 

@@ -2,7 +2,7 @@
 //  UnweightedGraph.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2015 David Kopec
+//  Copyright (c) 2014-2016 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -32,32 +32,12 @@ public class UnweightedGraph<T: Equatable>: Graph<T> {
         super.init(vertices: vertices)
     }
     
-    /// This is a convenience method that adds an unweighted, undirected edge.
-    ///
-    /// - parameter from: The starting vertex's index.
-    /// - parameter to: The ending vertex's index.
-    public func addEdge(from: Int, to: Int) {
-        addEdge(UnweightedEdge(u: from, v: to, directed: false))
-    }
-    
-    /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
-    ///
-    /// - parameter from: The starting vertex.
-    /// - parameter to: The ending vertex.
-    public func addEdge(from: T, to: T) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(UnweightedEdge(u: u, v: v, directed: false))
-            }
-        }
-    }
-    
     /// This is a convenience method that adds an unweighted edge.
     ///
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
-    /// - parameter directed: Is the edge directed?
-    public func addEdge(from: Int, to: Int, directed: Bool) {
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public func addEdge(from: Int, to: Int, directed: Bool = false) {
         addEdge(UnweightedEdge(u: from, v: to, directed: directed))
     }
     
@@ -65,8 +45,8 @@ public class UnweightedGraph<T: Equatable>: Graph<T> {
     ///
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
-    /// - parameter directed: Is the edge directed?
-    public func addEdge(from: T, to: T, directed: Bool) {
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public func addEdge(from: T, to: T, directed: Bool = false) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
                 addEdge(UnweightedEdge(u: u, v: v, directed: directed))
@@ -79,12 +59,12 @@ public class UnweightedGraph<T: Equatable>: Graph<T> {
     /// Removes a specific unweighted edge in both directions (if it's not directional). Or just one way if it's directed.
     ///
     /// - parameter edge: The edge to be removed.
-    public func removeEdge(edge: UnweightedEdge) {
-        if let i = (edges[edge.u] as! [UnweightedEdge]).indexOf(edge) {
-            edges[edge.u].removeAtIndex(i)
+    public func removeEdge(_ edge: UnweightedEdge) {
+        if let i = (edges[edge.u] as! [UnweightedEdge]).index(of: edge) {
+            edges[edge.u].remove(at: i)
             if !edge.directed {
-                if let i = (edges[edge.v] as! [UnweightedEdge]).indexOf(edge.reversed as! UnweightedEdge) {
-                    edges[edge.v].removeAtIndex(i)
+                if let i = (edges[edge.v] as! [UnweightedEdge]).index(of: edge.reversed as! UnweightedEdge) {
+                    edges[edge.v].remove(at: i)
                 }
             }
         }

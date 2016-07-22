@@ -3,7 +3,7 @@
 //  SwiftGraphTests
 //
 //  Created by David Kopec on 11/16/14.
-//  Copyright (c) 2014 Oak Snow Consulting. All rights reserved.
+//  Copyright (c) 2014-2016 Oak Snow Consulting. All rights reserved.
 //
 
 import XCTest
@@ -23,21 +23,21 @@ class SwiftGraphTests: XCTestCase {
     func testCitesInverseAfterRemove() {
         // This is an example of a functional test case.
         let g: UnweightedGraph<String> = UnweightedGraph<String>()
-        g.addVertex("Atlanta")
-        g.addVertex("New York")
-        g.addVertex("Miami")
-        g.addEdge("Atlanta", to: "New York")
-        g.addEdge("Miami", to: "Atlanta")
-        g.addEdge("New York", to: "Miami")
+        _ = g.addVertex("Atlanta")
+        _ = g.addVertex("New York")
+        _ = g.addVertex("Miami")
+        g.addEdge(from: "Atlanta", to: "New York")
+        g.addEdge(from: "Miami", to: "Atlanta")
+        g.addEdge(from: "New York", to: "Miami")
         g.removeVertex("Atlanta")
         XCTAssertEqual(g.neighborsForVertex("Miami")!, g.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miam and New York Connected bi-directionally")
     }
     
     func testSequenceTypeAndCollectionType() {
         let g: UnweightedGraph<String> = UnweightedGraph<String>()
-        g.addVertex("Atlanta")
-        g.addVertex("New York")
-        g.addVertex("Miami")
+        _ = g.addVertex("Atlanta")
+        _ = g.addVertex("New York")
+        _ = g.addVertex("Miami")
         var tempList: [String] = []
         for v in g {
             tempList.append(v)

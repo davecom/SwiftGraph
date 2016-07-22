@@ -6,7 +6,7 @@ It includes copious in-source documentation, some unit tests, as well as utility
 
 ## Installation
 
-SwiftGraph 1.1 and above requires Swift 3 (Xcode 8). SwiftGraph 1.0.1 through 1.0.6 requires Swift 2.0 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
+SwiftGraph 1.1.0 and above requires Swift 3 (Xcode 8). SwiftGraph 1.0.1 through 1.0.6 requires Swift 2 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
 
 ### CocoaPods
 
@@ -71,7 +71,7 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
 ### Functions
 * `bfs()` - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
 * `dfs()` - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
-* `dijkstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. The parameter `startingDistance` is used to indicate the distance to the fixed cost distance to the first vertex - typically this is 0. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
+* `dijkstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
 
 ## Authorship & License
 SwiftGraph is written by David Kopec and released under the MIT License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
