@@ -143,7 +143,7 @@ func == <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
 /// - parameter root: The index of the root node to build the shortest paths from.
 /// - parameter startDistance: The distance to get to the root node (typically 0).
 /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
-public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
+public func dijkstra<T: Equatable, W: Comparable & Summable> (graph: WeightedGraph<T, W>, root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
     var distances: [W?] = [W?](repeating: nil, count: graph.vertexCount)
     distances[root] = startDistance
     var queue: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
@@ -184,7 +184,7 @@ public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: We
 
 /// A convenience version of dijkstra() that allows the supply of root vertice 
 /// instead of the index of the root vertice.
-public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: WeightedGraph<T, W>, root: T, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
+public func dijkstra<T: Equatable, W: Comparable & Summable> (graph: WeightedGraph<T, W>, root: T, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
     if let u = graph.indexOfVertex(root) {
         return dijkstra(graph: graph, root: u, startDistance: startDistance)
     }
@@ -192,7 +192,7 @@ public func dijkstra<T: Equatable, W: protocol<Comparable, Summable>> (graph: We
 }
 
 /// Helper function to get easier access to Dijkstra results.
-public func distanceArrayToVertexDict<T: Equatable, W: protocol<Comparable, Summable>>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
+public func distanceArrayToVertexDict<T: Equatable, W: Comparable & Summable>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
     var distanceDict: [T: W?] = [T: W?]()
     for i in 0..<distances.count {
         distanceDict[graph.vertexAtIndex(i)] = distances[i]
@@ -215,7 +215,7 @@ public func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T]
 }
 
 //version for Dijkstra with weighted edges
-public func edgesToVertices<T: Equatable, W: protocol<Comparable, Summable>>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
+public func edgesToVertices<T: Equatable, W: Comparable & Summable>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
     var vs: [T] = [T]()
     if let first = edges.first {
         vs.append(graph.vertexAtIndex(first.u))
@@ -241,7 +241,7 @@ public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
 }
 
 // version for Dijkstra
-public func pathDictToPath<W: protocol<Comparable, Summable>>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
+public func pathDictToPath<W: Comparable & Summable>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
     var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
     var e: WeightedEdge<W> = pathDict[to]!
     edgePath.append(e)

@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-public class WeightedGraph<T: Equatable, W: protocol<Comparable, Summable>>: Graph<T> {
+public class WeightedGraph<T: Equatable, W: Comparable & Summable>: Graph<T> {
     public override init() {
         super.init()
     }

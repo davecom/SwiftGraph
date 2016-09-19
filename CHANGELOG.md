@@ -1,3 +1,8 @@
+###1.1.1
+- Fixes for the final version of Swift 3
+- Updated version of SwiftPriorityQueue
+- Added .swift-version file
+
 ###1.1.0
 - Requires Swift 3
 - Minor breaking API naming changes in-line with Swift 3 expectations

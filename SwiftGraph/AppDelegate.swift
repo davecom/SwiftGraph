@@ -65,7 +65,7 @@ class NineTailView: NSView {
         
     }
     
-    override func mouseDown(_ theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         let width: CGFloat = self.bounds.size.width
         let height: CGFloat = self.bounds.size.height
         let mousePlace:NSPoint = self.convert(theEvent.locationInWindow, from: nil)
@@ -88,7 +88,7 @@ enum Coin: String {
 }
 
 struct NineTailPosition: Equatable  {
-    private var positionMatrix: [[Coin]]
+    fileprivate var positionMatrix: [[Coin]]
     init(matrix: [[Coin]]) {
         positionMatrix = matrix
     }

@@ -25,7 +25,7 @@
 /// This protocol is needed for Dijkstra's algorithm - we need weights in weighted graphs
 /// to be able to be added together
 public protocol Summable {
-    func +(lhs: Self, rhs: Self) -> Self
+    static func +(lhs: Self, rhs: Self) -> Self
 }
 
 extension Int: Summable {}
@@ -34,7 +34,7 @@ extension Float: Summable {}
 extension String: Summable {}
 
 /// A weighted edge, who's weight subscribes to Comparable.
-public class WeightedEdge<W: protocol<Comparable, Summable>>: UnweightedEdge {
+public class WeightedEdge<W: Comparable & Summable>: UnweightedEdge {
     public override var weighted: Bool { return true }
     public let weight: W
     public override var reversed:Edge {
