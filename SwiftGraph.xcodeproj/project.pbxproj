@@ -33,6 +33,52 @@
 		55FB2D671CE25E1200C2B876 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
 		55FEDBC91A1D40BC00F266A0 /* SwiftGraphSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */; };
 		55FEDBCB1A1D799100F266A0 /* DjikstraGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEDBCA1A1D799100F266A0 /* DjikstraGraphTests.swift */; };
+		8751D8611DA2C67C00DCE2B0 /* SwiftGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */; };
+		8751D8621DA2C67C00DCE2B0 /* SwiftGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8751D8851DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8751D8861DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8751D8871DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8751D8881DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8751D8891DA2C9CE00DCE2B0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
+		8751D88A1DA2C9CE00DCE2B0 /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
+		8751D88B1DA2C9CE00DCE2B0 /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
+		8751D88C1DA2C9CF00DCE2B0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
+		8751D88D1DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
+		8751D88E1DA2C9CF00DCE2B0 /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
+		8751D88F1DA2C9CF00DCE2B0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
+		8751D8901DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
+		8751D8911DA2C9CF00DCE2B0 /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
+		8751D8921DA2C9CF00DCE2B0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
+		8751D8931DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
+		8751D8941DA2C9CF00DCE2B0 /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
+		8751D8951DA2C9D400DCE2B0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
+		8751D8961DA2C9D400DCE2B0 /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
+		8751D8971DA2C9D400DCE2B0 /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
+		8751D8981DA2C9D500DCE2B0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
+		8751D8991DA2C9D500DCE2B0 /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
+		8751D89A1DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
+		8751D89B1DA2C9D500DCE2B0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
+		8751D89C1DA2C9D500DCE2B0 /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
+		8751D89D1DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
+		8751D89E1DA2C9D500DCE2B0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
+		8751D89F1DA2C9D500DCE2B0 /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
+		8751D8A01DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
+		8751D8A11DA2C9DA00DCE2B0 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
+		8751D8A21DA2C9DA00DCE2B0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
+		8751D8A31DA2C9DA00DCE2B0 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
+		8751D8A41DA2C9DA00DCE2B0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
+		8751D8A51DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
+		8751D8A61DA2C9DB00DCE2B0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
+		8751D8A71DA2C9DB00DCE2B0 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
+		8751D8A81DA2C9DB00DCE2B0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
+		8751D8A91DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
+		8751D8AA1DA2C9DB00DCE2B0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
+		8751D8AB1DA2C9DB00DCE2B0 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
+		8751D8AC1DA2C9DB00DCE2B0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
+		8751D8AD1DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
+		8751D8AE1DA2C9DB00DCE2B0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
+		8751D8AF1DA2C9DB00DCE2B0 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
+		8751D8B01DA2C9DB00DCE2B0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +89,28 @@
 			remoteGlobalIDString = 55E620011A194C80000A5F7B;
 			remoteInfo = SwiftGraph;
 		};
+		8751D85F1DA2C67C00DCE2B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E61FFA1A194C7F000A5F7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8751D8591DA2C67C00DCE2B0;
+			remoteInfo = "SwiftGraph-macOS";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8751D8661DA2C67C00DCE2B0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8751D8621DA2C67C00DCE2B0 /* SwiftGraph.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/Edge.swift; sourceTree = SOURCE_ROOT; };
@@ -66,6 +133,11 @@
 		55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftPriorityQueue.swift; path = Sources/SwiftPriorityQueue.swift; sourceTree = SOURCE_ROOT; };
 		55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSearchTests.swift; sourceTree = "<group>"; };
 		55FEDBCA1A1D799100F266A0 /* DjikstraGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DjikstraGraphTests.swift; sourceTree = "<group>"; };
+		8751D84D1DA2C4C800DCE2B0 /* SwiftGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8751D86D1DA2C74900DCE2B0 /* SwiftGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8751D87A1DA2C77000DCE2B0 /* SwiftGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwiftGraph.h; path = Sources/SwiftGraph.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +145,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8751D8611DA2C67C00DCE2B0 /* SwiftGraph.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		55E6200F1A194C80000A5F7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8491DA2C4C800DCE2B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8561DA2C67C00DCE2B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8691DA2C74900DCE2B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8761DA2C77000DCE2B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,6 +190,7 @@
 		5589B4801C0E773300D6664E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */,
 				5589B4811C0E774300D6664E /* Edges */,
 				5589B4821C0E774F00D6664E /* Graphs */,
 				5589B4831C0E775800D6664E /* Search */,
@@ -141,6 +243,10 @@
 			children = (
 				55E620021A194C80000A5F7B /* SwiftGraph.app */,
 				55E620121A194C80000A5F7B /* SwiftGraphTests.xctest */,
+				8751D84D1DA2C4C800DCE2B0 /* SwiftGraph.framework */,
+				8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */,
+				8751D86D1DA2C74900DCE2B0 /* SwiftGraph.framework */,
+				8751D87A1DA2C77000DCE2B0 /* SwiftGraph.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +292,41 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		8751D84A1DA2C4C800DCE2B0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D8851DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8571DA2C67C00DCE2B0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D8861DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D86A1DA2C74900DCE2B0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D8871DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8771DA2C77000DCE2B0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D8881DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		55E620011A194C80000A5F7B /* SwiftGraph */ = {
 			isa = PBXNativeTarget;
@@ -194,10 +335,12 @@
 				55E61FFE1A194C80000A5F7B /* Sources */,
 				55E61FFF1A194C80000A5F7B /* Frameworks */,
 				55E620001A194C80000A5F7B /* Resources */,
+				8751D8661DA2C67C00DCE2B0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8751D8601DA2C67C00DCE2B0 /* PBXTargetDependency */,
 			);
 			name = SwiftGraph;
 			productName = SwiftGraph;
@@ -222,6 +365,78 @@
 			productReference = 55E620121A194C80000A5F7B /* SwiftGraphTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8751D84C1DA2C4C800DCE2B0 /* SwiftGraph-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8751D8521DA2C4C800DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-iOS" */;
+			buildPhases = (
+				8751D8481DA2C4C800DCE2B0 /* Sources */,
+				8751D8491DA2C4C800DCE2B0 /* Frameworks */,
+				8751D84A1DA2C4C800DCE2B0 /* Headers */,
+				8751D84B1DA2C4C800DCE2B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftGraph-iOS";
+			productName = "SwiftGraph-iOS";
+			productReference = 8751D84D1DA2C4C800DCE2B0 /* SwiftGraph.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8751D8591DA2C67C00DCE2B0 /* SwiftGraph-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8751D8631DA2C67C00DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-macOS" */;
+			buildPhases = (
+				8751D8551DA2C67C00DCE2B0 /* Sources */,
+				8751D8561DA2C67C00DCE2B0 /* Frameworks */,
+				8751D8571DA2C67C00DCE2B0 /* Headers */,
+				8751D8581DA2C67C00DCE2B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftGraph-macOS";
+			productName = "SwiftGraph-macOS";
+			productReference = 8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8751D86C1DA2C74900DCE2B0 /* SwiftGraph-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8751D8721DA2C74900DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-tvOS" */;
+			buildPhases = (
+				8751D8681DA2C74900DCE2B0 /* Sources */,
+				8751D8691DA2C74900DCE2B0 /* Frameworks */,
+				8751D86A1DA2C74900DCE2B0 /* Headers */,
+				8751D86B1DA2C74900DCE2B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftGraph-tvOS";
+			productName = "SwiftGraph-tvOS";
+			productReference = 8751D86D1DA2C74900DCE2B0 /* SwiftGraph.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8751D8791DA2C77000DCE2B0 /* SwiftGraph-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8751D87F1DA2C77000DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-watchOS" */;
+			buildPhases = (
+				8751D8751DA2C77000DCE2B0 /* Sources */,
+				8751D8761DA2C77000DCE2B0 /* Frameworks */,
+				8751D8771DA2C77000DCE2B0 /* Headers */,
+				8751D8781DA2C77000DCE2B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftGraph-watchOS";
+			productName = "SwiftGraph-watchOS";
+			productReference = 8751D87A1DA2C77000DCE2B0 /* SwiftGraph.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -242,6 +457,22 @@
 						LastSwiftMigration = 0800;
 						TestTargetID = 55E620011A194C80000A5F7B;
 					};
+					8751D84C1DA2C4C800DCE2B0 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					8751D8591DA2C67C00DCE2B0 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					8751D86C1DA2C74900DCE2B0 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					8751D8791DA2C77000DCE2B0 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 55E61FFD1A194C7F000A5F7B /* Build configuration list for PBXProject "SwiftGraph" */;
@@ -259,6 +490,10 @@
 			targets = (
 				55E620011A194C80000A5F7B /* SwiftGraph */,
 				55E620111A194C80000A5F7B /* SwiftGraphTests */,
+				8751D84C1DA2C4C800DCE2B0 /* SwiftGraph-iOS */,
+				8751D8591DA2C67C00DCE2B0 /* SwiftGraph-macOS */,
+				8751D86C1DA2C74900DCE2B0 /* SwiftGraph-tvOS */,
+				8751D8791DA2C77000DCE2B0 /* SwiftGraph-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -274,6 +509,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		55E620101A194C80000A5F7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D84B1DA2C4C800DCE2B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8581DA2C67C00DCE2B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D86B1DA2C74900DCE2B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8781DA2C77000DCE2B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,6 +584,74 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8751D8481DA2C4C800DCE2B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D8951DA2C9D400DCE2B0 /* Graph.swift in Sources */,
+				8751D8A31DA2C9DA00DCE2B0 /* Stack.swift in Sources */,
+				8751D8961DA2C9D400DCE2B0 /* UnweightedGraph.swift in Sources */,
+				8751D88B1DA2C9CE00DCE2B0 /* WeightedEdge.swift in Sources */,
+				8751D8971DA2C9D400DCE2B0 /* WeightedGraph.swift in Sources */,
+				8751D8A41DA2C9DA00DCE2B0 /* Queue.swift in Sources */,
+				8751D88A1DA2C9CE00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				8751D8A21DA2C9DA00DCE2B0 /* Search.swift in Sources */,
+				8751D8891DA2C9CE00DCE2B0 /* Edge.swift in Sources */,
+				8751D8A11DA2C9DA00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8551DA2C67C00DCE2B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D8981DA2C9D500DCE2B0 /* Graph.swift in Sources */,
+				8751D8A71DA2C9DB00DCE2B0 /* Stack.swift in Sources */,
+				8751D8991DA2C9D500DCE2B0 /* UnweightedGraph.swift in Sources */,
+				8751D88E1DA2C9CF00DCE2B0 /* WeightedEdge.swift in Sources */,
+				8751D89A1DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */,
+				8751D8A81DA2C9DB00DCE2B0 /* Queue.swift in Sources */,
+				8751D88D1DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				8751D8A61DA2C9DB00DCE2B0 /* Search.swift in Sources */,
+				8751D88C1DA2C9CF00DCE2B0 /* Edge.swift in Sources */,
+				8751D8A51DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8681DA2C74900DCE2B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D89B1DA2C9D500DCE2B0 /* Graph.swift in Sources */,
+				8751D8AB1DA2C9DB00DCE2B0 /* Stack.swift in Sources */,
+				8751D89C1DA2C9D500DCE2B0 /* UnweightedGraph.swift in Sources */,
+				8751D8911DA2C9CF00DCE2B0 /* WeightedEdge.swift in Sources */,
+				8751D89D1DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */,
+				8751D8AC1DA2C9DB00DCE2B0 /* Queue.swift in Sources */,
+				8751D8901DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				8751D8AA1DA2C9DB00DCE2B0 /* Search.swift in Sources */,
+				8751D88F1DA2C9CF00DCE2B0 /* Edge.swift in Sources */,
+				8751D8A91DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8751DA2C77000DCE2B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D89E1DA2C9D500DCE2B0 /* Graph.swift in Sources */,
+				8751D8AF1DA2C9DB00DCE2B0 /* Stack.swift in Sources */,
+				8751D89F1DA2C9D500DCE2B0 /* UnweightedGraph.swift in Sources */,
+				8751D8941DA2C9CF00DCE2B0 /* WeightedEdge.swift in Sources */,
+				8751D8A01DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */,
+				8751D8B01DA2C9DB00DCE2B0 /* Queue.swift in Sources */,
+				8751D8931DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				8751D8AE1DA2C9DB00DCE2B0 /* Search.swift in Sources */,
+				8751D8921DA2C9CF00DCE2B0 /* Edge.swift in Sources */,
+				8751D8AD1DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -328,6 +659,11 @@
 			isa = PBXTargetDependency;
 			target = 55E620011A194C80000A5F7B /* SwiftGraph */;
 			targetProxy = 55E620131A194C80000A5F7B /* PBXContainerItemProxy */;
+		};
+		8751D8601DA2C67C00DCE2B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8751D8591DA2C67C00DCE2B0 /* SwiftGraph-macOS */;
+			targetProxy = 8751D85F1DA2C67C00DCE2B0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -426,6 +762,7 @@
 		55E6201D1A194C80000A5F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftGraph/Info.plist;
@@ -440,6 +777,7 @@
 		55E6201E1A194C80000A5F7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftGraph/Info.plist;
@@ -493,6 +831,253 @@
 			};
 			name = Release;
 		};
+		8751D8531DA2C4C800DCE2B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8751D8541DA2C4C800DCE2B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8751D8641DA2C67C00DCE2B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8751D8651DA2C67C00DCE2B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8751D8731DA2C74900DCE2B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8751D8741DA2C74900DCE2B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8751D8801DA2C77000DCE2B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Debug;
+		};
+		8751D8811DA2C77000DCE2B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraph;
+				PRODUCT_NAME = SwiftGraph;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -519,6 +1104,42 @@
 			buildConfigurations = (
 				55E620201A194C80000A5F7B /* Debug */,
 				55E620211A194C80000A5F7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8751D8521DA2C4C800DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8751D8531DA2C4C800DCE2B0 /* Debug */,
+				8751D8541DA2C4C800DCE2B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8751D8631DA2C67C00DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8751D8641DA2C67C00DCE2B0 /* Debug */,
+				8751D8651DA2C67C00DCE2B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8751D8721DA2C74900DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8751D8731DA2C74900DCE2B0 /* Debug */,
+				8751D8741DA2C74900DCE2B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8751D87F1DA2C77000DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8751D8801DA2C77000DCE2B0 /* Debug */,
+				8751D8811DA2C77000DCE2B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
