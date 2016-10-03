@@ -7,34 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5589B4631C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
 		5589B4641C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
-		5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
 		5589B4671C0E734F00D6664E /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
-		5589B4691C0E74CD00D6664E /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
 		5589B46A1C0E74CD00D6664E /* WeightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4681C0E74CD00D6664E /* WeightedEdge.swift */; };
-		5589B46C1C0E753E00D6664E /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
 		5589B46D1C0E753E00D6664E /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46B1C0E753E00D6664E /* Graph.swift */; };
-		5589B46F1C0E756200D6664E /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
 		5589B4701C0E756200D6664E /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
-		5589B4721C0E757100D6664E /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
 		5589B4731C0E757100D6664E /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
-		5589B4751C0E758500D6664E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
 		5589B4761C0E758500D6664E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
-		5589B4781C0E759800D6664E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
 		5589B4791C0E759800D6664E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
-		5589B47B1C0E75A700D6664E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
 		5589B47C1C0E75A700D6664E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
-		55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620071A194C80000A5F7B /* AppDelegate.swift */; };
-		55E6200A1A194C80000A5F7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E620091A194C80000A5F7B /* Images.xcassets */; };
-		55E6200D1A194C80000A5F7B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6200B1A194C80000A5F7B /* MainMenu.xib */; };
 		55E620191A194C80000A5F7B /* SwiftGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620181A194C80000A5F7B /* SwiftGraphTests.swift */; };
-		55FB2D661CE25E0800C2B876 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
 		55FB2D671CE25E1200C2B876 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
 		55FEDBC91A1D40BC00F266A0 /* SwiftGraphSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */; };
 		55FEDBCB1A1D799100F266A0 /* DjikstraGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEDBCA1A1D799100F266A0 /* DjikstraGraphTests.swift */; };
-		8751D8611DA2C67C00DCE2B0 /* SwiftGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */; };
-		8751D8621DA2C67C00DCE2B0 /* SwiftGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87453C231DA2D92F00565072 /* SwiftGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */; };
+		87453C241DA2D92F00565072 /* SwiftGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8751D8851DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8751D8861DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8751D8871DA2C9C900DCE2B0 /* SwiftGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,17 +66,13 @@
 		8751D8AE1DA2C9DB00DCE2B0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
 		8751D8AF1DA2C9DB00DCE2B0 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
 		8751D8B01DA2C9DB00DCE2B0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
+		8751D8B81DA2D80000DCE2B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751D8B71DA2D80000DCE2B0 /* AppDelegate.swift */; };
+		8751D8BA1DA2D80000DCE2B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8751D8B91DA2D80000DCE2B0 /* Assets.xcassets */; };
+		8751D8BD1DA2D80000DCE2B0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8751D8BB1DA2D80000DCE2B0 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		55E620131A194C80000A5F7B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55E61FFA1A194C7F000A5F7B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55E620011A194C80000A5F7B;
-			remoteInfo = SwiftGraph;
-		};
-		8751D85F1DA2C67C00DCE2B0 /* PBXContainerItemProxy */ = {
+		87453C251DA2D92F00565072 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E61FFA1A194C7F000A5F7B /* Project object */;
 			proxyType = 1;
@@ -99,13 +82,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8751D8661DA2C67C00DCE2B0 /* Embed Frameworks */ = {
+		87453C271DA2D92F00565072 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8751D8621DA2C67C00DCE2B0 /* SwiftGraph.framework in Embed Frameworks */,
+				87453C241DA2D92F00565072 /* SwiftGraph.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,11 +105,7 @@
 		5589B4741C0E758500D6664E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = Sources/Search.swift; sourceTree = SOURCE_ROOT; };
 		5589B4771C0E759800D6664E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Sources/Stack.swift; sourceTree = SOURCE_ROOT; };
 		5589B47A1C0E75A700D6664E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Sources/Queue.swift; sourceTree = SOURCE_ROOT; };
-		55E620021A194C80000A5F7B /* SwiftGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E620061A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55E620071A194C80000A5F7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55E620091A194C80000A5F7B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		55E6200C1A194C80000A5F7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		55E620121A194C80000A5F7B /* SwiftGraphTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGraphTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E620171A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55E620181A194C80000A5F7B /* SwiftGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
@@ -138,17 +117,14 @@
 		8751D86D1DA2C74900DCE2B0 /* SwiftGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8751D87A1DA2C77000DCE2B0 /* SwiftGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwiftGraph.h; path = Sources/SwiftGraph.h; sourceTree = SOURCE_ROOT; };
+		8751D8B51DA2D80000DCE2B0 /* SwiftGraph-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftGraph-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8751D8B71DA2D80000DCE2B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8751D8B91DA2D80000DCE2B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8751D8BC1DA2D80000DCE2B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8751D8BE1DA2D80000DCE2B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		55E61FFF1A194C80000A5F7B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8751D8611DA2C67C00DCE2B0 /* SwiftGraph.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		55E6200F1A194C80000A5F7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +157,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8751D8B21DA2D80000DCE2B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87453C231DA2D92F00565072 /* SwiftGraph.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +218,7 @@
 			children = (
 				55E620041A194C80000A5F7B /* SwiftGraph */,
 				55E620151A194C80000A5F7B /* SwiftGraphTests */,
+				8751D8B61DA2D80000DCE2B0 /* SwiftGraph-Sample */,
 				55E620031A194C80000A5F7B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -241,12 +226,12 @@
 		55E620031A194C80000A5F7B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				55E620021A194C80000A5F7B /* SwiftGraph.app */,
 				55E620121A194C80000A5F7B /* SwiftGraphTests.xctest */,
 				8751D84D1DA2C4C800DCE2B0 /* SwiftGraph.framework */,
 				8751D85A1DA2C67C00DCE2B0 /* SwiftGraph.framework */,
 				8751D86D1DA2C74900DCE2B0 /* SwiftGraph.framework */,
 				8751D87A1DA2C77000DCE2B0 /* SwiftGraph.framework */,
+				8751D8B51DA2D80000DCE2B0 /* SwiftGraph-Sample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,9 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				5589B4801C0E773300D6664E /* Sources */,
-				55E620071A194C80000A5F7B /* AppDelegate.swift */,
-				55E620091A194C80000A5F7B /* Images.xcassets */,
-				55E6200B1A194C80000A5F7B /* MainMenu.xib */,
 				55E620051A194C80000A5F7B /* Supporting Files */,
 			);
 			path = SwiftGraph;
@@ -288,6 +270,17 @@
 				55E620171A194C80000A5F7B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8751D8B61DA2D80000DCE2B0 /* SwiftGraph-Sample */ = {
+			isa = PBXGroup;
+			children = (
+				8751D8B71DA2D80000DCE2B0 /* AppDelegate.swift */,
+				8751D8B91DA2D80000DCE2B0 /* Assets.xcassets */,
+				8751D8BB1DA2D80000DCE2B0 /* MainMenu.xib */,
+				8751D8BE1DA2D80000DCE2B0 /* Info.plist */,
+			);
+			path = "SwiftGraph-Sample";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,25 +321,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		55E620011A194C80000A5F7B /* SwiftGraph */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 55E6201C1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraph" */;
-			buildPhases = (
-				55E61FFE1A194C80000A5F7B /* Sources */,
-				55E61FFF1A194C80000A5F7B /* Frameworks */,
-				55E620001A194C80000A5F7B /* Resources */,
-				8751D8661DA2C67C00DCE2B0 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8751D8601DA2C67C00DCE2B0 /* PBXTargetDependency */,
-			);
-			name = SwiftGraph;
-			productName = SwiftGraph;
-			productReference = 55E620021A194C80000A5F7B /* SwiftGraph.app */;
-			productType = "com.apple.product-type.application";
-		};
 		55E620111A194C80000A5F7B /* SwiftGraphTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55E6201F1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraphTests" */;
@@ -358,7 +332,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				55E620141A194C80000A5F7B /* PBXTargetDependency */,
 			);
 			name = SwiftGraphTests;
 			productName = SwiftGraphTests;
@@ -437,6 +410,25 @@
 			productReference = 8751D87A1DA2C77000DCE2B0 /* SwiftGraph.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		8751D8B41DA2D80000DCE2B0 /* SwiftGraph-Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8751D8C11DA2D80000DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-Sample" */;
+			buildPhases = (
+				8751D8B11DA2D80000DCE2B0 /* Sources */,
+				8751D8B21DA2D80000DCE2B0 /* Frameworks */,
+				8751D8B31DA2D80000DCE2B0 /* Resources */,
+				87453C271DA2D92F00565072 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87453C261DA2D92F00565072 /* PBXTargetDependency */,
+			);
+			name = "SwiftGraph-Sample";
+			productName = "SwiftGraph-Sample";
+			productReference = 8751D8B51DA2D80000DCE2B0 /* SwiftGraph-Sample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -444,14 +436,10 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0710;
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Oak Snow Consulting";
 				TargetAttributes = {
-					55E620011A194C80000A5F7B = {
-						CreatedOnToolsVersion = 6.1;
-						LastSwiftMigration = 0800;
-					};
 					55E620111A194C80000A5F7B = {
 						CreatedOnToolsVersion = 6.1;
 						LastSwiftMigration = 0800;
@@ -473,6 +461,10 @@
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
+					8751D8B41DA2D80000DCE2B0 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 55E61FFD1A194C7F000A5F7B /* Build configuration list for PBXProject "SwiftGraph" */;
@@ -488,26 +480,17 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				55E620011A194C80000A5F7B /* SwiftGraph */,
-				55E620111A194C80000A5F7B /* SwiftGraphTests */,
 				8751D84C1DA2C4C800DCE2B0 /* SwiftGraph-iOS */,
 				8751D8591DA2C67C00DCE2B0 /* SwiftGraph-macOS */,
 				8751D86C1DA2C74900DCE2B0 /* SwiftGraph-tvOS */,
 				8751D8791DA2C77000DCE2B0 /* SwiftGraph-watchOS */,
+				8751D8B41DA2D80000DCE2B0 /* SwiftGraph-Sample */,
+				55E620111A194C80000A5F7B /* SwiftGraphTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		55E620001A194C80000A5F7B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55E6200A1A194C80000A5F7B /* Images.xcassets in Resources */,
-				55E6200D1A194C80000A5F7B /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		55E620101A194C80000A5F7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -543,27 +526,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		55E61FFE1A194C80000A5F7B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		8751D8B31DA2D80000DCE2B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5589B4751C0E758500D6664E /* Search.swift in Sources */,
-				5589B46F1C0E756200D6664E /* UnweightedGraph.swift in Sources */,
-				5589B4721C0E757100D6664E /* WeightedGraph.swift in Sources */,
-				55FB2D661CE25E0800C2B876 /* SwiftPriorityQueue.swift in Sources */,
-				5589B47B1C0E75A700D6664E /* Queue.swift in Sources */,
-				5589B46C1C0E753E00D6664E /* Graph.swift in Sources */,
-				5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */,
-				5589B4781C0E759800D6664E /* Stack.swift in Sources */,
-				55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */,
-				5589B4631C0E72CC00D6664E /* Edge.swift in Sources */,
-				5589B4691C0E74CD00D6664E /* WeightedEdge.swift in Sources */,
+				8751D8BA1DA2D80000DCE2B0 /* Assets.xcassets in Resources */,
+				8751D8BD1DA2D80000DCE2B0 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		55E6200E1A194C80000A5F7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -652,26 +626,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8751D8B11DA2D80000DCE2B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8751D8B81DA2D80000DCE2B0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		55E620141A194C80000A5F7B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55E620011A194C80000A5F7B /* SwiftGraph */;
-			targetProxy = 55E620131A194C80000A5F7B /* PBXContainerItemProxy */;
-		};
-		8751D8601DA2C67C00DCE2B0 /* PBXTargetDependency */ = {
+		87453C261DA2D92F00565072 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8751D8591DA2C67C00DCE2B0 /* SwiftGraph-macOS */;
-			targetProxy = 8751D85F1DA2C67C00DCE2B0 /* PBXContainerItemProxy */;
+			targetProxy = 87453C251DA2D92F00565072 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		55E6200B1A194C80000A5F7B /* MainMenu.xib */ = {
+		8751D8BB1DA2D80000DCE2B0 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55E6200C1A194C80000A5F7B /* Base */,
+				8751D8BC1DA2D80000DCE2B0 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -756,37 +733,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		55E6201D1A194C80000A5F7B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftGraph/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		55E6201E1A194C80000A5F7B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftGraph/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1078,6 +1024,48 @@
 			};
 			name = Release;
 		};
+		8751D8BF1DA2D80000DCE2B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "SwiftGraph-Sample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.SwiftGraph-Sample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8751D8C01DA2D80000DCE2B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "SwiftGraph-Sample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.SwiftGraph-Sample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1086,15 +1074,6 @@
 			buildConfigurations = (
 				55E6201A1A194C80000A5F7B /* Debug */,
 				55E6201B1A194C80000A5F7B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		55E6201C1A194C80000A5F7B /* Build configuration list for PBXNativeTarget "SwiftGraph" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				55E6201D1A194C80000A5F7B /* Debug */,
-				55E6201E1A194C80000A5F7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1140,6 +1119,15 @@
 			buildConfigurations = (
 				8751D8801DA2C77000DCE2B0 /* Debug */,
 				8751D8811DA2C77000DCE2B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8751D8C11DA2D80000DCE2B0 /* Build configuration list for PBXNativeTarget "SwiftGraph-Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8751D8BF1DA2D80000DCE2B0 /* Debug */,
+				8751D8C01DA2D80000DCE2B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
