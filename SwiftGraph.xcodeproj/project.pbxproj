@@ -87,6 +87,13 @@
 			remoteGlobalIDString = 8751D8591DA2C67C00DCE2B0;
 			remoteInfo = "SwiftGraph-macOS";
 		};
+		87DDF49E1DA42A35004A5084 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E61FFA1A194C7F000A5F7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8751D8B41DA2D80000DCE2B0;
+			remoteInfo = "SwiftGraph-Sample";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -360,6 +367,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87DDF49F1DA42A35004A5084 /* PBXTargetDependency */,
 			);
 			name = SwiftGraphTests;
 			productName = SwiftGraphTests;
@@ -471,7 +479,7 @@
 					55E620111A194C80000A5F7B = {
 						CreatedOnToolsVersion = 6.1;
 						LastSwiftMigration = 0800;
-						TestTargetID = 55E620011A194C80000A5F7B;
+						TestTargetID = 8751D8B41DA2D80000DCE2B0;
 					};
 					8751D84C1DA2C4C800DCE2B0 = {
 						CreatedOnToolsVersion = 8.0;
@@ -678,6 +686,11 @@
 			target = 8751D8591DA2C67C00DCE2B0 /* SwiftGraph-macOS */;
 			targetProxy = 87453C251DA2D92F00565072 /* PBXContainerItemProxy */;
 		};
+		87DDF49F1DA42A35004A5084 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8751D8B41DA2D80000DCE2B0 /* SwiftGraph-Sample */;
+			targetProxy = 87DDF49E1DA42A35004A5084 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -790,7 +803,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraph.app/Contents/MacOS/SwiftGraph";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraph-Sample.app/Contents/MacOS/SwiftGraph-Sample";
 			};
 			name = Debug;
 		};
@@ -809,7 +822,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraph.app/Contents/MacOS/SwiftGraph";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGraph-Sample.app/Contents/MacOS/SwiftGraph-Sample";
 			};
 			name = Release;
 		};
