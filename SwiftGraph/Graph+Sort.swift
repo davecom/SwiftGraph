@@ -1,8 +1,8 @@
 //
-//  Graph+Cycles.swift
+//  Graph+Sort.swift
 //  SwiftGraph
 //
-//  Created by Jasen Kennington on 10/3/16.
+//  Created by Jasen Kennington on 10/4/16.
 //  Copyright © 2016 Oak Snow Consulting. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,24 +23,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+
 import Foundation
 
 extension Graph {
-    /// Check if the graph is acyclic
+    /// Performs a topological sort of the graph, if possible
     ///
-    /// - returns: Whether the graph is acyclic or not
-    public func isAcyclic() -> Bool {
+    /// - returns: A valid sorting of indices or nil, if no sort is possible
+    public func topologicallySortedIndices() -> [Int]? {
+        if !self.isAcyclic() {
+            return nil
+        }
+        
         var visited: [Bool] = [Bool].init(repeating: false, count: self.vertexCount)
-        var pre: [Int?] = [Int?].init(repeating: nil, count: self.vertexCount)
-        var post: [Int?] = [Int?].init(repeating: nil, count: self.vertexCount)
+        var pre: [Int] = [Int].init(repeating: 0, count: self.vertexCount)
+        var post: [Int] = [Int].init(repeating: 0, count: self.vertexCount)
+        
         var clock = 1
         
-        func previsit(_ v: Int, clock: inout Int, pre: inout [Int?]) {
+        func previsit(_ v: Int, clock: inout Int, pre: inout [Int]) {
             pre[v] = clock
             clock = clock + 1
         }
         
-        func postvisit(_ v: Int, clock: inout Int, post: inout [Int?]) {
+        func postvisit(_ v: Int, clock: inout Int, post: inout [Int]) {
             post[v] = clock
             clock = clock + 1
         }
@@ -69,64 +75,19 @@ extension Graph {
             }
         }
         
-        print("Pre: \(pre)")
-        print("Post: \(post)")
-        print("Visited: \(visited)")
-        
-        let backEdges: [EdgeType] = self.edges
-            .flatMap({ $0 })
-            .flatMap {
-                edge in
-                let u = edge.u
-                let v = edge.v
-                
-                guard let preU = pre[u],
-                    let preV = pre[v],
-                    let postU = post[u],
-                    let postV = post[v] else {
-                        fatalError("Edge was somehow not visited.")
-                }
-
-                return EdgeType.init(preU: preU, preV: preV, postU: postU, postV: postV)
-            }
-            .filter {
-                switch $0 {
-                case .back: return true
-                default: return false
-                }
-        }
-        
-        return !(backEdges.count > 0)
+        let result = zip(self.indices, post)
+            .sorted { $0.1 < $1.1 }
+            .map { $0.0 }
+        return result
     }
-}
-
-internal enum EdgeType {
-    case treeForward
-    case back
-    case cross
     
-    init(preU: Int, preV: Int, postU: Int, postV: Int) {
-        if preU < preV && preV < postV && postV < postU {
-            self = .treeForward
-            return
+    /// Performs a topological sort of the graph, if possible
+    ///
+    /// - returns: A valid sorting of vertices or nil, if no sort is possible
+    public func topologicallySortedVertices() -> [V]? {
+        return topologicallySortedIndices()?
+            .map {
+                self.vertexAtIndex($0)
         }
-        
-        if preV < preU && preU < postU && postU < postV {
-            self = .back
-            return
-        }
-        
-        if preV < postV && postV < preU && preU < postU {
-            self = .cross
-            return
-        }
-        
-        if preU == preV && postU == postV {
-            // self loop
-            self = .back
-            return
-        }
-        
-        fatalError("Illegal input. Each index must be unique.")
     }
 }

@@ -73,6 +73,10 @@
 		87B9150E1DA30346008E137F /* Graph+Cycles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B9150C1DA2E1AA008E137F /* Graph+Cycles.swift */; };
 		87B9150F1DA30346008E137F /* Graph+Cycles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B9150C1DA2E1AA008E137F /* Graph+Cycles.swift */; };
 		87B915101DA30347008E137F /* Graph+Cycles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B9150C1DA2E1AA008E137F /* Graph+Cycles.swift */; };
+		87DDF49A1DA41A63004A5084 /* Graph+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DDF4991DA41A63004A5084 /* Graph+Sort.swift */; };
+		87DDF49B1DA41A63004A5084 /* Graph+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DDF4991DA41A63004A5084 /* Graph+Sort.swift */; };
+		87DDF49C1DA41A63004A5084 /* Graph+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DDF4991DA41A63004A5084 /* Graph+Sort.swift */; };
+		87DDF49D1DA41A63004A5084 /* Graph+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DDF4991DA41A63004A5084 /* Graph+Sort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +131,7 @@
 		8751D8BC1DA2D80000DCE2B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8751D8BE1DA2D80000DCE2B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87B9150C1DA2E1AA008E137F /* Graph+Cycles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Graph+Cycles.swift"; sourceTree = "<group>"; };
+		87DDF4991DA41A63004A5084 /* Graph+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Graph+Sort.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +188,7 @@
 				5589B4811C0E774300D6664E /* Edges */,
 				5589B4821C0E774F00D6664E /* Graphs */,
 				5589B4831C0E775800D6664E /* Search */,
+				87DDF4981DA41A4F004A5084 /* Sort */,
 				8751D8841DA2C9C900DCE2B0 /* SwiftGraph.h */,
 			);
 			name = Sources;
@@ -295,6 +301,14 @@
 				87B9150C1DA2E1AA008E137F /* Graph+Cycles.swift */,
 			);
 			name = Cycles;
+			sourceTree = "<group>";
+		};
+		87DDF4981DA41A4F004A5084 /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				87DDF4991DA41A63004A5084 /* Graph+Sort.swift */,
+			);
+			name = Sort;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -584,6 +598,7 @@
 				8751D8971DA2C9D400DCE2B0 /* WeightedGraph.swift in Sources */,
 				8751D8A41DA2C9DA00DCE2B0 /* Queue.swift in Sources */,
 				8751D88A1DA2C9CE00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				87DDF49A1DA41A63004A5084 /* Graph+Sort.swift in Sources */,
 				8751D8A21DA2C9DA00DCE2B0 /* Search.swift in Sources */,
 				8751D8891DA2C9CE00DCE2B0 /* Edge.swift in Sources */,
 				8751D8A11DA2C9DA00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
@@ -602,6 +617,7 @@
 				8751D89A1DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */,
 				8751D8A81DA2C9DB00DCE2B0 /* Queue.swift in Sources */,
 				8751D88D1DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				87DDF49B1DA41A63004A5084 /* Graph+Sort.swift in Sources */,
 				8751D8A61DA2C9DB00DCE2B0 /* Search.swift in Sources */,
 				8751D88C1DA2C9CF00DCE2B0 /* Edge.swift in Sources */,
 				8751D8A51DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
@@ -620,6 +636,7 @@
 				8751D89D1DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */,
 				8751D8AC1DA2C9DB00DCE2B0 /* Queue.swift in Sources */,
 				8751D8901DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				87DDF49C1DA41A63004A5084 /* Graph+Sort.swift in Sources */,
 				8751D8AA1DA2C9DB00DCE2B0 /* Search.swift in Sources */,
 				8751D88F1DA2C9CF00DCE2B0 /* Edge.swift in Sources */,
 				8751D8A91DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
@@ -638,6 +655,7 @@
 				8751D8A01DA2C9D500DCE2B0 /* WeightedGraph.swift in Sources */,
 				8751D8B01DA2C9DB00DCE2B0 /* Queue.swift in Sources */,
 				8751D8931DA2C9CF00DCE2B0 /* UnweightedEdge.swift in Sources */,
+				87DDF49D1DA41A63004A5084 /* Graph+Sort.swift in Sources */,
 				8751D8AE1DA2C9DB00DCE2B0 /* Search.swift in Sources */,
 				8751D8921DA2C9CF00DCE2B0 /* Edge.swift in Sources */,
 				8751D8AD1DA2C9DB00DCE2B0 /* SwiftPriorityQueue.swift in Sources */,
