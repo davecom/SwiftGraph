@@ -62,10 +62,6 @@ extension Graph {
             }
         }
         
-        print("Pre: \(pre)")
-        print("Post: \(post)")
-        print("Visited: \(visited)")
-        
         let backEdges: [EdgeType] = self.edges
             .flatMap({ $0 })
             .flatMap {
