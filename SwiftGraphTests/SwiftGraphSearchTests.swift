@@ -59,7 +59,7 @@ class SwiftGraphSearchTests: XCTestCase {
     
     func testDFS1() {
         // Seattle -> Miami
-        let result = dfs(from: "Seattle", to: "Miami", graph: cityGraph)
+        let result = cityGraph.dfs(from: "Seattle", to: "Miami")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Miami", "Miami not the destination")
@@ -72,7 +72,7 @@ class SwiftGraphSearchTests: XCTestCase {
     
     func testDFS2() {
         // Boston -> LA
-        let result = dfs(from: "Boston", to: "Los Angeles", graph: cityGraph)
+        let result = cityGraph.dfs(from: "Boston", to: "Los Angeles")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Los Angeles", "Los Angeles not the destination")
@@ -85,7 +85,7 @@ class SwiftGraphSearchTests: XCTestCase {
     
     func testBFS1() {
         // Seattle -> Miami
-        let result = bfs(from: "Seattle", to: "Miami", graph: cityGraph)
+        let result = cityGraph.bfs(from: "Seattle", to: "Miami")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Miami", "Miami not the destination")
@@ -99,7 +99,7 @@ class SwiftGraphSearchTests: XCTestCase {
     
     func testBFS2() {
         // Boston -> LA
-        let result = bfs(from: "Boston", to: "Los Angeles", graph: cityGraph)
+        let result = cityGraph.bfs(from: "Boston", to: "Los Angeles")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
             XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "Los Angeles", "Los Angeles not the destination")

@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A basic unweighted edge.
-public class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
+open class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
     public var u: Int
     public var v: Int
     public var weighted: Bool { return false }
@@ -39,8 +39,9 @@ public class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
         }
         return "\(u) <-> \(v)"
     }
-}
-
-public func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
-    return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed
+    
+    //MARK: Operator Overloads
+    static public func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
+        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed
+    }
 }

@@ -28,7 +28,7 @@ extension Float: Summable {}
 extension String: Summable {}
 
 /// A weighted edge, who's weight subscribes to Comparable.
-public class WeightedEdge<W: Comparable & Summable>: UnweightedEdge {
+open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge {
     public override var weighted: Bool { return true }
     public let weight: W
     public override var reversed:Edge {
@@ -47,8 +47,9 @@ public class WeightedEdge<W: Comparable & Summable>: UnweightedEdge {
         }
         return "\(u) <\(weight)> \(v)"
     }
-}
-
-public func ==<W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
-    return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
+    
+    //MARK: Operator Overloads
+    static public func ==<W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
+    }
 }
