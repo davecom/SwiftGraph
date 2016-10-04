@@ -22,6 +22,7 @@
 import AppKit
 import QuartzCore
 import Cocoa
+import SwiftGraph
 
 class NineTailView: NSView {
     var position: NineTailPosition = NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]) {
@@ -133,7 +134,7 @@ func ==(lhs: NineTailPosition, rhs: NineTailPosition) -> Bool {
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var ntView: NineTailView!
     let ntGraph: UnweightedGraph<NineTailPosition> = UnweightedGraph<NineTailPosition>()
@@ -180,11 +181,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(AppDelegate.timerFire(_:)), userInfo: nil, repeats: true)
     }
     
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-
+    
+    
 }
 
