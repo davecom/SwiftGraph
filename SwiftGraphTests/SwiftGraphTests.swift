@@ -40,7 +40,7 @@ class SwiftGraphTests: XCTestCase {
         g.addEdge(from: "Miami", to: "Atlanta")
         g.addEdge(from: "New York", to: "Miami")
         g.removeVertex("Atlanta")
-        XCTAssertEqual(g.neighborsForVertex("Miami")!, g.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miam and New York Connected bi-directionally")
+        XCTAssertEqual(g.neighborsForVertex("Miami")!, g.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miami and New York Connected bi-directionally")
     }
     
     func testSequenceTypeAndCollectionType() {
@@ -54,6 +54,23 @@ class SwiftGraphTests: XCTestCase {
         }
         XCTAssertEqual(tempList, ["Atlanta", "New York", "Miami"], "Iterated Successfully")
         XCTAssertEqual(g[1], "New York", "Subscripted Successfully")
+    }
+    
+    func testCounts() {
+        // This is an example of a functional test case.
+        let g: UnweightedGraph<String> = UnweightedGraph<String>()
+        _ = g.addVertex("Atlanta")
+        _ = g.addVertex("New York")
+        _ = g.addVertex("Miami")
+        g.addEdge(from: "Atlanta", to: "New York", directed: true)
+        g.addEdge(from: "Miami", to: "Atlanta", directed: true)
+        g.addEdge(from: "New York", to: "Miami", directed: true)
+        g.addEdge(from: "Atlanta", to: "Miami", directed: true)
+        XCTAssertEqual(g.vertexCount, 3, "3 total vertices")
+        XCTAssertEqual(g.edgeCount, 4, "4 total edges")
+        g.removeVertex("Atlanta")
+        XCTAssertEqual(g.vertexCount, 2, "3 total vertices")
+        XCTAssertEqual(g.edgeCount, 1, "4 total edges")
     }
     
     //func testPerformanceExample() {

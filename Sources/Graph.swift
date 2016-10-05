@@ -28,6 +28,11 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
         return vertices.count
     }
     
+    /// How many edges are in the graph?
+    public var edgeCount: Int {
+        return edges.joined().count
+    }
+    
     /// An immutable array containing all of the vertices in the graph.
     public var immutableVertices: [V] {
         return vertices

@@ -18,7 +18,7 @@
 
 /// Functions for searching a graph & utility functions for supporting them
 
-//MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
+// MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
 public extension Graph {
 
     /// Find a route from one vertex to another using a depth first search.

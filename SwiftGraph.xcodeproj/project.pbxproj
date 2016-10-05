@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553746451DA56CC500C0E0F6 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746441DA56CC500C0E0F6 /* Sort.swift */; };
+		553746461DA56CC500C0E0F6 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746441DA56CC500C0E0F6 /* Sort.swift */; };
+		553746481DA5A7B600C0E0F6 /* SwiftGraphSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746471DA5A7B600C0E0F6 /* SwiftGraphSortTests.swift */; };
 		5589B4631C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
 		5589B4641C0E72CC00D6664E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4621C0E72CC00D6664E /* Edge.swift */; };
 		5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4651C0E734F00D6664E /* UnweightedEdge.swift */; };
@@ -46,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		553746441DA56CC500C0E0F6 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Sources/Sort.swift; sourceTree = SOURCE_ROOT; };
+		553746471DA5A7B600C0E0F6 /* SwiftGraphSortTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSortTests.swift; sourceTree = "<group>"; tabWidth = 5; };
 		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/Edge.swift; sourceTree = SOURCE_ROOT; };
 		5589B4651C0E734F00D6664E /* UnweightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedEdge.swift; path = Sources/UnweightedEdge.swift; sourceTree = SOURCE_ROOT; };
 		5589B4681C0E74CD00D6664E /* WeightedEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedEdge.swift; path = Sources/WeightedEdge.swift; sourceTree = SOURCE_ROOT; };
@@ -121,6 +126,7 @@
 			children = (
 				55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */,
 				5589B4741C0E758500D6664E /* Search.swift */,
+				553746441DA56CC500C0E0F6 /* Sort.swift */,
 				5589B4771C0E759800D6664E /* Stack.swift */,
 				5589B47A1C0E75A700D6664E /* Queue.swift */,
 			);
@@ -170,6 +176,7 @@
 			children = (
 				55E620181A194C80000A5F7B /* SwiftGraphTests.swift */,
 				55FEDBC81A1D40BC00F266A0 /* SwiftGraphSearchTests.swift */,
+				553746471DA5A7B600C0E0F6 /* SwiftGraphSortTests.swift */,
 				55FEDBCA1A1D799100F266A0 /* DjikstraGraphTests.swift */,
 				55E620161A194C80000A5F7B /* Supporting Files */,
 			);
@@ -292,6 +299,7 @@
 				5589B4721C0E757100D6664E /* WeightedGraph.swift in Sources */,
 				55FB2D661CE25E0800C2B876 /* SwiftPriorityQueue.swift in Sources */,
 				5589B47B1C0E75A700D6664E /* Queue.swift in Sources */,
+				553746451DA56CC500C0E0F6 /* Sort.swift in Sources */,
 				5589B46C1C0E753E00D6664E /* Graph.swift in Sources */,
 				5589B4661C0E734F00D6664E /* UnweightedEdge.swift in Sources */,
 				5589B4781C0E759800D6664E /* Stack.swift in Sources */,
@@ -314,8 +322,10 @@
 				5589B4671C0E734F00D6664E /* UnweightedEdge.swift in Sources */,
 				55FB2D671CE25E1200C2B876 /* SwiftPriorityQueue.swift in Sources */,
 				5589B46A1C0E74CD00D6664E /* WeightedEdge.swift in Sources */,
+				553746481DA5A7B600C0E0F6 /* SwiftGraphSortTests.swift in Sources */,
 				5589B4731C0E757100D6664E /* WeightedGraph.swift in Sources */,
 				5589B4701C0E756200D6664E /* UnweightedGraph.swift in Sources */,
+				553746461DA56CC500C0E0F6 /* Sort.swift in Sources */,
 				5589B4641C0E72CC00D6664E /* Edge.swift in Sources */,
 				55E620191A194C80000A5F7B /* SwiftGraphTests.swift in Sources */,
 			);
