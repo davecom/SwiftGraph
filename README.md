@@ -68,10 +68,11 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
 * `UnweightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `UnweightedEdge`.
 * `WeightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights.
 
-### Functions
-* `bfs()` - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
-* `dfs()` - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
-* `dijkstra()` - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
+### Search
+Search methods are defined in extensions of `Graph` and `WeightedGraph` in `Search.swift`.
+* `bfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
+* `dfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
+* `dijkstra()` (method on `WeightedGraph`) - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
 
 ## Authorship & License
 SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
