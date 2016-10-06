@@ -1,3 +1,10 @@
+###1.2.0
+- Moved search functions from free functions to extensions of `Graph` and `WeightedGraph`
+- Switched license to Apache 2.0 from MIT
+- Added `topologicalSort()` and `isDAG`
+- Changed access level for most types to `open`
+- Added unit tests for topologicalSort and isDAG
+
 ###1.1.1
 - Fixes for the final version of Swift 3
 - Updated version of SwiftPriorityQueue

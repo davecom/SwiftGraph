@@ -74,10 +74,17 @@ Search methods are defined in extensions of `Graph` and `WeightedGraph` in `Sear
 * `dfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found.
 * `dijkstra()` (method on `WeightedGraph`) - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
 
+### Sort & Miscellaneous
+An extension to `Graph` in `Sort.swift` provides facilities for topological sort and detecting a DAG.
+* `topologicalSort()` - Does a topological sort of the vertices in a given graph if possible (returns nil if it finds a cycle). Returns a sorted list of the vertices. Runs in O(n) time.
+* `isDAG` - A property that uses `topologicalSort()` to determine whether a graph is a DAG (directed-acyclic graph). Runs in O(n) time.
+
+
 ## Authorship & License
 SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
 
 ## Future Direction
 Future directions for this project to take could include:
-* Improved performance
+* More utility functions
+* A thread safe subclass of `Graph`
 * More extensive performance testing
