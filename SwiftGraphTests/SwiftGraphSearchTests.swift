@@ -141,6 +141,24 @@ class SwiftGraphSearchTests: XCTestCase {
         print(edgesToVertices(edges: result, graph: cityGraph))
     }
     
+    func testFindAll() {
+        // New York -> all cities starting with "S"
+        let result = cityGraph.findAll(from: "New York") { v in
+            return v.characters.first == "S"
+        }
+        XCTAssertFalse(result.isEmpty, "Couldn't find any connections between New York and a city starting with S (there is one).")
+        XCTAssertEqual(result.count, 2, "Should be 2 cities found starting with S")
+        if let last = result.last, let first = result.first {
+            let pathOne = edgesToVertices(edges: last, graph: cityGraph)
+            print(pathOne)
+            let pathTwo = edgesToVertices(edges: first, graph: cityGraph)
+            print(pathTwo)
+            let endCities = [pathOne.last!, pathTwo.last!]
+            XCTAssertTrue(endCities.contains("Seattle"), "Should contains a route to Seattle")
+            XCTAssertTrue(endCities.contains("San Francisco"), "Should contain a route to San Francisco")
+        }
+    }
+    
     /*func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {

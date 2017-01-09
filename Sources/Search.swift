@@ -112,7 +112,7 @@ public extension Graph {
     /// - parameter goalTest: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
     public func bfs(from: Int, goalTest: (V) -> Bool) -> [Edge] {
-        // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
+        // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
         var pathDict: [Int: Edge] = [Int: Edge]()
@@ -154,7 +154,7 @@ public extension Graph {
     /// - parameter to: The index of the ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
     public func bfs(from: Int, to: Int) -> [Edge] {
-        // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
+        // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
         var pathDict: [Int: Edge] = [Int: Edge]()
@@ -187,6 +187,50 @@ public extension Graph {
             if let v = indexOfVertex(to) {
                 return bfs(from: u, to: v)
             }
+        }
+        return []
+    }
+    
+    /// Find path routes from a vertex to all others the
+    /// function goalTest() returns true for using a breadth-first search.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be found
+    public func findAll(from: Int, goalTest: (V) -> Bool) -> [[Edge]] {
+        // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
+        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
+        let queue: Queue<Int> = Queue<Int>()
+        var pathDict: [Int: Edge] = [Int: Edge]()
+        var paths: [[Edge]] = [[Edge]]()
+        queue.push(from)
+        while !queue.isEmpty {
+            let v: Int = queue.pop()
+            if goalTest(vertexAtIndex(v)) {
+                // figure out route of edges based on pathDict
+                paths.append(pathDictToPath(from: from, to: v, pathDict: pathDict))
+            }
+            
+            for e in edgesForIndex(v) {
+                if !visited[e.v] {
+                    visited[e.v] = true
+                    queue.push(e.v)
+                    pathDict[e.v] = e
+                }
+            }
+        }
+        return paths
+    }
+    
+    /// Find path routes from a vertex to all others the
+    /// function goalTest() returns true for using a breadth-first search.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be founding the entire route, or an empty array if no route could be found
+    public func findAll(from: V, goalTest: (V) -> Bool) -> [[Edge]] {
+        if let u = indexOfVertex(from) {
+            return findAll(from: u, goalTest: goalTest)
         }
         return []
     }
