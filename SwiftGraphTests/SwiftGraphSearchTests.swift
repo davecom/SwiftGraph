@@ -67,7 +67,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(edges: result, graph: cityGraph))
     }
     
     func testDFS2() {
@@ -80,7 +80,22 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(edges: result, graph: cityGraph))
+    }
+    
+    func testDFS3() {
+        // Houston -> first city starting with "N"
+        let result = cityGraph.dfs(from: "Houston") { v in
+            return v.characters.first == "N"
+        }
+        XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
+        if let last = result.last {
+            XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "New York", "New York not the destination")
+        }
+        if let first = result.first {
+            XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Houston", "Houston is not the start")
+        }
+        print(edgesToVertices(edges: result, graph: cityGraph))
     }
     
     func testBFS1() {
@@ -94,7 +109,7 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Seattle to Miami")
-        print(edgesToVertices(edges: result, graph: cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(edges: result, graph: cityGraph))
     }
     
     func testBFS2() {
@@ -108,7 +123,22 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Boston to Los Angeles")
-        print(edgesToVertices(edges: result, graph: cityGraph))  // not sure why description not called by println
+        print(edgesToVertices(edges: result, graph: cityGraph))
+    }
+    
+    func testBFS3() {
+        // Houston -> first city starting with "N"
+        let result = cityGraph.bfs(from: "Houston") { v in
+            return v.characters.first == "N"
+        }
+        XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
+        if let last = result.last {
+            XCTAssertEqual(cityGraph.vertexAtIndex(last.v), "New York", "New York not the destination")
+        }
+        if let first = result.first {
+            XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Houston", "Houston is not the start")
+        }
+        print(edgesToVertices(edges: result, graph: cityGraph))
     }
     
     /*func testPerformanceExample() {

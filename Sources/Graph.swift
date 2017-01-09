@@ -279,6 +279,11 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
         return i + 1
     }
     
+    /// The same as vertexAtIndex() - returns the vertex at index
+    ///
+    ///
+    /// - Parameter index: The index of vertex to return.
+    /// - returns: The vertex at index.
     public subscript(i: Int) -> V {
         return vertexAtIndex(i)
     }

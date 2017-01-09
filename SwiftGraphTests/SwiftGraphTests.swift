@@ -31,7 +31,6 @@ class SwiftGraphTests: XCTestCase {
     }
     
     func testCitesInverseAfterRemove() {
-        // This is an example of a functional test case.
         let g: UnweightedGraph<String> = UnweightedGraph<String>()
         _ = g.addVertex("Atlanta")
         _ = g.addVertex("New York")
@@ -57,7 +56,6 @@ class SwiftGraphTests: XCTestCase {
     }
     
     func testCounts() {
-        // This is an example of a functional test case.
         let g: UnweightedGraph<String> = UnweightedGraph<String>()
         _ = g.addVertex("Atlanta")
         _ = g.addVertex("New York")
@@ -69,8 +67,17 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertEqual(g.vertexCount, 3, "3 total vertices")
         XCTAssertEqual(g.edgeCount, 4, "4 total edges")
         g.removeVertex("Atlanta")
-        XCTAssertEqual(g.vertexCount, 2, "3 total vertices")
-        XCTAssertEqual(g.edgeCount, 1, "4 total edges")
+        XCTAssertEqual(g.vertexCount, 2, "2 total vertices")
+        XCTAssertEqual(g.edgeCount, 1, "1 total edges")
+    }
+    
+    func testSubscript() {
+        let g: UnweightedGraph<String> = UnweightedGraph<String>()
+        _ = g.addVertex("Atlanta")
+        _ = g.addVertex("New York")
+        _ = g.addVertex("Miami")
+        XCTAssertEqual(g[0], "Atlanta", "Expected result at vertex 0")
+        XCTAssertEqual(g[2], "Miami", "Expected result at vertex 2")
     }
     
     //func testPerformanceExample() {
