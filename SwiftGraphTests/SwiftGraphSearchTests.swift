@@ -154,7 +154,7 @@ class SwiftGraphSearchTests: XCTestCase {
             let pathTwo = edgesToVertices(edges: first, graph: cityGraph)
             print(pathTwo)
             let endCities = [pathOne.last!, pathTwo.last!]
-            XCTAssertTrue(endCities.contains("Seattle"), "Should contains a route to Seattle")
+            XCTAssertTrue(endCities.contains("Seattle"), "Should contain a route to Seattle")
             XCTAssertTrue(endCities.contains("San Francisco"), "Should contain a route to San Francisco")
         }
     }

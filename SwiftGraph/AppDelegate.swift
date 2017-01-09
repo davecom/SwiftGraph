@@ -168,7 +168,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func timerFire(_ timer: Timer) {
         if !path.isEmpty {
-            ntView.position = path.remove(at: 0)
+            ntView.position = path.removeFirst()
         } else {
             timer.invalidate()
         }
