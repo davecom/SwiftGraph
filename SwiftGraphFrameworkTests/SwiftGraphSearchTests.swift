@@ -17,6 +17,7 @@
 //  limitations under the License.
 
 import XCTest
+@testable import SwiftGraphFramework
 
 class SwiftGraphSearchTests: XCTestCase {
     // pg 1016 Liang
