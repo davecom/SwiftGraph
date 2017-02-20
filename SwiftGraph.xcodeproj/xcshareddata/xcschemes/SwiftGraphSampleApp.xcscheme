@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7985B8FA1E5A4FB800C100E7"
-               BuildableName = "SwiftGraphFramework.framework"
-               BlueprintName = "SwiftGraphFramework"
-               ReferencedContainer = "container:SwiftGraph.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7985B9021E5A4FB900C100E7"
-               BuildableName = "SwiftGraphFrameworkTests.xctest"
-               BlueprintName = "SwiftGraphFrameworkTests"
+               BlueprintIdentifier = "55E620011A194C80000A5F7B"
+               BuildableName = "SwiftGraphSampleApp.app"
+               BlueprintName = "SwiftGraphSampleApp"
                ReferencedContainer = "container:SwiftGraph.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7985B9021E5A4FB900C100E7"
-               BuildableName = "SwiftGraphFrameworkTests.xctest"
-               BlueprintName = "SwiftGraphFrameworkTests"
+               BuildableName = "SwiftGraphTests.xctest"
+               BlueprintName = "SwiftGraphTests"
                ReferencedContainer = "container:SwiftGraph.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7985B8FA1E5A4FB800C100E7"
-            BuildableName = "SwiftGraphFramework.framework"
-            BlueprintName = "SwiftGraphFramework"
+            BlueprintIdentifier = "55E620011A194C80000A5F7B"
+            BuildableName = "SwiftGraphSampleApp.app"
+            BlueprintName = "SwiftGraphSampleApp"
             ReferencedContainer = "container:SwiftGraph.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7985B8FA1E5A4FB800C100E7"
-            BuildableName = "SwiftGraphFramework.framework"
-            BlueprintName = "SwiftGraphFramework"
+            BlueprintIdentifier = "55E620011A194C80000A5F7B"
+            BuildableName = "SwiftGraphSampleApp.app"
+            BlueprintName = "SwiftGraphSampleApp"
             ReferencedContainer = "container:SwiftGraph.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -93,15 +80,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7985B8FA1E5A4FB800C100E7"
-            BuildableName = "SwiftGraphFramework.framework"
-            BlueprintName = "SwiftGraphFramework"
+            BlueprintIdentifier = "55E620011A194C80000A5F7B"
+            BuildableName = "SwiftGraphSampleApp.app"
+            BlueprintName = "SwiftGraphSampleApp"
             ReferencedContainer = "container:SwiftGraph.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

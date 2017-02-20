@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 import XCTest
-@testable import SwiftGraphFramework
+@testable import SwiftGraph
 
 class SwiftGraphTests: XCTestCase {
     
