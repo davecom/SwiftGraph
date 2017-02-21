@@ -24,12 +24,6 @@
 
 // This code was inspired by Section 2.4 of Algorithms by Sedgewick & Wayne, 4th Edition
 
-#if !swift(>=3.0)
-    typealias IteratorProtocol = GeneratorType
-    typealias Sequence = SequenceType
-    typealias Collection = CollectionType
-#endif
-
 /// A PriorityQueue takes objects to be pushed of any type that implements Comparable.
 /// It will pop the objects in the order that they would be sorted. A pop() or a push()
 /// can be accomplished in O(lg n) time. It can be specified whether the objects should

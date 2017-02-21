@@ -17,6 +17,7 @@
 //  limitations under the License.
 
 import XCTest
+@testable import SwiftGraph
 
 class DijkstraGraphTests: XCTestCase {
     // pg 1016 Liang

@@ -12,6 +12,14 @@ SwiftGraph 1.1.0 and above requires Swift 3 (Xcode 8). SwiftGraph 1.0.1 through 
 
 Use the CocoaPod `SwiftGraph`.
 
+### Carthage
+
+Add the following to your `Cartfile`:
+
+```
+github "davecom/SwiftGraph" ~> 1.2.0
+```
+
 ### Swift Package Manager (SPM)
 
 Use this repository as your dependency.
