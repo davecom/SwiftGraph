@@ -2,7 +2,7 @@
 
 SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, OS X, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
 
-It includes copious in-source documentation, some unit tests, as well as utility functions for doing things like breadth-first search, depth-first search, and dijkstra's algorithm. It has appeared as a dependency in multiple open source projects, but lacks robust testing with large datasets.
+It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and dijkstra's algorithm. Further, it includes utility functions for topological sort and detecting a DAG (directed-acyclic-graph).
 
 ## Installation
 
@@ -17,7 +17,7 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 1.2.0
+github "davecom/SwiftGraph" ~> 1.3.0
 ```
 
 ### Swift Package Manager (SPM)
@@ -25,6 +25,7 @@ github "davecom/SwiftGraph" ~> 1.2.0
 Use this repository as your dependency.
 
 ### Manual
+
 Copy all of the sources in the `Sources` folder into your project.
 
 ## Tips and Tricks
@@ -32,7 +33,7 @@ Copy all of the sources in the `Sources` folder into your project.
 * Inserting an edge by vertex indices is much faster than inserting an edge by vertex objects that need to have their indices looked up
 * Generally, looking for the index of a vertex is O(n) time, with n being the number of vertices in the graph
 * SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one vertex and another in a graph and `dijkstra()` for finding shortest paths in a weighted graph
-* Is the sample program (Nine Tails) beachballing and taking a few seconds to load for you? Edit the Run scheme to be Release instead of Debug
+* A sample Mac app that implements the Nine Tails problem is included - just change the target of the project to `SwiftGraphSampleApp` to build it
 
 ## Documentation
 There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are up-to-date HTML docs available online thanks to the good folks at [CocoaPods](http://cocoadocs.org/docsets/SwiftGraph/) In addition, here's some more basic information:

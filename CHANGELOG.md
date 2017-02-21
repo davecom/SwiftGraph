@@ -1,3 +1,9 @@
+###1.3.0
+- Carthage Support (via re-organizing into framework) - thanks @klundberg
+- New search methods added - versions of `bfs()` and `dfs()` that support custom goal functions
+- `findAll()` added as a version of `bfs()` with multiple potential outcomes 
+- watchOS support added to Podfile
+
 ###1.2.0
 - Moved search functions from free functions to extensions of `Graph` and `WeightedGraph`
 - Switched license to Apache 2.0 from MIT
