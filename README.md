@@ -1,6 +1,6 @@
 # SwiftGraph
 
-SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, OS X, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
+SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, macOS, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
 
 It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and dijkstra's algorithm. Further, it includes utility functions for topological sort and detecting a DAG (directed-acyclic-graph).
 
