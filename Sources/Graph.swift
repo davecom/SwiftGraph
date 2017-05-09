@@ -196,7 +196,12 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
             var toRemove: [Int] = [Int]()
             for l in 0..<edges[j].count {
                 if edges[j][l].v == index {
-                    toRemove.append(l)
+                    //if there are indices already in the toRemove array then
+                    //we need to adjust the next index to remove since removing
+                    //elements at preceeding indices will shift the array elements.
+                    toRemove.append(l - toRemove.count)
+                    continue
+
                     continue
                 }
                 if edges[j][l].v > index {
@@ -214,7 +219,10 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
             var toRemove: [Int] = [Int]()
             for l in 0..<edges[j].count {
                 if edges[j][l].v == index {
-                    toRemove.append(l)
+                    //if there are indices already in the toRemove array then
+                    //we need to adjust the next index to remove since removing
+                    //elements at preceeding indices will shift the array elements.
+                    toRemove.append(l - toRemove.count)
                     continue
                 }
                 edges[j][l].u -= 1
