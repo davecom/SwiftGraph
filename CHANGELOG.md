@@ -1,3 +1,7 @@
+### 1.3.1
+- Fixes a bug that could result in the wrong edges being removed when a vertex is removed (thanks @brandonroth)
+- Silences some warnings about printing optionals introduced in Swift 3.1
+
 ### 1.3.0
 - Carthage Support (via re-organizing into framework) - thanks @klundberg
 - New search methods added - versions of `bfs()` and `dfs()` that support custom goal functions

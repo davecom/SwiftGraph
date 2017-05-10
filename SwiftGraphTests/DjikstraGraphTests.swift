@@ -121,7 +121,7 @@ class DijkstraGraphTests: XCTestCase {
             XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         for (key, value) in nameDistance {
-            print("\(key) : \(value)")
+            print("\(key) : \(String(describing: value))")
         }
         
         //path between New York and Seattle
@@ -159,7 +159,7 @@ class DijkstraGraphTests: XCTestCase {
             XCTFail("Failed to find distance to city in graph using Dijkstra.")
         }
         for (key, value) in nameDistance {
-            print("\(key) : \(value)")
+            print("\(key) : \(String(describing: value))")
         }
         
         //path between New York and Seattle
@@ -178,7 +178,7 @@ class DijkstraGraphTests: XCTestCase {
         let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph2)
         
         for (key, value) in nameDistance {
-            print("\(key) : \(value)")
+            print("\(key) : \(String(describing: value))")
         }
         
         let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("Miami")!, to: cityGraph2.indexOfVertex("Chicago")!, pathDict: pathDict)
