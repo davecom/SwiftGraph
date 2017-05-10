@@ -203,7 +203,7 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
                     edges[j][l].v -= 1
                 }
             }
-            for f in toRemove {
+            for f in toRemove.reversed() {
                 edges[j].remove(at: f)
             }
         }
@@ -222,7 +222,7 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
                     edges[j][l].v -= 1
                 }
             }
-            for f in toRemove {
+            for f in toRemove.reversed() {
                 edges[j].remove(at: f)
             }
         }
