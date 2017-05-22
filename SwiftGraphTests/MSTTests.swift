@@ -95,8 +95,30 @@ class MSTTests: XCTestCase {
             XCTFail("Couldn't find an MST for cityGraph")
             return
         }
-        print(mst)
+        // how much does the minimum spanning tree cost?
+        guard let totalWeight = totalWeight(mst) else {
+            XCTFail("Couldn't find the total weight of the MST for cityGraph")
+            return
+        }
+        printMST(edges: mst, graph: cityGraph)
         XCTAssertEqual(mst.count, cityGraph.count - 1, "MST should contain edges between all vertices so count should be # of vertices - 1")
+        XCTAssertEqual(totalWeight, 6513, "MST should cost 6513 for cityGraph")
+    }
+    
+    func testMST2() {
+        // find the minimum spanning tree
+        guard let mst = cityGraph2.mst() else {
+            XCTFail("Couldn't find an MST for cityGraph")
+            return
+        }
+        // how much does the minimum spanning tree cost?
+        guard let totalWeight = totalWeight(mst) else {
+            XCTFail("Couldn't find the total weight of the MST for cityGraph")
+            return
+        }
+        printMST(edges: mst, graph: cityGraph2)
+        XCTAssertEqual(mst.count, cityGraph2.count - 1, "MST should contain edges between all vertices so count should be # of vertices - 1")
+        XCTAssertEqual(totalWeight, 5372, "MST should cost 5372 for cityGraph2")
     }
     
 }

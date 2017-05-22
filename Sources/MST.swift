@@ -34,7 +34,7 @@ public extension WeightedGraph {
     public func mst(start: Int = 0) -> [WeightedEdge<W>]? {
         if start > (vertexCount - 1) || start < 0 { return nil }
         var result: [WeightedEdge<W>] = [WeightedEdge<W>]() // the final MST goes in here
-        var pq: PriorityQueue<WeightedEdge<W>> = PriorityQueue<WeightedEdge<W>>(ascending: false) // minPQ
+        var pq: PriorityQueue<WeightedEdge<W>> = PriorityQueue<WeightedEdge<W>>(ascending: true) // minPQ
         var visited: [Bool] = Array<Bool>(repeating: false, count: vertexCount) // already been to these
         
         func visit(_ index: Int) {
@@ -57,4 +57,27 @@ public extension WeightedGraph {
     }
 }
 
-/// Debug an edge list returned by mst()
+/// Find the total weight of a list of weighted edges
+/// - parameter edges The edge array to find the total weight of.
+public func totalWeight<W>(_ edges: [WeightedEdge<W>]) -> W? {
+    var total: W? = nil
+    for weight in edges.map({ $0.weight }) {
+        if total == nil {
+            total = weight
+        } else {
+            total = total! + weight
+        }
+    }
+    return total
+}
+
+/// Pretty print an edge list returned from an MST
+/// - parameter edges The edge array representing the MST
+public func printMST<V, W>(edges: [WeightedEdge<W>], graph: WeightedGraph<V, W>) {
+    for edge in edges {
+        print("\(graph.vertexAtIndex(edge.u)) \(edge.weight)> \(graph.vertexAtIndex(edge.v))")
+    }
+    if let tw = totalWeight(edges) {
+        print("Total Weight: \(tw)")
+    }
+}
