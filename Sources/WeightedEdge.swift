@@ -2,7 +2,7 @@
 //  WeightedEdge.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2017 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ extension Float: Summable {}
 extension String: Summable {}
 
 /// A weighted edge, who's weight subscribes to Comparable.
-open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge {
+open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge, Comparable {
     public override var weighted: Bool { return true }
     public let weight: W
     public override var reversed:Edge {
@@ -49,7 +49,11 @@ open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge {
     }
     
     //MARK: Operator Overloads
-    static public func ==<W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+    static public func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
         return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
+    }
+    
+    static public func < <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+        return lhs.weight < rhs.weight
     }
 }

@@ -2,7 +2,7 @@
 //  DijkstraGraphTests.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2017 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -22,6 +22,9 @@ import XCTest
 class DijkstraGraphTests: XCTestCase {
     // pg 1016 Liang
     let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    
+    // 15 largest MSAs in United States as of 2016
+    let cityGraph2: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
     
     override func setUp() {
         super.setUp()
@@ -51,6 +54,34 @@ class DijkstraGraphTests: XCTestCase {
         cityGraph.addEdge(from: "Houston", to: "Miami", weight:1187)
         cityGraph.addEdge(from: "Houston", to: "Dallas", weight:239)
         print(cityGraph.description)
+        
+        cityGraph2.addEdge(from: "Seattle", to: "Chicago", weight: 1737)
+        cityGraph2.addEdge(from: "Seattle", to: "San Francisco", weight: 678)
+        cityGraph2.addEdge(from: "San Francisco", to: "Riverside", weight: 386)
+        cityGraph2.addEdge(from: "San Francisco", to: "Los Angeles", weight: 348)
+        cityGraph2.addEdge(from: "Los Angeles", to: "Riverside", weight: 50)
+        cityGraph2.addEdge(from: "Los Angeles", to: "Phoenix", weight: 357)
+        cityGraph2.addEdge(from: "Riverside", to: "Phoenix", weight: 307)
+        cityGraph2.addEdge(from: "Riverside", to: "Chicago", weight: 1704)
+        cityGraph2.addEdge(from: "Phoenix", to: "Dallas", weight: 887)
+        cityGraph2.addEdge(from: "Phoenix", to: "Houston", weight: 1015)
+        cityGraph2.addEdge(from: "Dallas", to: "Chicago", weight: 805)
+        cityGraph2.addEdge(from: "Dallas", to: "Atlanta", weight: 721)
+        cityGraph2.addEdge(from: "Dallas", to: "Houston", weight: 225)
+        cityGraph2.addEdge(from: "Houston", to: "Atlanta", weight: 702)
+        cityGraph2.addEdge(from: "Houston", to: "Miami", weight: 968)
+        cityGraph2.addEdge(from: "Atlanta", to: "Chicago", weight: 588)
+        cityGraph2.addEdge(from: "Atlanta", to: "Washington", weight: 543)
+        cityGraph2.addEdge(from: "Atlanta", to: "Miami", weight: 604)
+        cityGraph2.addEdge(from: "Miami", to: "Washington", weight: 923)
+        cityGraph2.addEdge(from: "Chicago", to: "Detroit", weight: 238)
+        cityGraph2.addEdge(from: "Detroit", to: "Boston", weight: 613)
+        cityGraph2.addEdge(from: "Detroit", to: "Washington", weight: 396)
+        cityGraph2.addEdge(from: "Detroit", to: "New York", weight: 482)
+        cityGraph2.addEdge(from: "Boston", to: "New York", weight: 190)
+        cityGraph2.addEdge(from: "New York", to: "Philadelphia", weight: 81)
+        cityGraph2.addEdge(from: "Philadelphia", to: "Washington", weight: 123)
+        print(cityGraph2.description)
     }
     
     override func tearDown() {
@@ -171,18 +202,57 @@ class DijkstraGraphTests: XCTestCase {
 
     }
     
-    func testRemovalWithDijkstra() {
-        let cityGraph2 = cityGraph
-        cityGraph2.removeVertex("Kansas City")
+    func testDijkstra3() {
         let (distances, pathDict) = cityGraph2.dijkstra(root: "Miami", startDistance: 0)
-        let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph2)
+        XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
+        
+        //create map of distances to city names
+        var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph2)
+        if let temp = nameDistance["Seattle"] {
+            XCTAssertEqual(temp!, 2929, "Seattle should be 2929 miles away.")
+        } else {
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
+        }
+        if let temp = nameDistance["Chicago"] {
+            XCTAssertEqual(temp!, 1192, "Chicago should be 1192 miles away.")
+        } else {
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
+        }
+        if let temp = nameDistance["Atlanta"] {
+            XCTAssertEqual(temp!, 604, "Atlanta should be 604 miles away.")
+        } else {
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
+        }
+        if let temp = nameDistance["New York"] {
+            XCTAssertEqual(temp!, 1127, "Miami should be 1127 miles away.")
+        } else {
+            XCTFail("Failed to find distance to city in graph using Dijkstra.")
+        }
+        for (key, value) in nameDistance {
+            print("\(key) : \(String(describing: value))")
+        }
+        
+        //path between New York and Seattle
+        let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph2.indexOfVertex("Miami")!, to: cityGraph2.indexOfVertex("San Francisco")!, pathDict: pathDict)
+        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph2)
+        print("\(stops))")
+        XCTAssertEqual(stops, ["Miami", "Houston", "Phoenix", "Riverside", "San Francisco"], "Shortest path to San Francisco is not right.")
+        //println(edgesToVertices(result, cityGraph2))  // not sure why description not called by println
+        
+    }
+    
+    func testRemovalWithDijkstra() {
+        let cityGraph3 = cityGraph
+        cityGraph3.removeVertex("Kansas City")
+        let (distances, pathDict) = cityGraph3.dijkstra(root: "Miami", startDistance: 0)
+        let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph3)
         
         for (key, value) in nameDistance {
             print("\(key) : \(String(describing: value))")
         }
         
-        let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("Miami")!, to: cityGraph2.indexOfVertex("Chicago")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph2)
+        let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("Miami")!, to: cityGraph3.indexOfVertex("Chicago")!, pathDict: pathDict)
+        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph3)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Atlanta", "New York", "Chicago"], "Shortest path to Chicago is not right.")
 
