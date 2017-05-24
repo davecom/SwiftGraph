@@ -89,6 +89,8 @@ An extension to `Graph` in `Sort.swift` provides facilities for topological sort
 * `topologicalSort()` - Does a topological sort of the vertices in a given graph if possible (returns nil if it finds a cycle). Returns a sorted list of the vertices. Runs in O(n) time.
 * `isDAG` - A property that uses `topologicalSort()` to determine whether a graph is a DAG (directed-acyclic graph). Runs in O(n) time.
 
+An extension to `WeightedGraph` in `MST.swift` can find a minimum-spanning tree from a weighted graph.
+* `mst()` - Uses Jarnik's Algorithm (aka Prim's Algorithm) to find the tree made of minimum cumulative weight that connects all vertices in a weighted graph. This assumes the graph is completely undirected and connected. If the graph has directed edges, it may not return the right answer. Also, if the graph is not fully connected it will create the tree for the connected component that the starting vertex is a part of. Returns an array of `WeightedEdge`s that compose the tree. Use utility functions `totalWeight()` and `printMST()` to examine the returned MST. Runs in O(n lg n) time.
 
 ## Authorship & License
 SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
