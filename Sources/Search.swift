@@ -247,36 +247,20 @@ public extension WeightedGraph {
     /// - parameter startDistance: The distance to get to the root node (typically 0).
     /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
     public func dijkstra( root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
-        var distances: [W?] = [W?](repeating: nil, count: vertexCount)
-        distances[root] = startDistance
-        var queue: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
-        var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]()
-        queue.push(DijkstraNode(vertice: root, distance: startDistance))
+        var distances: [W?] = [W?](repeating: nil, count: vertexCount) // how far each vertex is from start
+        distances[root] = startDistance // the start vertex is startDistance away
+        var pq: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
+        var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]() // how we got to each vertex
+        pq.push(DijkstraNode(vertex: root, distance: startDistance))
         
-        while !queue.isEmpty {
-            let u = queue.pop()!.vertice
-            for e in edgesForIndex(u) {
-                if let we = e as? WeightedEdge<W> {
-                    //if queue.contains(we.v) {
-                    var alt: W
-                    if let dist = distances[we.u] {
-                        alt = we.weight + dist
-                    } else {
-                        alt = we.weight
-                    }
-                    if let dist = distances[we.v] {
-                        if alt < dist {
-                            distances[we.v] = alt
-                            pathDict[we.v] = we
-                        }
-                    } else {
-                        if !(we.v == root) {
-                            distances[we.v] = alt
-                            pathDict[we.v] = we
-                            queue.push(DijkstraNode(vertice: we.v, distance: alt))
-                        }
-                    }
-                    //}
+        while let u = pq.pop()?.vertex { // explore the next closest vertex
+            guard let distU = distances[u] else { continue } // should already have seen it
+            for we in edgesForIndex(u) as! [WeightedEdge<W>]  { // look at every edge/vertex from the vertex in question
+                let distV = distances[we.v] // the old distance to this vertex
+                if distV == nil || distV! > we.weight + distU { // if we have no old distance or we found a shorter path
+                    distances[we.v] = we.weight + distU // update the distance to this vertex
+                    pathDict[we.v] = we // update the edge on the shortest path to this vertex
+                    pq.push(DijkstraNode(vertex: we.v, distance: we.weight + distU)) // explore it soon
                 }
             }
         }
@@ -300,7 +284,7 @@ public extension WeightedGraph {
 /// Represents a node in the priority queue used
 /// for selecting the next
 struct DijkstraNode<D: Comparable>: Comparable, Equatable {
-    let vertice: Int
+    let vertex: Int
     let distance: D
     
     static func < <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
