@@ -47,10 +47,9 @@ public extension WeightedGraph {
         visit(start) // the first vertex is where everything begins
         
         while let edge = pq.pop() { // keep going as long as there are edges to process
-            if visited[edge.u] && visited[edge.v] { continue } // if we've been both places, ignore
+            if visited[edge.v] { continue } // if we've been both places, ignore
             result.append(edge) // otherwise this is the current smallest so add it to the result set
-            if (!visited[edge.u]) { visit(edge.u) } // visit each side if we haven't
-            if (!visited[edge.v]) { visit(edge.v) }
+            visit(edge.v)
         }
         
         return result
@@ -60,15 +59,10 @@ public extension WeightedGraph {
 /// Find the total weight of a list of weighted edges
 /// - parameter edges The edge array to find the total weight of.
 public func totalWeight<W>(_ edges: [WeightedEdge<W>]) -> W? {
-    var total: W? = nil
-    for weight in edges.map({ $0.weight }) {
-        if total == nil {
-            total = weight
-        } else {
-            total = total! + weight
-        }
+    guard let firstWeight = edges.first?.weight else { return nil }
+    return edges.dropFirst().reduce(firstWeight) { (result, next) -> W in
+        return result + next.weight
     }
-    return total
 }
 
 /// Pretty print an edge list returned from an MST
