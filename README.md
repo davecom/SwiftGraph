@@ -17,7 +17,7 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 1.3.1
+github "davecom/SwiftGraph" ~> 1.4.0
 ```
 
 ### Swift Package Manager (SPM)

@@ -1,3 +1,7 @@
+### 1.4.0
+- Added a Minimum Spanning Tree Fuction `mst()` based on Jarnik's Algorithm (aka Prim's Algorithm)
+- Simplified Dijkstra's Algorithm implementation
+
 ### 1.3.1
 - Fixes a bug that could result in the wrong edges being removed when a vertex is removed (thanks @brandonroth)
 - Silences some warnings about printing optionals introduced in Swift 3.1
