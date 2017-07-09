@@ -1,3 +1,6 @@
+### 1.4.1
+- Fixed a bug in `removeAllEdges()` and added a test for it
+
 ### 1.4.0
 - Added a Minimum Spanning Tree Fuction `mst()` based on Jarnik's Algorithm (aka Prim's Algorithm)
 - Simplified Dijkstra's Algorithm implementation

@@ -162,12 +162,12 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
     /// - parameter to: The ending vertex's index.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
     public func removeAllEdges(from: Int, to: Int, bidirectional: Bool = true) {
-        for i in 0..<edges[from].count where edges[from][i].v == to {
+        for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
             edges[from].remove(at: i)
         }
         
         if bidirectional {
-            for i in 0..<edges[to].count where edges[to][i].v == from {
+            for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
                 edges[to].remove(at: i)
             }
         }

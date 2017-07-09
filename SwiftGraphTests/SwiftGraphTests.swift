@@ -81,6 +81,21 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertEqual(g[2], "Miami", "Expected result at vertex 2")
     }
     
+    func testRemoveAllEdges() {
+        let graph = UnweightedGraph(vertices: ["0", "1", "2", "3", "4", "5", "6"])
+        
+        graph.addEdge(from: "0", to: "1", directed: false)
+        graph.addEdge(from: "1", to: "2", directed: false)
+        graph.addEdge(from: "2", to: "3", directed: false)
+        graph.addEdge(from: "3", to: "2", directed: false)
+        graph.addEdge(from: "3", to: "4", directed: false)
+        graph.addEdge(from: "4", to: "5", directed: false)
+        
+        graph.removeAllEdges(from: 2, to: 3, bidirectional: true)
+        XCTAssertFalse(graph.edgeExists(from: 2, to: 3))
+        XCTAssertFalse(graph.edgeExists(from: 3, to: 2))
+    }
+    
     //func testPerformanceExample() {
         // This is an example of a performance test case.
      //   self.measureBlock() {
