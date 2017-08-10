@@ -54,12 +54,12 @@ Graphs are the data structures at the heart of SwiftGraph. All vertices are assi
 Graphs implement the standard Swift protocols `SequenceType` (for iterating through all vertices) and `CollectionType` (for grabbing a vertex by its index through a subscript). For instance, the following example prints all vertices in a Graph on separate lines:
 ```
 for v in g {  // g is a Graph<String>
-    println(v)
+    print(v)
 }
 ```
 And we can grab a specific vertex by its index using a subscript
 ```
-println(g[23]) // g is a Graph<String>
+print(g[23]) // g is a Graph<String>
 ```
 
 Note: At this time, graphs are *not* thread-safe. However, once a graph is constructed, if you will only be doing lookups and searches through it (no removals of vertices/edges and no additions of vertices/edges) then you should be able to do that from multiple threads. A fully thread-safe graph implementation is a possible future direction.
