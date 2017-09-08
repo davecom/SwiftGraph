@@ -26,7 +26,7 @@ Use this repository as your dependency.
 
 ### Manual
 
-Copy all of the sources in the `Sources` folder into your project.
+Copy the folder `Sources/SwiftGraph` into your project.
 
 ## Tips and Tricks
 * To get a sense of how to use SwiftGraph, checkout the unit tests

@@ -121,4 +121,8 @@ class MSTTests: XCTestCase {
         XCTAssertEqual(totalWeight, 5372, "MST should cost 5372 for cityGraph2")
     }
     
+    static var allTests = [
+        ("testMST1", testMST1),
+        ("testMST2", testMST2)
+    ]
 }

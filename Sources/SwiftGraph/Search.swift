@@ -287,18 +287,18 @@ struct DijkstraNode<D: Comparable>: Comparable, Equatable {
     let vertex: Int
     let distance: D
     
-    static func < <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
+    static func < <D>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
         return lhs.distance < rhs.distance
     }
     
-    static func == <D: Comparable>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
+    static func == <D>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
         return lhs.distance == rhs.distance
     }
 }
 
 
 /// Helper function to get easier access to Dijkstra results.
-public func distanceArrayToVertexDict<T: Equatable, W: Comparable & Summable>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
+public func distanceArrayToVertexDict<T, W>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
     var distanceDict: [T: W?] = [T: W?]()
     for i in 0..<distances.count {
         distanceDict[graph.vertexAtIndex(i)] = distances[i]
@@ -311,7 +311,7 @@ public func distanceArrayToVertexDict<T: Equatable, W: Comparable & Summable>(di
 /// - parameter edges: Array of edges to convert.
 /// - parameter graph: The graph the edges exist within.
 /// - returns: An array of vertices from the graph.
-public func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T] {
+public func edgesToVertices<T>(edges: [Edge], graph: Graph<T>) -> [T] {
     var vs: [T] = [T]()
     if let first = edges.first {
         vs.append(graph.vertexAtIndex(first.u))
@@ -321,7 +321,7 @@ public func edgesToVertices<T: Equatable>(edges: [Edge], graph: Graph<T>) -> [T]
 }
 
 //version for Dijkstra with weighted edges
-public func edgesToVertices<T: Equatable, W: Comparable & Summable>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
+public func edgesToVertices<T, W>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
     var vs: [T] = [T]()
     if let first = edges.first {
         vs.append(graph.vertexAtIndex(first.u))
@@ -347,7 +347,7 @@ public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
 }
 
 // version for Dijkstra
-public func pathDictToPath<W: Comparable & Summable>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
+public func pathDictToPath<W>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
     var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
     var e: WeightedEdge<W> = pathDict[to]!
     edgePath.append(e)
