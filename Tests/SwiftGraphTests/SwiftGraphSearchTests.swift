@@ -275,11 +275,19 @@ class SwiftGraphSearchTests: XCTestCase {
         }
     }
     
-    /*func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }*/
-    
+    static var allTests = [
+        ("testDFS1", testDFS1),
+        ("testDFS2", testDFS2),
+        ("testDFS3", testDFS3),
+        ("testDFS4", testDFS4),
+        ("testDFS5", testDFS5),
+        ("testDFS6", testDFS6),
+        ("testBFS1", testBFS1),
+        ("testBFS2", testBFS2),
+        ("testBFS3", testBFS3),
+        ("testBFS4", testBFS4),
+        ("testBFS5", testBFS5),
+        ("testBFS6", testBFS6),
+        ("testFindAll", testFindAll),
+    ]
 }

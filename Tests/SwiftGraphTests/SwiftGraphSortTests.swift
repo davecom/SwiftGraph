@@ -58,4 +58,8 @@ class SwiftGraphSortTests: XCTestCase {
         XCTAssertEqual(result.count, 9, "All items in sort.")
     }
     
+    static var allTests = [
+        ("testDAG", testDAG),
+        ("testTopologicalSort", testTopologicalSort)
+    ]
 }
