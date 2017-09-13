@@ -1,3 +1,8 @@
+### 1.5.0
+- Upgraded to Swift 4
+- Project now built with Xcode 9
+- SwiftPriorityQueue replaced with newer version
+
 ### 1.4.1
 - Fixed a bug in `removeAllEdges()` and added a test for it
 

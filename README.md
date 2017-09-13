@@ -6,7 +6,7 @@ It includes copious in-source documentation, unit tests, as well as search funct
 
 ## Installation
 
-SwiftGraph 1.1.0 and above requires Swift 3 (Xcode 8). SwiftGraph 1.0.1 through 1.0.6 requires Swift 2 (Xcode 7). For Swift 1.2 support (Xcode 6.3) use version 1.0 of SwiftGraph.
+SwiftGraph 1.5.0 and above requires Swift 4. Use SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support.
 
 ### CocoaPods
 
@@ -17,7 +17,7 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 1.4.1
+github "davecom/SwiftGraph" ~> 1.5.0
 ```
 
 ### Swift Package Manager (SPM)
