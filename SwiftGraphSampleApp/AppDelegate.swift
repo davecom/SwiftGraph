@@ -31,7 +31,7 @@ class NineTailView: NSView {
                 for j in 0..<position.positionMatrix[0].count  {
                     CATransaction.begin()
                     CATransaction.setValue(NSNumber(value: 2.5), forKey: kCATransactionAnimationDuration)
-                    pennyLayers[i][j].contents = NSImage(named: position.positionMatrix[i][j].rawValue)!
+                    pennyLayers[i][j].contents = NSImage(named: NSImage.Name(rawValue: position.positionMatrix[i][j].rawValue))!
                     CATransaction.commit()
                 }
             }
@@ -51,7 +51,7 @@ class NineTailView: NSView {
         }
         for i in 0..<position.positionMatrix.count {
             for j in 0..<position.positionMatrix[0].count {
-                pennyLayers[i][j].contents = NSImage(named: "heads")
+                pennyLayers[i][j].contents = NSImage(named: NSImage.Name(rawValue: "heads"))
                 pennyLayers[i][j].frame = CGRect(x: CGFloat(CGFloat(i) * (width/3)), y: CGFloat(CGFloat(j) * (height/3)), width: (width/3), height: (height/3))
                 layer?.addSublayer(pennyLayers[i][j])
             }
@@ -167,7 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         addPositionAndChildren(NineTailPosition(matrix: [[.Heads, .Heads, .Heads],[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]), parent: -1)
     }
     
-    func timerFire(_ timer: Timer) {
+    @objc func timerFire(_ timer: Timer) {
         if !path.isEmpty {
             ntView.position = path.removeFirst()
         } else {
