@@ -44,7 +44,7 @@ Edges connect the vertices in your graph to one another.
 * `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer. Further, an edge knows if it's directed, or weighted. An edge can create a reversed version of itself.
 * `UnweightedEdge` - This is a concrete implementation of `Edge` for unweighted graphs.
 * `WeightedEdge` - A subclass of `UnweightedEdge` that adds weights. Weights are a generic type - they can be anything that implements `Comparable` and `Summable`.  `Summable` is anything that implements the `+` operator.  To add `Summable` support to a data type that already has the plus operator, simply write something like (support in SwiftGraph is already included for `Int`, `Float`, `Double`, and `String`):
-```
+```swift
 extension Int: Summable {}
 ```
 
@@ -52,13 +52,13 @@ extension Int: Summable {}
 Graphs are the data structures at the heart of SwiftGraph. All vertices are assigned an integer index when they are inserted into a graph and it's generally faster to refer to them by their index than by the vertex's actual object.
 
 Graphs implement the standard Swift protocols `SequenceType` (for iterating through all vertices) and `CollectionType` (for grabbing a vertex by its index through a subscript). For instance, the following example prints all vertices in a Graph on separate lines:
-```
+```swift
 for v in g {  // g is a Graph<String>
     print(v)
 }
 ```
 And we can grab a specific vertex by its index using a subscript
-```
+```swift
 print(g[23]) // g is a Graph<String>
 ```
 
