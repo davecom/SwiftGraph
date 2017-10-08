@@ -257,4 +257,11 @@ class DijkstraGraphTests: XCTestCase {
         XCTAssertEqual(stops, ["Miami", "Atlanta", "New York", "Chicago"], "Shortest path to Chicago is not right.")
 
     }
+    
+    static var allTests = [
+        ("testDijksta1", testDijkstra1),
+        ("testDijksta2", testDijkstra2),
+        ("testDijksta3", testDijkstra3),
+        ("testRemovalWithDijksta", testRemovalWithDijkstra)
+    ]
 }

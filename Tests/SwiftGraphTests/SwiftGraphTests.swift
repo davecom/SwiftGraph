@@ -2,7 +2,7 @@
 //  SwiftGraphTests.swift
 //  SwiftGraphTests
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2017 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -102,5 +102,11 @@ class SwiftGraphTests: XCTestCase {
             // Put the code you want to measure the time of here.
      //   }
     //}
-    
+    static var allTests = [
+        ("testCitesInverseAfterRemove", testCitesInverseAfterRemove),
+        ("testSequenceTypeAndCollectionType", testSequenceTypeAndCollectionType),
+        ("testCounts", testCounts),
+        ("testSubscript", testSubscript),
+        ("testRemoveAllEdges", testRemoveAllEdges)
+    ]
 }

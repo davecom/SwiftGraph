@@ -2,7 +2,7 @@
 //  SwiftGraphSearchTests.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2017 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,4 +58,8 @@ class SwiftGraphSortTests: XCTestCase {
         XCTAssertEqual(result.count, 9, "All items in sort.")
     }
     
+    static var allTests = [
+        ("testDAG", testDAG),
+        ("testTopologicalSort", testTopologicalSort)
+    ]
 }
