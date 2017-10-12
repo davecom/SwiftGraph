@@ -2,7 +2,7 @@
 
 SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, macOS, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
 
-It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra's algorithm. Further, it includes utility functions for topological sort, Jarnik's algorithm to find a minimum-spanning tree, and detecting a DAG (directed-acyclic-graph).
+It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra's algorithm. Further, it includes utility functions for topological sort, Jarnik's algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), and enumerating all cycles.
 
 ## Installation
 
@@ -17,7 +17,7 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 1.5.0
+github "davecom/SwiftGraph" ~> 1.5.1
 ```
 
 ### Swift Package Manager (SPM)
@@ -91,6 +91,9 @@ An extension to `Graph` in `Sort.swift` provides facilities for topological sort
 
 An extension to `WeightedGraph` in `MST.swift` can find a minimum-spanning tree from a weighted graph.
 * `mst()` - Uses Jarnik's Algorithm (aka Prim's Algorithm) to find the tree made of minimum cumulative weight that connects all vertices in a weighted graph. This assumes the graph is completely undirected and connected. If the graph has directed edges, it may not return the right answer. Also, if the graph is not fully connected it will create the tree for the connected component that the starting vertex is a part of. Returns an array of `WeightedEdge`s that compose the tree. Use utility functions `totalWeight()` and `printMST()` to examine the returned MST. Runs in O(n lg n) time.
+
+An extension to `Graph` in `Cycles.swift` finds all of the cycles in a graph.
+* `detectCycles()` - Uses an algorithm developed by Liu/Wang to find all of the cycles in a graph. Optionally, this method can take one parameter, `upToLength`, that specifies a length at which to stop searching for cycles. For instance, if `upToLength` is 3, `detectCycles()` will find all of the 1 vertex cycles (self-cycles, vertices with edges to themselves), and 3 vertex cycles (connection to another vertex and back again, present in all undirected graphs with more than 1 vertex). There is no such thing as a 2 vertex cycle.
 
 ## Authorship & License
 SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
