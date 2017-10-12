@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF51F8ADA12001913F7 /* Cycle.swift */; };
+		55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */; };
 		55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620071A194C80000A5F7B /* AppDelegate.swift */; };
 		55E6200A1A194C80000A5F7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E620091A194C80000A5F7B /* Images.xcassets */; };
 		55E6200D1A194C80000A5F7B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6200B1A194C80000A5F7B /* MainMenu.xib */; };
@@ -76,6 +78,8 @@
 		5589B4741C0E758500D6664E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = Sources/SwiftGraph/Search.swift; sourceTree = SOURCE_ROOT; };
 		5589B4771C0E759800D6664E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Sources/SwiftGraph/Stack.swift; sourceTree = SOURCE_ROOT; };
 		5589B47A1C0E75A700D6664E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Sources/SwiftGraph/Queue.swift; sourceTree = SOURCE_ROOT; };
+		55DCCBF51F8ADA12001913F7 /* Cycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cycle.swift; path = Sources/SwiftGraph/Cycle.swift; sourceTree = SOURCE_ROOT; };
+		55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleTests.swift; sourceTree = "<group>"; };
 		55E620021A194C80000A5F7B /* SwiftGraphSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGraphSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E620061A194C80000A5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55E620071A194C80000A5F7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 			children = (
 				55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */,
 				55E784251ED2127D003899D0 /* MST.swift */,
+				55DCCBF51F8ADA12001913F7 /* Cycle.swift */,
 				5589B4741C0E758500D6664E /* Search.swift */,
 				553746441DA56CC500C0E0F6 /* Sort.swift */,
 				5589B4771C0E759800D6664E /* Stack.swift */,
@@ -213,6 +218,7 @@
 			children = (
 				557F55E91F8AB247002AF0BF /* Info.plist */,
 				7985B9191E5A4FCB00C100E7 /* DijkstraGraphTests.swift */,
+				55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */,
 				55E784271ED2971E003899D0 /* MSTTests.swift */,
 				7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */,
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
@@ -389,6 +395,7 @@
 				7985B9281E5A503200C100E7 /* Search.swift in Sources */,
 				7985B9211E5A503200C100E7 /* Edge.swift in Sources */,
 				7985B9271E5A503200C100E7 /* SwiftPriorityQueue.swift in Sources */,
+				55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +405,7 @@
 			files = (
 				7985B9201E5A4FCB00C100E7 /* SwiftGraphTests.swift in Sources */,
 				7985B91E1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift in Sources */,
+				55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */,
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,

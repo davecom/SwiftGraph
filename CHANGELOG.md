@@ -1,3 +1,9 @@
+### 1.5.1
+- Project reorganized to support testing on Linux, just run `swift test`
+- `Package.swift` updated for Swift 4 package management style
+- Added `detectCyles()` which uses the Liu/Wang algorithm for detecting cycles up to any length in a graph
+- Added a couple unit tests for testing `detectCycles()`
+
 ### 1.5.0
 - Upgraded to Swift 4
 - Project now built with Xcode 9
