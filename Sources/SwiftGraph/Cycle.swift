@@ -70,9 +70,7 @@ public extension Graph {
         var tail: Int {
             return path.last?.v ?? start
         }
-
     }
-
 
     /// Find all of the cycles in a `Graph`, expressed as edges.
     ///
