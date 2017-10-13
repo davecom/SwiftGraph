@@ -76,7 +76,7 @@ public extension Graph {
     ///
     /// - parameter upToLength: Does the caller only want to detect cycles up to a certain length?
     /// - returns: a list of lists of edges in cycles
-    public func detectCyclesOfEdges(upToLength maxK: Int = Int.max) -> [[Edge]] {
+    public func detectCyclesAsEdges(upToLength maxK: Int = Int.max) -> [[Edge]] {
 
         var cycles = [[Edge]]() // store of all found cycles
         var openPaths: [Path] = (0..<vertices.count).map(Path.init(start:)) // initial open paths start at a vertext, and are empty

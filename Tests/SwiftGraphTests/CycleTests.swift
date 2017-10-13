@@ -62,7 +62,7 @@ class CycleTests: XCTestCase {
         ]
 
         let detectedVertexCycles = simpleGraph.detectCycles()
-        let detectedEdgeCycles = simpleGraph.detectCyclesOfEdges()
+        let detectedEdgeCycles = simpleGraph.detectCyclesAsEdges()
 
         XCTAssertEqual(detectedVertexCycles.count, solutionVertexCycles.count)
         XCTAssertTrue(detectedVertexCycles[0].elementsEqual(solutionVertexCycles[1]))
