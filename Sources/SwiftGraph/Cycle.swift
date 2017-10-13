@@ -34,7 +34,6 @@ public extension Graph {
         
         while openPaths.count > 0 {
             let openPath = openPaths.removeFirst() // queue pop()
-            //print(openPath)
             if openPath.count > maxK { return cycles } // do we want to stop at a certain length k
             if let tail = openPath.last, let head = openPath.first, let neighbors = neighborsForVertex(tail) {
                 for neighbor in neighbors {
@@ -82,11 +81,10 @@ public extension Graph {
     public func detectCyclesOfEdges(upToLength maxK: Int = Int.max) -> [[Edge]] {
 
         var cycles = [[Edge]]() // store of all found cycles
-        var openPaths: [Path] = (0..<vertices.count).map(Path.init(start:)) // initial open paths are single vertex lists
+        var openPaths: [Path] = (0..<vertices.count).map(Path.init(start:)) // initial open paths start at a vertext, and are empty
 
         while openPaths.count > 0 {
             let openPath = openPaths.removeFirst() // queue pop()
-            //print(openPath)
             if openPath.path.count > maxK { return cycles } // do we want to stop at a certain length k
             let tail = openPath.tail
             let head = openPath.head
@@ -94,7 +92,6 @@ public extension Graph {
             for neighborEdge in neighborEdges {
                 if neighborEdge.v == head {
                     cycles.append(openPath.path + [neighborEdge]) // found a cycle
-//                    else if !openPath.contains(neighbor) && indexOfVertex(neighbor)! > indexOfVertex(head)!
                 } else if !openPath.path.contains(where: { $0.u == neighborEdge.v || $0.v == neighborEdge.v }) && neighborEdge.v > head {
                     openPaths.append(openPath.byAdding(neighborEdge)) // another open path to explore
                 }
