@@ -72,9 +72,9 @@ class CycleTests: XCTestCase {
         print(detectedEdgeCycles)
 
         XCTAssertEqual(detectedEdgeCycles.count, solutionEdgeCycles.count)
-        assertArraysOfTuplesEqual(detectedEdgeCycles[0].map { edge in (edge.u, edge.v) }, solutionEdgeCycles[1])
-        assertArraysOfTuplesEqual(detectedEdgeCycles[1].map { edge in (edge.u, edge.v) }, solutionEdgeCycles[2])
-        assertArraysOfTuplesEqual(detectedEdgeCycles[2].map { edge in (edge.u, edge.v) }, solutionEdgeCycles[0])
+        assertArraysOfTuplesEqual(detectedEdgeCycles[0].map { edge in edge.asTuple }, solutionEdgeCycles[1])
+        assertArraysOfTuplesEqual(detectedEdgeCycles[1].map { edge in edge.asTuple }, solutionEdgeCycles[2])
+        assertArraysOfTuplesEqual(detectedEdgeCycles[2].map { edge in edge.asTuple }, solutionEdgeCycles[0])
     }
 
     func assertArraysOfTuplesEqual(_ lhs: [(Int, Int)], _ rhs: [(Int, Int)], line: UInt = #line) {
@@ -88,4 +88,12 @@ class CycleTests: XCTestCase {
         ("testFullyConnected", testFullyConnected),
         ("testDetectCycles1", testDetectCycles1)
     ]
+}
+
+extension Edge {
+
+    var asTuple: (Int, Int) {
+        return (u, v)
+    }
+
 }
