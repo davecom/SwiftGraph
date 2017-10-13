@@ -53,11 +53,34 @@ class CycleTests: XCTestCase {
         simpleGraph.addEdge(from: "D", to: "C", directed: true)
         simpleGraph.addEdge(from: "C", to: "A", directed: true)
         simpleGraph.addEdge(from: "C", to: "B", directed: true)
-        let solutionCycles = [["A", "B", "D", "C", "A"], ["A", "D", "C", "A"], ["B", "D", "C", "B"]]
-        let detectedCycles = simpleGraph.detectCycles()
-        XCTAssertEqual(detectedCycles.count, solutionCycles.count)
-        for cycle in solutionCycles {
-            XCTAssertNotNil(detectedCycles.contains(where: { $0 == cycle }))
+
+        let solutionVertexCycles = [["A", "B", "D", "C", "A"], ["A", "D", "C", "A"], ["B", "D", "C", "B"]]
+        let solutionEdgeCycles: [[(Int, Int)]] = [
+            [(0, 1), (1, 3), (3, 2), (2, 0)],
+            [(0, 3), (3, 2), (2, 0)],
+            [(1, 3), (3, 2), (2, 1)],
+        ]
+
+        let detectedVertexCycles = simpleGraph.detectCycles()
+        let detectedEdgeCycles = simpleGraph.detectCyclesOfEdges()
+
+        XCTAssertEqual(detectedVertexCycles.count, solutionVertexCycles.count)
+        XCTAssertTrue(detectedVertexCycles[0].elementsEqual(solutionVertexCycles[1]))
+        XCTAssertTrue(detectedVertexCycles[1].elementsEqual(solutionVertexCycles[2]))
+        XCTAssertTrue(detectedVertexCycles[2].elementsEqual(solutionVertexCycles[0]))
+
+        print(detectedEdgeCycles)
+
+        XCTAssertEqual(detectedEdgeCycles.count, solutionEdgeCycles.count)
+        assertArraysOfTuplesEqual(detectedEdgeCycles[0].map { edge in (edge.u, edge.v) }, solutionEdgeCycles[1])
+        assertArraysOfTuplesEqual(detectedEdgeCycles[1].map { edge in (edge.u, edge.v) }, solutionEdgeCycles[2])
+        assertArraysOfTuplesEqual(detectedEdgeCycles[2].map { edge in (edge.u, edge.v) }, solutionEdgeCycles[0])
+    }
+
+    func assertArraysOfTuplesEqual(_ lhs: [(Int, Int)], _ rhs: [(Int, Int)], line: UInt = #line) {
+        let elementsEqual = lhs.elementsEqual(rhs) { (left, right) -> Bool in left.0 == right.0 && left.1 == right.1 }
+        if !elementsEqual {
+            XCTFail("Arrays not equal: \(lhs), \(rhs)", line: line)
         }
     }
     
