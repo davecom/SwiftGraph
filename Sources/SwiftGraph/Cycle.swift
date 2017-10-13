@@ -49,29 +49,6 @@ public extension Graph {
         return cycles
     }
 
-    struct Path {
-        var start: Int
-        var path: [Edge] = []
-
-        init(start: Int) {
-            self.start = start
-        }
-
-        func byAdding(_ edge: Edge) -> Path {
-            var mutable = self
-            mutable.path.append(edge)
-            return mutable
-        }
-
-        var head: Int {
-            return start
-        }
-
-        var tail: Int {
-            return path.last?.v ?? start
-        }
-    }
-
     /// Find all of the cycles in a `Graph`, expressed as edges.
     ///
     /// - parameter upToLength: Does the caller only want to detect cycles up to a certain length?
@@ -98,4 +75,31 @@ public extension Graph {
 
         return cycles
     }
+}
+
+private extension Graph {
+
+    struct Path {
+        var start: Int
+        var path: [Edge] = []
+
+        init(start: Int) {
+            self.start = start
+        }
+
+        func byAdding(_ edge: Edge) -> Path {
+            var mutable = self
+            mutable.path.append(edge)
+            return mutable
+        }
+
+        var head: Int {
+            return start
+        }
+
+        var tail: Int {
+            return path.last?.v ?? start
+        }
+    }
+
 }
