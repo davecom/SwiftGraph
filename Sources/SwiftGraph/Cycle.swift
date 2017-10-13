@@ -24,7 +24,7 @@ public extension Graph {
     // In Telecommunications, 2006. AICT-ICIW'06. International Conference on Internet and
     // Web Applications and Services/Advanced International Conference on, pp. 57-57. IEEE, 2006.
     
-    /// Find all of the cycles in a `Graph`, expressed as verticies.
+    /// Find all of the cycles in a `Graph`, expressed as vertices.
     ///
     /// - parameter upToLength: Does the caller only want to detect cycles up to a certain length?
     /// - returns: a list of lists of vertices in cycles
