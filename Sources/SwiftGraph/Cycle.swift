@@ -75,7 +75,7 @@ public extension Graph {
     /// Find all of the cycles in a `Graph`, expressed as edges.
     ///
     /// - parameter upToLength: Does the caller only want to detect cycles up to a certain length?
-    /// - returns: a list of lists of vertices in cycles
+    /// - returns: a list of lists of edges in cycles
     public func detectCyclesOfEdges(upToLength maxK: Int = Int.max) -> [[Edge]] {
 
         var cycles = [[Edge]]() // store of all found cycles
