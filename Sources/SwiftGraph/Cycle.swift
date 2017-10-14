@@ -2,7 +2,7 @@
 //  Cycle.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2016 David Kopec
+//  Copyright (c) 2017 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ public extension Graph {
     public func detectCyclesAsEdges(upToLength maxK: Int = Int.max) -> [[Edge]] {
 
         var cycles = [[Edge]]() // store of all found cycles
-        var openPaths: [Path] = (0..<vertices.count).map(Path.init(start:)) // initial open paths start at a vertext, and are empty
+        var openPaths: [Path] = (0..<vertices.count).map(Path.init(start:)) // initial open paths start at a vertex, and are empty
 
         while openPaths.count > 0 {
             let openPath = openPaths.removeFirst() // queue pop()
@@ -78,7 +78,7 @@ public extension Graph {
 }
 
 private extension Graph {
-
+    /// Data structure used exclusively in `detectCylesAsEdges()`
     struct Path {
         var start: Int
         var path: [Edge] = []
