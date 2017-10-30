@@ -42,7 +42,7 @@ For more detail, checkout the *Documentation* section, but this example building
 ```swift
 let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 ```
-`cityGraph is a `WeightedGraph` with `String` vertices and `Int` weights on its edges.
+`cityGraph` is a `WeightedGraph` with `String` vertices and `Int` weights on its edges.
 ```swift
 cityGraph.addEdge(from: "Seattle", to:"Chicago", weight:2097)
 cityGraph.addEdge(from: "Seattle", to:"Chicago", weight:2097)
@@ -83,7 +83,23 @@ The shortest paths are found between various vertices in the graph using Dijkstr
 ```swift
 let mst = cityGraph.mst()
 ```
-The minimum spanning tree is found connecting all the vertices in the graph.
+The minimum spanning tree is found connecting all of the vertices in the graph.
+```swift
+let cycles = cityGraph.detectCycles()
+```
+All of the cycles in `cityGraph` are found.
+```swift
+let isADAG = cityGraph.isDAG
+```
+`isADAG` is `false` because `cityGraph` is not found to be a Directed Acyclic Graph.
+```swift
+let result = cityGraph.findAll(from: "New York") { v in
+    return v.characters.first == "S"
+}
+```
+A breadth-first search is performed, starting from New York, for all cities in `cityGraph` that start with the letter "S."
+
+SwiftGraph contains many more useful features, but hopefully this example was a nice quickstart.
 
 ## Documentation
 There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are up-to-date HTML docs available online thanks to the good folks at [CocoaPods](http://cocoadocs.org/docsets/SwiftGraph/) In addition, here's some more basic information:
