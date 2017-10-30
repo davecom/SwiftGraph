@@ -155,7 +155,7 @@ class DijkstraGraphTests: XCTestCase {
             print("\(key) : \(String(describing: value))")
         }
         
-        //path between New York and Seattle
+        //path between New York and San Francisco
         let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("New York")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
         let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
         print("\(stops))")
