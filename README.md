@@ -35,6 +35,72 @@ Copy all of the sources in the `Sources` folder into your project.
 * SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one vertex and another in a graph and `dijkstra()` for finding shortest paths in a weighted graph
 * A sample Mac app that implements the Nine Tails problem is included - just change the target of the project to `SwiftGraphSampleApp` to build it
 
+## Example
+
+For more detail, checkout the *Documentation* section, but this example building up a weighted graph of American cities and doing some operations on it, should get you started.
+
+```swift
+let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+```
+`cityGraph` is a `WeightedGraph` with `String` vertices and `Int` weights on its edges.
+```swift
+cityGraph.addEdge(from: "Seattle", to:"Chicago", weight:2097)
+cityGraph.addEdge(from: "Seattle", to:"Chicago", weight:2097)
+cityGraph.addEdge(from: "Seattle", to: "Denver", weight:1331)
+cityGraph.addEdge(from: "Seattle", to: "San Francisco", weight:807)
+cityGraph.addEdge(from: "San Francisco", to: "Denver", weight:1267)
+cityGraph.addEdge(from: "San Francisco", to: "Los Angeles", weight:381)
+cityGraph.addEdge(from: "Los Angeles", to: "Denver", weight:1015)
+cityGraph.addEdge(from: "Los Angeles", to: "Kansas City", weight:1663)
+cityGraph.addEdge(from: "Los Angeles", to: "Dallas", weight:1435)
+cityGraph.addEdge(from: "Denver", to: "Chicago", weight:1003)
+cityGraph.addEdge(from: "Denver", to: "Kansas City", weight:599)
+cityGraph.addEdge(from: "Kansas City", to: "Chicago", weight:533)
+cityGraph.addEdge(from: "Kansas City", to: "New York", weight:1260)
+cityGraph.addEdge(from: "Kansas City", to: "Atlanta", weight:864)
+cityGraph.addEdge(from: "Kansas City", to: "Dallas", weight:496)
+cityGraph.addEdge(from: "Chicago", to: "Boston", weight:983)
+cityGraph.addEdge(from: "Chicago", to: "New York", weight:787)
+cityGraph.addEdge(from: "Boston", to: "New York", weight:214)
+cityGraph.addEdge(from: "Atlanta", to: "New York", weight:888)
+cityGraph.addEdge(from: "Atlanta", to: "Dallas", weight:781)
+cityGraph.addEdge(from: "Atlanta", to: "Houston", weight:810)
+cityGraph.addEdge(from: "Atlanta", to: "Miami", weight:661)
+cityGraph.addEdge(from: "Houston", to: "Miami", weight:1187)
+cityGraph.addEdge(from: "Houston", to: "Dallas", weight:239)
+```
+Convenience methods are used to add `WeightedEdge` connections between various vertices.
+```swift
+let (distances, pathDict) = cityGraph.dijkstra(root: "New York", startDistance: 0)
+var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
+// shortest distance from New York to San Francisco
+let temp = nameDistance["San Francisco"] 
+// path between New York and San Francisco
+let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("New York")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
+let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
+```
+The shortest paths are found between various vertices in the graph using Dijkstra's algorithm.
+```swift
+let mst = cityGraph.mst()
+```
+The minimum spanning tree is found connecting all of the vertices in the graph.
+```swift
+let cycles = cityGraph.detectCycles()
+```
+All of the cycles in `cityGraph` are found.
+```swift
+let isADAG = cityGraph.isDAG
+```
+`isADAG` is `false` because `cityGraph` is not found to be a Directed Acyclic Graph.
+```swift
+let result = cityGraph.findAll(from: "New York") { v in
+    return v.characters.first == "S"
+}
+```
+A breadth-first search is performed, starting from New York, for all cities in `cityGraph` that start with the letter "S."
+
+SwiftGraph contains many more useful features, but hopefully this example was a nice quickstart.
+
 ## Documentation
 There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are up-to-date HTML docs available online thanks to the good folks at [CocoaPods](http://cocoadocs.org/docsets/SwiftGraph/) In addition, here's some more basic information:
 
