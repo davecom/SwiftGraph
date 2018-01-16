@@ -17,21 +17,23 @@
 //  limitations under the License.
 
 /// Functions for sorting a `Graph`
+
 // MARK: Extension to `Graph` for toplogical sorting
+
 public extension Graph {
-    // Based on Introduction to Algorithms, 3rd Edition, Cormen et. al., 
+    // Based on Introduction to Algorithms, 3rd Edition, Cormen et. al.,
     // The MIT Press, 2009, pg 604-614
     // and revised pseudocode of the same from Wikipedia
     // https://en.wikipedia.org/wiki/Topological_sorting#Depth-first_search
-    
+
     /// Topologically sorts a `Graph` O(n)
     ///
     /// - returns: the sorted vertices, or nil if the graph cannot be sorted due to not being a DAG
     public func topologicalSort() -> [V]? {
         var sortedVertices = [V]()
-        let tsNodes = vertices.map{ TSNode<V>(vertex: $0, color: .white) }
+        let tsNodes = vertices.map { TSNode<V>(vertex: $0, color: .white) }
         var notDAG = false
-        
+
         func visit(_ node: TSNode<V>) {
             guard node.color != .gray else {
                 notDAG = true
@@ -46,35 +48,37 @@ public extension Graph {
                 sortedVertices.insert(node.vertex, at: 0)
             }
         }
-        
+
         for node in tsNodes where node.color == .white {
             visit(node)
         }
-        
+
         if notDAG {
             return nil
         }
-        
+
         return sortedVertices
     }
-    
-    
+
     /// Is the `Graph` a directed-acyclic graph (DAG)? O(n)
     /// Finds the answer based on the result of a topological sort.
     public var isDAG: Bool {
-        guard let _ = topologicalSort() else { return false }
-        return true
+        if topologicalSort() == nil {
+            return false
+        } else {
+            return true
+        }
     }
 }
 
 // MARK: Utility structures for topological sorting
 
-fileprivate enum TSColor { case black, gray, white }
+private enum TSColor { case black, gray, white }
 
-fileprivate class TSNode<V> {
+private class TSNode<V> {
     fileprivate let vertex: V
     fileprivate var color: TSColor
-    
+
     init(vertex: V, color: TSColor) {
         self.vertex = vertex
         self.color = color

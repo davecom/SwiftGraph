@@ -19,6 +19,7 @@
 /// Functions for searching a graph & utility functions for supporting them
 
 // MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
+
 public extension Graph {
 
     /// Find a route from a vertex to the first that satisfies goalTest()
@@ -40,16 +41,14 @@ public extension Graph {
                 return pathDictToPath(from: from, to: v, pathDict: pathDict)
             }
             visited[v] = true
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    stack.push(e.v)
-                    pathDict[e.v] = e
-                }
+            for e in edgesForIndex(v) where !visited[e.v] {
+                stack.push(e.v)
+                pathDict[e.v] = e
             }
         }
         return [] // no route found
     }
-    
+
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a depth-first search.
     ///
@@ -62,7 +61,7 @@ public extension Graph {
         }
         return []
     }
-    
+
     /// Find a route from one vertex to another using a depth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
@@ -81,11 +80,9 @@ public extension Graph {
                 return pathDictToPath(from: from, to: to, pathDict: pathDict)
             }
             visited[v] = true
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    stack.push(e.v)
-                    pathDict[e.v] = e
-                }
+            for e in edgesForIndex(v) where !visited[e.v] {
+                stack.push(e.v)
+                pathDict[e.v] = e
             }
         }
         return [] // no solution found
@@ -123,18 +120,16 @@ public extension Graph {
                 // figure out route of edges based on pathDict
                 return pathDictToPath(from: from, to: v, pathDict: pathDict)
             }
-            
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    visited[e.v] = true
-                    queue.push(e.v)
-                    pathDict[e.v] = e
-                }
+
+            for e in edgesForIndex(v) where !visited[e.v] {
+                visited[e.v] = true
+                queue.push(e.v)
+                pathDict[e.v] = e
             }
         }
         return [] // no path found
     }
-    
+
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a breadth-first search.
     ///
@@ -147,7 +142,7 @@ public extension Graph {
         }
         return []
     }
-    
+
     /// Find a route from one vertex to another using a breadth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
@@ -165,13 +160,11 @@ public extension Graph {
                 // figure out route of edges based on pathDict
                 return pathDictToPath(from: from, to: to, pathDict: pathDict)
             }
-            
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    visited[e.v] = true
-                    queue.push(e.v)
-                    pathDict[e.v] = e
-                }
+
+            for e in edgesForIndex(v) where !visited[e.v] {
+                visited[e.v] = true
+                queue.push(e.v)
+                pathDict[e.v] = e
             }
         }
         return []
@@ -190,7 +183,7 @@ public extension Graph {
         }
         return []
     }
-    
+
     /// Find path routes from a vertex to all others the
     /// function goalTest() returns true for using a breadth-first search.
     ///
@@ -210,18 +203,16 @@ public extension Graph {
                 // figure out route of edges based on pathDict
                 paths.append(pathDictToPath(from: from, to: v, pathDict: pathDict))
             }
-            
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    visited[e.v] = true
-                    queue.push(e.v)
-                    pathDict[e.v] = e
-                }
+
+            for e in edgesForIndex(v) where !visited[e.v] {
+                visited[e.v] = true
+                queue.push(e.v)
+                pathDict[e.v] = e
             }
         }
         return paths
     }
-    
+
     /// Find path routes from a vertex to all others the
     /// function goalTest() returns true for using a breadth-first search.
     ///
@@ -236,7 +227,7 @@ public extension Graph {
     }
 }
 
-//MARK: `WeightedGraph` extension for doing dijkstra
+// MARK: `WeightedGraph` extension for doing dijkstra
 
 public extension WeightedGraph {
 
@@ -246,16 +237,16 @@ public extension WeightedGraph {
     /// - parameter root: The index of the root node to build the shortest paths from.
     /// - parameter startDistance: The distance to get to the root node (typically 0).
     /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathDictToPath() to convert the dictionary into something useful for a specific point.
-    public func dijkstra( root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
+    public func dijkstra(root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
         var distances: [W?] = [W?](repeating: nil, count: vertexCount) // how far each vertex is from start
         distances[root] = startDistance // the start vertex is startDistance away
         var pq: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
         var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]() // how we got to each vertex
         pq.push(DijkstraNode(vertex: root, distance: startDistance))
-        
+
         while let u = pq.pop()?.vertex { // explore the next closest vertex
             guard let distU = distances[u] else { continue } // should already have seen it
-            for we in edgesForIndex(u) as! [WeightedEdge<W>]  { // look at every edge/vertex from the vertex in question
+            for we in edgesForIndex(u) as! [WeightedEdge<W>] { // look at every edge/vertex from the vertex in question
                 let distV = distances[we.v] // the old distance to this vertex
                 if distV == nil || distV! > we.weight + distU { // if we have no old distance or we found a shorter path
                     distances[we.v] = we.weight + distU // update the distance to this vertex
@@ -264,10 +255,9 @@ public extension WeightedGraph {
                 }
             }
         }
-        
+
         return (distances, pathDict)
     }
-
 
     /// A convenience version of dijkstra() that allows the supply of the root
     /// vertex instead of the index of the root vertex.
@@ -279,28 +269,27 @@ public extension WeightedGraph {
     }
 }
 
-//MARK: Dijkstra Utilites
+// MARK: Dijkstra Utilites
 
 /// Represents a node in the priority queue used
 /// for selecting the next
 struct DijkstraNode<D: Comparable>: Comparable, Equatable {
     let vertex: Int
     let distance: D
-    
+
     static func < <D>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
         return lhs.distance < rhs.distance
     }
-    
+
     static func == <D>(lhs: DijkstraNode<D>, rhs: DijkstraNode<D>) -> Bool {
         return lhs.distance == rhs.distance
     }
 }
 
-
 /// Helper function to get easier access to Dijkstra results.
-public func distanceArrayToVertexDict<T, W>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
+public func distanceArrayToVertexDict<T, W>(distances: [W?], graph: WeightedGraph<T, W>) -> [T: W?] {
     var distanceDict: [T: W?] = [T: W?]()
-    for i in 0..<distances.count {
+    for i in 0 ..< distances.count {
         distanceDict[graph.vertexAtIndex(i)] = distances[i]
     }
     return distanceDict
@@ -315,31 +304,31 @@ public func edgesToVertices<T>(edges: [Edge], graph: Graph<T>) -> [T] {
     var vs: [T] = [T]()
     if let first = edges.first {
         vs.append(graph.vertexAtIndex(first.u))
-        vs += edges.map({graph.vertexAtIndex($0.v)})
+        vs += edges.map { graph.vertexAtIndex($0.v) }
     }
     return vs
 }
 
-//version for Dijkstra with weighted edges
+// version for Dijkstra with weighted edges
 public func edgesToVertices<T, W>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
     var vs: [T] = [T]()
     if let first = edges.first {
         vs.append(graph.vertexAtIndex(first.u))
-        vs += edges.map({graph.vertexAtIndex($0.v)})
+        vs += edges.map { graph.vertexAtIndex($0.v) }
     }
     return vs
 }
 
 /// Takes a dictionary of edges to reach each node and returns an array of edges
 /// that goes from `from` to `to`
-public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
-    if pathDict.count == 0 {
+public func pathDictToPath(from: Int, to: Int, pathDict: [Int: Edge]) -> [Edge] {
+    if pathDict.isEmpty {
         return []
     }
     var edgePath: [Edge] = [Edge]()
     var e: Edge = pathDict[to]!
     edgePath.append(e)
-    while (e.u != from) {
+    while e.u != from {
         e = pathDict[e.u]!
         edgePath.append(e)
     }
@@ -347,11 +336,11 @@ public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
 }
 
 // version for Dijkstra
-public func pathDictToPath<W>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
+public func pathDictToPath<W>(from: Int, to: Int, pathDict: [Int: WeightedEdge<W>]) -> [WeightedEdge<W>] {
     var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
     var e: WeightedEdge<W> = pathDict[to]!
     edgePath.append(e)
-    while (e.u != from) {
+    while e.u != from {
         e = pathDict[e.u]!
         edgePath.append(e)
     }

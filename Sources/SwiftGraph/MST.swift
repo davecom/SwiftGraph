@@ -19,9 +19,9 @@
 /// Extensions to WeightedGraph for building a Minimum-Spanning Tree (MST)
 
 public extension WeightedGraph {
-    
+
     // Citation: Based on Algorithms 4th Edition by Sedgewick, Wayne pg 619
-    
+
     /// Find the minimum spanning tree in a weighted graph. This is the set of edges
     /// that touches every vertex in the graph and is of minimal combined weight. This function
     /// uses Jarnik's Algorithm (aka Prim's Algorithm) and so assumes the graph has
@@ -36,22 +36,22 @@ public extension WeightedGraph {
         var result: [WeightedEdge<W>] = [WeightedEdge<W>]() // the final MST goes in here
         var pq: PriorityQueue<WeightedEdge<W>> = PriorityQueue<WeightedEdge<W>>(ascending: true) // minPQ
         var visited: [Bool] = Array<Bool>(repeating: false, count: vertexCount) // already been to these
-        
+
         func visit(_ index: Int) {
             visited[index] = true // mark as visited
-            for edge in edgesForIndex(index) { // add all edges coming from here to pq
-                if !visited[edge.v] { pq.push(edge as! WeightedEdge<W>) }
+            for edge in edgesForIndex(index) where !visited[edge.v] { // add all edges coming from here to pq
+                pq.push(edge as! WeightedEdge<W>)
             }
         }
-        
+
         visit(start) // the first vertex is where everything begins
-        
+
         while let edge = pq.pop() { // keep going as long as there are edges to process
             if visited[edge.v] { continue } // if we've been both places, ignore
             result.append(edge) // otherwise this is the current smallest so add it to the result set
             visit(edge.v)
         }
-        
+
         return result
     }
 }
@@ -60,8 +60,8 @@ public extension WeightedGraph {
 /// - parameter edges The edge array to find the total weight of.
 public func totalWeight<W>(_ edges: [WeightedEdge<W>]) -> W? {
     guard let firstWeight = edges.first?.weight else { return nil }
-    return edges.dropFirst().reduce(firstWeight) { (result, next) -> W in
-        return result + next.weight
+    return edges.dropFirst().reduce(firstWeight) { result, next -> W in
+        result + next.weight
     }
 }
 

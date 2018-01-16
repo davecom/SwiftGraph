@@ -16,23 +16,23 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import XCTest
 @testable import SwiftGraph
+import XCTest
 
 class CycleTests: XCTestCase {
     let simpleGraph: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["A", "B", "C", "D"])
     let fullyConnected: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["A", "B", "C", "D", "E"])
-    
+
     override func setUp() {
         super.setUp()
-        
+
         // setup a graph with 5 fully connected vertices
-        for from in 0..<fullyConnected.vertexCount {
-            for to in (from + 1)..<fullyConnected.vertexCount {
+        for from in 0 ..< fullyConnected.vertexCount {
+            for to in (from + 1) ..< fullyConnected.vertexCount {
                 fullyConnected.addEdge(from: from, to: to)
             }
         }
-        
+
         // simple graph with easy known cycles
         simpleGraph.addEdge(from: "A", to: "B", directed: true)
         simpleGraph.addEdge(from: "B", to: "D", directed: true)
@@ -41,24 +41,24 @@ class CycleTests: XCTestCase {
         simpleGraph.addEdge(from: "C", to: "A", directed: true)
         simpleGraph.addEdge(from: "C", to: "B", directed: true)
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testFullyConnectedVertices() {
         // check it has 84 cycles
         let cycles = fullyConnected.detectCycles()
         XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 vertex graph.")
     }
-    
+
     func testFullyConnectedEdges() {
         // check it has 84 cycles
         let cycles = fullyConnected.detectCyclesAsEdges()
         XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 vertex graph.")
     }
-    
+
     func testDetectCyclesVertices1() {
 
         let solutionVertexCycles = [["A", "B", "D", "C", "A"], ["A", "D", "C", "A"], ["B", "D", "C", "B"]]
@@ -70,18 +70,18 @@ class CycleTests: XCTestCase {
         XCTAssertTrue(detectedVertexCycles[1].elementsEqual(solutionVertexCycles[2]))
         XCTAssertTrue(detectedVertexCycles[2].elementsEqual(solutionVertexCycles[0]))
     }
-    
+
     func testDetectCyclesEdges1() {
         let solutionEdgeCycles: [[(Int, Int)]] = [
             [(0, 1), (1, 3), (3, 2), (2, 0)],
             [(0, 3), (3, 2), (2, 0)],
             [(1, 3), (3, 2), (2, 1)],
-            ]
-        
+        ]
+
         let detectedEdgeCycles = simpleGraph.detectCyclesAsEdges()
-        
+
         print(detectedEdgeCycles)
-        
+
         XCTAssertEqual(detectedEdgeCycles.count, solutionEdgeCycles.count)
         assertArraysOfTuplesEqual(detectedEdgeCycles[0].map { edge in edge.asTuple }, solutionEdgeCycles[1])
         assertArraysOfTuplesEqual(detectedEdgeCycles[1].map { edge in edge.asTuple }, solutionEdgeCycles[2])
@@ -89,17 +89,17 @@ class CycleTests: XCTestCase {
     }
 
     func assertArraysOfTuplesEqual(_ lhs: [(Int, Int)], _ rhs: [(Int, Int)], line: UInt = #line) {
-        let elementsEqual = lhs.elementsEqual(rhs) { (left, right) -> Bool in left.0 == right.0 && left.1 == right.1 }
+        let elementsEqual = lhs.elementsEqual(rhs) { left, right -> Bool in left.0 == right.0 && left.1 == right.1 }
         if !elementsEqual {
             XCTFail("Arrays not equal: \(lhs), \(rhs)", line: line)
         }
     }
-    
+
     static var allTests = [
         ("testFullyConnectedVertices", testFullyConnectedVertices),
         ("testFullyConnectedEdges", testFullyConnectedEdges),
         ("testDetectCyclesVertices1", testDetectCyclesVertices1),
-        ("testDetectCyclesEdges1", testDetectCyclesEdges1)
+        ("testDetectCyclesEdges1", testDetectCyclesEdges1),
     ]
 }
 
@@ -108,5 +108,4 @@ fileprivate extension Edge {
     var asTuple: (Int, Int) {
         return (u, v)
     }
-
 }

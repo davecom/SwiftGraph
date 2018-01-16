@@ -19,7 +19,7 @@
 /// This protocol is needed for Dijkstra's algorithm - we need weights in weighted graphs
 /// to be able to be added together
 public protocol Summable {
-    static func +(lhs: Self, rhs: Self) -> Self
+    static func + (lhs: Self, rhs: Self) -> Self
 }
 
 extension Int: Summable {}
@@ -31,29 +31,30 @@ extension String: Summable {}
 open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge, Comparable {
     public override var weighted: Bool { return true }
     public let weight: W
-    public override var reversed:Edge {
+    public override var reversed: Edge {
         return WeightedEdge(u: v, v: u, directed: directed, weight: weight)
     }
-    
+
     public init(u: Int, v: Int, directed: Bool, weight: W) {
         self.weight = weight
         super.init(u: u, v: v, directed: directed)
     }
-    
-    //Implement Printable protocol
+
+    // Implement Printable protocol
     public override var description: String {
         if directed {
             return "\(u) \(weight)> \(v)"
         }
         return "\(u) <\(weight)> \(v)"
     }
-    
-    //MARK: Operator Overloads
-    static public func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+
+    // MARK: Operator Overloads
+
+    public static func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
         return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
     }
-    
-    static public func < <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+
+    public static func < <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
         return lhs.weight < rhs.weight
     }
 }

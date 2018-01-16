@@ -16,16 +16,16 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import XCTest
 @testable import SwiftGraph
+import XCTest
 
 class SwiftGraphSearchTests: XCTestCase {
     // pg 1016 Liang
     let cityGraph: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
-    
+
     // 15 largest MSAs in United States as of 2016
     let cityGraph2: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -54,7 +54,7 @@ class SwiftGraphSearchTests: XCTestCase {
         cityGraph.addEdge(from: "Houston", to: "Miami")
         cityGraph.addEdge(from: "Houston", to: "Dallas")
         print(cityGraph.description)
-        
+
         cityGraph2.addEdge(from: "Seattle", to: "Chicago")
         cityGraph2.addEdge(from: "Seattle", to: "San Francisco")
         cityGraph2.addEdge(from: "San Francisco", to: "Riverside")
@@ -83,12 +83,12 @@ class SwiftGraphSearchTests: XCTestCase {
         cityGraph2.addEdge(from: "Philadelphia", to: "Washington")
         print(cityGraph2.description)
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testDFS1() {
         // Seattle -> Miami
         let result = cityGraph.dfs(from: "Seattle", to: "Miami")
@@ -101,7 +101,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph))
     }
-    
+
     func testDFS2() {
         // Boston -> LA
         let result = cityGraph.dfs(from: "Boston", to: "Los Angeles")
@@ -114,7 +114,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph))
     }
-    
+
     func testDFS3() {
         // Houston -> first city starting with "N"
         let result = cityGraph2.dfs(from: "Houston") { v in
@@ -129,7 +129,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph2))
     }
-    
+
     func testDFS4() {
         // Seattle -> Miami
         let result = cityGraph2.dfs(from: "Seattle", to: "Miami")
@@ -142,7 +142,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph2))
     }
-    
+
     func testDFS5() {
         // Boston -> LA
         let result = cityGraph2.dfs(from: "Boston", to: "Los Angeles")
@@ -155,7 +155,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph2))
     }
-    
+
     func testDFS6() {
         // Houston -> first city starting with "N"
         let result = cityGraph2.dfs(from: "Houston") { v in
@@ -170,7 +170,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph2))
     }
-    
+
     func testBFS1() {
         // Seattle -> Miami
         let result = cityGraph.bfs(from: "Seattle", to: "Miami")
@@ -184,7 +184,7 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Seattle to Miami")
         print(edgesToVertices(edges: result, graph: cityGraph))
     }
-    
+
     func testBFS2() {
         // Boston -> LA
         let result = cityGraph.bfs(from: "Boston", to: "Los Angeles")
@@ -198,7 +198,7 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Boston to Los Angeles")
         print(edgesToVertices(edges: result, graph: cityGraph))
     }
-    
+
     func testBFS3() {
         // Houston -> first city starting with "N"
         let result = cityGraph.bfs(from: "Houston") { v in
@@ -213,7 +213,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph))
     }
-    
+
     func testBFS4() {
         // Seattle -> Miami
         let result = cityGraph2.bfs(from: "Seattle", to: "Miami")
@@ -227,7 +227,7 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Seattle to Miami")
         print(edgesToVertices(edges: result, graph: cityGraph2))
     }
-    
+
     func testBFS5() {
         // Boston -> LA
         let result = cityGraph2.bfs(from: "Boston", to: "Los Angeles")
@@ -241,7 +241,7 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Boston to Los Angeles")
         print(edgesToVertices(edges: result, graph: cityGraph2))
     }
-    
+
     func testBFS6() {
         // Houston -> first city starting with "N"
         let result = cityGraph2.bfs(from: "Houston") { v in
@@ -256,7 +256,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(edgesToVertices(edges: result, graph: cityGraph2))
     }
-    
+
     func testFindAll() {
         // New York -> all cities starting with "S"
         let result = cityGraph.findAll(from: "New York") { v in
@@ -274,13 +274,13 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertTrue(endCities.contains("San Francisco"), "Should contain a route to San Francisco")
         }
     }
-    
-    /*func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }*/
+
+    /* func testPerformanceExample() {
+     // This is an example of a performance test case.
+     self.measureBlock() {
+     // Put the code you want to measure the time of here.
+     }
+     } */
     static var allTests = [
         ("testDFS1", testDFS1),
         ("testDFS2", testDFS2),
@@ -294,6 +294,6 @@ class SwiftGraphSearchTests: XCTestCase {
         ("testBFS4", testBFS4),
         ("testBFS5", testBFS5),
         ("testBFS6", testBFS6),
-        ("testFindAll", testFindAll)
+        ("testFindAll", testFindAll),
     ]
 }

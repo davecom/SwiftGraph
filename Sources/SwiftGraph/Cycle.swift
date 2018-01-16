@@ -17,22 +17,24 @@
 //  limitations under the License.
 
 /// Functions for finding cycles in a `Graph`
+
 // MARK: Extension to `Graph` for detecting cycles
+
 public extension Graph {
     // Based on an algorithm developed by Hongbo Liu and Jiaxin Wang
     // Liu, Hongbo, and Jiaxin Wang. "A new way to enumerate cycles in graph."
     // In Telecommunications, 2006. AICT-ICIW'06. International Conference on Internet and
     // Web Applications and Services/Advanced International Conference on, pp. 57-57. IEEE, 2006.
-    
+
     /// Find all of the cycles in a `Graph`, expressed as vertices.
     ///
     /// - parameter upToLength: Does the caller only want to detect cycles up to a certain length?
     /// - returns: a list of lists of vertices in cycles
     public func detectCycles(upToLength maxK: Int = Int.max) -> [[V]] {
         var cycles = [[V]]() // store of all found cycles
-        var openPaths: [[V]] = vertices.map{ [$0] } // initial open paths are single vertex lists
-        
-        while openPaths.count > 0 {
+        var openPaths: [[V]] = vertices.map { [$0] } // initial open paths are single vertex lists
+
+        while !openPaths.isEmpty {
             let openPath = openPaths.removeFirst() // queue pop()
             if openPath.count > maxK { return cycles } // do we want to stop at a certain length k
             if let tail = openPath.last, let head = openPath.first, let neighbors = neighborsForVertex(tail) {
@@ -45,7 +47,7 @@ public extension Graph {
                 }
             }
         }
-        
+
         return cycles
     }
 
@@ -56,9 +58,9 @@ public extension Graph {
     public func detectCyclesAsEdges(upToLength maxK: Int = Int.max) -> [[Edge]] {
 
         var cycles = [[Edge]]() // store of all found cycles
-        var openPaths: [Path] = (0..<vertices.count).map(Path.init(start:)) // initial open paths start at a vertex, and are empty
+        var openPaths: [Path] = (0 ..< vertices.count).map(Path.init(start:)) // initial open paths start at a vertex, and are empty
 
-        while openPaths.count > 0 {
+        while !openPaths.isEmpty {
             let openPath = openPaths.removeFirst() // queue pop()
             if openPath.path.count > maxK { return cycles } // do we want to stop at a certain length k
             let tail = openPath.tail
@@ -101,5 +103,4 @@ private extension Graph {
             return path.last?.v ?? start
         }
     }
-
 }

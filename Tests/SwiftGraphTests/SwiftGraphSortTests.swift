@@ -16,13 +16,13 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import XCTest
 @testable import SwiftGraph
+import XCTest
 
 class SwiftGraphSortTests: XCTestCase {
     // pg 1016 Liang
     let dressDAG: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -38,16 +38,16 @@ class SwiftGraphSortTests: XCTestCase {
         dressDAG.addEdge(from: "tie", to: "jacket", directed: true)
         print(dressDAG)
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testDAG() {
         XCTAssertTrue(dressDAG.isDAG, "dressDAG is a DAG")
     }
-    
+
     func testTopologicalSort() {
         // Seattle -> Miami
         guard let result = dressDAG.topologicalSort() else {
@@ -57,9 +57,9 @@ class SwiftGraphSortTests: XCTestCase {
         print(result)
         XCTAssertEqual(result.count, 9, "All items in sort.")
     }
-    
+
     static var allTests = [
         ("testDAG", testDAG),
-        ("testTopologicalSort", testTopologicalSort)
+        ("testTopologicalSort", testTopologicalSort),
     ]
 }

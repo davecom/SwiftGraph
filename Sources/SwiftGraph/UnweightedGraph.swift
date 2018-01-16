@@ -21,11 +21,11 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
     public override init() {
         super.init()
     }
-    
+
     public override init(vertices: [T]) {
         super.init(vertices: vertices)
     }
-    
+
     /// This is a convenience method that adds an unweighted edge.
     ///
     /// - parameter from: The starting vertex's index.
@@ -34,7 +34,7 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
     public func addEdge(from: Int, to: Int, directed: Bool = false) {
         addEdge(UnweightedEdge(u: from, v: to, directed: directed))
     }
-    
+
     /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
     ///
     /// - parameter from: The starting vertex.
@@ -47,9 +47,9 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
             }
         }
     }
-    
-    //Have to have two of these because Edge protocol cannot adopt Equatable
-    
+
+    // Have to have two of these because Edge protocol cannot adopt Equatable
+
     /// Removes a specific unweighted edge in both directions (if it's not directional). Or just one way if it's directed.
     ///
     /// - parameter edge: The edge to be removed.
@@ -64,4 +64,3 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
         }
     }
 }
-
