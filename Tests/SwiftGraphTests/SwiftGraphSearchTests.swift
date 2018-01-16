@@ -99,7 +99,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph))
+        print(cityGraph.edgesToVertices(edges: result))
     }
 
     func testDFS2() {
@@ -112,7 +112,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph))
+        print(cityGraph.edgesToVertices(edges: result))
     }
 
     func testDFS3() {
@@ -127,7 +127,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Houston", "Houston is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph2))
+        print(cityGraph2.edgesToVertices(edges: result))
     }
 
     func testDFS4() {
@@ -140,7 +140,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph2))
+        print(cityGraph2.edgesToVertices(edges: result))
     }
 
     func testDFS5() {
@@ -153,7 +153,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph2))
+        print(cityGraph2.edgesToVertices(edges: result))
     }
 
     func testDFS6() {
@@ -168,7 +168,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Houston", "Houston is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph2))
+        print(cityGraph2.edgesToVertices(edges: result))
     }
 
     func testBFS1() {
@@ -182,7 +182,7 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Seattle to Miami")
-        print(edgesToVertices(edges: result, graph: cityGraph))
+        print(cityGraph.edgesToVertices(edges: result))
     }
 
     func testBFS2() {
@@ -196,7 +196,7 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Boston to Los Angeles")
-        print(edgesToVertices(edges: result, graph: cityGraph))
+        print(cityGraph.edgesToVertices(edges: result))
     }
 
     func testBFS3() {
@@ -211,7 +211,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph.vertexAtIndex(first.u), "Houston", "Houston is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph))
+        print(cityGraph.edgesToVertices(edges: result))
     }
 
     func testBFS4() {
@@ -225,7 +225,7 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Seattle", "Seattle is not the start")
         }
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Seattle to Miami")
-        print(edgesToVertices(edges: result, graph: cityGraph2))
+        print(cityGraph2.edgesToVertices(edges: result))
     }
 
     func testBFS5() {
@@ -239,7 +239,7 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Boston", "Boston is not the start")
         }
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Boston to Los Angeles")
-        print(edgesToVertices(edges: result, graph: cityGraph2))
+        print(cityGraph2.edgesToVertices(edges: result))
     }
 
     func testBFS6() {
@@ -254,7 +254,7 @@ class SwiftGraphSearchTests: XCTestCase {
         if let first = result.first {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Houston", "Houston is not the start")
         }
-        print(edgesToVertices(edges: result, graph: cityGraph2))
+        print(cityGraph2.edgesToVertices(edges: result))
     }
 
     func testFindAll() {
@@ -265,9 +265,9 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertFalse(result.isEmpty, "Couldn't find any connections between New York and a city starting with S (there is one).")
         XCTAssertEqual(result.count, 2, "Should be 2 cities found starting with S")
         if let last = result.last, let first = result.first {
-            let pathOne = edgesToVertices(edges: last, graph: cityGraph)
+            let pathOne = cityGraph.edgesToVertices(edges: last)
             print(pathOne)
-            let pathTwo = edgesToVertices(edges: first, graph: cityGraph)
+            let pathTwo = cityGraph.edgesToVertices(edges: first)
             print(pathTwo)
             let endCities = [pathOne.last!, pathTwo.last!]
             XCTAssertTrue(endCities.contains("Seattle"), "Should contain a route to Seattle")

@@ -19,7 +19,7 @@
 /// The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can
 /// have some method implementations in common. You should generally use one of its two canonical subclasses,
 /// *UnweightedGraph* and *WeightedGraph*, because they offer more functionality and convenience.
-open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
+open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Collection {
     var vertices: [V] = [V]()
     var edges: [[Edge]] = [[Edge]]() // adjacency lists
 

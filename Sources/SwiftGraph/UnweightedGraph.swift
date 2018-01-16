@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-open class UnweightedGraph<T: Equatable>: Graph<T> {
+open class UnweightedGraph<T: Equatable & Hashable>: Graph<T> {
     public override init() {
         super.init()
     }

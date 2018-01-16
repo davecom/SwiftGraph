@@ -91,11 +91,11 @@ class DijkstraGraphTests: XCTestCase {
 
     func testDijkstra1() {
         // Seattle -> Miami
-        let (distances, pathDict) = cityGraph.dijkstra(root: "New York", startDistance: 0)
+        let (distances, path) = cityGraph.dijkstra(root: "New York", startDistance: 0)
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
 
         // create map of distances to city names
-        var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
+        var nameDistance: [String: Int?] = cityGraph.distanceArrayToVertexDict(distances: distances)
         if let temp = nameDistance["San Francisco"] {
             XCTAssertEqual(temp!, 3057, "San Francisco should be 3057 miles away.")
         } else {
@@ -156,19 +156,19 @@ class DijkstraGraphTests: XCTestCase {
         }
 
         // path between New York and San Francisco
-        let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("New York")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
+        let edges: [WeightedEdge<Int>] = cityGraph.route(from: "New York", to: "San Francisco", in: path)
+        let stops: [String] = cityGraph.edgesToVertices(edges: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["New York", "Chicago", "Denver", "San Francisco"], "Atlanta should be 888 miles away.")
         // println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
     }
 
     func testDijkstra2() {
-        let (distances, pathDict) = cityGraph.dijkstra(root: "Miami", startDistance: 0)
+        let (distances, path) = cityGraph.dijkstra(root: "Miami", startDistance: 0)
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
 
         // create map of distances to city names
-        var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
+        var nameDistance: [String: Int?] = cityGraph.distanceArrayToVertexDict(distances: distances)
         if let temp = nameDistance["Seattle"] {
             XCTAssertEqual(temp!, 3455, "Seattle should be 3455 miles away.")
         } else {
@@ -194,19 +194,19 @@ class DijkstraGraphTests: XCTestCase {
         }
 
         // path between New York and Seattle
-        let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("Miami")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
+        let edges: [WeightedEdge<Int>] = cityGraph.route(from: "Miami", to: "San Francisco", in: path)
+        let stops: [String] = cityGraph.edgesToVertices(edges: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Dallas", "Los Angeles", "San Francisco"], "Shortest path to San Francisco is not right.")
         // println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
     }
 
     func testDijkstra3() {
-        let (distances, pathDict) = cityGraph2.dijkstra(root: "Miami", startDistance: 0)
+        let (distances, path) = cityGraph2.dijkstra(root: "Miami", startDistance: 0)
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
 
         // create map of distances to city names
-        var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph2)
+        var nameDistance: [String: Int?] = cityGraph2.distanceArrayToVertexDict(distances: distances)
         if let temp = nameDistance["Seattle"] {
             XCTAssertEqual(temp!, 2929, "Seattle should be 2929 miles away.")
         } else {
@@ -232,8 +232,8 @@ class DijkstraGraphTests: XCTestCase {
         }
 
         // path between New York and Seattle
-        let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph2.indexOfVertex("Miami")!, to: cityGraph2.indexOfVertex("San Francisco")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph2)
+        let edges: [WeightedEdge<Int>] = cityGraph2.route(from: "Miami", to: "San Francisco", in: path)
+        let stops: [String] = cityGraph2.edgesToVertices(edges: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Phoenix", "Riverside", "San Francisco"], "Shortest path to San Francisco is not right.")
         // println(edgesToVertices(result, cityGraph2))  // not sure why description not called by println
@@ -242,15 +242,15 @@ class DijkstraGraphTests: XCTestCase {
     func testRemovalWithDijkstra() {
         let cityGraph3 = cityGraph
         cityGraph3.removeVertex("Kansas City")
-        let (distances, pathDict) = cityGraph3.dijkstra(root: "Miami", startDistance: 0)
-        let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph3)
+        let (distances, path) = cityGraph3.dijkstra(root: "Miami", startDistance: 0)
+        let nameDistance: [String: Int?] = cityGraph3.distanceArrayToVertexDict(distances: distances)
 
         for (key, value) in nameDistance {
             print("\(key) : \(String(describing: value))")
         }
 
-        let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("Miami")!, to: cityGraph3.indexOfVertex("Chicago")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph3)
+        let edges: [WeightedEdge<Int>] = cityGraph3.route(from: "Miami", to: "Chicago", in: path)
+        let stops: [String] = cityGraph3.edgesToVertices(edges: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Atlanta", "New York", "Chicago"], "Shortest path to Chicago is not right.")
     }
