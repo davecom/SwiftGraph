@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		164560AD200E5E67003AF4D4 /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 164560B0200E5E67003AF4D4 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+				164560B1200E5E6F003AF4D4 /* Run SwiftLint */,
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+			productName = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF51F8ADA12001913F7 /* Cycle.swift */; };
 		55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */; };
@@ -308,6 +322,10 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Oak Snow Consulting";
 				TargetAttributes = {
+					164560AD200E5E67003AF4D4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					55E620011A194C80000A5F7B = {
 						CreatedOnToolsVersion = 6.1;
 						LastSwiftMigration = 0800;
@@ -340,6 +358,7 @@
 				7985B8FA1E5A4FB800C100E7 /* SwiftGraph */,
 				7985B9021E5A4FB900C100E7 /* SwiftGraphTests */,
 				55E620011A194C80000A5F7B /* SwiftGraphSampleApp */,
+				164560AD200E5E67003AF4D4 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -369,6 +388,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		164560B1200E5E6F003AF4D4 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		55E61FFE1A194C80000A5F7B /* Sources */ = {
@@ -439,6 +475,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		164560AE200E5E67003AF4D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		164560AF200E5E67003AF4D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		55E6201A1A194C80000A5F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -671,6 +723,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		164560B0200E5E67003AF4D4 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				164560AE200E5E67003AF4D4 /* Debug */,
+				164560AF200E5E67003AF4D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		55E61FFD1A194C7F000A5F7B /* Build configuration list for PBXProject "SwiftGraph" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
