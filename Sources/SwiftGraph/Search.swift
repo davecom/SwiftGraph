@@ -31,19 +31,19 @@ public extension Graph {
         // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let stack: Stack<Int> = Stack<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var path: [Int: Edge] = [Int: Edge]()
         stack.push(from)
         while !stack.isEmpty {
-            let v: Int = stack.pop()
-            if goalTest(vertexAtIndex(v)) {
+            let to: Int = stack.pop()
+            if goalTest(vertexAtIndex(to)) {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: from, to: v, pathDict: pathDict)
+                return route(from, to, in: path)
             }
-            visited[v] = true
-            for e in edgesForIndex(v) {
+            visited[to] = true
+            for e in edgesForIndex(to) {
                 if !visited[e.v] {
                     stack.push(e.v)
-                    pathDict[e.v] = e
+                    path[e.v] = e
                 }
             }
         }
@@ -72,19 +72,19 @@ public extension Graph {
         // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let stack: Stack<Int> = Stack<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var path: [Int: Edge] = [Int: Edge]()
         stack.push(from)
         while !stack.isEmpty {
             let v: Int = stack.pop()
             if v == to {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: from, to: to, pathDict: pathDict)
+                return route(from, to, in: path)
             }
             visited[v] = true
             for e in edgesForIndex(v) {
                 if !visited[e.v] {
                     stack.push(e.v)
-                    pathDict[e.v] = e
+                    path[e.v] = e
                 }
             }
         }
@@ -115,20 +115,20 @@ public extension Graph {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var path: [Int: Edge] = [Int: Edge]()
         queue.push(from)
         while !queue.isEmpty {
-            let v: Int = queue.pop()
-            if goalTest(vertexAtIndex(v)) {
+            let to: Int = queue.pop()
+            if goalTest(vertexAtIndex(to)) {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: from, to: v, pathDict: pathDict)
+                return route(from, to, in: path)
             }
-            
-            for e in edgesForIndex(v) {
+
+            for e in edgesForIndex(to) {
                 if !visited[e.v] {
                     visited[e.v] = true
                     queue.push(e.v)
-                    pathDict[e.v] = e
+                    path[e.v] = e
                 }
             }
         }
@@ -157,20 +157,20 @@ public extension Graph {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var path: [Int: Edge] = [Int: Edge]()
         queue.push(from)
         while !queue.isEmpty {
             let v: Int = queue.pop()
             if v == to {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: from, to: to, pathDict: pathDict)
+                return route(from, to, in: path)
             }
             
             for e in edgesForIndex(v) {
                 if !visited[e.v] {
                     visited[e.v] = true
                     queue.push(e.v)
-                    pathDict[e.v] = e
+                    path[e.v] = e
                 }
             }
         }
@@ -201,21 +201,21 @@ public extension Graph {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var path: [Int: Edge] = [Int: Edge]()
         var paths: [[Edge]] = [[Edge]]()
         queue.push(from)
         while !queue.isEmpty {
-            let v: Int = queue.pop()
-            if goalTest(vertexAtIndex(v)) {
+            let to: Int = queue.pop()
+            if goalTest(vertexAtIndex(to)) {
                 // figure out route of edges based on pathDict
-                paths.append(pathDictToPath(from: from, to: v, pathDict: pathDict))
+                paths.append(route(from, to, in: path))
             }
-            
-            for e in edgesForIndex(v) {
+
+            for e in edgesForIndex(to) {
                 if !visited[e.v] {
                     visited[e.v] = true
                     queue.push(e.v)
-                    pathDict[e.v] = e
+                    path[e.v] = e
                 }
             }
         }
@@ -250,7 +250,7 @@ public extension WeightedGraph {
         var distances: [W?] = [W?](repeating: nil, count: vertexCount) // how far each vertex is from start
         distances[root] = startDistance // the start vertex is startDistance away
         var pq: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
-        var pathDict: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]() // how we got to each vertex
+        var path: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]() // how we got to each vertex
         pq.push(DijkstraNode(vertex: root, distance: startDistance))
         
         while let u = pq.pop()?.vertex { // explore the next closest vertex
@@ -259,13 +259,13 @@ public extension WeightedGraph {
                 let distV = distances[we.v] // the old distance to this vertex
                 if distV == nil || distV! > we.weight + distU { // if we have no old distance or we found a shorter path
                     distances[we.v] = we.weight + distU // update the distance to this vertex
-                    pathDict[we.v] = we // update the edge on the shortest path to this vertex
+                    path[we.v] = we // update the edge on the shortest path to this vertex
                     pq.push(DijkstraNode(vertex: we.v, distance: we.weight + distU)) // explore it soon
                 }
             }
         }
-        
-        return (distances, pathDict)
+
+        return (distances, path)
     }
 
 
@@ -296,64 +296,85 @@ struct DijkstraNode<D: Comparable>: Comparable, Equatable {
     }
 }
 
-
-/// Helper function to get easier access to Dijkstra results.
-public func distanceArrayToVertexDict<T, W>(distances: [W?], graph: WeightedGraph<T, W>) -> [T : W?] {
-    var distanceDict: [T: W?] = [T: W?]()
-    for i in 0..<distances.count {
-        distanceDict[graph.vertexAtIndex(i)] = distances[i]
+public extension WeightedGraph {
+    /// Get easier access to Dijkstra results.
+    public func distanceArrayToVertexDict(distances: [W?]) -> [T: W?] {
+        var distanceDict: [T: W?] = .init()
+        for i in 0 ..< distances.count {
+            distanceDict[vertexAtIndex(i)] = distances[i]
+        }
+        return distanceDict
     }
-    return distanceDict
 }
 
-/// Utility function that takes an array of Edges and converts it to an ordered list of vertices
-///
-/// - parameter edges: Array of edges to convert.
-/// - parameter graph: The graph the edges exist within.
-/// - returns: An array of vertices from the graph.
-public func edgesToVertices<T>(edges: [Edge], graph: Graph<T>) -> [T] {
-    var vs: [T] = [T]()
-    if let first = edges.first {
-        vs.append(graph.vertexAtIndex(first.u))
-        vs += edges.map({graph.vertexAtIndex($0.v)})
+public extension Graph {
+    /// Takes an array of `Edge`s and converts it to an ordered list of vertices.
+    ///
+    /// - parameter edges: Array of edges to convert.
+    /// - returns: An array of vertices from the graph.
+    public func edgesToVertices(edges: [Edge]) -> [V] {
+        var vs: [V] = [V]()
+        if let first = edges.first {
+            vs.append(vertexAtIndex(first.u))
+            vs += edges.map({ vertexAtIndex($0.v) })
+        }
+        return vs
     }
-    return vs
 }
 
-//version for Dijkstra with weighted edges
-public func edgesToVertices<T, W>(edges: [WeightedEdge<W>], graph: Graph<T>) -> [T] {
-    var vs: [T] = [T]()
-    if let first = edges.first {
-        vs.append(graph.vertexAtIndex(first.u))
-        vs += edges.map({graph.vertexAtIndex($0.v)})
+public extension WeightedGraph {
+    /// Takes an array of `WeightedEdge`s and converts it to an ordered list of vertices.
+    ///
+    /// - parameter edges: Array of weighted edges to convert.
+    /// - returns: An array of vertices from the graph.
+    public func edgesToVertices(edges: [WeightedEdge<W>]) -> [T] {
+        var vs: [T] = [T]()
+        if let first = edges.first {
+            vs.append(vertexAtIndex(first.u))
+            vs += edges.map({ vertexAtIndex($0.v) })
+        }
+        return vs
     }
-    return vs
 }
 
-/// Takes a dictionary of edges to reach each node and returns an array of edges
-/// that goes from `from` to `to`
-public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
-    if pathDict.count == 0 {
-        return []
+public extension Graph {
+    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
+    public func route(from: V, to: V, in path: [Int: Edge]) -> [Edge] {
+        guard !path.isEmpty, let from = indexOfVertex(from), let to = indexOfVertex(to) else { return [] }
+        return route(from, to, in: path)
     }
-    var edgePath: [Edge] = [Edge]()
-    var e: Edge = pathDict[to]!
-    edgePath.append(e)
-    while (e.u != from) {
-        e = pathDict[e.u]!
+
+    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
+    public func route(_ from: Int, _ to: Int, in path: [Int: Edge]) -> [Edge] {
+        guard !path.isEmpty else { return [] }
+        var edgePath: [Edge] = [Edge]()
+        var e: Edge = path[to]!
         edgePath.append(e)
+        while e.u != from {
+            e = path[e.u]!
+            edgePath.append(e)
+        }
+        return Array(edgePath.reversed())
     }
-    return Array(edgePath.reversed())
 }
 
-// version for Dijkstra
-public func pathDictToPath<W>(from: Int, to: Int, pathDict:[Int:WeightedEdge<W>]) -> [WeightedEdge<W>] {
-    var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
-    var e: WeightedEdge<W> = pathDict[to]!
-    edgePath.append(e)
-    while (e.u != from) {
-        e = pathDict[e.u]!
-        edgePath.append(e)
+public extension WeightedGraph {
+    /// Takes a dictionary of `WeightedEdge` to reach each node and returns an array of edges that goes from `from` to `to`.
+    public func route(from: T, to: T, in path: [Int: WeightedEdge<W>]) -> [WeightedEdge<W>] {
+        guard !path.isEmpty, let from = indexOfVertex(from), let to = indexOfVertex(to) else { return [] }
+        return route(from, to, in: path)
     }
-    return Array(edgePath.reversed())
+
+    /// Takes a dictionary of `WeightedEdge` to reach each node and returns an array of edges that goes from `from` to `to`.
+    public func route(_ from: Int, _ to: Int, in path: [Int: WeightedEdge<W>]) -> [WeightedEdge<W>] {
+        guard !path.isEmpty else { return [] }
+        var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
+        var e: WeightedEdge<W> = path[to]!
+        edgePath.append(e)
+        while e.u != from {
+            e = path[e.u]!
+            edgePath.append(e)
+        }
+        return Array(edgePath.reversed())
+    }
 }
