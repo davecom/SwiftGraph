@@ -118,7 +118,7 @@ class SwiftGraphSearchTests: XCTestCase {
     func testDFS3() {
         // Houston -> first city starting with "N"
         let result = cityGraph2.dfs(from: "Houston") { v in
-            return v.characters.first == "N"
+            return v.first == "N"
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
@@ -159,7 +159,7 @@ class SwiftGraphSearchTests: XCTestCase {
     func testDFS6() {
         // Houston -> first city starting with "N"
         let result = cityGraph2.dfs(from: "Houston") { v in
-            return v.characters.first == "N"
+            return v.first == "N"
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
@@ -202,7 +202,7 @@ class SwiftGraphSearchTests: XCTestCase {
     func testBFS3() {
         // Houston -> first city starting with "N"
         let result = cityGraph.bfs(from: "Houston") { v in
-            return v.characters.first == "N"
+            return v.first == "N"
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
@@ -245,7 +245,7 @@ class SwiftGraphSearchTests: XCTestCase {
     func testBFS6() {
         // Houston -> first city starting with "N"
         let result = cityGraph2.bfs(from: "Houston") { v in
-            return v.characters.first == "N"
+            return v.first == "N"
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
@@ -260,7 +260,7 @@ class SwiftGraphSearchTests: XCTestCase {
     func testFindAll() {
         // New York -> all cities starting with "S"
         let result = cityGraph.findAll(from: "New York") { v in
-            return v.characters.first == "S"
+            return v.first == "S"
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find any connections between New York and a city starting with S (there is one).")
         XCTAssertEqual(result.count, 2, "Should be 2 cities found starting with S")
