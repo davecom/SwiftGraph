@@ -16,51 +16,33 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-open class UnweightedGraph<T: Equatable & Hashable>: Graph<T> {
-    public override init() {
-        super.init()
-    }
-
-    public override init(vertices: [T]) {
-        super.init(vertices: vertices)
-    }
-
+/// A graph with `UnweightedEdge`.
+///
+/// - Note:
+/// Types who conform to `UnweightedGraph` must implement the `addEdge` requirements
+/// while maintaining the expected logic, given that they are convenience methods.
+/// Follow the notes in the respective methods.
+///
+/// They could not be implemented in a protocol extension because they require the
+/// `E` initializer, and `E` is a generic protocol.
+protocol UnweightedGraph: Graph where E: UnweightedEdge {
     /// This is a convenience method that adds an unweighted edge.
+    ///
+    /// - Note: To implement it, use `add(edge:)` with the edge type initializer.
     ///
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(from: Int, to: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: from, v: to, directed: directed))
-    }
+    mutating func addEdge(from: Int, to: Int, directed: Bool)
 
-    /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
+    /// This is a convenience method that adds an unweighted, undirected
+    /// edge between the first occurence of two vertices. O(n).
+    ///
+    /// - Note: To implement it, use `indices(of:_:)` to retrieve the indices,
+    ///         guard that they exist, then create and add the edge.
     ///
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(from: T, to: T, directed: Bool = false) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(UnweightedEdge(u: u, v: v, directed: directed))
-            }
-        }
-    }
-
-    // Have to have two of these because Edge protocol cannot adopt Equatable
-
-    /// Removes a specific unweighted edge in both directions (if it's not directional). Or just one way if it's directed.
-    ///
-    /// - parameter edge: The edge to be removed.
-    public func removeEdge(_ edge: UnweightedEdge) {
-        if let i = (edges[edge.u] as! [UnweightedEdge]).index(of: edge) {
-            edges[edge.u].remove(at: i)
-            if !edge.directed {
-                if let i = (edges[edge.v] as! [UnweightedEdge]).index(of: edge.reversed as! UnweightedEdge) {
-                    edges[edge.v].remove(at: i)
-                }
-            }
-        }
-    }
+    mutating func addEdge(from: V, to: V, directed: Bool)
 }
