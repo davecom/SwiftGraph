@@ -24,5 +24,5 @@ public protocol Edge: Equatable, CustomStringConvertible {
     var v: Int { get set } // made modifiable for changing when removing vertices
     var weighted: Bool { get }
     var directed: Bool { get }
-    var reversed: Edge { get }
+    var reversed: Self { get }
 }
