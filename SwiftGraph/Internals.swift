@@ -1,6 +1,6 @@
 //
-//  Commons.swift
-//  SwiftGraphTests
+//  Internals.swift
+//  SwiftGraph
 //
 //  Copyright (c) 2017 David Kopec
 //
@@ -16,9 +16,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-@testable import SwiftGraph
-
-final class UnweightedEdgeTest: UnweightedEdge {
+internal final class _UnweightedEdge: UnweightedEdge {
     init(u: Int, v: Int, directed: Bool) {
         self.u = u
         self.v = v
@@ -30,26 +28,26 @@ final class UnweightedEdgeTest: UnweightedEdge {
     var directed: Bool
 }
 
-final class UnweightedGraphTest<Vertex: Hashable>: UnweightedGraph {
+internal final class _UnweightedGraph<Vertex: Hashable>: UnweightedGraph {
     required init() {}
 
-    var edges: [[UnweightedEdgeTest]] = []
+    var edges: [[_UnweightedEdge]] = []
     var vertices: [Vertex] = []
 
-    func addEdge(from: Int, to: Int, directed: Bool = false) {
-        add(edge: UnweightedEdgeTest(u: from, v: to, directed: directed))
+    func edge(_ from: Int, to: Int, directed: Bool = false) {
+        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
     }
 
-    func addEdge(from: Vertex, to: Vertex, directed: Bool = false) {
+    func edge(_ from: Vertex, to: Vertex, directed: Bool = false) {
         guard let (from, to) = indices(of: from, to) else { return }
-        add(edge: UnweightedEdgeTest(u: from, v: to, directed: directed))
+        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
     }
 
     typealias V = Vertex
-    typealias E = UnweightedEdgeTest
+    typealias E = _UnweightedEdge
 }
 
-final class WeightedEdgeTest<Weight: Summable>: WeightedEdge {
+internal final class _WeightedEdge<Weight: Summable>: WeightedEdge {
     init(u: Int, v: Int, directed: Bool, weight: W) {
         self.u = u
         self.v = v
@@ -65,22 +63,21 @@ final class WeightedEdgeTest<Weight: Summable>: WeightedEdge {
     typealias W = Weight
 }
 
-final class WeightedGraphTest<Vertex: Hashable, Weight: Summable>: WeightedGraph {
+internal final class _WeightedGraph<Vertex: Hashable, Weight: Summable>: WeightedGraph {
     required init() {}
 
-    var edges: [[WeightedEdgeTest<Weight>]] = []
+    var edges: [[_WeightedEdge<Weight>]] = []
     var vertices: [Vertex] = []
 
-    func addEdge(from: Int, to: Int, directed: Bool = false, weight: W) {
-        add(edge: WeightedEdgeTest(u: from, v: to, directed: directed, weight: weight))
+    func edge(_ from: Int, to: Int, directed: Bool = false, weight: W) {
+        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
     }
 
-    func addEdge(from: Vertex, to: Vertex, directed: Bool = false, weight: W) {
+    func edge(_ from: Vertex, to: Vertex, directed: Bool = false, weight: W) {
         guard let (from, to) = indices(of: from, to) else { return }
-        add(edge: WeightedEdgeTest(u: from, v: to, directed: directed, weight: weight))
+        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
     }
 
     typealias V = Vertex
-    typealias E = WeightedEdgeTest<Weight>
+    typealias E = _WeightedEdge<Weight>
 }
-
