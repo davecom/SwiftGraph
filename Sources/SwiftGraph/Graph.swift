@@ -59,8 +59,11 @@ public protocol Graph: Collection, CustomStringConvertible {
     mutating func remove(at index: Int)
     mutating func remove(vertex: V)
     mutating func remove(edge: E)
-    mutating func remove(from: Int, to: Int, bidirectional: Bool)
-    mutating func remove(from: V, to: V, bidirectional: Bool)
+    mutating func unedge(_ from: Int, to: Int, bidirectional: Bool)
+    mutating func unedge(_ from: V, to: V, bidirectional: Bool)
+
+    // edge(:to:) must be implemented in protocols that conform to `Graph`
+    // according to the properties of its `E`. See `UnweightedGraph`.
 
     // MARK: Depth-First Search
 
@@ -332,7 +335,7 @@ extension Graph {
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func remove(from: Int, to: Int, bidirectional: Bool = true) {
+    public mutating func unedge(_ from: Int, to: Int, bidirectional: Bool = true) {
         for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
             edges[from].remove(at: i)
         }
@@ -349,17 +352,17 @@ extension Graph {
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func remove(from: V, to: V, bidirectional: Bool = true) {
+    public mutating func unedge(_ from: V, to: V, bidirectional: Bool = true) {
         if let u = index(of: from) {
             if let v = index(of: to) {
-                return remove(from: u, to: v, bidirectional: bidirectional)
+                return unedge(u, to: v, bidirectional: bidirectional)
             }
         }
     }
 }
 
 extension Graph where Self: AnyObject {
-    // See `_addEdge`
+    // See `_add(:to:)`
     /// Add an edge to the graph.
     ///
     /// - parameter e: The edge to add.
