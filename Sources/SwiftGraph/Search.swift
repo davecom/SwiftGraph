@@ -16,32 +16,29 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// Functions for searching a graph & utility functions for supporting them
+// MARK: Depth-First Search
 
-// MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
-
-public extension Graph {
-
-    /// Find a route from a vertex to the first that satisfies goalTest()
+extension Graph {
+    /// Find a route from a vertex to the first that satisfies test()
     /// using a depth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
-    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - parameter test: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, goalTest: (V) -> Bool) -> [Edge] {
+    public func dfs(from: Int, until test: (V) -> Bool) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let stack: Stack<Int> = Stack<Int>()
-        var path: [Int: Edge] = [Int: Edge]()
+        var path: [Int: E] = [Int: E]()
         stack.push(from)
         while !stack.isEmpty {
             let to: Int = stack.pop()
-            if goalTest(vertexAtIndex(to)) {
+            if test(vertex(at: to)) {
                 // figure out route of edges based on path
                 return route(from, to, in: path)
             }
             visited[to] = true
-            for e in edgesForIndex(to) where !visited[e.v] {
+            for e in edges(for: to) where !visited[e.v] {
                 stack.push(e.v)
                 path[e.v] = e
             }
@@ -49,17 +46,15 @@ public extension Graph {
         return [] // no route found
     }
 
-    /// Find a route from a vertex to the first that satisfies goalTest()
+    /// Find a route from a vertex to the first that satisfies test()
     /// using a depth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
-    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - parameter test: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: V, goalTest: (V) -> Bool) -> [Edge] {
-        if let u = indexOfVertex(from) {
-            return dfs(from: u, goalTest: goalTest)
-        }
-        return []
+    public func dfs(from: V, until test: (V) -> Bool) -> [E] {
+        guard let u = index(of: from) else { return [] }
+        return dfs(from: u, until: test)
     }
 
     /// Find a route from one vertex to another using a depth-first search.
@@ -67,11 +62,11 @@ public extension Graph {
     /// - parameter from: The index of the starting vertex.
     /// - parameter to: The index of the ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, to: Int) -> [Edge] {
+    public func dfs(from: Int, to: Int) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let stack: Stack<Int> = Stack<Int>()
-        var path: [Int: Edge] = [Int: Edge]()
+        var path: [Int: E] = [Int: E]()
         stack.push(from)
         while !stack.isEmpty {
             let v: Int = stack.pop()
@@ -80,7 +75,7 @@ public extension Graph {
                 return route(from, to, in: path)
             }
             visited[v] = true
-            for e in edgesForIndex(v) where !visited[e.v] {
+            for e in edges(for: v) where !visited[e.v] {
                 stack.push(e.v)
                 path[e.v] = e
             }
@@ -93,35 +88,35 @@ public extension Graph {
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: V, to: V) -> [Edge] {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return dfs(from: u, to: v)
-            }
-        }
-        return []
+    public func dfs(from: V, to: V) -> [E] {
+        guard let (u, v) = indices(of: from, to) else { return [] }
+        return dfs(from: u, to: v)
     }
+}
 
-    /// Find a route from a vertex to the first that satisfies goalTest()
+// MARK: Breadth-First Search
+
+extension Graph {
+    /// Find a route from a vertex to the first that satisfies test()
     /// using a breadth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
-    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - parameter test: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: Int, goalTest: (V) -> Bool) -> [Edge] {
+    public func bfs(from: Int, until test: (V) -> Bool) -> [E] {
         // pretty standard bfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var path: [Int: Edge] = [Int: Edge]()
+        var path: [Int: E] = [Int: E]()
         queue.push(from)
         while !queue.isEmpty {
             let to: Int = queue.pop()
-            if goalTest(vertexAtIndex(to)) {
+            if test(vertex(at: to)) {
                 // figure out route of edges based on path
                 return route(from, to, in: path)
             }
 
-            for e in edgesForIndex(to) where !visited[e.v] {
+            for e in edges(for: to) where !visited[e.v] {
                 visited[e.v] = true
                 queue.push(e.v)
                 path[e.v] = e
@@ -130,17 +125,15 @@ public extension Graph {
         return [] // no path found
     }
 
-    /// Find a route from a vertex to the first that satisfies goalTest()
+    /// Find a route from a vertex to the first that satisfies test()
     /// using a breadth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
-    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - parameter test: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: V, goalTest: (V) -> Bool) -> [Edge] {
-        if let u = indexOfVertex(from) {
-            return bfs(from: u, goalTest: goalTest)
-        }
-        return []
+    public func bfs(from: V, until test: (V) -> Bool) -> [E] {
+        guard let u = index(of: from) else { return [] }
+        return bfs(from: u, until: test)
     }
 
     /// Find a route from one vertex to another using a breadth-first search.
@@ -148,11 +141,11 @@ public extension Graph {
     /// - parameter from: The index of the starting vertex.
     /// - parameter to: The index of the ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: Int, to: Int) -> [Edge] {
+    public func bfs(from: Int, to: Int) -> [E] {
         // pretty standard bfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var path: [Int: Edge] = [Int: Edge]()
+        var path: [Int: E] = [Int: E]()
         queue.push(from)
         while !queue.isEmpty {
             let v: Int = queue.pop()
@@ -161,7 +154,7 @@ public extension Graph {
                 return route(from, to, in: path)
             }
 
-            for e in edgesForIndex(v) where !visited[e.v] {
+            for e in edges(for: v) where !visited[e.v] {
                 visited[e.v] = true
                 queue.push(e.v)
                 path[e.v] = e
@@ -175,36 +168,36 @@ public extension Graph {
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: V, to: V) -> [Edge] {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return bfs(from: u, to: v)
-            }
-        }
-        return []
+    public func bfs(from: V, to: V) -> [E] {
+        guard let (u, v) = indices(of: from, to) else { return [] }
+        return bfs(from: u, to: v)
     }
+}
 
+// MARK: Route Search
+
+extension Graph {
     /// Find path routes from a vertex to all others the
-    /// function goalTest() returns true for using a breadth-first search.
+    /// function test() returns true for using a breadth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
-    /// - parameter goalTest: Returns true if a given vertex is a goal.
-    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be found
-    public func findAll(from: Int, goalTest: (V) -> Bool) -> [[Edge]] {
+    /// - parameter test: Returns true if a given vertex is a goal.
+    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing test(), or an empty array if no routes could be found
+    public func routes(from: Int, until test: (V) -> Bool) -> [[E]] {
         // pretty standard bfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var path: [Int: Edge] = [Int: Edge]()
-        var paths: [[Edge]] = [[Edge]]()
+        var path: [Int: E] = [Int: E]()
+        var paths: [[E]] = [[E]]()
         queue.push(from)
         while !queue.isEmpty {
             let to: Int = queue.pop()
-            if goalTest(vertexAtIndex(to)) {
+            if test(vertex(at: to)) {
                 // figure out route of edges based on path
                 paths.append(route(from, to, in: path))
             }
 
-            for e in edgesForIndex(to) where !visited[e.v] {
+            for e in edges(for: to) where !visited[e.v] {
                 visited[e.v] = true
                 queue.push(e.v)
                 path[e.v] = e
@@ -214,39 +207,56 @@ public extension Graph {
     }
 
     /// Find path routes from a vertex to all others the
-    /// function goalTest() returns true for using a breadth-first search.
+    /// function test() returns true for using a breadth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
-    /// - parameter goalTest: Returns true if a given vertex is a goal.
-    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be founding the entire route, or an empty array if no route could be found
-    public func findAll(from: V, goalTest: (V) -> Bool) -> [[Edge]] {
-        if let u = indexOfVertex(from) {
-            return findAll(from: u, goalTest: goalTest)
-        }
-        return []
+    /// - parameter test: Returns true if a given vertex is a goal.
+    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing test(), or an empty array if no routes could be founding the entire route, or an empty array if no route could be found
+    public func routes(from: V, until test: (V) -> Bool) -> [[E]] {
+        guard let u = index(of: from) else { return [] }
+        return routes(from: u, until: test)
     }
 }
 
-// MARK: `WeightedGraph` extension for doing dijkstra
+extension Graph {
+    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
+    public func route(from: V, to: V, in path: [Int: E]) -> [E] {
+        guard !path.isEmpty, let from = index(of: from), let to = index(of: to) else { return [] }
+        return route(from, to, in: path)
+    }
+
+    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
+    public func route(_ from: Int, _ to: Int, in path: [Int: E]) -> [E] {
+        guard !path.isEmpty else { return [] }
+        var edgePath: [E] = [E]()
+        var e: E = path[to]!
+        edgePath.append(e)
+        while e.u != from {
+            e = path[e.u]!
+            edgePath.append(e)
+        }
+        return Array(edgePath.reversed())
+    }
+}
+
+// MARK: Dijkstra Algorithm
 
 public extension WeightedGraph {
-
     /// Finds the shortest paths from some route vertex to every other vertex in the graph.
     ///
-    /// - parameter graph: The WeightedGraph to look within.
     /// - parameter root: The index of the root node to build the shortest paths from.
     /// - parameter startDistance: The distance to get to the root node (typically 0).
-    /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use the function pathToPath() to convert the dictionary into something useful for a specific point.
-    public func dijkstra(root: Int, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
+    /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
+    public func dijkstra(root: Int, start distance: W) -> ([W?], [Int: E]) {
         var distances: [W?] = [W?](repeating: nil, count: vertexCount) // how far each vertex is from start
-        distances[root] = startDistance // the start vertex is startDistance away
+        distances[root] = distance // the start vertex is startDistance away
         var pq: PriorityQueue<DijkstraNode<W>> = PriorityQueue<DijkstraNode<W>>(ascending: true)
-        var path: [Int: WeightedEdge<W>] = [Int: WeightedEdge<W>]() // how we got to each vertex
-        pq.push(DijkstraNode(vertex: root, distance: startDistance))
+        var path: [Int: E] = [Int: E]() // how we got to each vertex
+        pq.push(DijkstraNode(vertex: root, distance: distance))
 
         while let u = pq.pop()?.vertex { // explore the next closest vertex
             guard let distU = distances[u] else { continue } // should already have seen it
-            for we in edgesForIndex(u) as! [WeightedEdge<W>] { // look at every edge/vertex from the vertex in question
+            for we in edges(for: u) { // look at every edge/vertex from the vertex in question
                 let distV = distances[we.v] // the old distance to this vertex
                 if distV == nil || distV! > we.weight + distU { // if we have no old distance or we found a shorter path
                     distances[we.v] = we.weight + distU // update the distance to this vertex
@@ -259,20 +269,50 @@ public extension WeightedGraph {
         return (distances, path)
     }
 
-    /// A convenience version of dijkstra() that allows the supply of the root
-    /// vertex instead of the index of the root vertex.
-    public func dijkstra(root: T, startDistance: W) -> ([W?], [Int: WeightedEdge<W>]) {
-        if let u = indexOfVertex(root) {
-            return dijkstra(root: u, startDistance: startDistance)
+    /// Finds the shortest paths from some route vertex to every other vertex in the graph.
+    ///
+    /// A convenience version that allows the supply of the root vertex instead of the index
+    /// of the root vertex.
+    ///
+    /// - parameter root: The vertex to build the shortest paths from.
+    /// - parameter startDistance: The distance to get to the root node (typically 0).
+    /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each vertex. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
+    public func dijkstra(root: V, start distance: W) -> ([W?], [Int: E]) {
+        guard let u = index(of: root) else { return ([], [:]) }
+        return dijkstra(root: u, start: distance)
+    }
+
+    /// Finds the shortest paths from some route vertex to every other vertex in the graph.
+    ///
+    /// A convenience version that returns a dictionary with the vertex and the distance.
+    ///
+    /// - parameter root: The index of the root node to build the shortest paths from.
+    /// - parameter startDistance: The distance to get to the root node (typically 0).
+    /// - returns: Returns a tuple of two things: the first, a dictionary containing the distances associated with the vertices, the second, a dictionary containing the edge to reach each vertex. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
+    public func dijkstra(root: Int, start distance: W) -> ([V: W?], [Int: E]) {
+        let (distances, edges): ([W?], [Int: E]) = dijkstra(root: root, start: distance)
+        var distance: [V: W?] = .init()
+        for i in 0 ..< distances.count {
+            distance[vertex(at: i)] = distances[i]
         }
-        return ([], [:])
+        return (distance, edges)
+    }
+
+    /// Finds the shortest paths from some route vertex to every other vertex in the graph.
+    ///
+    /// A convenience version that returns a dictionary with the vertex and the distance,
+    /// starting from a vertex instead of an index.
+    ///
+    /// - parameter root: The vertex to build the shortest paths from.
+    /// - parameter startDistance: The distance to get to the root node (typically 0).
+    /// - returns: Returns a tuple of two things: the first, a dictionary containing the distances associated with the vertices, the second, a dictionary containing the edge to reach each vertex. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
+    public func dijkstra(root: V, start distance: W) -> ([V: W?], [Int: E]) {
+        guard let u = index(of: root) else { return ([:], [:]) }
+        return dijkstra(root: u, start: distance)
     }
 }
 
-// MARK: Dijkstra Utilites
-
-/// Represents a node in the priority queue used
-/// for selecting the next
+/// Represents a node in the priority queue used for selecting the next
 struct DijkstraNode<D: Comparable>: Comparable, Equatable {
     let vertex: Int
     let distance: D
@@ -286,85 +326,19 @@ struct DijkstraNode<D: Comparable>: Comparable, Equatable {
     }
 }
 
-public extension WeightedGraph {
-    /// Get easier access to Dijkstra results.
-    public func distanceArrayToVertexDict(distances: [W?]) -> [T: W?] {
-        var distanceDict: [T: W?] = .init()
-        for i in 0 ..< distances.count {
-            distanceDict[vertexAtIndex(i)] = distances[i]
-        }
-        return distanceDict
-    }
-}
+// MARK: Search Utilities
 
-public extension Graph {
+extension Graph {
     /// Takes an array of `Edge`s and converts it to an ordered list of vertices.
     ///
     /// - parameter edges: Array of edges to convert.
     /// - returns: An array of vertices from the graph.
-    public func edgesToVertices(edges: [Edge]) -> [V] {
+    public func vertices(from edges: [E]) -> [V] {
         var vs: [V] = [V]()
         if let first = edges.first {
-            vs.append(vertexAtIndex(first.u))
-            vs += edges.map { vertexAtIndex($0.v) }
+            vs.append(vertex(at: first.u))
+            vs += edges.map { vertex(at: $0.v) }
         }
         return vs
-    }
-}
-
-public extension WeightedGraph {
-    /// Takes an array of `WeightedEdge`s and converts it to an ordered list of vertices.
-    ///
-    /// - parameter edges: Array of weighted edges to convert.
-    /// - returns: An array of vertices from the graph.
-    public func edgesToVertices(edges: [WeightedEdge<W>]) -> [T] {
-        var vs: [T] = [T]()
-        if let first = edges.first {
-            vs.append(vertexAtIndex(first.u))
-            vs += edges.map { vertexAtIndex($0.v) }
-        }
-        return vs
-    }
-}
-
-public extension Graph {
-    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
-    public func route(from: V, to: V, in path: [Int: Edge]) -> [Edge] {
-        guard !path.isEmpty, let from = indexOfVertex(from), let to = indexOfVertex(to) else { return [] }
-        return route(from, to, in: path)
-    }
-
-    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
-    public func route(_ from: Int, _ to: Int, in path: [Int: Edge]) -> [Edge] {
-        guard !path.isEmpty else { return [] }
-        var edgePath: [Edge] = [Edge]()
-        var e: Edge = path[to]!
-        edgePath.append(e)
-        while e.u != from {
-            e = path[e.u]!
-            edgePath.append(e)
-        }
-        return Array(edgePath.reversed())
-    }
-}
-
-public extension WeightedGraph {
-    /// Takes a dictionary of `WeightedEdge` to reach each node and returns an array of edges that goes from `from` to `to`.
-    public func route(from: T, to: T, in path: [Int: WeightedEdge<W>]) -> [WeightedEdge<W>] {
-        guard !path.isEmpty, let from = indexOfVertex(from), let to = indexOfVertex(to) else { return [] }
-        return route(from, to, in: path)
-    }
-
-    /// Takes a dictionary of `WeightedEdge` to reach each node and returns an array of edges that goes from `from` to `to`.
-    public func route(_ from: Int, _ to: Int, in path: [Int: WeightedEdge<W>]) -> [WeightedEdge<W>] {
-        guard !path.isEmpty else { return [] }
-        var edgePath: [WeightedEdge<W>] = [WeightedEdge<W>]()
-        var e: WeightedEdge<W> = path[to]!
-        edgePath.append(e)
-        while e.u != from {
-            e = path[e.u]!
-            edgePath.append(e)
-        }
-        return Array(edgePath.reversed())
     }
 }
