@@ -22,7 +22,7 @@
 import AppKit
 import Cocoa
 import QuartzCore
-import SwiftGraph
+@testable import SwiftGraph // @testable because we are leveraging internal classes that implement the protocols
 
 class NineTailView: NSView {
     var position: NineTailPosition = NineTailPosition(matrix: [[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]) {
@@ -97,7 +97,7 @@ enum Coin: String {
     }
 }
 
-struct NineTailPosition: Equatable {
+struct NineTailPosition: Hashable {
     fileprivate var positionMatrix: [[Coin]]
     init(matrix: [[Coin]]) {
         positionMatrix = matrix
@@ -119,6 +119,10 @@ struct NineTailPosition: Equatable {
         newPosition.flipHelper(row, column: column - 1)
         return newPosition
     }
+
+    var hashValue: Int {
+        return positionMatrix.joined().reduce(0) { $0 + $1.hashValue }
+    }
 }
 
 func == (lhs: NineTailPosition, rhs: NineTailPosition) -> Bool {
@@ -135,18 +139,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet var window: NSWindow!
     @IBOutlet var ntView: NineTailView!
-    let ntGraph: UnweightedGraph<NineTailPosition> = UnweightedGraph<NineTailPosition>()
+    var ntGraph: _UnweightedGraph<NineTailPosition> = _UnweightedGraph<NineTailPosition>()
     var path: [NineTailPosition] = [NineTailPosition]()
     var timer: Timer?
 
     func addPositionAndChildren(_ position: NineTailPosition, parent: Int) {
-        let index: Int? = ntGraph.indexOfVertex(position)
+        let index: Int? = ntGraph.index(of: position)
         if let place = index {
-            ntGraph.addEdge(from: parent, to: place, directed: true)
+            ntGraph.edge(parent, to: place, directed: true)
         } else {
-            let child: Int = ntGraph.addVertex(position)
+            ntGraph.add(vertex: position)
+            let child: Int = ntGraph.index(of: position)!
             if parent != -1 {
-                ntGraph.addEdge(from: parent, to: child, directed: true)
+                ntGraph.edge(parent, to: child, directed: true)
             }
             for i in 0 ..< 3 {
                 for j in 0 ..< 3 {
@@ -174,7 +179,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func solve(_: AnyObject) {
         let temp = ntGraph.bfs(from: ntView.position, to: NineTailPosition(matrix: [[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]))
-        path = edgesToVertices(edges: temp, graph: ntGraph)
+        path = ntGraph.vertices(from: temp)
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(AppDelegate.timerFire(_:)), userInfo: nil, repeats: true)
     }
 
