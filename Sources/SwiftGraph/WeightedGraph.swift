@@ -19,7 +19,7 @@
 /// A graph with `WeightedEdge`.
 ///
 /// - Note:
-/// Types who conform to `UnweightedGraph` must implement the `addEdge` requirements
+/// Types who conform to `UnweightedGraph` must implement the `edge(from:to:directed:weight:)` requirements
 /// while maintaining the expected logic, given that they are convenience methods.
 /// Follow the notes in the respective methods.
 ///
@@ -38,7 +38,7 @@ public protocol WeightedGraph: Graph where E: WeightedEdge {
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
-    mutating func addEdge(from: Int, to: Int, directed: Bool, weight: W)
+    mutating func edge(_ from: Int, to: Int, directed: Bool, weight: W)
 
     /// This is a convenience method that adds a weighted edge between
     /// the first occurence of two vertices. O(n).
@@ -50,7 +50,7 @@ public protocol WeightedGraph: Graph where E: WeightedEdge {
     /// - parameter to: The ending vertex.
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
-    mutating func addEdge(from: V, to: V, directed: Bool, weight: W)
+    mutating func edge(_ from: V, to: V, directed: Bool, weight: W)
 
     // MARK: Find
 
