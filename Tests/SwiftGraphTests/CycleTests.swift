@@ -20,8 +20,8 @@
 import XCTest
 
 class CycleTests: XCTestCase {
-    let simpleGraph: UnweightedGraphTest<String> = UnweightedGraphTest<String>(vertices: ["A", "B", "C", "D"])
-    let fullyConnected: UnweightedGraphTest<String> = UnweightedGraphTest<String>(vertices: ["A", "B", "C", "D", "E"])
+    let simpleGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["A", "B", "C", "D"])
+    let fullyConnected: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["A", "B", "C", "D", "E"])
 
     override func setUp() {
         super.setUp()
@@ -29,17 +29,17 @@ class CycleTests: XCTestCase {
         // setup a graph with 5 fully connected vertices
         for from in 0 ..< fullyConnected.vertexCount {
             for to in (from + 1) ..< fullyConnected.vertexCount {
-                fullyConnected.addEdge(from: from, to: to)
+                fullyConnected.edge(from, to: to)
             }
         }
 
         // simple graph with easy known cycles
-        simpleGraph.addEdge(from: "A", to: "B", directed: true)
-        simpleGraph.addEdge(from: "B", to: "D", directed: true)
-        simpleGraph.addEdge(from: "A", to: "D", directed: true)
-        simpleGraph.addEdge(from: "D", to: "C", directed: true)
-        simpleGraph.addEdge(from: "C", to: "A", directed: true)
-        simpleGraph.addEdge(from: "C", to: "B", directed: true)
+        simpleGraph.edge("A", to: "B", directed: true)
+        simpleGraph.edge("B", to: "D", directed: true)
+        simpleGraph.edge("A", to: "D", directed: true)
+        simpleGraph.edge("D", to: "C", directed: true)
+        simpleGraph.edge("C", to: "A", directed: true)
+        simpleGraph.edge("C", to: "B", directed: true)
     }
 
     override func tearDown() {
@@ -55,7 +55,7 @@ class CycleTests: XCTestCase {
 
     func testFullyConnectedEdges() {
         // check it has 84 cycles
-        let cycles: [[UnweightedEdgeTest]] = fullyConnected.cycles()
+        let cycles: [[_UnweightedEdge]] = fullyConnected.cycles()
         XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 vertex graph.")
     }
 
@@ -78,7 +78,7 @@ class CycleTests: XCTestCase {
             [(1, 3), (3, 2), (2, 1)],
         ]
 
-        let detectedEdgeCycles: [[UnweightedEdgeTest]] = simpleGraph.cycles()
+        let detectedEdgeCycles: [[_UnweightedEdge]] = simpleGraph.cycles()
 
         print(detectedEdgeCycles)
 

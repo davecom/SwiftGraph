@@ -32,19 +32,19 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testCitesInverseAfterRemove() {
-        var g: UnweightedGraphTest<String> = UnweightedGraphTest<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(vertex: "Atlanta")
         g.add(vertex: "New York")
         g.add(vertex: "Miami")
-        g.addEdge(from: "Atlanta", to: "New York")
-        g.addEdge(from: "Miami", to: "Atlanta")
-        g.addEdge(from: "New York", to: "Miami")
+        g.edge("Atlanta", to: "New York")
+        g.edge("Miami", to: "Atlanta")
+        g.edge("New York", to: "Miami")
         g.remove(vertex: "Atlanta")
         XCTAssertEqual(g.neighbors(for: "Miami")!, g.neighbors(for: g.neighbors(for: "New York")![0])!, "Miami and New York Connected bi-directionally")
     }
 
     func testSequenceTypeAndCollectionType() {
-        var g: UnweightedGraphTest<String> = UnweightedGraphTest<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(vertex: "Atlanta")
         g.add(vertex: "New York")
         g.add(vertex: "Miami")
@@ -57,14 +57,14 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testCounts() {
-        var g: UnweightedGraphTest<String> = UnweightedGraphTest<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(vertex: "Atlanta")
         g.add(vertex: "New York")
         g.add(vertex: "Miami")
-        g.addEdge(from: "Atlanta", to: "New York", directed: true)
-        g.addEdge(from: "Miami", to: "Atlanta", directed: true)
-        g.addEdge(from: "New York", to: "Miami", directed: true)
-        g.addEdge(from: "Atlanta", to: "Miami", directed: true)
+        g.edge("Atlanta", to: "New York", directed: true)
+        g.edge("Miami", to: "Atlanta", directed: true)
+        g.edge("New York", to: "Miami", directed: true)
+        g.edge("Atlanta", to: "Miami", directed: true)
         XCTAssertEqual(g.vertexCount, 3, "3 total vertices")
         XCTAssertEqual(g.edgeCount, 4, "4 total edges")
         g.remove(vertex: "Atlanta")
@@ -73,7 +73,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testSubscript() {
-        var g: UnweightedGraphTest<String> = UnweightedGraphTest<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(vertex: "Atlanta")
         g.add(vertex: "New York")
         g.add(vertex: "Miami")
@@ -82,14 +82,14 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testRemoveAllEdges() {
-        var graph = UnweightedGraphTest(vertices: ["0", "1", "2", "3", "4", "5", "6"])
-        graph.addEdge(from: "0", to: "1", directed: false)
-        graph.addEdge(from: "1", to: "2", directed: false)
-        graph.addEdge(from: "2", to: "3", directed: false)
-        graph.addEdge(from: "3", to: "2", directed: false)
-        graph.addEdge(from: "3", to: "4", directed: false)
-        graph.addEdge(from: "4", to: "5", directed: false)
-        graph.remove(from: 2, to: 3, bidirectional: true)
+        var graph = _UnweightedGraph(vertices: ["0", "1", "2", "3", "4", "5", "6"])
+        graph.edge("0", to: "1", directed: false)
+        graph.edge("1", to: "2", directed: false)
+        graph.edge("2", to: "3", directed: false)
+        graph.edge("3", to: "2", directed: false)
+        graph.edge("3", to: "4", directed: false)
+        graph.edge("4", to: "5", directed: false)
+        graph.unedge(2, to: 3, bidirectional: true)
         XCTAssertFalse(graph.edged(from: 2, to: 3))
         XCTAssertFalse(graph.edged(from: 3, to: 2))
     }

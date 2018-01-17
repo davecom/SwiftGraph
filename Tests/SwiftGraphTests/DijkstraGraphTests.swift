@@ -21,66 +21,66 @@ import XCTest
 
 class DijkstraGraphTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: WeightedGraphTest<String, Int> = WeightedGraphTest<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    let cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: WeightedGraphTest<String, Int> = WeightedGraphTest<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         // pg 1062 Liang
-        cityGraph.addEdge(from: "Seattle", to: "Chicago", weight: 2097)
-        cityGraph.addEdge(from: "Seattle", to: "Denver", weight: 1331)
-        cityGraph.addEdge(from: "Seattle", to: "San Francisco", weight: 807)
-        cityGraph.addEdge(from: "San Francisco", to: "Denver", weight: 1267)
-        cityGraph.addEdge(from: "San Francisco", to: "Los Angeles", weight: 381)
-        cityGraph.addEdge(from: "Los Angeles", to: "Denver", weight: 1015)
-        cityGraph.addEdge(from: "Los Angeles", to: "Kansas City", weight: 1663)
-        cityGraph.addEdge(from: "Los Angeles", to: "Dallas", weight: 1435)
-        cityGraph.addEdge(from: "Denver", to: "Chicago", weight: 1003)
-        cityGraph.addEdge(from: "Denver", to: "Kansas City", weight: 599)
-        cityGraph.addEdge(from: "Kansas City", to: "Chicago", weight: 533)
-        cityGraph.addEdge(from: "Kansas City", to: "New York", weight: 1260)
-        cityGraph.addEdge(from: "Kansas City", to: "Atlanta", weight: 864)
-        cityGraph.addEdge(from: "Kansas City", to: "Dallas", weight: 496)
-        cityGraph.addEdge(from: "Chicago", to: "Boston", weight: 983)
-        cityGraph.addEdge(from: "Chicago", to: "New York", weight: 787)
-        cityGraph.addEdge(from: "Boston", to: "New York", weight: 214)
-        cityGraph.addEdge(from: "Atlanta", to: "New York", weight: 888)
-        cityGraph.addEdge(from: "Atlanta", to: "Dallas", weight: 781)
-        cityGraph.addEdge(from: "Atlanta", to: "Houston", weight: 810)
-        cityGraph.addEdge(from: "Atlanta", to: "Miami", weight: 661)
-        cityGraph.addEdge(from: "Houston", to: "Miami", weight: 1187)
-        cityGraph.addEdge(from: "Houston", to: "Dallas", weight: 239)
+        cityGraph.edge("Seattle", to: "Chicago", weight: 2097)
+        cityGraph.edge("Seattle", to: "Denver", weight: 1331)
+        cityGraph.edge("Seattle", to: "San Francisco", weight: 807)
+        cityGraph.edge("San Francisco", to: "Denver", weight: 1267)
+        cityGraph.edge("San Francisco", to: "Los Angeles", weight: 381)
+        cityGraph.edge("Los Angeles", to: "Denver", weight: 1015)
+        cityGraph.edge("Los Angeles", to: "Kansas City", weight: 1663)
+        cityGraph.edge("Los Angeles", to: "Dallas", weight: 1435)
+        cityGraph.edge("Denver", to: "Chicago", weight: 1003)
+        cityGraph.edge("Denver", to: "Kansas City", weight: 599)
+        cityGraph.edge("Kansas City", to: "Chicago", weight: 533)
+        cityGraph.edge("Kansas City", to: "New York", weight: 1260)
+        cityGraph.edge("Kansas City", to: "Atlanta", weight: 864)
+        cityGraph.edge("Kansas City", to: "Dallas", weight: 496)
+        cityGraph.edge("Chicago", to: "Boston", weight: 983)
+        cityGraph.edge("Chicago", to: "New York", weight: 787)
+        cityGraph.edge("Boston", to: "New York", weight: 214)
+        cityGraph.edge("Atlanta", to: "New York", weight: 888)
+        cityGraph.edge("Atlanta", to: "Dallas", weight: 781)
+        cityGraph.edge("Atlanta", to: "Houston", weight: 810)
+        cityGraph.edge("Atlanta", to: "Miami", weight: 661)
+        cityGraph.edge("Houston", to: "Miami", weight: 1187)
+        cityGraph.edge("Houston", to: "Dallas", weight: 239)
         print(cityGraph.description)
 
-        cityGraph2.addEdge(from: "Seattle", to: "Chicago", weight: 1737)
-        cityGraph2.addEdge(from: "Seattle", to: "San Francisco", weight: 678)
-        cityGraph2.addEdge(from: "San Francisco", to: "Riverside", weight: 386)
-        cityGraph2.addEdge(from: "San Francisco", to: "Los Angeles", weight: 348)
-        cityGraph2.addEdge(from: "Los Angeles", to: "Riverside", weight: 50)
-        cityGraph2.addEdge(from: "Los Angeles", to: "Phoenix", weight: 357)
-        cityGraph2.addEdge(from: "Riverside", to: "Phoenix", weight: 307)
-        cityGraph2.addEdge(from: "Riverside", to: "Chicago", weight: 1704)
-        cityGraph2.addEdge(from: "Phoenix", to: "Dallas", weight: 887)
-        cityGraph2.addEdge(from: "Phoenix", to: "Houston", weight: 1015)
-        cityGraph2.addEdge(from: "Dallas", to: "Chicago", weight: 805)
-        cityGraph2.addEdge(from: "Dallas", to: "Atlanta", weight: 721)
-        cityGraph2.addEdge(from: "Dallas", to: "Houston", weight: 225)
-        cityGraph2.addEdge(from: "Houston", to: "Atlanta", weight: 702)
-        cityGraph2.addEdge(from: "Houston", to: "Miami", weight: 968)
-        cityGraph2.addEdge(from: "Atlanta", to: "Chicago", weight: 588)
-        cityGraph2.addEdge(from: "Atlanta", to: "Washington", weight: 543)
-        cityGraph2.addEdge(from: "Atlanta", to: "Miami", weight: 604)
-        cityGraph2.addEdge(from: "Miami", to: "Washington", weight: 923)
-        cityGraph2.addEdge(from: "Chicago", to: "Detroit", weight: 238)
-        cityGraph2.addEdge(from: "Detroit", to: "Boston", weight: 613)
-        cityGraph2.addEdge(from: "Detroit", to: "Washington", weight: 396)
-        cityGraph2.addEdge(from: "Detroit", to: "New York", weight: 482)
-        cityGraph2.addEdge(from: "Boston", to: "New York", weight: 190)
-        cityGraph2.addEdge(from: "New York", to: "Philadelphia", weight: 81)
-        cityGraph2.addEdge(from: "Philadelphia", to: "Washington", weight: 123)
+        cityGraph2.edge("Seattle", to: "Chicago", weight: 1737)
+        cityGraph2.edge("Seattle", to: "San Francisco", weight: 678)
+        cityGraph2.edge("San Francisco", to: "Riverside", weight: 386)
+        cityGraph2.edge("San Francisco", to: "Los Angeles", weight: 348)
+        cityGraph2.edge("Los Angeles", to: "Riverside", weight: 50)
+        cityGraph2.edge("Los Angeles", to: "Phoenix", weight: 357)
+        cityGraph2.edge("Riverside", to: "Phoenix", weight: 307)
+        cityGraph2.edge("Riverside", to: "Chicago", weight: 1704)
+        cityGraph2.edge("Phoenix", to: "Dallas", weight: 887)
+        cityGraph2.edge("Phoenix", to: "Houston", weight: 1015)
+        cityGraph2.edge("Dallas", to: "Chicago", weight: 805)
+        cityGraph2.edge("Dallas", to: "Atlanta", weight: 721)
+        cityGraph2.edge("Dallas", to: "Houston", weight: 225)
+        cityGraph2.edge("Houston", to: "Atlanta", weight: 702)
+        cityGraph2.edge("Houston", to: "Miami", weight: 968)
+        cityGraph2.edge("Atlanta", to: "Chicago", weight: 588)
+        cityGraph2.edge("Atlanta", to: "Washington", weight: 543)
+        cityGraph2.edge("Atlanta", to: "Miami", weight: 604)
+        cityGraph2.edge("Miami", to: "Washington", weight: 923)
+        cityGraph2.edge("Chicago", to: "Detroit", weight: 238)
+        cityGraph2.edge("Detroit", to: "Boston", weight: 613)
+        cityGraph2.edge("Detroit", to: "Washington", weight: 396)
+        cityGraph2.edge("Detroit", to: "New York", weight: 482)
+        cityGraph2.edge("Boston", to: "New York", weight: 190)
+        cityGraph2.edge("New York", to: "Philadelphia", weight: 81)
+        cityGraph2.edge("Philadelphia", to: "Washington", weight: 123)
         print(cityGraph2.description)
     }
 
@@ -91,7 +91,7 @@ class DijkstraGraphTests: XCTestCase {
 
     func testDijkstra1() {
         // Seattle -> Miami
-        let (nameDistance, path): ([String: Int?], [Int: WeightedEdgeTest<Int>]) = cityGraph.dijkstra(root: "New York", start: 0)
+        let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph.dijkstra(root: "New York", start: 0)
         XCTAssertFalse(nameDistance.isEmpty, "Dijkstra result set is empty.")
 
         if let temp = nameDistance["San Francisco"] {
@@ -154,7 +154,7 @@ class DijkstraGraphTests: XCTestCase {
         }
 
         // path between New York and San Francisco
-        let edges: [WeightedEdgeTest<Int>] = cityGraph.route(from: "New York", to: "San Francisco", in: path)
+        let edges: [_WeightedEdge<Int>] = cityGraph.route(from: "New York", to: "San Francisco", in: path)
         let stops: [String] = cityGraph.vertices(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["New York", "Chicago", "Denver", "San Francisco"], "Atlanta should be 888 miles away.")
@@ -162,7 +162,7 @@ class DijkstraGraphTests: XCTestCase {
     }
 
     func testDijkstra2() {
-        let (nameDistance, path): ([String: Int?], [Int: WeightedEdgeTest<Int>]) = cityGraph.dijkstra(root: "Miami", start: 0)
+        let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph.dijkstra(root: "Miami", start: 0)
         XCTAssertFalse(nameDistance.isEmpty, "Dijkstra result set is empty.")
 
         if let temp = nameDistance["Seattle"] {
@@ -190,7 +190,7 @@ class DijkstraGraphTests: XCTestCase {
         }
 
         // path between New York and Seattle
-        let edges: [WeightedEdgeTest<Int>] = cityGraph.route(from: "Miami", to: "San Francisco", in: path)
+        let edges: [_WeightedEdge<Int>] = cityGraph.route(from: "Miami", to: "San Francisco", in: path)
         let stops: [String] = cityGraph.vertices(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Dallas", "Los Angeles", "San Francisco"], "Shortest path to San Francisco is not right.")
@@ -198,7 +198,7 @@ class DijkstraGraphTests: XCTestCase {
     }
 
     func testDijkstra3() {
-        let (nameDistance, path): ([String: Int?], [Int: WeightedEdgeTest<Int>]) = cityGraph2.dijkstra(root: "Miami", start: 0)
+        let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph2.dijkstra(root: "Miami", start: 0)
         XCTAssertFalse(nameDistance.isEmpty, "Dijkstra result set is empty.")
 
         if let temp = nameDistance["Seattle"] {
@@ -226,7 +226,7 @@ class DijkstraGraphTests: XCTestCase {
         }
 
         // path between New York and Seattle
-        let edges: [WeightedEdgeTest<Int>] = cityGraph2.route(from: "Miami", to: "San Francisco", in: path)
+        let edges: [_WeightedEdge<Int>] = cityGraph2.route(from: "Miami", to: "San Francisco", in: path)
         let stops: [String] = cityGraph2.vertices(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Phoenix", "Riverside", "San Francisco"], "Shortest path to San Francisco is not right.")
@@ -236,13 +236,13 @@ class DijkstraGraphTests: XCTestCase {
     func testRemovalWithDijkstra() {
         var cityGraph3 = cityGraph
         cityGraph3.remove(vertex: "Kansas City")
-        let (nameDistance, path): ([String: Int?], [Int: WeightedEdgeTest<Int>]) = cityGraph3.dijkstra(root: "Miami", start: 0)
+        let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph3.dijkstra(root: "Miami", start: 0)
 
         for (key, value) in nameDistance {
             print("\(key) : \(String(describing: value))")
         }
 
-        let edges: [WeightedEdgeTest<Int>] = cityGraph3.route(from: "Miami", to: "Chicago", in: path)
+        let edges: [_WeightedEdge<Int>] = cityGraph3.route(from: "Miami", to: "Chicago", in: path)
         let stops: [String] = cityGraph3.vertices(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Atlanta", "New York", "Chicago"], "Shortest path to Chicago is not right.")

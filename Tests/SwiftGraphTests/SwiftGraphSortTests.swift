@@ -21,21 +21,21 @@ import XCTest
 
 class SwiftGraphSortTests: XCTestCase {
     // pg 1016 Liang
-    let dressDAG: UnweightedGraphTest<String> = UnweightedGraphTest<String>(vertices: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
+    let dressDAG: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         // pg 1016 Liang
-        dressDAG.addEdge(from: "undershorts", to: "shoes", directed: true)
-        dressDAG.addEdge(from: "pants", to: "shoes", directed: true)
-        dressDAG.addEdge(from: "socks", to: "shoes", directed: true)
-        dressDAG.addEdge(from: "undershorts", to: "pants", directed: true)
-        dressDAG.addEdge(from: "pants", to: "belt", directed: true)
-        dressDAG.addEdge(from: "belt", to: "jacket", directed: true)
-        dressDAG.addEdge(from: "shirt", to: "tie", directed: true)
-        dressDAG.addEdge(from: "shirt", to: "belt", directed: true)
-        dressDAG.addEdge(from: "tie", to: "jacket", directed: true)
+        dressDAG.edge("undershorts", to: "shoes", directed: true)
+        dressDAG.edge("pants", to: "shoes", directed: true)
+        dressDAG.edge("socks", to: "shoes", directed: true)
+        dressDAG.edge("undershorts", to: "pants", directed: true)
+        dressDAG.edge("pants", to: "belt", directed: true)
+        dressDAG.edge("belt", to: "jacket", directed: true)
+        dressDAG.edge("shirt", to: "tie", directed: true)
+        dressDAG.edge("shirt", to: "belt", directed: true)
+        dressDAG.edge("tie", to: "jacket", directed: true)
         print(dressDAG)
     }
 
