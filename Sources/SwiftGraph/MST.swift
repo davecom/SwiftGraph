@@ -16,10 +16,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// Extensions to WeightedGraph for building a Minimum-Spanning Tree (MST)
+// MARK: Minimum-Spanning Tree (MST)
 
 public extension WeightedGraph {
-
     // Citation: Based on Algorithms 4th Edition by Sedgewick, Wayne pg 619
 
     /// Find the minimum spanning tree in a weighted graph. This is the set of edges
@@ -31,16 +30,16 @@ public extension WeightedGraph {
     ///
     /// - parameter start: The index of the vertex to start creating the MST from.
     /// - returns: An array of WeightedEdges containing the minimum spanning tree, or nil if the starting vertex is invalid. If there are is only one vertex connected to the starting vertex, an empty list is returned.
-    public func mst(start: Int = 0) -> [WeightedEdge<W>]? {
+    public func mst(start: Int = 0) -> [E]? {
         if start > (vertexCount - 1) || start < 0 { return nil }
-        var result: [WeightedEdge<W>] = [WeightedEdge<W>]() // the final MST goes in here
-        var pq: PriorityQueue<WeightedEdge<W>> = PriorityQueue<WeightedEdge<W>>(ascending: true) // minPQ
+        var result: [E] = [E]() // the final MST goes in here
+        var pq: PriorityQueue<E> = PriorityQueue<E>(ascending: true) // minPQ
         var visited: [Bool] = Array<Bool>(repeating: false, count: vertexCount) // already been to these
 
         func visit(_ index: Int) {
             visited[index] = true // mark as visited
-            for edge in edgesForIndex(index) where !visited[edge.v] { // add all edges coming from here to pq
-                pq.push(edge as! WeightedEdge<W>)
+            for edge in edges(for: index) where !visited[edge.v] { // add all edges coming from here to pq
+                pq.push(edge)
             }
         }
 
@@ -56,22 +55,23 @@ public extension WeightedGraph {
     }
 }
 
-/// Find the total weight of a list of weighted edges
-/// - parameter edges The edge array to find the total weight of.
-public func totalWeight<W>(_ edges: [WeightedEdge<W>]) -> W? {
-    guard let firstWeight = edges.first?.weight else { return nil }
-    return edges.dropFirst().reduce(firstWeight) { result, next -> W in
-        result + next.weight
-    }
-}
+// MARK: Minimum-Spanning Tree Utilities
 
-/// Pretty print an edge list returned from an MST
-/// - parameter edges The edge array representing the MST
-public func printMST<V, W>(edges: [WeightedEdge<W>], graph: WeightedGraph<V, W>) {
-    for edge in edges {
-        print("\(graph.vertexAtIndex(edge.u)) \(edge.weight)> \(graph.vertexAtIndex(edge.v))")
+extension WeightedGraph {
+    /// Pretty print an edge list returned from an MST.
+    /// - parameter edges: The edges from a previously computed MST (on this graph).
+    internal func printmst(_ edges: [E]) {
+        for edge in edges {
+            print("\(vertex(at: edge.u)) \(edge.weight)> \(vertex(at: edge.v))")
+        }
+        if let weight = weight(of: edges) {
+            print("Total Weight: \(weight)")
+        }
     }
-    if let tw = totalWeight(edges) {
-        print("Total Weight: \(tw)")
+
+    /// Find the total weight of the given edges.
+    internal func weight(of edges: [E]) -> W? {
+        guard let firstWeight = edges.first?.weight else { return nil }
+        return edges.dropFirst().reduce(firstWeight) { $0 + $1.weight }
     }
 }
