@@ -16,11 +16,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// Functions for sorting a `Graph`
+// MARK: Topological Sorting
 
-// MARK: Extension to `Graph` for toplogical sorting
-
-public extension Graph {
+extension Graph {
     // Based on Introduction to Algorithms, 3rd Edition, Cormen et. al.,
     // The MIT Press, 2009, pg 604-614
     // and revised pseudocode of the same from Wikipedia
@@ -41,7 +39,7 @@ public extension Graph {
             }
             if node.color == .white {
                 node.color = .gray
-                for inode in tsNodes where (neighborsForVertex(node.vertex)?.contains(inode.vertex))! {
+                for inode in tsNodes where (neighbors(for: node.vertex)?.contains(inode.vertex))! {
                     visit(inode)
                 }
                 node.color = .black
@@ -71,7 +69,7 @@ public extension Graph {
     }
 }
 
-// MARK: Utility structures for topological sorting
+// MARK: Topological Sorting Utilities
 
 private enum TSColor { case black, gray, white }
 
