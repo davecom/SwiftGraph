@@ -19,7 +19,7 @@
 /// A graph with `UnweightedEdge`.
 ///
 /// - Note:
-/// Types who conform to `UnweightedGraph` must implement the `addEdge` requirements
+/// Types who conform to `UnweightedGraph` must implement the `edge(from:to:directed:)` requirements
 /// while maintaining the expected logic, given that they are convenience methods.
 /// Follow the notes in the respective methods.
 ///
@@ -33,7 +33,7 @@ protocol UnweightedGraph: Graph where E: UnweightedEdge {
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
-    mutating func addEdge(from: Int, to: Int, directed: Bool)
+    mutating func edge(_ from: Int, to: Int, directed: Bool)
 
     /// This is a convenience method that adds an unweighted, undirected
     /// edge between the first occurence of two vertices. O(n).
@@ -44,5 +44,5 @@ protocol UnweightedGraph: Graph where E: UnweightedEdge {
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - parameter directed: Is the edge directed? (default `false`)
-    mutating func addEdge(from: V, to: V, directed: Bool)
+    mutating func edge(_ from: V, to: V, directed: Bool)
 }
