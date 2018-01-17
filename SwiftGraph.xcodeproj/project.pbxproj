@@ -82,7 +82,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		16492F67200FB4BB00E61CFD /* Internals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internals.swift; sourceTree = "<group>"; };
+		16492F67200FB4BB00E61CFD /* Internals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Internals.swift; path = ../Sources/SwiftGraph/Internals.swift; sourceTree = "<group>"; };
 		553746441DA56CC500C0E0F6 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Sources/SwiftGraph/Sort.swift; sourceTree = SOURCE_ROOT; };
 		557F55E91F8AB247002AF0BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/SwiftGraph/Edge.swift; sourceTree = SOURCE_ROOT; };
