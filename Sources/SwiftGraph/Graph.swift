@@ -16,13 +16,87 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can
-/// have some method implementations in common. You should generally use one of its two canonical subclasses,
-/// *UnweightedGraph* and *WeightedGraph*, because they offer more functionality and convenience.
-open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Collection {
-    var vertices: [V] = [V]()
-    var edges: [[Edge]] = [[Edge]]() // adjacency lists
+/// A graph protocol.
+public protocol Graph: Collection, CustomStringConvertible {
+    associatedtype V: Hashable
+    associatedtype E: Edge
 
+    // MARK: Properties
+
+    var vertices: [V] { get set }
+    var edges: [[E]] { get set }
+    var isDAG: Bool { get }
+
+    var vertexCount: Int { get }
+    var edgeCount: Int { get }
+    var immutableVertices: [V] { get }
+
+    // MARK: Initializers
+
+    init()
+    init(vertices: [V])
+
+    // MARK: Find
+
+    func vertex(at index: Int) -> V
+    func index(of vertex: V) -> Int?
+    func indices(of a: V, _ b: V) -> (Int, Int)?
+
+    func neighbors(for index: Int) -> [V]
+    func neighbors(for vertex: V) -> [V]?
+    func edges(for index: Int) -> [E]
+    func edges(for vertex: V) -> [E]?
+
+    func contains(vertex: V) -> Bool
+    func contains(edge: E) -> Bool
+    func edged(from: Int, to: Int) -> Bool
+    func edged(from: V, to: V) -> Bool
+
+    // MARK: Mutate
+
+    mutating func add(vertex: V)
+    mutating func add(edge: E)
+    mutating func remove(at index: Int)
+    mutating func remove(vertex: V)
+    mutating func remove(edge: E)
+    mutating func remove(from: Int, to: Int, bidirectional: Bool)
+    mutating func remove(from: V, to: V, bidirectional: Bool)
+
+    // MARK: Depth-First Search
+
+    func dfs(from: Int, until test: (V) -> Bool) -> [E]
+    func dfs(from: V, until test: (V) -> Bool) -> [E]
+    func dfs(from: Int, to: Int) -> [E]
+    func dfs(from: V, to: V) -> [E]
+
+    // MARK: Breadth-First Search
+
+    func bfs(from: Int, until test: (V) -> Bool) -> [E]
+    func bfs(from: V, until test: (V) -> Bool) -> [E]
+    func bfs(from: Int, to: Int) -> [E]
+    func bfs(from: V, to: V) -> [E]
+
+    // MARK: Search
+
+    func routes(from: Int, until test: (V) -> Bool) -> [[E]]
+    func routes(from: V, until test: (V) -> Bool) -> [[E]]
+
+    func route(from: V, to: V, in path: [Int: E]) -> [E]
+    func route(_ from: Int, _ to: Int, in path: [Int: E]) -> [E]
+
+    func vertices(from edges: [E]) -> [V]
+
+    // MARK: Cycle
+
+    func cycles(until length: Int) -> [[V]]
+    func cycles(until length: Int) -> [[E]]
+
+    // MARK: Sort
+
+    func topologicalSort() -> [V]?
+}
+
+extension Graph {
     /// How many vertices are in the graph?
     public var vertexCount: Int {
         return vertices.count
@@ -38,20 +112,20 @@ open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Co
         return vertices
     }
 
-    public init() {
-    }
-
     public init(vertices: [V]) {
+        self.init()
         for vertex in vertices {
-            _ = addVertex(vertex)
+            add(vertex: vertex)
         }
     }
+}
 
+extension Graph {
     /// Get a vertex by its index.
     ///
     /// - parameter index: The index of the vertex.
     /// - returns: The vertex at i.
-    public func vertexAtIndex(_ index: Int) -> V {
+    public func vertex(at index: Int) -> V {
         return vertices[index]
     }
 
@@ -59,19 +133,25 @@ open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Co
     ///
     /// - parameter vertex: The vertex you are looking for.
     /// - returns: The index of the vertex. Return nil if it can't find it.
+    public func index(of vertex: V) -> Int? {
+        return vertices.index(of: vertex)
+    }
 
-    public func indexOfVertex(_ vertex: V) -> Int? {
-        if let i = vertices.index(of: vertex) {
-            return i
-        }
-        return nil
+    /// Finds the first the first occurence of two vertices. O(n).
+    ///
+    /// - parameter a: A vertex.
+    /// - parameter b: A vertex.
+    /// - returns: A tuple with the indices of the vertices, or nil.
+    public func indices(of a: V, _ b: V) -> (Int, Int)? {
+        guard let a = index(of: a), let b = index(of: b) else { return nil }
+        return (a, b)
     }
 
     /// Find all of the neighbors of a vertex at a given index.
     ///
     /// - parameter index: The index for the vertex to find the neighbors of.
     /// - returns: An array of the neighbor vertices.
-    public func neighborsForIndex(_ index: Int) -> [V] {
+    public func neighbors(for index: Int) -> [V] {
         return edges[index].map { self.vertices[$0.v] }
     }
 
@@ -79,9 +159,9 @@ open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Co
     ///
     /// - parameter vertex: The vertex to find the neighbors of.
     /// - returns: An optional array of the neighbor vertices.
-    public func neighborsForVertex(_ vertex: V) -> [V]? {
-        if let i = indexOfVertex(vertex) {
-            return neighborsForIndex(i)
+    public func neighbors(for vertex: V) -> [V]? {
+        if let i = index(of: vertex) {
+            return neighbors(for: i)
         }
         return nil
     }
@@ -89,18 +169,36 @@ open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Co
     /// Find all of the edges of a vertex at a given index.
     ///
     /// - parameter index: The index for the vertex to find the children of.
-    public func edgesForIndex(_ index: Int) -> [Edge] {
+    public func edges(for index: Int) -> [E] {
         return edges[index]
     }
 
     /// Find all of the edges of a given vertex.
     ///
     /// - parameter vertex: The vertex to find the edges of.
-    public func edgesForVertex(_ vertex: V) -> [Edge]? {
-        if let i = indexOfVertex(vertex) {
-            return edgesForIndex(i)
+    public func edges(for vertex: V) -> [E]? {
+        if let i = index(of: vertex) {
+            return edges(for: i)
         }
         return nil
+    }
+
+    /// Find the first occurence of a vertex.
+    ///
+    /// - parameter vertex: The vertex you are looking for.
+    public func contains(vertex: V) -> Bool {
+        if index(of: vertex) == nil {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    /// Find the first occurence of an edge.
+    ///
+    /// - parameter edge: The edge you are looking for.
+    public func contains(edge: E) -> Bool {
+        return edged(from: edge.u, to: edge.v)
     }
 
     /// Is there an edge from one vertex to another?
@@ -108,89 +206,61 @@ open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Co
     /// - parameter from: The index of the starting edge.
     /// - parameter to: The index of the ending edge.
     /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: Int, to: Int) -> Bool {
+    public func edged(from: Int, to: Int) -> Bool {
         return edges[from].map { $0.v }.contains(to)
     }
 
-    /// Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.
+    /// Is there an edge from one vertex to another? Note this will look at the first
+    /// occurence of each vertex. Also returns false if either of the supplied vertices
+    /// cannot be found in the graph.
     ///
     /// - parameter from: The first vertex.
     /// - parameter to: The second vertex.
     /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: V, to: V) -> Bool {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v)
-            }
-        }
-        return false
+    public func edged(from: V, to: V) -> Bool {
+        guard let (u, v) = indices(of: from, to) else { return false }
+        return edged(from: u, to: v)
     }
+}
 
-    /// Find the first occurence of a vertex.
-    ///
-    /// - parameter vertex: The vertex you are looking for.
-    public func vertexInGraph(vertex: V) -> Bool {
-        if indexOfVertex(vertex) == nil {
-            return false
-        } else {
-            return true
-        }
-    }
-
+extension Graph {
     /// Add a vertex to the graph.
     ///
     /// - parameter v: The vertex to be added.
     /// - returns: The index where the vertex was added.
-    public func addVertex(_ v: V) -> Int {
-        vertices.append(v)
-        edges.append([Edge]())
-        return vertices.count - 1
+    public mutating func add(vertex: V) {
+        vertices.append(vertex)
+        edges.append([E]())
     }
 
-    /// Add an edge to the graph. It should take
+    /// Add an edge to the graph.
     ///
     /// - parameter e: The edge to add.
-    public func addEdge(_ e: Edge) {
-        edges[e.u].append(e)
-        if !e.directed {
-            edges[e.v].append(e.reversed)
-        }
+    public mutating func add(edge: E) {
+        _add(edge, to: &edges)
     }
 
-    /// Removes all edges in both directions between vertices at indexes from & to.
+    /// Needed to reuse the `add` logic into a class-based extension
+    /// where a `mutating func` cannot be used due to immutable `self`.
     ///
-    /// - parameter from: The starting vertex's index.
-    /// - parameter to: The ending vertex's index.
-    /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public func removeAllEdges(from: Int, to: Int, bidirectional: Bool = true) {
-        for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
-            edges[from].remove(at: i)
-        }
-
-        if bidirectional {
-            for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
-                edges[to].remove(at: i)
-            }
-        }
-    }
-
-    /// Removes all edges in both directions between two vertices.
+    /// The same approach should be used in case mutating methods need to
+    /// be used internally. This solution was suggested [by Kevin Ballard
+    /// on the Swift Mailing List](https://is.gd/Hb4f19). There are others
+    /// in the thread, but this seems to be the best.
     ///
-    /// - parameter from: The starting vertex.
-    /// - parameter to: The ending vertex.
-    /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public func removeAllEdges(from: V, to: V, bidirectional: Bool = true) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                removeAllEdges(from: u, to: v, bidirectional: bidirectional)
-            }
+    /// See [SR-142](https://bugs.swift.org/browse/SR-142).
+    internal func _add(_ edge: E, to edges: inout [[E]]) {
+        edges[edge.u].append(edge)
+        if !edge.directed {
+            edges[edge.v].append(edge.reversed)
         }
     }
 
-    /// Removes a vertex at a specified index, all of the edges attached to it, and renumbers the indexes of the rest of the edges.
+    /// Removes a vertex at a specified index, all of the edges attached to it,
+    /// and renumbers the indexes of the rest of the edges.
     ///
     /// - parameter index: The index of the vertex.
-    public func removeVertexAtIndex(_ index: Int) {
+    public mutating func remove(at index: Int) {
         // remove all edges ending at the vertex, first doing the ones below it
         // renumber edges that end after the index
         for j in 0 ..< index {
@@ -227,65 +297,93 @@ open class Graph<V: Equatable & Hashable>: CustomStringConvertible, Sequence, Co
                 edges[j].remove(at: f)
             }
         }
-        // println(self)
         // remove the actual vertex and its edges
         edges.remove(at: index)
         vertices.remove(at: index)
     }
 
-    /// Removes the first occurence of a vertex, all of the edges attached to it, and renumbers the indexes of the rest of the edges.
+    /// Removes the first occurence of a vertex, all of the edges attached to it,
+    /// and renumbers the indexes of the rest of the edges.
     ///
-    /// - parameter vertex: The vertex to be removed..
-    public func removeVertex(_ vertex: V) {
-        if let i = indexOfVertex(vertex) {
-            removeVertexAtIndex(i)
+    /// - parameter vertex: The vertex to be removed.
+    public mutating func remove(vertex: V) {
+        if let i = index(of: vertex) {
+            return remove(at: i)
         }
     }
 
-    // Implement Printable protocol
+    /// Removes a specific unweighted edge in both directions (if it's not
+    /// directional). Or just one way if it's directed.
+    ///
+    /// - parameter edge: The edge to be removed.
+    public mutating func remove(edge: E) {
+        if let i = (edges[edge.u]).index(of: edge) {
+            edges[edge.u].remove(at: i)
+            if !edge.directed {
+                if let i = (edges[edge.v]).index(of: edge.reversed) {
+                    edges[edge.v].remove(at: i)
+                }
+            }
+        }
+    }
+
+    /// Removes all edges in both directions between vertices at indexes from & to.
+    ///
+    /// - parameter from: The starting vertex's index.
+    /// - parameter to: The ending vertex's index.
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public mutating func remove(from: Int, to: Int, bidirectional: Bool = true) {
+        for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
+            edges[from].remove(at: i)
+        }
+
+        if bidirectional {
+            for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
+                edges[to].remove(at: i)
+            }
+        }
+    }
+
+    /// Removes all edges in both directions between two vertices.
+    ///
+    /// - parameter from: The starting vertex.
+    /// - parameter to: The ending vertex.
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public mutating func remove(from: V, to: V, bidirectional: Bool = true) {
+        if let u = index(of: from) {
+            if let v = index(of: to) {
+                return remove(from: u, to: v, bidirectional: bidirectional)
+            }
+        }
+    }
+}
+
+extension Graph where Self: AnyObject {
+    // See `_addEdge`
+    /// Add an edge to the graph.
+    ///
+    /// - parameter e: The edge to add.
+    public func add(edge: E) {
+        var self_ = self
+        _add(edge, to: &self_.edges)
+    }
+}
+
+extension Graph { // Printable
     public var description: String {
         var d: String = ""
         for i in 0 ..< vertices.count {
-            d += "\(vertices[i]) -> \(neighborsForIndex(i))\n"
+            d += "\(vertices[i]) -> \(neighbors(for: i))\n"
         }
         return d
     }
+}
 
-    // Implement SequenceType
-    public typealias Iterator = AnyIterator<V>
-
-    public func makeIterator() -> Iterator {
-        var index = 0
-        return AnyIterator {
-            if index < self.vertices.count {
-                index += 1
-                return self.vertexAtIndex(index - 1)
-            }
-            return nil
-        }
-    }
-
-    // Implement CollectionType
+extension Graph { // Collection
     public typealias Index = Int
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return vertexCount }
 
-    public var startIndex: Int {
-        return 0
-    }
-
-    public var endIndex: Int {
-        return vertexCount
-    }
-
-    public func index(after i: Graph.Index) -> Graph.Index {
-        return i + 1
-    }
-
-    /// The same as vertexAtIndex() - returns the vertex at index
-    ///
-    ///
-    /// - Parameter index: The index of vertex to return.
-    /// - returns: The vertex at index.
-    public subscript(i: Int) -> V {
-        return vertexAtIndex(i)
-    }
+    public func index(after i: Index) -> Index { return i + 1 }
+    public subscript(i: Int) -> V { return vertex(at: i) }
 }
