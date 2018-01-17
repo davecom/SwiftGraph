@@ -21,7 +21,7 @@ import XCTest
 
 class SwiftGraphSortTests: XCTestCase {
     // pg 1016 Liang
-    let dressDAG: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
+    let dressDAG: UnweightedGraphTest<String> = UnweightedGraphTest<String>(vertices: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
 
     override func setUp() {
         super.setUp()

@@ -21,10 +21,10 @@ import XCTest
 
 class MSTTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    let cityGraph: WeightedGraphTest<String, Int> = WeightedGraphTest<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    let cityGraph2: WeightedGraphTest<String, Int> = WeightedGraphTest<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
 
     override func setUp() {
         super.setUp()
@@ -96,11 +96,11 @@ class MSTTests: XCTestCase {
             return
         }
         // how much does the minimum spanning tree cost?
-        guard let totalWeight = totalWeight(mst) else {
+        guard let totalWeight = cityGraph.weight(of: mst) else {
             XCTFail("Couldn't find the total weight of the MST for cityGraph")
             return
         }
-        printMST(edges: mst, graph: cityGraph)
+        cityGraph.printmst(mst)
         XCTAssertEqual(mst.count, cityGraph.count - 1, "MST should contain edges between all vertices so count should be # of vertices - 1")
         XCTAssertEqual(totalWeight, 6513, "MST should cost 6513 for cityGraph")
     }
@@ -112,11 +112,11 @@ class MSTTests: XCTestCase {
             return
         }
         // how much does the minimum spanning tree cost?
-        guard let totalWeight = totalWeight(mst) else {
+        guard let totalWeight = cityGraph2.weight(of: mst) else {
             XCTFail("Couldn't find the total weight of the MST for cityGraph")
             return
         }
-        printMST(edges: mst, graph: cityGraph2)
+        cityGraph2.printmst(mst)
         XCTAssertEqual(mst.count, cityGraph2.count - 1, "MST should contain edges between all vertices so count should be # of vertices - 1")
         XCTAssertEqual(totalWeight, 5372, "MST should cost 5372 for cityGraph2")
     }

@@ -20,8 +20,8 @@
 import XCTest
 
 class CycleTests: XCTestCase {
-    let simpleGraph: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["A", "B", "C", "D"])
-    let fullyConnected: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["A", "B", "C", "D", "E"])
+    let simpleGraph: UnweightedGraphTest<String> = UnweightedGraphTest<String>(vertices: ["A", "B", "C", "D"])
+    let fullyConnected: UnweightedGraphTest<String> = UnweightedGraphTest<String>(vertices: ["A", "B", "C", "D", "E"])
 
     override func setUp() {
         super.setUp()
@@ -49,13 +49,13 @@ class CycleTests: XCTestCase {
 
     func testFullyConnectedVertices() {
         // check it has 84 cycles
-        let cycles = fullyConnected.detectCycles()
+        let cycles: [[String]] = fullyConnected.cycles()
         XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 vertex graph.")
     }
 
     func testFullyConnectedEdges() {
         // check it has 84 cycles
-        let cycles = fullyConnected.detectCyclesAsEdges()
+        let cycles: [[UnweightedEdgeTest]] = fullyConnected.cycles()
         XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 vertex graph.")
     }
 
@@ -63,7 +63,7 @@ class CycleTests: XCTestCase {
 
         let solutionVertexCycles = [["A", "B", "D", "C", "A"], ["A", "D", "C", "A"], ["B", "D", "C", "B"]]
 
-        let detectedVertexCycles = simpleGraph.detectCycles()
+        let detectedVertexCycles: [[String]] = simpleGraph.cycles()
 
         XCTAssertEqual(detectedVertexCycles.count, solutionVertexCycles.count)
         XCTAssertTrue(detectedVertexCycles[0].elementsEqual(solutionVertexCycles[1]))
@@ -78,7 +78,7 @@ class CycleTests: XCTestCase {
             [(1, 3), (3, 2), (2, 1)],
         ]
 
-        let detectedEdgeCycles = simpleGraph.detectCyclesAsEdges()
+        let detectedEdgeCycles: [[UnweightedEdgeTest]] = simpleGraph.cycles()
 
         print(detectedEdgeCycles)
 
