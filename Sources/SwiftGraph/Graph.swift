@@ -100,6 +100,19 @@ public protocol Graph: Collection, CustomStringConvertible {
     func topologicalSort() -> [N]?
 }
 
+// MARK: - Initializers
+
+extension Graph {
+    public init(nodes: [N]) {
+        self.init()
+        for node in nodes {
+            add(node: node)
+        }
+    }
+}
+
+// MARK: - Computed Properties
+
 extension Graph {
     /// How many nodes are in the graph?
     public var nodeCount: Int {
@@ -115,14 +128,9 @@ extension Graph {
     public var immutableNodes: [N] {
         return nodes
     }
-
-    public init(nodes: [N]) {
-        self.init()
-        for node in nodes {
-            add(node: node)
-        }
-    }
 }
+
+// MARK: - Find
 
 extension Graph {
     /// Get a node by its index.
@@ -224,6 +232,8 @@ extension Graph {
     }
 }
 
+// MARK: - Mutating
+
 extension Graph {
     /// Add a node to the graph.
     ///
@@ -233,32 +243,11 @@ extension Graph {
         _add(node, to: &self)
     }
 
-    internal func _add(_ node: N, to graph: inout Self) {
-        graph.nodes.append(node)
-        graph.edges.append([E]())
-    }
-
     /// Add an edge to the graph.
     ///
     /// - parameter edge: The edge to add.
     public mutating func add(edge: E) {
         _add(edge, to: &self)
-    }
-
-    /// Needed to reuse the `add` logic into a class-based extension
-    /// where a `mutating func` cannot be used due to immutable `self`.
-    ///
-    /// The same approach should be used in case mutating methods need to
-    /// be used internally. This solution was suggested [by Kevin Ballard
-    /// on the Swift Mailing List](https://is.gd/Hb4f19). There are others
-    /// in the thread, but this seems to be the best.
-    ///
-    /// See [SR-142](https://bugs.swift.org/browse/SR-142).
-    internal func _add(_ edge: E, to graph: inout Self) {
-        graph.edges[edge.u].append(edge)
-        if !edge.directed {
-            graph.edges[edge.v].append(edge.reversed)
-        }
     }
 
     /// Removes a node at a specified index, all of the edges attached to it,
@@ -269,48 +258,6 @@ extension Graph {
         _remove(at: index, from: &self)
     }
 
-    internal func _remove(at index: Int, from graph: inout Self) {
-        // remove all edges ending at the node, first doing the ones below it
-        // renumber edges that end after the index
-        for j in 0 ..< index {
-            var toRemove: [Int] = [Int]()
-            for l in 0 ..< edges[j].count {
-                if edges[j][l].v == index {
-                    toRemove.append(l)
-                    continue
-                }
-                if edges[j][l].v > index {
-                    graph.edges[j][l].v -= 1
-                }
-            }
-            for f in toRemove.reversed() {
-                graph.edges[j].remove(at: f)
-            }
-        }
-
-        // remove all edges after the node index wise
-        // renumber all edges after the node index wise
-        for j in (index + 1) ..< edges.count {
-            var toRemove: [Int] = [Int]()
-            for l in 0 ..< edges[j].count {
-                if edges[j][l].v == index {
-                    toRemove.append(l)
-                    continue
-                }
-                graph.edges[j][l].u -= 1
-                if edges[j][l].v > index {
-                    graph.edges[j][l].v -= 1
-                }
-            }
-            for f in toRemove.reversed() {
-                graph.edges[j].remove(at: f)
-            }
-        }
-        // remove the actual node and its edges
-        graph.edges.remove(at: index)
-        graph.nodes.remove(at: index)
-    }
-
     /// Removes the first occurence of a node, all of the edges attached to it,
     /// and renumbers the indexes of the rest of the edges.
     ///
@@ -319,29 +266,12 @@ extension Graph {
         _remove(node: node, from: &self)
     }
 
-    internal func _remove(node: N, from graph: inout Self) {
-        if let i = index(of: node) {
-            return graph.remove(at: i)
-        }
-    }
-
     /// Removes a specific unweighted edge in both directions (if it's not
     /// directional). Or just one way if it's directed.
     ///
     /// - parameter edge: The edge to be removed.
     public mutating func remove(edge: E) {
         _remove(edge: edge, from: &self)
-    }
-
-    internal func _remove(edge: E, from graph: inout Self) {
-        if let i = (edges[edge.u]).index(of: edge) {
-            graph.edges[edge.u].remove(at: i)
-            if !edge.directed {
-                if let i = (edges[edge.v]).index(of: edge.reversed) {
-                    graph.edges[edge.v].remove(at: i)
-                }
-            }
-        }
     }
 
     /// Removes all edges in both directions between nodes at indexes from & to.
@@ -353,18 +283,6 @@ extension Graph {
         _unedge(from, to: to, bidirectional: bidirectional, from: &self)
     }
 
-    internal func _unedge(_ from: Int, to: Int, bidirectional: Bool = true, from graph: inout Self) {
-        for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
-            graph.edges[from].remove(at: i)
-        }
-
-        if bidirectional {
-            for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
-                graph.edges[to].remove(at: i)
-            }
-        }
-    }
-
     /// Removes all edges in both directions between two nodes.
     ///
     /// - parameter from: The starting node.
@@ -373,18 +291,15 @@ extension Graph {
     public mutating func unedge(_ from: N, to: N, bidirectional: Bool = true) {
         _unedge(from, to: to, bidirectional: bidirectional, from: &self)
     }
-
-    internal func _unedge(_ from: N, to: N, bidirectional: Bool = true, from graph: inout Self) {
-        guard let (u, v) = indices(of: from, to) else { return }
-        return graph.unedge(u, to: v, bidirectional: bidirectional)
-    }
 }
+
+// MARK: - Mutating where Self: AnyObject
 
 extension Graph where Self: AnyObject {
     // To work around the mutating methods in class-based implementations
     // without needlessly constraining the protocol to class, we refine
     // mutating methods with the workaround suggested by Kevin Ballard on
-    // the Swift mailing list. See `_add(:to:)`.
+    // the Swift mailing list.
     //
     // Documentation must be maintained in parallel.
 
@@ -444,7 +359,110 @@ extension Graph where Self: AnyObject {
     }
 }
 
-extension Graph { // Printable
+// MARK: - Mutating Internals
+
+internal extension Graph {
+    // Internal methods are needed to reuse logic into a class-specific extension
+    // where a `mutating` method cannot be used due to immutable `self`.
+    //
+    // This solution was suggested by Kevin Ballard on the Swift Mailing list
+    // (https://is.gd/Hb4f19). See [SR-142](https://bugs.swift.org/browse/SR-142).
+    //
+    // Avoids needlessly constraining the protocol to class by redefining default
+    // implementations within a `where Self: AnyObject` extension. See below.
+
+    internal func _add(_ node: N, to graph: inout Self) {
+        graph.nodes.append(node)
+        graph.edges.append([E]())
+    }
+
+    internal func _add(_ edge: E, to graph: inout Self) {
+        graph.edges[edge.u].append(edge)
+        if !edge.directed {
+            graph.edges[edge.v].append(edge.reversed)
+        }
+    }
+
+    internal func _remove(at index: Int, from graph: inout Self) {
+        // remove all edges ending at the node, first doing the ones below it
+        // renumber edges that end after the index
+        for j in 0 ..< index {
+            var toRemove: [Int] = [Int]()
+            for l in 0 ..< edges[j].count {
+                if edges[j][l].v == index {
+                    toRemove.append(l)
+                    continue
+                }
+                if edges[j][l].v > index {
+                    graph.edges[j][l].v -= 1
+                }
+            }
+            for f in toRemove.reversed() {
+                graph.edges[j].remove(at: f)
+            }
+        }
+
+        // remove all edges after the node index wise
+        // renumber all edges after the node index wise
+        for j in (index + 1) ..< edges.count {
+            var toRemove: [Int] = [Int]()
+            for l in 0 ..< edges[j].count {
+                if edges[j][l].v == index {
+                    toRemove.append(l)
+                    continue
+                }
+                graph.edges[j][l].u -= 1
+                if edges[j][l].v > index {
+                    graph.edges[j][l].v -= 1
+                }
+            }
+            for f in toRemove.reversed() {
+                graph.edges[j].remove(at: f)
+            }
+        }
+        // remove the actual node and its edges
+        graph.edges.remove(at: index)
+        graph.nodes.remove(at: index)
+    }
+
+    internal func _remove(node: N, from graph: inout Self) {
+        if let i = index(of: node) {
+            return graph.remove(at: i)
+        }
+    }
+
+    internal func _remove(edge: E, from graph: inout Self) {
+        if let i = (edges[edge.u]).index(of: edge) {
+            graph.edges[edge.u].remove(at: i)
+            if !edge.directed {
+                if let i = (edges[edge.v]).index(of: edge.reversed) {
+                    graph.edges[edge.v].remove(at: i)
+                }
+            }
+        }
+    }
+
+    internal func _unedge(_ from: Int, to: Int, bidirectional: Bool = true, from graph: inout Self) {
+        for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
+            graph.edges[from].remove(at: i)
+        }
+
+        if bidirectional {
+            for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
+                graph.edges[to].remove(at: i)
+            }
+        }
+    }
+
+    internal func _unedge(_ from: N, to: N, bidirectional: Bool = true, from graph: inout Self) {
+        guard let (u, v) = indices(of: from, to) else { return }
+        return graph.unedge(u, to: v, bidirectional: bidirectional)
+    }
+}
+
+// MARK: - CustomStringConvertible
+
+extension Graph {
     public var description: String {
         var d: String = ""
         for i in 0 ..< nodes.count {
@@ -454,7 +472,9 @@ extension Graph { // Printable
     }
 }
 
-extension Graph { // Collection
+// MARK: - Collection
+
+extension Graph {
     public typealias Index = Int
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return nodeCount }
