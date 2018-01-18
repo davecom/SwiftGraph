@@ -30,9 +30,10 @@ extension Graph {
     public func topologicalSort() -> [V]? {
         var sortedVertices = [V]()
         let tsNodes = vertices.map { TSNode<V>(vertex: $0, color: .white) }
-        var notDAG = false
+        var notDAG = true
 
         func visit(_ node: TSNode<V>) {
+            notDAG = false
             guard node.color != .gray else {
                 notDAG = true
                 return
@@ -61,11 +62,8 @@ extension Graph {
     /// Is the `Graph` a directed-acyclic graph (DAG)? O(n)
     /// Finds the answer based on the result of a topological sort.
     public var isDAG: Bool {
-        if topologicalSort() == nil {
-            return false
-        } else {
-            return true
-        }
+        if topologicalSort() == nil { return false }
+        return true
     }
 }
 
