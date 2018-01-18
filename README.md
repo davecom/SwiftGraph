@@ -12,6 +12,21 @@ SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, 
 
 It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra's algorithm. Further, it includes utility functions for topological sort, Jarnik's algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), and enumerating all cycles.
 
+- [Installation](#installation)
+    - [CocoaPods](#cocoapods)
+    - [Carthage](#carthage)
+    - [Swift Package Manager (SPM)](#swift-package-manager-spm)
+    - [Manual](#manual)
+- [Tips and Tricks](#tips-and-tricks)
+- [Example](#example)
+- [Documentation](#documentation)
+    - [Edges](#edges)
+    - [Graphs](#graphs)
+    - [Search](#search)
+    - [Sort & Miscellaneous](#sort-miscellaneous)
+- [Authorship & License](#authorship-license)
+- [Future Direction](#future-direction)
+
 ## Installation
 
 SwiftGraph 1.5.0 and above requires Swift 4. Use SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support.
