@@ -28,6 +28,22 @@ internal final class _UnweightedEdge: UnweightedEdge {
     var directed: Bool
 }
 
+internal final class _WeightedEdge<Weight: Summable>: WeightedEdge {
+    init(u: Int, v: Int, directed: Bool, weight: W) {
+        self.u = u
+        self.v = v
+        self.directed = directed
+        self.weight = weight
+    }
+
+    var u: Int
+    var v: Int
+    var directed: Bool
+    var weight: W
+
+    typealias W = Weight
+}
+
 internal final class _UnweightedGraph<Vertex: Hashable>: UnweightedGraph {
     required init() {}
 
@@ -47,22 +63,6 @@ internal final class _UnweightedGraph<Vertex: Hashable>: UnweightedGraph {
     typealias E = _UnweightedEdge
 }
 
-internal final class _WeightedEdge<Weight: Summable>: WeightedEdge {
-    init(u: Int, v: Int, directed: Bool, weight: W) {
-        self.u = u
-        self.v = v
-        self.directed = directed
-        self.weight = weight
-    }
-
-    var u: Int
-    var v: Int
-    var directed: Bool
-    var weight: W
-
-    typealias W = Weight
-}
-
 internal final class _WeightedGraph<Vertex: Hashable, Weight: Summable>: WeightedGraph {
     required init() {}
 
@@ -74,6 +74,40 @@ internal final class _WeightedGraph<Vertex: Hashable, Weight: Summable>: Weighte
     }
 
     func edge(_ from: Vertex, to: Vertex, directed: Bool = false, weight: W) {
+        guard let (from, to) = indices(of: from, to) else { return }
+        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
+    }
+
+    typealias V = Vertex
+    typealias E = _WeightedEdge<Weight>
+}
+
+internal struct _UnweightedGraphStruct<Vertex: Hashable>: UnweightedGraph {
+    var edges: [[_UnweightedEdge]] = []
+    var vertices: [Vertex] = []
+
+    mutating func edge(_ from: Int, to: Int, directed: Bool = false) {
+        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
+    }
+
+    mutating func edge(_ from: Vertex, to: Vertex, directed: Bool = false) {
+        guard let (from, to) = indices(of: from, to) else { return }
+        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
+    }
+
+    typealias V = Vertex
+    typealias E = _UnweightedEdge
+}
+
+internal struct _WeightedGraphStruct<Vertex: Hashable, Weight: Summable>: WeightedGraph {
+    var edges: [[_WeightedEdge<Weight>]] = []
+    var vertices: [Vertex] = []
+
+    mutating func edge(_ from: Int, to: Int, directed: Bool = false, weight: W) {
+        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
+    }
+
+    mutating func edge(_ from: Vertex, to: Vertex, directed: Bool = false, weight: W) {
         guard let (from, to) = indices(of: from, to) else { return }
         add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
     }
