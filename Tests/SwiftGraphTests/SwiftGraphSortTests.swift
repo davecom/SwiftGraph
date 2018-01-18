@@ -23,6 +23,8 @@ class SwiftGraphSortTests: XCTestCase {
     // pg 1016 Liang
     let dressDAG: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
 
+    let emptyGraph: _WeightedGraph<String, Int> = .init()
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -58,8 +60,14 @@ class SwiftGraphSortTests: XCTestCase {
         XCTAssertEqual(result.count, 9, "All items in sort.")
     }
 
+    func testEmpty() {
+        XCTAssertNil(emptyGraph.topologicalSort())
+        XCTAssertFalse(emptyGraph.isDAG)
+    }
+
     static var allTests = [
         ("testDAG", testDAG),
         ("testTopologicalSort", testTopologicalSort),
+        ("testEmpty", testEmpty),
     ]
 }
