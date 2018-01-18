@@ -232,15 +232,19 @@ extension Graph {
     /// - parameter v: The vertex to be added.
     /// - returns: The index where the vertex was added.
     public mutating func add(vertex: V) {
-        vertices.append(vertex)
-        edges.append([E]())
+        _add(vertex, to: &self)
+    }
+
+    internal func _add(_ vertex: V, to graph: inout Self) {
+        graph.vertices.append(vertex)
+        graph.edges.append([E]())
     }
 
     /// Add an edge to the graph.
     ///
-    /// - parameter e: The edge to add.
+    /// - parameter edge: The edge to add.
     public mutating func add(edge: E) {
-        _add(edge, to: &edges)
+        _add(edge, to: &self)
     }
 
     /// Needed to reuse the `add` logic into a class-based extension
@@ -252,10 +256,10 @@ extension Graph {
     /// in the thread, but this seems to be the best.
     ///
     /// See [SR-142](https://bugs.swift.org/browse/SR-142).
-    internal func _add(_ edge: E, to edges: inout [[E]]) {
-        edges[edge.u].append(edge)
+    internal func _add(_ edge: E, to graph: inout Self) {
+        graph.edges[edge.u].append(edge)
         if !edge.directed {
-            edges[edge.v].append(edge.reversed)
+            graph.edges[edge.v].append(edge.reversed)
         }
     }
 
@@ -264,6 +268,10 @@ extension Graph {
     ///
     /// - parameter index: The index of the vertex.
     public mutating func remove(at index: Int) {
+        _remove(at: index, from: &self)
+    }
+
+    internal func _remove(at index: Int, from graph: inout Self) {
         // remove all edges ending at the vertex, first doing the ones below it
         // renumber edges that end after the index
         for j in 0 ..< index {
@@ -274,11 +282,11 @@ extension Graph {
                     continue
                 }
                 if edges[j][l].v > index {
-                    edges[j][l].v -= 1
+                    graph.edges[j][l].v -= 1
                 }
             }
             for f in toRemove.reversed() {
-                edges[j].remove(at: f)
+                graph.edges[j].remove(at: f)
             }
         }
 
@@ -291,18 +299,18 @@ extension Graph {
                     toRemove.append(l)
                     continue
                 }
-                edges[j][l].u -= 1
+                graph.edges[j][l].u -= 1
                 if edges[j][l].v > index {
-                    edges[j][l].v -= 1
+                    graph.edges[j][l].v -= 1
                 }
             }
             for f in toRemove.reversed() {
-                edges[j].remove(at: f)
+                graph.edges[j].remove(at: f)
             }
         }
         // remove the actual vertex and its edges
-        edges.remove(at: index)
-        vertices.remove(at: index)
+        graph.edges.remove(at: index)
+        graph.vertices.remove(at: index)
     }
 
     /// Removes the first occurence of a vertex, all of the edges attached to it,
@@ -310,8 +318,12 @@ extension Graph {
     ///
     /// - parameter vertex: The vertex to be removed.
     public mutating func remove(vertex: V) {
+        _remove(vertex: vertex, from: &self)
+    }
+
+    internal func _remove(vertex: V, from graph: inout Self) {
         if let i = index(of: vertex) {
-            return remove(at: i)
+            return graph.remove(at: i)
         }
     }
 
@@ -320,11 +332,15 @@ extension Graph {
     ///
     /// - parameter edge: The edge to be removed.
     public mutating func remove(edge: E) {
+        _remove(edge: edge, from: &self)
+    }
+
+    internal func _remove(edge: E, from graph: inout Self) {
         if let i = (edges[edge.u]).index(of: edge) {
-            edges[edge.u].remove(at: i)
+            graph.edges[edge.u].remove(at: i)
             if !edge.directed {
                 if let i = (edges[edge.v]).index(of: edge.reversed) {
-                    edges[edge.v].remove(at: i)
+                    graph.edges[edge.v].remove(at: i)
                 }
             }
         }
@@ -336,13 +352,17 @@ extension Graph {
     /// - parameter to: The ending vertex's index.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
     public mutating func unedge(_ from: Int, to: Int, bidirectional: Bool = true) {
+        _unedge(from, to: to, bidirectional: bidirectional, from: &self)
+    }
+
+    internal func _unedge(_ from: Int, to: Int, bidirectional: Bool = true, from graph: inout Self) {
         for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
-            edges[from].remove(at: i)
+            graph.edges[from].remove(at: i)
         }
 
         if bidirectional {
             for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
-                edges[to].remove(at: i)
+                graph.edges[to].remove(at: i)
             }
         }
     }
@@ -353,11 +373,12 @@ extension Graph {
     /// - parameter to: The ending vertex.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
     public mutating func unedge(_ from: V, to: V, bidirectional: Bool = true) {
-        if let u = index(of: from) {
-            if let v = index(of: to) {
-                return unedge(u, to: v, bidirectional: bidirectional)
+        _unedge(from, to: to, bidirectional: bidirectional, from: &self)
             }
-        }
+
+    internal func _unedge(_ from: V, to: V, bidirectional: Bool = true, from graph: inout Self) {
+        guard let (u, v) = indices(of: from, to) else { return }
+        return graph.unedge(u, to: v, bidirectional: bidirectional)
     }
 }
 
