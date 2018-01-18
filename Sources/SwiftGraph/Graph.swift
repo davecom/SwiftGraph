@@ -237,7 +237,7 @@ extension Graph {
 extension Graph {
     /// Add a node to the graph.
     ///
-    /// - parameter v: The node to be added.
+    /// - parameter node: The node to be added.
     /// - returns: The index where the node was added.
     public mutating func add(node: N) {
         _add(node, to: &self)
@@ -303,6 +303,15 @@ extension Graph where Self: AnyObject {
     //
     // Documentation must be maintained in parallel.
 
+    /// Add a node to the graph.
+    ///
+    /// - parameter node: The node to be added.
+    /// - returns: The index where the node was added.
+    public func add(node: N) {
+        var self_ = self
+        _add(node, to: &self_)
+    }
+
     /// Add an edge to the graph.
     ///
     /// - parameter edge: The edge to add.
@@ -366,7 +375,7 @@ internal extension Graph {
     // where a `mutating` method cannot be used due to immutable `self`.
     //
     // This solution was suggested by Kevin Ballard on the Swift Mailing list
-    // (https://is.gd/Hb4f19). See [SR-142](https://bugs.swift.org/browse/SR-142).
+    // (https://is.gd/Hb4f19). See SR-142 (https://bugs.swift.org/browse/SR-142).
     //
     // Avoids needlessly constraining the protocol to class by redefining default
     // implementations within a `where Self: AnyObject` extension. See below.
