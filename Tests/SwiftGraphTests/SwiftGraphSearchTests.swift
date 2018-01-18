@@ -170,7 +170,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(cityGraph2.nodes(from: result))
     }
-    
+
     func testEmpty() {
         var result = cityGraph2.dfs(from: "Houston") { $0 == "Rome" }
         XCTAssertTrue(result.isEmpty)
@@ -180,7 +180,7 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertTrue(result.isEmpty)
         result = cityGraph2.dfs(from: "Rome", to: "Seattle")
         XCTAssertTrue(result.isEmpty)
-        
+
         result = cityGraph2.bfs(from: "Houston") { $0 == "Rome" }
         XCTAssertTrue(result.isEmpty)
         result = cityGraph2.bfs(from: "Rome") { $0 == "Milan" }
@@ -189,12 +189,12 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertTrue(result.isEmpty)
         result = cityGraph2.bfs(from: "Rome", to: "Seattle")
         XCTAssertTrue(result.isEmpty)
-        
-        var result2 = cityGraph2.routes(from: "Rome", until: { $0 == "Milan" })
+
+        let result2 = cityGraph2.routes(from: "Rome", until: { $0 == "Milan" })
         XCTAssertTrue(result2.isEmpty)
-        var result3 = cityGraph2.route(from: "Rome", to: "Milan", in: [:])
+        let result3 = cityGraph2.route(from: "Rome", to: "Milan", in: [:])
         XCTAssertTrue(result3.isEmpty)
-        var result4 = cityGraph2.route(0, 1, in: [:])
+        let result4 = cityGraph2.route(0, 1, in: [:])
         XCTAssertTrue(result4.isEmpty)
     }
 

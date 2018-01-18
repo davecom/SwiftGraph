@@ -237,7 +237,8 @@ class DijkstraGraphTests: XCTestCase {
         (nameDistance, path) = cityGraph2.dijkstra(root: "Miami", start: 0)
         XCTAssertFalse(nameDistance.isEmpty)
         XCTAssertFalse(path.isEmpty)
-        var (nameDistance2, path2): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph2.dijkstra(root: "Rome", start: 0)
+
+        let (nameDistance2, path2): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph2.dijkstra(root: "Rome", start: 0)
         XCTAssertTrue(nameDistance2.isEmpty)
         XCTAssertTrue(path2.isEmpty)
 
@@ -245,7 +246,7 @@ class DijkstraGraphTests: XCTestCase {
     }
 
     func testRemovalWithDijkstra() {
-        var cityGraph3 = cityGraph
+        let cityGraph3 = cityGraph
         cityGraph3.remove(node: "Kansas City")
         let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph3.dijkstra(root: "Miami", start: 0)
 

@@ -19,6 +19,14 @@
 @testable import SwiftGraph
 import XCTest
 
+// Note: All graphs here are immutable because they are classes and mutations
+// are happening internally. If we use a struct-based graph instead of a
+// class-based one the test doesn't compile because struct methods are `mutating`.
+// We are bypassing them with classes (via specific, nonmutating implementations)
+// to allow those methods to be used internally by the classes themselves (they
+// couldn't be used _internally_ if the protocol specified them as `mutating`
+// and a `nonmutating` variant were not provided).
+
 class SwiftGraphTests: XCTestCase {
 
     override func setUp() {
@@ -32,7 +40,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testCitesInverseAfterRemove() {
-        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -44,7 +52,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testSequenceTypeAndCollectionType() {
-        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -57,7 +65,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testCounts() {
-        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -73,7 +81,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testSubscript() {
-        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -82,7 +90,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testVarious() {
-        var g: _UnweightedGraph<String> = .init()
+        let g: _UnweightedGraph<String> = .init()
 
         g.add(node: "Atlanta")
         g.add(node: "Miami")
@@ -104,8 +112,8 @@ class SwiftGraphTests: XCTestCase {
         g.unedge("Atlanta", to: "Miami", bidirectional: true)
         g.unedge("Atlanta", to: "Rome", bidirectional: true)
 
-        var wg1 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
-        var wg2 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
+        let wg1 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
+        let wg2 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
 
         XCTAssertEqual(wg1.immutableNodes, wg2.immutableNodes)
         XCTAssertNil(wg1.neighbors(for: "3"))
@@ -141,14 +149,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testRemoveAllEdges() {
-        // Note: The warning regarding mutability depends on the non-mutating class
-        // methods. If we use a struct-based graph instead of a class-based on
-        // the test won't compile because struct enforces its mutability requirements
-        // while we are bypassing them with classes to allow those methods to be
-        // used internally by the classes themselves (they couldn't be used if the
-        // protocol specifies them as `mutating` and a `nonmutating` variant is not
-        // provided.
-        var graph = _UnweightedGraph(nodes: ["0", "1", "2", "3", "4", "5", "6"])
+        let graph = _UnweightedGraph(nodes: ["0", "1", "2", "3", "4", "5", "6"])
         graph.edge("0", to: "1", directed: false)
         graph.edge("1", to: "2", directed: false)
         graph.edge("2", to: "3", directed: false)
