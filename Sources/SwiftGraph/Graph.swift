@@ -374,7 +374,7 @@ extension Graph {
     /// - parameter bidirectional: Remove edges coming back (to -> from)
     public mutating func unedge(_ from: V, to: V, bidirectional: Bool = true) {
         _unedge(from, to: to, bidirectional: bidirectional, from: &self)
-            }
+    }
 
     internal func _unedge(_ from: V, to: V, bidirectional: Bool = true, from graph: inout Self) {
         guard let (u, v) = indices(of: from, to) else { return }
@@ -383,13 +383,66 @@ extension Graph {
 }
 
 extension Graph where Self: AnyObject {
-    // See `_add(:to:)`
+    // To work around the mutating methods in class-based implementations
+    // without needlessly constraining the protocol to class, we refine
+    // mutating methods with the workaround suggested by Kevin Ballard on
+    // the Swift mailing list. See `_add(:to:)`.
+    //
+    // Documentation must be maintained in parallel.
+
     /// Add an edge to the graph.
     ///
-    /// - parameter e: The edge to add.
+    /// - parameter edge: The edge to add.
     public func add(edge: E) {
         var self_ = self
-        _add(edge, to: &self_.edges)
+        _add(edge, to: &self_)
+    }
+
+    /// Removes a vertex at a specified index, all of the edges attached to it,
+    /// and renumbers the indexes of the rest of the edges.
+    ///
+    /// - parameter index: The index of the vertex.
+    public func remove(at index: Int) {
+        var self_ = self
+        _remove(at: index, from: &self_)
+    }
+
+    /// Removes the first occurence of a vertex, all of the edges attached to it,
+    /// and renumbers the indexes of the rest of the edges.
+    ///
+    /// - parameter vertex: The vertex to be removed.
+    public func remove(vertex: V) {
+        var self_ = self
+        _remove(vertex: vertex, from: &self_)
+    }
+
+    /// Removes a specific unweighted edge in both directions (if it's not
+    /// directional). Or just one way if it's directed.
+    ///
+    /// - parameter edge: The edge to be removed.
+    public func remove(edge: E) {
+        var self_ = self
+        _remove(edge: edge, from: &self_)
+    }
+
+    /// Removes all edges in both directions between vertices at indexes from & to.
+    ///
+    /// - parameter from: The starting vertex's index.
+    /// - parameter to: The ending vertex's index.
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public func unedge(_ from: Int, to: Int, bidirectional: Bool = true) {
+        var self_ = self
+        _unedge(from, to: to, bidirectional: bidirectional, from: &self_)
+    }
+
+    /// Removes all edges in both directions between two vertices.
+    ///
+    /// - parameter from: The starting vertex.
+    /// - parameter to: The ending vertex.
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public func unedge(_ from: V, to: V, bidirectional: Bool = true) {
+        var self_ = self
+        _unedge(from, to: to, bidirectional: bidirectional, from: &self_)
     }
 }
 
