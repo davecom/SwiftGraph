@@ -190,11 +190,8 @@ extension Graph {
     ///
     /// - parameter vertex: The vertex you are looking for.
     public func contains(vertex: V) -> Bool {
-        if index(of: vertex) == nil {
-            return false
-        } else {
-            return true
-        }
+        if index(of: vertex) == nil { return false }
+        return true
     }
 
     /// Find the first occurence of an edge.
