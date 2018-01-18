@@ -105,8 +105,17 @@ public protocol Graph: Collection, CustomStringConvertible {
 extension Graph {
     public init(nodes: [N]) {
         self.init()
+        _add(nodes: nodes, to: &self)
+    }
+
+    public init(nodes: N...) {
+        self.init()
+        _add(nodes: nodes, to: &self)
+    }
+
+    internal func _add(nodes: [N], to graph: inout Self) {
         for node in nodes {
-            add(node: node)
+            _add(node, to: &graph)
         }
     }
 }
