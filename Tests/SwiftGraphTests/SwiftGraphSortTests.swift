@@ -25,11 +25,12 @@ class SwiftGraphSortTests: XCTestCase {
 
     let cyclicGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D"])
 
+    let noEdgesGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: "0", "1")
+
     let emptyGraph: _WeightedGraph<String, Int> = .init()
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         // pg 1016 Liang
         dressDAG.edge("undershorts", to: "shoes", directed: true)
         dressDAG.edge("pants", to: "shoes", directed: true)
@@ -42,7 +43,7 @@ class SwiftGraphSortTests: XCTestCase {
         dressDAG.edge("tie", to: "jacket", directed: true)
         print(dressDAG)
 
-        // simple graph with easy known cycles
+        // A simple graph with easy cycles.
         cyclicGraph.edge("A", to: "B", directed: true)
         cyclicGraph.edge("B", to: "D", directed: true)
         cyclicGraph.edge("A", to: "D", directed: true)
@@ -51,19 +52,13 @@ class SwiftGraphSortTests: XCTestCase {
         cyclicGraph.edge("C", to: "B", directed: true)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testDAG() {
         XCTAssertTrue(dressDAG.isDAG, "dressDAG is a DAG")
-        XCTAssertFalse(cyclicGraph.isDAG, "cyclic graph is not a DAG")
+        XCTAssertFalse(cyclicGraph.isDAG, "A cyclic graph is not a DAG.")
     }
 
     func testTopologicalSort() {
-        // Seattle -> Miami
-        guard let result = dressDAG.topologicalSort() else {
+        guard let result: [String] = dressDAG.toposort() else {
             XCTFail("dressDAG could not be sorted.")
             return
         }
@@ -72,8 +67,14 @@ class SwiftGraphSortTests: XCTestCase {
     }
 
     func testEmpty() {
-        XCTAssertNil(emptyGraph.topologicalSort())
-        XCTAssertFalse(emptyGraph.isDAG)
+        let result1: [Int] = emptyGraph.toposort()!
+        XCTAssertTrue(result1.isEmpty, "A graph with no nodes or edges produces an empty sort.")
+        XCTAssertFalse(emptyGraph.isDAG, "A graph with no nodes or edges is not a DAG.")
+
+        let result2: [Int] = noEdgesGraph.toposort()!
+        XCTAssertTrue(noEdgesGraph.edges.joined().isEmpty)
+        XCTAssertTrue(result2.isEmpty, "A graph with no edges produces an empty sort.")
+        XCTAssertFalse(noEdgesGraph.isDAG, "A graph with no edges is not a DAG.")
     }
 
     static var allTests = [

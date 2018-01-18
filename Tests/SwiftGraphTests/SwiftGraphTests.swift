@@ -139,9 +139,6 @@ class SwiftGraphTests: XCTestCase {
         wg1.edge("3", to: "4", weight: 1)
         XCTAssertNil(wg1.edges(for: "3"))
 
-        XCTAssertNil(wg1.topologicalSort())
-        XCTAssertFalse(wg1.isDAG)
-
         let variadicG = _UnweightedGraph(nodes: "0", "1", "2")
         XCTAssertTrue(variadicG.contains(node: "0"))
         XCTAssertTrue(variadicG.contains(node: "1"))
