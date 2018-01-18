@@ -23,6 +23,8 @@ class SwiftGraphSortTests: XCTestCase {
     // pg 1016 Liang
     let dressDAG: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
 
+    let cyclicGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D"])
+
     let emptyGraph: _WeightedGraph<String, Int> = .init()
 
     override func setUp() {
@@ -39,6 +41,14 @@ class SwiftGraphSortTests: XCTestCase {
         dressDAG.edge("shirt", to: "belt", directed: true)
         dressDAG.edge("tie", to: "jacket", directed: true)
         print(dressDAG)
+
+        // simple graph with easy known cycles
+        cyclicGraph.edge("A", to: "B", directed: true)
+        cyclicGraph.edge("B", to: "D", directed: true)
+        cyclicGraph.edge("A", to: "D", directed: true)
+        cyclicGraph.edge("D", to: "C", directed: true)
+        cyclicGraph.edge("C", to: "A", directed: true)
+        cyclicGraph.edge("C", to: "B", directed: true)
     }
 
     override func tearDown() {
@@ -48,6 +58,7 @@ class SwiftGraphSortTests: XCTestCase {
 
     func testDAG() {
         XCTAssertTrue(dressDAG.isDAG, "dressDAG is a DAG")
+        XCTAssertFalse(cyclicGraph.isDAG, "cyclic graph is not a DAG")
     }
 
     func testTopologicalSort() {
