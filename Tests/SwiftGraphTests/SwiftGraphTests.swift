@@ -134,6 +134,11 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertNil(wg1.topologicalSort())
         XCTAssertFalse(wg1.isDAG)
 
+        let variadicG = _UnweightedGraph(nodes: "0", "1", "2")
+        XCTAssertTrue(variadicG.contains(node: "0"))
+        XCTAssertTrue(variadicG.contains(node: "1"))
+        XCTAssertTrue(variadicG.contains(node: "2"))
+
         let q = Queue<Int>()
         q.push(1)
         XCTAssertTrue(q.contains(1))
