@@ -138,13 +138,6 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertTrue(variadicG.contains(node: "0"))
         XCTAssertTrue(variadicG.contains(node: "1"))
         XCTAssertTrue(variadicG.contains(node: "2"))
-
-        let q = Queue<Int>()
-        q.push(1)
-        XCTAssertTrue(q.contains(1))
-        XCTAssertFalse(q.contains(2))
-        q.push(10)
-        XCTAssertEqual(q.count, 2)
     }
 
     func testRemoveAllEdges() {
@@ -212,6 +205,15 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertNil(g2.edges(for: "10"))
     }
 
+    func testQueue() {
+        let q = Queue<Int>()
+        q.push(1)
+        XCTAssertTrue(q.contains(1))
+        XCTAssertFalse(q.contains(2))
+        q.push(10)
+        XCTAssertEqual(q.count, 2)
+    }
+
     static var allTests = [
         ("testCitesInverseAfterRemove", testCitesInverseAfterRemove),
         ("testSequenceTypeAndCollectionType", testSequenceTypeAndCollectionType),
@@ -220,5 +222,6 @@ class SwiftGraphTests: XCTestCase {
         ("testRemoveAllEdges", testRemoveAllEdges),
         ("testVarious", testVarious),
         ("testMutatingMethods", testMutatingMethods),
+        ("testQueue", testQueue),
     ]
 }
