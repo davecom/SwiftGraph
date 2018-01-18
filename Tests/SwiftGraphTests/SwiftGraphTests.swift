@@ -171,6 +171,9 @@ class SwiftGraphTests: XCTestCase {
         var g1 = _UnweightedGraphStruct(nodes: ["0", "1", "2", "3", "4", "5", "6"])
         var g2 = _WeightedGraphStruct<String, Int>(nodes: ["0", "1", "2", "3", "4", "5", "6"])
 
+        g1.add(node: "7")
+        XCTAssertTrue(g1.contains(node: "7"))
+
         g1.edge(0, to: 1)
         g2.edge(0, to: 1, weight: 1)
         g1.edge("2", to: "3")
