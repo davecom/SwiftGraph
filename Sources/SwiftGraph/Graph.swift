@@ -98,6 +98,7 @@ public protocol Graph: Collection, CustomStringConvertible {
     // MARK: Sort
 
     func toposort() -> [N]?
+    func toposort() -> [Int]?
 }
 
 // MARK: - Initializers
