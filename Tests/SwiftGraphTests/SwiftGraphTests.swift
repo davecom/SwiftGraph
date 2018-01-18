@@ -81,7 +81,75 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertEqual(g[2], "Miami", "Expected result at vertex 2")
     }
 
+    func testVarious() {
+        var g: _UnweightedGraph<String> = .init()
+        
+        g.add(vertex: "Atlanta")
+        g.add(vertex: "Miami")
+        g.edge("Atlanta", to: "Miami", directed: false)
+        XCTAssertTrue(g.contains(vertex: "Atlanta"))
+        XCTAssertFalse(g.contains(vertex: "New York"))
+        
+        let edge = g.edges(for: "Atlanta")!.first!
+        XCTAssertTrue(g.contains(edge: edge))
+        XCTAssertFalse(edge.weighted)
+        
+        g.remove(edge: edge)
+        XCTAssertFalse(g.contains(edge: edge))
+        
+        g.edge("Lagos", to: "Atlanta")
+        XCTAssertNil(g.edges(for: "Lagos"))
+        
+        g.edge("Atlanta", to: "Miami", directed: false)
+        g.unedge("Atlanta", to: "Miami", bidirectional: true)
+        g.unedge("Atlanta", to: "Rome", bidirectional: true)
+        
+        var wg1 = _WeightedGraph<String, Int>(vertices: ["0", "1"])
+        var wg2 = _WeightedGraph<String, Int>(vertices: ["0", "1"])
+
+        XCTAssertEqual(wg1.immutableVertices, wg2.immutableVertices)
+        XCTAssertNil(wg1.neighbors(for: "3"))
+
+        wg1.remove(vertex: "3")
+
+        wg1.edge(0, to: 1, weight: 1)
+        wg2.edge(0, to: 1, weight: 1)
+        let weightedEdge = wg1.edges(for: 0).first!
+        let anotherWeightedEdge = wg2.edges(for: 0).first!
+        XCTAssertTrue(wg1.contains(edge: weightedEdge))
+        XCTAssertEqual(weightedEdge, anotherWeightedEdge)
+
+        XCTAssertTrue(wg1.edged(from: "0", to: "1"))
+        XCTAssertFalse(wg1.edged(from: "0", to: "2"))
+
+        XCTAssertTrue(weightedEdge.weighted)
+
+        XCTAssertEqual(anotherWeightedEdge.description, "0 <1> 1")
+        anotherWeightedEdge.directed = true
+        XCTAssertEqual(anotherWeightedEdge.description, "0 1> 1")
+
+        wg1.edge("3", to: "4", weight: 1)
+        XCTAssertNil(wg1.edges(for: "3"))
+
+        XCTAssertNil(wg1.topologicalSort())
+        XCTAssertFalse(wg1.isDAG)
+        
+        let q = Queue<Int>()
+        q.push(1)
+        XCTAssertTrue(q.contains(1))
+        XCTAssertFalse(q.contains(2))
+        q.push(10)
+        XCTAssertEqual(q.count, 2)
+    }
+
     func testRemoveAllEdges() {
+        // Note: The warning regarding mutability depends on the non-mutating class
+        // methods. If we use a struct-based graph instead of a class-based on
+        // the test won't compile because struct enforces its mutability requirements
+        // while we are bypassing them with classes to allow those methods to be
+        // used internally by the classes themselves (they couldn't be used if the
+        // protocol specifies them as `mutating` and a `nonmutating` variant is not
+        // provided.
         var graph = _UnweightedGraph(vertices: ["0", "1", "2", "3", "4", "5", "6"])
         graph.edge("0", to: "1", directed: false)
         graph.edge("1", to: "2", directed: false)
@@ -106,5 +174,6 @@ class SwiftGraphTests: XCTestCase {
         ("testCounts", testCounts),
         ("testSubscript", testSubscript),
         ("testRemoveAllEdges", testRemoveAllEdges),
+        ("testContains", testVarious),
     ]
 }

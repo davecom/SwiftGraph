@@ -24,7 +24,7 @@ class SwiftGraphSearchTests: XCTestCase {
     let cityGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    let cityGraph2: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington", "Cleveland"])
 
     override func setUp() {
         super.setUp()
@@ -170,6 +170,33 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(cityGraph2.vertices(from: result))
     }
+    
+    func testEmpty() {
+        var result = cityGraph2.dfs(from: "Houston") { $0 == "Rome" }
+        XCTAssertTrue(result.isEmpty)
+        result = cityGraph2.dfs(from: "Rome") { $0 == "Milan" }
+        XCTAssertTrue(result.isEmpty)
+        result = cityGraph2.dfs(from: cityGraph2.index(of: "Seattle")!, to: cityGraph2.index(of: "Cleveland")!)
+        XCTAssertTrue(result.isEmpty)
+        result = cityGraph2.dfs(from: "Rome", to: "Seattle")
+        XCTAssertTrue(result.isEmpty)
+        
+        result = cityGraph2.bfs(from: "Houston") { $0 == "Rome" }
+        XCTAssertTrue(result.isEmpty)
+        result = cityGraph2.bfs(from: "Rome") { $0 == "Milan" }
+        XCTAssertTrue(result.isEmpty)
+        result = cityGraph2.bfs(from: cityGraph2.index(of: "Seattle")!, to: cityGraph2.index(of: "Cleveland")!)
+        XCTAssertTrue(result.isEmpty)
+        result = cityGraph2.bfs(from: "Rome", to: "Seattle")
+        XCTAssertTrue(result.isEmpty)
+        
+        var result2 = cityGraph2.routes(from: "Rome", until: { $0 == "Milan" })
+        XCTAssertTrue(result2.isEmpty)
+        var result3 = cityGraph2.route(from: "Rome", to: "Milan", in: [:])
+        XCTAssertTrue(result3.isEmpty)
+        var result4 = cityGraph2.route(0, 1, in: [:])
+        XCTAssertTrue(result4.isEmpty)
+    }
 
     func testBFS1() {
         // Seattle -> Miami
@@ -288,6 +315,7 @@ class SwiftGraphSearchTests: XCTestCase {
         ("testDFS4", testDFS4),
         ("testDFS5", testDFS5),
         ("testDFS6", testDFS6),
+        ("testEmpty", testEmpty),
         ("testBFS1", testBFS1),
         ("testBFS2", testBFS2),
         ("testBFS3", testBFS3),

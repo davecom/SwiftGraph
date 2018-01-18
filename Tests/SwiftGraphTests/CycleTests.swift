@@ -88,6 +88,13 @@ class CycleTests: XCTestCase {
         assertArraysOfTuplesEqual(detectedEdgeCycles[2].map { edge in edge.asTuple }, solutionEdgeCycles[0])
     }
 
+    func testLimit() {
+        let cyclesEdges: [[_UnweightedEdge]] = fullyConnected.cycles(until: 2)
+        let cyclesVertices: [[String]] = fullyConnected.cycles(until: 2)
+        XCTAssertEqual(cyclesEdges.count, 30, "Should be 30 cycles instead of 84.")
+        XCTAssertEqual(cyclesVertices.count, 10, "Should be 10 cycles instead of 84.")
+    }
+
     func assertArraysOfTuplesEqual(_ lhs: [(Int, Int)], _ rhs: [(Int, Int)], line: UInt = #line) {
         let elementsEqual = lhs.elementsEqual(rhs) { left, right -> Bool in left.0 == right.0 && left.1 == right.1 }
         if !elementsEqual {
@@ -100,6 +107,7 @@ class CycleTests: XCTestCase {
         ("testFullyConnectedEdges", testFullyConnectedEdges),
         ("testDetectCyclesVertices1", testDetectCyclesVertices1),
         ("testDetectCyclesEdges1", testDetectCyclesEdges1),
+        ("testLimit", testLimit),
     ]
 }
 

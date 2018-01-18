@@ -233,6 +233,20 @@ class DijkstraGraphTests: XCTestCase {
         // println(edgesToVertices(result, cityGraph2))  // not sure why description not called by println
     }
 
+    func testDijkstra4() {
+        var (nameDistance, path): ([Int?], [Int: _WeightedEdge<Int>]) = cityGraph2.dijkstra(root: "Rome", start: 0)
+        XCTAssertTrue(nameDistance.isEmpty)
+        XCTAssertTrue(path.isEmpty)
+        (nameDistance, path) = cityGraph2.dijkstra(root: "Miami", start: 0)
+        XCTAssertFalse(nameDistance.isEmpty)
+        XCTAssertFalse(path.isEmpty)
+        var (nameDistance2, path2): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph2.dijkstra(root: "Rome", start: 0)
+        XCTAssertTrue(nameDistance2.isEmpty)
+        XCTAssertTrue(path2.isEmpty)
+
+        XCTAssertEqual(DijkstraNode<Int>(vertex: 0, distance: 2), DijkstraNode<Int>(vertex: 0, distance: 2))
+    }
+
     func testRemovalWithDijkstra() {
         var cityGraph3 = cityGraph
         cityGraph3.remove(vertex: "Kansas City")
@@ -252,6 +266,7 @@ class DijkstraGraphTests: XCTestCase {
         ("testDijksta1", testDijkstra1),
         ("testDijksta2", testDijkstra2),
         ("testDijksta3", testDijkstra3),
+        ("testDijksta4", testDijkstra4),
         ("testRemovalWithDijksta", testRemovalWithDijkstra),
     ]
 }

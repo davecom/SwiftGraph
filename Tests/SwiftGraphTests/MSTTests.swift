@@ -26,6 +26,8 @@ class MSTTests: XCTestCase {
     // 15 largest MSAs in United States as of 2016
     let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
 
+    let emptyGraph: _WeightedGraph<String, Int> = .init()
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -121,8 +123,14 @@ class MSTTests: XCTestCase {
         XCTAssertEqual(totalWeight, 5372, "MST should cost 5372 for cityGraph2")
     }
 
+    func testEmpty() {
+        XCTAssertNil(emptyGraph.mst())
+        XCTAssertNil(emptyGraph.weight(of: []))
+    }
+
     static var allTests = [
         ("testMST1", testMST1),
         ("testMST2", testMST2),
+        ("testEmpty", testEmpty),
     ]
 }
