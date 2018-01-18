@@ -21,10 +21,10 @@ import XCTest
 
 class MSTTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    let cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
 
     let emptyGraph: _WeightedGraph<String, Int> = .init()
 
@@ -103,7 +103,7 @@ class MSTTests: XCTestCase {
             return
         }
         cityGraph.printmst(mst)
-        XCTAssertEqual(mst.count, cityGraph.count - 1, "MST should contain edges between all vertices so count should be # of vertices - 1")
+        XCTAssertEqual(mst.count, cityGraph.count - 1, "MST should contain edges between all nodes so count should be # of nodes - 1")
         XCTAssertEqual(totalWeight, 6513, "MST should cost 6513 for cityGraph")
     }
 
@@ -119,7 +119,7 @@ class MSTTests: XCTestCase {
             return
         }
         cityGraph2.printmst(mst)
-        XCTAssertEqual(mst.count, cityGraph2.count - 1, "MST should contain edges between all vertices so count should be # of vertices - 1")
+        XCTAssertEqual(mst.count, cityGraph2.count - 1, "MST should contain edges between all nodes so count should be # of nodes - 1")
         XCTAssertEqual(totalWeight, 5372, "MST should cost 5372 for cityGraph2")
     }
 

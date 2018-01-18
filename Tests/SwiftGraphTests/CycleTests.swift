@@ -20,15 +20,15 @@
 import XCTest
 
 class CycleTests: XCTestCase {
-    let simpleGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["A", "B", "C", "D"])
-    let fullyConnected: _UnweightedGraph<String> = _UnweightedGraph<String>(vertices: ["A", "B", "C", "D", "E"])
+    let simpleGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D"])
+    let fullyConnected: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D", "E"])
 
     override func setUp() {
         super.setUp()
 
-        // setup a graph with 5 fully connected vertices
-        for from in 0 ..< fullyConnected.vertexCount {
-            for to in (from + 1) ..< fullyConnected.vertexCount {
+        // setup a graph with 5 fully connected nodes
+        for from in 0 ..< fullyConnected.nodeCount {
+            for to in (from + 1) ..< fullyConnected.nodeCount {
                 fullyConnected.edge(from, to: to)
             }
         }
@@ -47,28 +47,28 @@ class CycleTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFullyConnectedVertices() {
+    func testFullyConnectedNodes() {
         // check it has 84 cycles
         let cycles: [[String]] = fullyConnected.cycles()
-        XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 vertex graph.")
+        XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 node graph.")
     }
 
     func testFullyConnectedEdges() {
         // check it has 84 cycles
         let cycles: [[_UnweightedEdge]] = fullyConnected.cycles()
-        XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 vertex graph.")
+        XCTAssertEqual(cycles.count, 84, "Should be 84 cycles in a fully connected 5 node graph.")
     }
 
-    func testDetectCyclesVertices1() {
+    func testDetectCyclesNodes1() {
 
-        let solutionVertexCycles = [["A", "B", "D", "C", "A"], ["A", "D", "C", "A"], ["B", "D", "C", "B"]]
+        let solutionNodeCycles = [["A", "B", "D", "C", "A"], ["A", "D", "C", "A"], ["B", "D", "C", "B"]]
 
-        let detectedVertexCycles: [[String]] = simpleGraph.cycles()
+        let detectedNodeCycles: [[String]] = simpleGraph.cycles()
 
-        XCTAssertEqual(detectedVertexCycles.count, solutionVertexCycles.count)
-        XCTAssertTrue(detectedVertexCycles[0].elementsEqual(solutionVertexCycles[1]))
-        XCTAssertTrue(detectedVertexCycles[1].elementsEqual(solutionVertexCycles[2]))
-        XCTAssertTrue(detectedVertexCycles[2].elementsEqual(solutionVertexCycles[0]))
+        XCTAssertEqual(detectedNodeCycles.count, solutionNodeCycles.count)
+        XCTAssertTrue(detectedNodeCycles[0].elementsEqual(solutionNodeCycles[1]))
+        XCTAssertTrue(detectedNodeCycles[1].elementsEqual(solutionNodeCycles[2]))
+        XCTAssertTrue(detectedNodeCycles[2].elementsEqual(solutionNodeCycles[0]))
     }
 
     func testDetectCyclesEdges1() {
@@ -90,9 +90,9 @@ class CycleTests: XCTestCase {
 
     func testLimit() {
         let cyclesEdges: [[_UnweightedEdge]] = fullyConnected.cycles(until: 2)
-        let cyclesVertices: [[String]] = fullyConnected.cycles(until: 2)
+        let cyclesNodes: [[String]] = fullyConnected.cycles(until: 2)
         XCTAssertEqual(cyclesEdges.count, 30, "Should be 30 cycles instead of 84.")
-        XCTAssertEqual(cyclesVertices.count, 10, "Should be 10 cycles instead of 84.")
+        XCTAssertEqual(cyclesNodes.count, 10, "Should be 10 cycles instead of 84.")
     }
 
     func assertArraysOfTuplesEqual(_ lhs: [(Int, Int)], _ rhs: [(Int, Int)], line: UInt = #line) {
@@ -103,9 +103,9 @@ class CycleTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testFullyConnectedVertices", testFullyConnectedVertices),
+        ("testFullyConnectedNodes", testFullyConnectedNodes),
         ("testFullyConnectedEdges", testFullyConnectedEdges),
-        ("testDetectCyclesVertices1", testDetectCyclesVertices1),
+        ("testDetectCyclesNodes1", testDetectCyclesNodes1),
         ("testDetectCyclesEdges1", testDetectCyclesEdges1),
         ("testLimit", testLimit),
     ]

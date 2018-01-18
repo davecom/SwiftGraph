@@ -33,21 +33,21 @@ class SwiftGraphTests: XCTestCase {
 
     func testCitesInverseAfterRemove() {
         var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
-        g.add(vertex: "Atlanta")
-        g.add(vertex: "New York")
-        g.add(vertex: "Miami")
+        g.add(node: "Atlanta")
+        g.add(node: "New York")
+        g.add(node: "Miami")
         g.edge("Atlanta", to: "New York")
         g.edge("Miami", to: "Atlanta")
         g.edge("New York", to: "Miami")
-        g.remove(vertex: "Atlanta")
+        g.remove(node: "Atlanta")
         XCTAssertEqual(g.neighbors(for: "Miami")!, g.neighbors(for: g.neighbors(for: "New York")![0])!, "Miami and New York Connected bi-directionally")
     }
 
     func testSequenceTypeAndCollectionType() {
         var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
-        g.add(vertex: "Atlanta")
-        g.add(vertex: "New York")
-        g.add(vertex: "Miami")
+        g.add(node: "Atlanta")
+        g.add(node: "New York")
+        g.add(node: "Miami")
         var tempList: [String] = []
         for v in g {
             tempList.append(v)
@@ -58,37 +58,37 @@ class SwiftGraphTests: XCTestCase {
 
     func testCounts() {
         var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
-        g.add(vertex: "Atlanta")
-        g.add(vertex: "New York")
-        g.add(vertex: "Miami")
+        g.add(node: "Atlanta")
+        g.add(node: "New York")
+        g.add(node: "Miami")
         g.edge("Atlanta", to: "New York", directed: true)
         g.edge("Miami", to: "Atlanta", directed: true)
         g.edge("New York", to: "Miami", directed: true)
         g.edge("Atlanta", to: "Miami", directed: true)
-        XCTAssertEqual(g.vertexCount, 3, "3 total vertices")
+        XCTAssertEqual(g.nodeCount, 3, "3 total nodes")
         XCTAssertEqual(g.edgeCount, 4, "4 total edges")
-        g.remove(vertex: "Atlanta")
-        XCTAssertEqual(g.vertexCount, 2, "2 total vertices")
+        g.remove(node: "Atlanta")
+        XCTAssertEqual(g.nodeCount, 2, "2 total nodes")
         XCTAssertEqual(g.edgeCount, 1, "1 total edges")
     }
 
     func testSubscript() {
         var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
-        g.add(vertex: "Atlanta")
-        g.add(vertex: "New York")
-        g.add(vertex: "Miami")
-        XCTAssertEqual(g[0], "Atlanta", "Expected result at vertex 0")
-        XCTAssertEqual(g[2], "Miami", "Expected result at vertex 2")
+        g.add(node: "Atlanta")
+        g.add(node: "New York")
+        g.add(node: "Miami")
+        XCTAssertEqual(g[0], "Atlanta", "Expected result at node 0")
+        XCTAssertEqual(g[2], "Miami", "Expected result at node 2")
     }
 
     func testVarious() {
         var g: _UnweightedGraph<String> = .init()
 
-        g.add(vertex: "Atlanta")
-        g.add(vertex: "Miami")
+        g.add(node: "Atlanta")
+        g.add(node: "Miami")
         g.edge("Atlanta", to: "Miami", directed: false)
-        XCTAssertTrue(g.contains(vertex: "Atlanta"))
-        XCTAssertFalse(g.contains(vertex: "New York"))
+        XCTAssertTrue(g.contains(node: "Atlanta"))
+        XCTAssertFalse(g.contains(node: "New York"))
 
         let edge = g.edges(for: "Atlanta")!.first!
         XCTAssertTrue(g.contains(edge: edge))
@@ -104,13 +104,13 @@ class SwiftGraphTests: XCTestCase {
         g.unedge("Atlanta", to: "Miami", bidirectional: true)
         g.unedge("Atlanta", to: "Rome", bidirectional: true)
 
-        var wg1 = _WeightedGraph<String, Int>(vertices: ["0", "1"])
-        var wg2 = _WeightedGraph<String, Int>(vertices: ["0", "1"])
+        var wg1 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
+        var wg2 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
 
-        XCTAssertEqual(wg1.immutableVertices, wg2.immutableVertices)
+        XCTAssertEqual(wg1.immutableNodes, wg2.immutableNodes)
         XCTAssertNil(wg1.neighbors(for: "3"))
 
-        wg1.remove(vertex: "3")
+        wg1.remove(node: "3")
 
         wg1.edge(0, to: 1, weight: 1)
         wg2.edge(0, to: 1, weight: 1)
@@ -150,7 +150,7 @@ class SwiftGraphTests: XCTestCase {
         // used internally by the classes themselves (they couldn't be used if the
         // protocol specifies them as `mutating` and a `nonmutating` variant is not
         // provided.
-        var graph = _UnweightedGraph(vertices: ["0", "1", "2", "3", "4", "5", "6"])
+        var graph = _UnweightedGraph(nodes: ["0", "1", "2", "3", "4", "5", "6"])
         graph.edge("0", to: "1", directed: false)
         graph.edge("1", to: "2", directed: false)
         graph.edge("2", to: "3", directed: false)
@@ -163,8 +163,8 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testMutatingMethods() {
-        var g1 = _UnweightedGraphStruct(vertices: ["0", "1", "2", "3", "4", "5", "6"])
-        var g2 = _WeightedGraphStruct<String, Int>(vertices: ["0", "1", "2", "3", "4", "5", "6"])
+        var g1 = _UnweightedGraphStruct(nodes: ["0", "1", "2", "3", "4", "5", "6"])
+        var g2 = _WeightedGraphStruct<String, Int>(nodes: ["0", "1", "2", "3", "4", "5", "6"])
 
         g1.edge(0, to: 1)
         g2.edge(0, to: 1, weight: 1)
@@ -181,12 +181,12 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertTrue(g1.contains(edge: e3))
         XCTAssertTrue(g2.contains(edge: e4))
 
-        g1.remove(vertex: "6")
-        XCTAssertFalse(g1.contains(vertex: "6"))
+        g1.remove(node: "6")
+        XCTAssertFalse(g1.contains(node: "6"))
 
-        let v1 = g1.vertex(at: 3)
+        let v1 = g1.node(at: 3)
         g1.remove(at: 3)
-        XCTAssertFalse(g1.contains(vertex: v1))
+        XCTAssertFalse(g1.contains(node: v1))
 
         g1.remove(edge: e1)
         XCTAssertFalse(g1.contains(edge: e1))

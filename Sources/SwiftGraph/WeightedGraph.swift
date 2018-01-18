@@ -34,27 +34,27 @@ public protocol WeightedGraph: Graph where E: WeightedEdge {
     ///
     /// - Note: To implement it, use `add(edge:)` with the edge type initializer.
     ///
-    /// - parameter from: The starting vertex's index.
-    /// - parameter to: The ending vertex's index.
+    /// - parameter from: The starting node's index.
+    /// - parameter to: The ending node's index.
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
     mutating func edge(_ from: Int, to: Int, directed: Bool, weight: W)
 
     /// This is a convenience method that adds a weighted edge between
-    /// the first occurence of two vertices. O(n).
+    /// the first occurence of two nodes. O(n).
     ///
     /// - Note: To implement it, use `indices(of:_:)` to retrieve the indices,
     ///         guard that they exist, then create and add the edge.
     ///
-    /// - parameter from: The starting vertex.
-    /// - parameter to: The ending vertex.
+    /// - parameter from: The starting node.
+    /// - parameter to: The ending node.
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
-    mutating func edge(_ from: V, to: V, directed: Bool, weight: W)
+    mutating func edge(_ from: N, to: N, directed: Bool, weight: W)
 
     // MARK: Find
 
-    func neighbors(for index: Int) -> [(V, W)]
+    func neighbors(for index: Int) -> [(N, W)]
 
     // MARK: Minimum-Spanning Tree
 
@@ -63,20 +63,20 @@ public protocol WeightedGraph: Graph where E: WeightedEdge {
     // MARK: Dijkstra Algorithm
 
     func dijkstra(root: Int, start distance: W) -> ([W?], [Int: E])
-    func dijkstra(root: V, start distance: W) -> ([W?], [Int: E])
-    func dijkstra(root: Int, start distance: W) -> ([V: W?], [Int: E])
-    func dijkstra(root: V, start distance: W) -> ([V: W?], [Int: E])
+    func dijkstra(root: N, start distance: W) -> ([W?], [Int: E])
+    func dijkstra(root: Int, start distance: W) -> ([N: W?], [Int: E])
+    func dijkstra(root: N, start distance: W) -> ([N: W?], [Int: E])
 }
 
 extension WeightedGraph {
-    /// Find all of the neighbors of a vertex at a given index, with weights.
+    /// Find all of the neighbors of a node at a given index, with weights.
     ///
-    /// - parameter index: The index for the vertex to find the neighbors of.
-    /// - returns: An array of tuples including the vertices as the first element and the weights as the second element.
-    public func neighbors(for index: Int) -> [(V, W)] {
-        var distanceTuples: [(V, W)] = [(V, W)]()
+    /// - parameter index: The index for the node to find the neighbors of.
+    /// - returns: An array of tuples including the nodes as the first element and the weights as the second element.
+    public func neighbors(for index: Int) -> [(N, W)] {
+        var distanceTuples: [(N, W)] = [(N, W)]()
         for edge in edges[index] {
-            distanceTuples += [(vertices[edge.v], edge.weight)]
+            distanceTuples += [(nodes[edge.v], edge.weight)]
         }
         return distanceTuples
     }
@@ -85,8 +85,8 @@ extension WeightedGraph {
 extension WeightedGraph {
     public var description: String {
         var d: String = ""
-        for i in 0 ..< vertices.count {
-            d += "\(vertices[i]) -> \(neighbors(for: i))\n"
+        for i in 0 ..< nodes.count {
+            d += "\(nodes[i]) -> \(neighbors(for: i))\n"
         }
         return d
     }

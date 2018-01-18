@@ -21,10 +21,10 @@ import XCTest
 
 class DijkstraGraphTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    let cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
 
     override func setUp() {
         super.setUp()
@@ -155,10 +155,9 @@ class DijkstraGraphTests: XCTestCase {
 
         // path between New York and San Francisco
         let edges: [_WeightedEdge<Int>] = cityGraph.route(from: "New York", to: "San Francisco", in: path)
-        let stops: [String] = cityGraph.vertices(from: edges)
+        let stops: [String] = cityGraph.nodes(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["New York", "Chicago", "Denver", "San Francisco"], "Atlanta should be 888 miles away.")
-        // println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
     }
 
     func testDijkstra2() {
@@ -191,10 +190,9 @@ class DijkstraGraphTests: XCTestCase {
 
         // path between New York and Seattle
         let edges: [_WeightedEdge<Int>] = cityGraph.route(from: "Miami", to: "San Francisco", in: path)
-        let stops: [String] = cityGraph.vertices(from: edges)
+        let stops: [String] = cityGraph.nodes(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Dallas", "Los Angeles", "San Francisco"], "Shortest path to San Francisco is not right.")
-        // println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
     }
 
     func testDijkstra3() {
@@ -227,10 +225,9 @@ class DijkstraGraphTests: XCTestCase {
 
         // path between New York and Seattle
         let edges: [_WeightedEdge<Int>] = cityGraph2.route(from: "Miami", to: "San Francisco", in: path)
-        let stops: [String] = cityGraph2.vertices(from: edges)
+        let stops: [String] = cityGraph2.nodes(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Phoenix", "Riverside", "San Francisco"], "Shortest path to San Francisco is not right.")
-        // println(edgesToVertices(result, cityGraph2))  // not sure why description not called by println
     }
 
     func testDijkstra4() {
@@ -244,12 +241,12 @@ class DijkstraGraphTests: XCTestCase {
         XCTAssertTrue(nameDistance2.isEmpty)
         XCTAssertTrue(path2.isEmpty)
 
-        XCTAssertEqual(DijkstraNode<Int>(vertex: 0, distance: 2), DijkstraNode<Int>(vertex: 0, distance: 2))
+        XCTAssertEqual(DijkstraNode<Int>(node: 0, distance: 2), DijkstraNode<Int>(node: 0, distance: 2))
     }
 
     func testRemovalWithDijkstra() {
         var cityGraph3 = cityGraph
-        cityGraph3.remove(vertex: "Kansas City")
+        cityGraph3.remove(node: "Kansas City")
         let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph3.dijkstra(root: "Miami", start: 0)
 
         for (key, value) in nameDistance {
@@ -257,7 +254,7 @@ class DijkstraGraphTests: XCTestCase {
         }
 
         let edges: [_WeightedEdge<Int>] = cityGraph3.route(from: "Miami", to: "Chicago", in: path)
-        let stops: [String] = cityGraph3.vertices(from: edges)
+        let stops: [String] = cityGraph3.nodes(from: edges)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Atlanta", "New York", "Chicago"], "Shortest path to Chicago is not right.")
     }

@@ -148,7 +148,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let place = index {
             ntGraph.edge(parent, to: place, directed: true)
         } else {
-            ntGraph.add(vertex: position)
+            ntGraph.add(node: position)
             let child: Int = ntGraph.index(of: position)!
             if parent != -1 {
                 ntGraph.edge(parent, to: child, directed: true)
@@ -165,7 +165,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_: Notification) {
         window.makeKeyAndOrderFront(self)
         ntView.needsDisplay = true // redraw it if it wasn't automatically
-        // add all the vertices
+        // add all the nodes
         addPositionAndChildren(NineTailPosition(matrix: [[.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads], [.Heads, .Heads, .Heads]]), parent: -1)
     }
 
@@ -179,7 +179,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func solve(_: AnyObject) {
         let temp = ntGraph.bfs(from: ntView.position, to: NineTailPosition(matrix: [[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]))
-        path = ntGraph.vertices(from: temp)
+        path = ntGraph.nodes(from: temp)
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(AppDelegate.timerFire(_:)), userInfo: nil, repeats: true)
     }
 

@@ -26,13 +26,13 @@ extension Graph {
 
     /// Topologically sorts a `Graph` O(n)
     ///
-    /// - returns: the sorted vertices, or nil if the graph cannot be sorted due to not being a DAG
-    public func topologicalSort() -> [V]? {
-        var sortedVertices = [V]()
-        let tsNodes = vertices.map { TSNode<V>(vertex: $0, color: .white) }
+    /// - returns: the sorted nodes, or nil if the graph cannot be sorted due to not being a DAG
+    public func topologicalSort() -> [N]? {
+        var sorted = [N]()
+        let tsNodes = nodes.map { TSNode<N>(node: $0, color: .white) }
         var notDAG = true
 
-        func visit(_ node: TSNode<V>) {
+        func visit(_ node: TSNode<N>) {
             notDAG = false
             guard node.color != .gray else {
                 notDAG = true
@@ -40,11 +40,11 @@ extension Graph {
             }
             if node.color == .white {
                 node.color = .gray
-                for inode in tsNodes where (neighbors(for: node.vertex)?.contains(inode.vertex))! {
+                for inode in tsNodes where (neighbors(for: node.node)?.contains(inode.node))! {
                     visit(inode)
                 }
                 node.color = .black
-                sortedVertices.insert(node.vertex, at: 0)
+                sorted.insert(node.node, at: 0)
             }
         }
 
@@ -56,7 +56,7 @@ extension Graph {
             return nil
         }
 
-        return sortedVertices
+        return sorted
     }
 
     /// Is the `Graph` a directed-acyclic graph (DAG)? O(n)
@@ -72,11 +72,11 @@ extension Graph {
 private enum TSColor { case black, gray, white }
 
 private class TSNode<V> {
-    fileprivate let vertex: V
+    fileprivate let node: V
     fileprivate var color: TSColor
 
-    init(vertex: V, color: TSColor) {
-        self.vertex = vertex
+    init(node: V, color: TSColor) {
+        self.node = node
         self.color = color
     }
 }

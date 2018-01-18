@@ -22,19 +22,19 @@ public extension WeightedGraph {
     // Citation: Based on Algorithms 4th Edition by Sedgewick, Wayne pg 619
 
     /// Find the minimum spanning tree in a weighted graph. This is the set of edges
-    /// that touches every vertex in the graph and is of minimal combined weight. This function
+    /// that touches every node in the graph and is of minimal combined weight. This function
     /// uses Jarnik's Algorithm (aka Prim's Algorithm) and so assumes the graph has
     /// undirected edges. For a graph with directed edges, the result may be incorrect. Also,
     /// if the graph is not fully connected, the tree will only span the connected component from which
-    /// the starting vertex belongs.
+    /// the starting node belongs.
     ///
-    /// - parameter start: The index of the vertex to start creating the MST from.
-    /// - returns: An array of WeightedEdges containing the minimum spanning tree, or nil if the starting vertex is invalid. If there are is only one vertex connected to the starting vertex, an empty list is returned.
+    /// - parameter start: The index of the node to start creating the MST from.
+    /// - returns: An array of WeightedEdges containing the minimum spanning tree, or nil if the starting node is invalid. If there are is only one node connected to the starting node, an empty list is returned.
     public func mst(start: Int = 0) -> [E]? {
-        if start > (vertexCount - 1) || start < 0 { return nil }
+        if start > (nodeCount - 1) || start < 0 { return nil }
         var result: [E] = [E]() // the final MST goes in here
         var pq: PriorityQueue<E> = PriorityQueue<E>(ascending: true) // minPQ
-        var visited: [Bool] = Array<Bool>(repeating: false, count: vertexCount) // already been to these
+        var visited: [Bool] = Array<Bool>(repeating: false, count: nodeCount) // already been to these
 
         func visit(_ index: Int) {
             visited[index] = true // mark as visited
@@ -43,7 +43,7 @@ public extension WeightedGraph {
             }
         }
 
-        visit(start) // the first vertex is where everything begins
+        visit(start) // the first node is where everything begins
 
         while let edge = pq.pop() { // keep going as long as there are edges to process
             if visited[edge.v] { continue } // if we've been both places, ignore
@@ -62,7 +62,7 @@ extension WeightedGraph {
     /// - parameter edges: The edges from a previously computed MST (on this graph).
     internal func printmst(_ edges: [E]) {
         for edge in edges {
-            print("\(vertex(at: edge.u)) \(edge.weight)> \(vertex(at: edge.v))")
+            print("\(node(at: edge.u)) \(edge.weight)> \(node(at: edge.v))")
         }
         if let weight = weight(of: edges) {
             print("Total Weight: \(weight)")

@@ -24,13 +24,13 @@ extension Graph {
     // In Telecommunications, 2006. AICT-ICIW'06. International Conference on Internet and
     // Web Applications and Services/Advanced International Conference on, pp. 57-57. IEEE, 2006.
 
-    /// Find all of the cycles in a `Graph`, expressed as vertices.
+    /// Find all of the cycles in a `Graph`, expressed as nodes.
     ///
     /// - parameter length: Does the caller only want to detect cycles up to a certain length?
-    /// - returns: a list of lists of vertices in cycles
-    public func cycles(until length: Int = Int.max) -> [[V]] {
-        var cycles = [[V]]() // store of all found cycles
-        var openPaths: [[V]] = vertices.map { [$0] } // initial open paths are single vertex lists
+    /// - returns: a list of lists of nodes in cycles
+    public func cycles(until length: Int = Int.max) -> [[N]] {
+        var cycles = [[N]]() // store of all found cycles
+        var openPaths: [[N]] = nodes.map { [$0] } // initial open paths are single node lists
 
         while !openPaths.isEmpty {
             let openPath = openPaths.removeFirst() // queue pop()
@@ -55,7 +55,7 @@ extension Graph {
     /// - returns: a list of lists of edges in cycles
     public func cycles(until length: Int = Int.max) -> [[E]] {
         var cycles = [[E]]() // store of all found cycles
-        var openPaths: [Path<E>] = (0 ..< vertices.count).map(Path<E>.init(start:)) // initial open paths start at a vertex, and are empty
+        var openPaths: [Path<E>] = (0 ..< nodes.count).map(Path<E>.init(start:)) // initial open paths start at a node, and are empty
 
         while !openPaths.isEmpty {
             let openPath = openPaths.removeFirst() // queue pop()

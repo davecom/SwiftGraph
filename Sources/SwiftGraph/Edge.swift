@@ -18,10 +18,10 @@
 
 /// A protocol that all edges in a graph must conform to.
 public protocol Edge: Equatable, CustomStringConvertible {
-    /// The origin vertex of the edge
-    var u: Int { get set } // made modifiable for changing when removing vertices
-    /// The destination vertex of the edge
-    var v: Int { get set } // made modifiable for changing when removing vertices
+    /// The origin node of the edge
+    var u: Int { get set } // made modifiable for changing when removing nodes
+    /// The destination node of the edge
+    var v: Int { get set } // made modifiable for changing when removing nodes
     var weighted: Bool { get }
     var directed: Bool { get }
     var reversed: Self { get }
