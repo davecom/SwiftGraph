@@ -83,27 +83,27 @@ class SwiftGraphTests: XCTestCase {
 
     func testVarious() {
         var g: _UnweightedGraph<String> = .init()
-        
+
         g.add(vertex: "Atlanta")
         g.add(vertex: "Miami")
         g.edge("Atlanta", to: "Miami", directed: false)
         XCTAssertTrue(g.contains(vertex: "Atlanta"))
         XCTAssertFalse(g.contains(vertex: "New York"))
-        
+
         let edge = g.edges(for: "Atlanta")!.first!
         XCTAssertTrue(g.contains(edge: edge))
         XCTAssertFalse(edge.weighted)
-        
+
         g.remove(edge: edge)
         XCTAssertFalse(g.contains(edge: edge))
-        
+
         g.edge("Lagos", to: "Atlanta")
         XCTAssertNil(g.edges(for: "Lagos"))
-        
+
         g.edge("Atlanta", to: "Miami", directed: false)
         g.unedge("Atlanta", to: "Miami", bidirectional: true)
         g.unedge("Atlanta", to: "Rome", bidirectional: true)
-        
+
         var wg1 = _WeightedGraph<String, Int>(vertices: ["0", "1"])
         var wg2 = _WeightedGraph<String, Int>(vertices: ["0", "1"])
 
@@ -133,7 +133,7 @@ class SwiftGraphTests: XCTestCase {
 
         XCTAssertNil(wg1.topologicalSort())
         XCTAssertFalse(wg1.isDAG)
-        
+
         let q = Queue<Int>()
         q.push(1)
         XCTAssertTrue(q.contains(1))
@@ -162,18 +162,55 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertFalse(graph.edged(from: 3, to: 2))
     }
 
-    // func testPerformanceExample() {
-    // This is an example of a performance test case.
-    //   self.measureBlock() {
-    // Put the code you want to measure the time of here.
-    //   }
-    // }
+    func testMutatingMethods() {
+        var g1 = _UnweightedGraphStruct(vertices: ["0", "1", "2", "3", "4", "5", "6"])
+        var g2 = _WeightedGraphStruct<String, Int>(vertices: ["0", "1", "2", "3", "4", "5", "6"])
+
+        g1.edge(0, to: 1)
+        g2.edge(0, to: 1, weight: 1)
+        g1.edge("2", to: "3")
+        g2.edge("2", to: "3", weight: 1)
+
+        let e1 = g1.edges(for: 0).first!
+        let e2 = g2.edges(for: 0).first!
+        XCTAssertTrue(g1.contains(edge: e1))
+        XCTAssertTrue(g2.contains(edge: e2))
+
+        let e3 = g1.edges(for: "2")!.first!
+        let e4 = g2.edges(for: "2")!.first!
+        XCTAssertTrue(g1.contains(edge: e3))
+        XCTAssertTrue(g2.contains(edge: e4))
+
+        g1.remove(vertex: "6")
+        XCTAssertFalse(g1.contains(vertex: "6"))
+
+        let v1 = g1.vertex(at: 3)
+        g1.remove(at: 3)
+        XCTAssertFalse(g1.contains(vertex: v1))
+
+        g1.remove(edge: e1)
+        XCTAssertFalse(g1.contains(edge: e1))
+
+        g2.unedge(0, to: 1, bidirectional: true)
+        XCTAssertFalse(g2.contains(edge: e2))
+
+        g2.unedge("2", to: "3", bidirectional: true)
+        XCTAssertFalse(g2.contains(edge: e4))
+
+        g1.edge("10", to: "11", directed: true)
+        XCTAssertNil(g1.edges(for: "10"))
+
+        g2.edge("10", to: "11", directed: true, weight: 1)
+        XCTAssertNil(g2.edges(for: "10"))
+    }
+
     static var allTests = [
         ("testCitesInverseAfterRemove", testCitesInverseAfterRemove),
         ("testSequenceTypeAndCollectionType", testSequenceTypeAndCollectionType),
         ("testCounts", testCounts),
         ("testSubscript", testSubscript),
         ("testRemoveAllEdges", testRemoveAllEdges),
-        ("testContains", testVarious),
+        ("testVarious", testVarious),
+        ("testMutatingMethods", testMutatingMethods),
     ]
 }
