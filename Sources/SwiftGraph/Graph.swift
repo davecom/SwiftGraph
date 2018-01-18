@@ -97,7 +97,7 @@ public protocol Graph: Collection, CustomStringConvertible {
 
     // MARK: Sort
 
-    func topologicalSort() -> [N]?
+    func toposort() -> [N]?
 }
 
 // MARK: - Initializers
