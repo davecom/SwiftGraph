@@ -19,64 +19,71 @@
 // MARK: Topological Sorting
 
 extension Graph {
-    // Based on Introduction to Algorithms, 3rd Edition, Cormen et. al.,
-    // The MIT Press, 2009, pg 604-614
-    // and revised pseudocode of the same from Wikipedia
+    // Based on
+    //
+    // “Introduction to Algorithms, 3rd Edition, Cormen et. al., The MIT Press, 2009, pg 604-614”
     // https://en.wikipedia.org/wiki/Topological_sorting#Depth-first_search
 
-    /// Topologically sorts a `Graph` O(n)
+    /// Topologically sort the graph in `O(n)` time.
     ///
-    /// - returns: the sorted nodes, or nil if the graph cannot be sorted due to not being a DAG
-    public func topologicalSort() -> [N]? {
-        var sorted = [N]()
-        let tsNodes = nodes.map { TSNode<N>(node: $0, color: .white) }
-        var notDAG = true
+    /// - returns: The _sorted nodes_, **or** `nil` if the graph cannot be sorted
+    /// because it is a DAG, **or** an `[]` if there are no nodes or edges.
+    public func toposort() -> [N]? {
+        return toposort()?.map(node(at:))
+    }
 
-        func visit(_ node: TSNode<N>) {
-            notDAG = false
-            guard node.color != .gray else {
-                notDAG = true
+    /// Topologically sort the graph in `O(n)` time.
+    ///
+    /// - returns: The _sorted indices_ of the nodes, **or** `nil` if the graph cannot be
+    /// sorted because it is a DAG, **or** an `[]` if there are no nodes or edges.
+    public func toposort() -> [Int]? {
+        guard !edges.joined().isEmpty else { return [] }
+
+        var sorted = [Int]()
+        var marks = nodes.map(Topomark.initialize)
+        var isDAG = true
+
+        func visit(_ i: Int, with mark: Topomark) {
+            guard mark == .none else {
+                if mark == .temporary { isDAG = false }
                 return
             }
-            if node.color == .white {
-                node.color = .gray
-                for inode in tsNodes where (neighbors(for: node.node)?.contains(inode.node))! {
-                    visit(inode)
-                }
-                node.color = .black
-                sorted.insert(node.node, at: 0)
+            marks[i] = .temporary
+            for (j, other) in nodes.enumerated() where isDAG && neighbors(for: i).contains(other) {
+                visit(j, with: marks[j])
             }
+            marks[i] = .permanent
+            sorted.insert(i, at: 0)
         }
 
-        for node in tsNodes where node.color == .white {
-            visit(node)
+        for i in nodes.indices where isDAG && marks[i] == .none {
+            visit(i, with: marks[i])
         }
 
-        if notDAG {
-            return nil
-        }
-
+        guard isDAG else { return nil }
         return sorted
     }
 
-    /// Is the `Graph` a directed-acyclic graph (DAG)? O(n)
-    /// Finds the answer based on the result of a topological sort.
+    /// A Boolean value indicating whether the graph is a _directed acyclic graph (DAG)_.
+    /// `O(n)` time because it does a topological sort.
+    ///
+    /// Given that a directed graph is acyclic if and only if it has a topological ordering,
+    /// in case you've already done a topological sort: if the result is `nil` or `[]` then
+    /// the graph _is not_ a _DAG_.
     public var isDAG: Bool {
-        if topologicalSort() == nil { return false }
+        guard let sorted: [Int] = toposort(), !sorted.isEmpty else { return false }
         return true
     }
 }
 
 // MARK: Topological Sorting Utilities
 
-private enum TSColor { case black, gray, white }
+private enum Topomark {
+    case permanent
+    case temporary
+    case none
 
-private class TSNode<V> {
-    fileprivate let node: V
-    fileprivate var color: TSColor
-
-    init(node: V, color: TSColor) {
-        self.node = node
-        self.color = color
+    static func initialize(_: Any) -> Topomark {
+        return .none
     }
 }
