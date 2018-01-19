@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A basic unweighted edge.
-protocol UnweightedEdge: Edge {
+public protocol UnweightedEdge: Edge {
     init(source: Int, target: Int, directed: Bool)
 }
 
