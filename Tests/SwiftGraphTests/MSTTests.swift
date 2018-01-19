@@ -21,10 +21,10 @@ import XCTest
 
 class MSTTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    var cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    var cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
 
     let emptyGraph: _WeightedGraph<String, Int> = .init()
 

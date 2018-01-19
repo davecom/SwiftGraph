@@ -20,8 +20,8 @@
 import XCTest
 
 class CycleTests: XCTestCase {
-    let simpleGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D"])
-    let fullyConnected: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D", "E"])
+    var simpleGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D"])
+    var fullyConnected: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D", "E"])
 
     override func setUp() {
         super.setUp()

@@ -17,39 +17,12 @@
 //  limitations under the License.
 
 /// A graph with `WeightedEdge`.
-///
-/// - Note:
-/// Types who conform to `UnweightedGraph` must implement the `edge(from:to:directed:weight:)` requirements
-/// while maintaining the expected logic, given that they are convenience methods.
-/// Follow the notes in the respective methods.
-///
-/// They could not be implemented in a protocol extension because they require the
-/// `E` initializer, and `E` is a generic protocol.
 public protocol WeightedGraph: Graph where E: WeightedEdge {
     typealias W = E.W
 
     // MARK: Mutate
 
-    /// This is a convenience method that adds a weighted edge.
-    ///
-    /// - Note: To implement it, use `add(edge:)` with the edge type initializer.
-    ///
-    /// - parameter from: The starting node's index.
-    /// - parameter to: The ending node's index.
-    /// - parameter directed: Is the edge directed? (default false)
-    /// - parameter weight: the Weight of the edge to add.
     mutating func edge(_ from: Int, to: Int, directed: Bool, weight: W)
-
-    /// This is a convenience method that adds a weighted edge between
-    /// the first occurence of two nodes. O(n).
-    ///
-    /// - Note: To implement it, use `indices(of:_:)` to retrieve the indices,
-    ///         guard that they exist, then create and add the edge.
-    ///
-    /// - parameter from: The starting node.
-    /// - parameter to: The ending node.
-    /// - parameter directed: Is the edge directed? (default false)
-    /// - parameter weight: the Weight of the edge to add.
     mutating func edge(_ from: N, to: N, directed: Bool, weight: W)
 
     // MARK: Find
@@ -69,12 +42,36 @@ public protocol WeightedGraph: Graph where E: WeightedEdge {
 }
 
 extension WeightedGraph {
+    /// This is a convenience method that adds a weighted edge.
+    ///
+    /// - parameter from: The starting node's index.
+    /// - parameter to: The ending node's index.
+    /// - parameter directed: Is the edge directed? (default false)
+    /// - parameter weight: the Weight of the edge to add.
+    public mutating func edge(_ from: Int, to: Int, directed: Bool = false, weight: W) {
+        add(edge: E(source: from, target: to, directed: directed, weight: weight))
+    }
+
+    /// This is a convenience method that adds a weighted edge between
+    /// the first occurence of two nodes. O(n).
+    ///
+    /// - parameter from: The starting node.
+    /// - parameter to: The ending node.
+    /// - parameter directed: Is the edge directed? (default false)
+    /// - parameter weight: the Weight of the edge to add.
+    public mutating func edge(_ from: N, to: N, directed: Bool = false, weight: W) {
+        guard let (from, to) = indices(of: from, to) else { return }
+        edge(from, to: to, directed: directed, weight: weight)
+    }
+}
+
+extension WeightedGraph {
     /// Find all of the neighbors of a node at a given index, with weights.
     ///
     /// - parameter index: The index for the node to find the neighbors of.
     /// - returns: An array of tuples including the nodes as the first element and the weights as the second element.
     public func neighbors(for index: Int) -> [(N, W)] {
-        return edges[index].map { (nodes[$0.v], $0.weight) }
+        return edges[index].map { (nodes[$0.target], $0.weight) }
     }
 }
 

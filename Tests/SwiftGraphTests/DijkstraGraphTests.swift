@@ -21,10 +21,10 @@ import XCTest
 
 class DijkstraGraphTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    var cityGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    var cityGraph2: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
 
     override func setUp() {
         super.setUp()
@@ -244,7 +244,7 @@ class DijkstraGraphTests: XCTestCase {
     }
 
     func testRemovalWithDijkstra() {
-        let cityGraph3 = cityGraph
+        var cityGraph3 = cityGraph
         cityGraph3.remove(node: "Kansas City")
         let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph3.dijkstra(root: "Miami", start: 0)
 

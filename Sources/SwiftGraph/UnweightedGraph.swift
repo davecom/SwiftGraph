@@ -17,32 +17,29 @@
 //  limitations under the License.
 
 /// A graph with `UnweightedEdge`.
-///
-/// - Note:
-/// Types who conform to `UnweightedGraph` must implement the `edge(from:to:directed:)` requirements
-/// while maintaining the expected logic, given that they are convenience methods.
-/// Follow the notes in the respective methods.
-///
-/// They could not be implemented in a protocol extension because they require the
-/// `E` initializer, and `E` is a generic protocol.
-protocol UnweightedGraph: Graph where E: UnweightedEdge {
+public protocol UnweightedGraph: Graph where E: UnweightedEdge {
+    mutating func edge(_ from: Int, to: Int, directed: Bool)
+    mutating func edge(_ from: N, to: N, directed: Bool)
+}
+
+extension UnweightedGraph {
     /// This is a convenience method that adds an unweighted edge.
-    ///
-    /// - Note: To implement it, use `add(edge:)` with the edge type initializer.
     ///
     /// - parameter from: The starting node's index.
     /// - parameter to: The ending node's index.
     /// - parameter directed: Is the edge directed? (default `false`)
-    mutating func edge(_ from: Int, to: Int, directed: Bool)
+    public mutating func edge(_ from: Int, to: Int, directed: Bool = false) {
+        add(edge: E(source: from, target: to, directed: directed))
+    }
 
     /// This is a convenience method that adds an unweighted, undirected
     /// edge between the first occurence of two nodes. O(n).
     ///
-    /// - Note: To implement it, use `indices(of:_:)` to retrieve the indices,
-    ///         guard that they exist, then create and add the edge.
-    ///
     /// - parameter from: The starting node.
     /// - parameter to: The ending node.
     /// - parameter directed: Is the edge directed? (default `false`)
-    mutating func edge(_ from: N, to: N, directed: Bool)
+    public mutating func edge(_ from: N, to: N, directed: Bool = false) {
+        guard let (from, to) = indices(of: from, to) else { return }
+        edge(from, to: to, directed: directed)
+    }
 }

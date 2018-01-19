@@ -52,15 +52,6 @@ internal final class _UnweightedGraph<Node: Hashable>: UnweightedGraph {
     var edges: [[_UnweightedEdge]] = []
     var nodes: [Node] = []
 
-    func edge(_ from: Int, to: Int, directed: Bool = false) {
-        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
-    }
-
-    func edge(_ from: Node, to: Node, directed: Bool = false) {
-        guard let (from, to) = indices(of: from, to) else { return }
-        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
-    }
-
     typealias N = Node
     typealias E = _UnweightedEdge
 }
@@ -71,15 +62,6 @@ internal final class _WeightedGraph<Node: Hashable, Weight: Summable>: WeightedG
     var edges: [[_WeightedEdge<Weight>]] = []
     var nodes: [Node] = []
 
-    func edge(_ from: Int, to: Int, directed: Bool = false, weight: W) {
-        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
-    }
-
-    func edge(_ from: Node, to: Node, directed: Bool = false, weight: W) {
-        guard let (from, to) = indices(of: from, to) else { return }
-        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
-    }
-
     typealias N = Node
     typealias E = _WeightedEdge<Weight>
 }
@@ -88,15 +70,6 @@ internal struct _UnweightedGraphStruct<Node: Hashable>: UnweightedGraph {
     var edges: [[_UnweightedEdge]] = []
     var nodes: [Node] = []
 
-    mutating func edge(_ from: Int, to: Int, directed: Bool = false) {
-        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
-    }
-
-    mutating func edge(_ from: Node, to: Node, directed: Bool = false) {
-        guard let (from, to) = indices(of: from, to) else { return }
-        add(edge: _UnweightedEdge(u: from, v: to, directed: directed))
-    }
-
     typealias N = Node
     typealias E = _UnweightedEdge
 }
@@ -104,15 +77,6 @@ internal struct _UnweightedGraphStruct<Node: Hashable>: UnweightedGraph {
 internal struct _WeightedGraphStruct<Node: Hashable, Weight: Summable>: WeightedGraph {
     var edges: [[_WeightedEdge<Weight>]] = []
     var nodes: [Node] = []
-
-    mutating func edge(_ from: Int, to: Int, directed: Bool = false, weight: W) {
-        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
-    }
-
-    mutating func edge(_ from: Node, to: Node, directed: Bool = false, weight: W) {
-        guard let (from, to) = indices(of: from, to) else { return }
-        add(edge: _WeightedEdge(u: from, v: to, directed: directed, weight: weight))
-    }
 
     typealias N = Node
     typealias E = _WeightedEdge<Weight>

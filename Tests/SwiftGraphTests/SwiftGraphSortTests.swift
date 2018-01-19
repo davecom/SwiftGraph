@@ -21,9 +21,9 @@ import XCTest
 
 class SwiftGraphSortTests: XCTestCase {
     // pg 1016 Liang
-    let dressDAG: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
+    var dressDAG: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
 
-    let cyclicGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D"])
+    var cyclicGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["A", "B", "C", "D"])
 
     let noEdgesGraph: _WeightedGraph<String, Int> = _WeightedGraph<String, Int>(nodes: "0", "1")
 

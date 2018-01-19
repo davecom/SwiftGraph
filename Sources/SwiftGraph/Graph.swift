@@ -106,20 +106,18 @@ public protocol Graph: Collection, Equatable, CustomStringConvertible {
 extension Graph {
     public init(nodes: [N]) {
         self.init()
-        _add(nodes: nodes, to: &self)
+        _add(nodes: nodes)
     }
 
     public init(nodes: N...) {
         self.init()
-        _add(nodes: nodes, to: &self)
+        _add(nodes: nodes)
     }
 
-    internal func _add(nodes: [N], to graph: inout Self) {
-        for node in nodes {
-            _add(node, to: &graph)
+    internal mutating func _add(nodes: [N]) {
+        for node in nodes { add(node: node) }
         }
     }
-}
 
 // MARK: - Computed Properties
 
@@ -247,159 +245,23 @@ extension Graph {
     /// - parameter node: The node to be added.
     /// - returns: The index where the node was added.
     public mutating func add(node: N) {
-        _add(node, to: &self)
+        nodes.append(node)
+        edges.append([E]())
     }
-
+    
     /// Add an edge to the graph.
     ///
     /// - parameter edge: The edge to add.
     public mutating func add(edge: E) {
-        _add(edge, to: &self)
+        edges[edge.source].append(edge)
+        if !edge.directed { edges[edge.target].append(edge.reversed) }
     }
-
+    
     /// Removes a node at a specified index, all of the edges attached to it,
     /// and renumbers the indexes of the rest of the edges.
     ///
     /// - parameter index: The index of the node.
     public mutating func remove(at index: Int) {
-        _remove(at: index, from: &self)
-    }
-
-    /// Removes the first occurence of a node, all of the edges attached to it,
-    /// and renumbers the indexes of the rest of the edges.
-    ///
-    /// - parameter node: The node to be removed.
-    public mutating func remove(node: N) {
-        _remove(node: node, from: &self)
-    }
-
-    /// Removes a specific unweighted edge in both directions (if it's not
-    /// directional). Or just one way if it's directed.
-    ///
-    /// - parameter edge: The edge to be removed.
-    public mutating func remove(edge: E) {
-        _remove(edge: edge, from: &self)
-    }
-
-    /// Removes all edges in both directions between nodes at indexes from & to.
-    ///
-    /// - parameter from: The starting node's index.
-    /// - parameter to: The ending node's index.
-    /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func unedge(_ a: Int, from b: Int, bidirectional: Bool = true) {
-        _unedge(a, from: b, bidirectional: bidirectional, from: &self)
-    }
-
-    /// Removes all edges in both directions between two nodes.
-    ///
-    /// - parameter from: The starting node.
-    /// - parameter to: The ending node.
-    /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func unedge(_ a: N, from b: N, bidirectional: Bool = true) {
-        _unedge(a, from: b, bidirectional: bidirectional, from: &self)
-    }
-}
-
-// MARK: - Mutating where Self: AnyObject
-
-extension Graph where Self: AnyObject {
-    // To work around the mutating methods in class-based implementations
-    // without needlessly constraining the protocol to class, we refine
-    // mutating methods with the workaround suggested by Kevin Ballard on
-    // the Swift mailing list.
-    //
-    // Documentation must be maintained in parallel.
-
-    /// Add a node to the graph.
-    ///
-    /// - parameter node: The node to be added.
-    /// - returns: The index where the node was added.
-    public func add(node: N) {
-        var self_ = self
-        _add(node, to: &self_)
-    }
-
-    /// Add an edge to the graph.
-    ///
-    /// - parameter edge: The edge to add.
-    public func add(edge: E) {
-        var self_ = self
-        _add(edge, to: &self_)
-    }
-
-    /// Removes a node at a specified index, all of the edges attached to it,
-    /// and renumbers the indexes of the rest of the edges.
-    ///
-    /// - parameter index: The index of the node.
-    public func remove(at index: Int) {
-        var self_ = self
-        _remove(at: index, from: &self_)
-    }
-
-    /// Removes the first occurence of a node, all of the edges attached to it,
-    /// and renumbers the indexes of the rest of the edges.
-    ///
-    /// - parameter node: The node to be removed.
-    public func remove(node: N) {
-        var self_ = self
-        _remove(node: node, from: &self_)
-    }
-
-    /// Removes a specific unweighted edge in both directions (if it's not
-    /// directional). Or just one way if it's directed.
-    ///
-    /// - parameter edge: The edge to be removed.
-    public func remove(edge: E) {
-        var self_ = self
-        _remove(edge: edge, from: &self_)
-    }
-
-    /// Removes all edges in both directions between nodes at indexes from & to.
-    ///
-    /// - parameter from: The starting node's index.
-    /// - parameter to: The ending node's index.
-    /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public func unedge(_ a: Int, from b: Int, bidirectional: Bool = true) {
-        var self_ = self
-        _unedge(a, from: b, bidirectional: bidirectional, from: &self_)
-    }
-
-    /// Removes all edges in both directions between two nodes.
-    ///
-    /// - parameter from: The starting node.
-    /// - parameter to: The ending node.
-    /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public func unedge(_ a: N, from b: N, bidirectional: Bool = true) {
-        var self_ = self
-        _unedge(a, from: b, bidirectional: bidirectional, from: &self_)
-    }
-}
-
-// MARK: - Mutating Internals
-
-internal extension Graph {
-    // Internal methods are needed to reuse logic into a class-specific extension
-    // where a `mutating` method cannot be used due to immutable `self`.
-    //
-    // This solution was suggested by Kevin Ballard on the Swift Mailing list
-    // (https://is.gd/Hb4f19). See SR-142 (https://bugs.swift.org/browse/SR-142).
-    //
-    // Avoids needlessly constraining the protocol to class by redefining default
-    // implementations within a `where Self: AnyObject` extension. See below.
-    //
-    // Find the documentation for each method in the next extension.
-
-    internal func _add(_ node: N, to graph: inout Self) {
-        graph.nodes.append(node)
-        graph.edges.append([E]())
-    }
-
-    internal func _add(_ edge: E, to graph: inout Self) {
-        graph.edges[edge.source].append(edge)
-        if !edge.directed { graph.edges[edge.target].append(edge.reversed) }
-    }
-
-    internal func _remove(at index: Int, from graph: inout Self) {
         // remove all edges ending at the node, first doing the ones below it
         // renumber edges that end after the index
         for j in 0 ..< index {
@@ -410,14 +272,14 @@ internal extension Graph {
                     continue
                 }
                 if edges[j][l].target > index {
-                    graph.edges[j][l].target -= 1
+                    edges[j][l].target -= 1
                 }
             }
             for f in trash.reversed() {
-                graph.edges[j].remove(at: f)
+                edges[j].remove(at: f)
             }
         }
-
+        
         // remove all edges after the node index wise
         // renumber all edges after the node index wise
         for j in (index + 1) ..< edges.count {
@@ -427,49 +289,86 @@ internal extension Graph {
                     trash.append(l)
                     continue
                 }
-                graph.edges[j][l].source -= 1
+                edges[j][l].source -= 1
                 if edges[j][l].target > index {
-                    graph.edges[j][l].target -= 1
+                    edges[j][l].target -= 1
                 }
             }
             for f in trash.reversed() {
-                graph.edges[j].remove(at: f)
+                edges[j].remove(at: f)
             }
         }
         // remove the actual node and its edges
-        graph.edges.remove(at: index)
-        graph.nodes.remove(at: index)
+        edges.remove(at: index)
+        nodes.remove(at: index)
     }
-
-    internal func _remove(node: N, from graph: inout Self) {
+    
+    /// Removes the first occurence of a node, all of the edges attached to it,
+    /// and renumbers the indexes of the rest of the edges.
+    ///
+    /// - parameter node: The node to be removed.
+    public mutating func remove(node: N) {
         guard let i = index(of: node) else { return }
-        graph.remove(at: i)
+        remove(at: i)
     }
-
-    internal func _remove(edge: E, from graph: inout Self) {
+    
+    /// Removes a specific unweighted edge in both directions (if it's not
+    /// directional). Or just one way if it's directed.
+    ///
+    /// - parameter edge: The edge to be removed.
+    public mutating func remove(edge: E) {
         guard let i = (edges[edge.source]).index(of: edge) else { return }
-        graph.edges[edge.source].remove(at: i)
-
+        edges[edge.source].remove(at: i)
+        
         guard !edge.directed, let j = (edges[edge.target]).index(of: edge.reversed) else { return }
-        graph.edges[edge.target].remove(at: j)
+        edges[edge.target].remove(at: j)
     }
-
-    internal func _unedge(_ a: Int, from b: Int, bidirectional: Bool = true, from graph: inout Self) {
+    
+    /// Removes all edges in both directions between nodes at indexes from & to.
+    ///
+    /// - parameter from: The starting node's index.
+    /// - parameter to: The ending node's index.
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public mutating func unedge(_ a: Int, from b: Int, bidirectional: Bool = true) {
         for (i, edge) in edges[a].enumerated().reversed() where edge.target == b {
-            graph.edges[a].remove(at: i)
+            edges[a].remove(at: i)
         }
-
+        
         guard bidirectional else { return }
-
+        
         for (i, edge) in edges[b].enumerated().reversed() where edge.target == a {
-            graph.edges[b].remove(at: i)
+            edges[b].remove(at: i)
         }
     }
-
-    internal func _unedge(_ a: N, from b: N, bidirectional: Bool = true, from graph: inout Self) {
+    
+    /// Removes all edges in both directions between two nodes.
+    ///
+    /// - parameter from: The starting node.
+    /// - parameter to: The ending node.
+    /// - parameter bidirectional: Remove edges coming back (to -> from)
+    public mutating func unedge(_ a: N, from b: N, bidirectional: Bool = true) {
         guard let (u, v) = indices(of: a, b) else { return }
-        return graph.unedge(u, from: v, bidirectional: bidirectional)
+        return unedge(u, from: v, bidirectional: bidirectional)
     }
+    
+    // Implementation Note
+    //
+    // A `mutating` method cannot be used within a class due to immutable `self`.
+    // Should a class that adopts this protocol have the need to reuse `mutating`
+    // logic, internal `inout` implementations of these or the desired `mutating`
+    // methods need to be used.
+    //
+    // We were previously adopting the technique to work around an issue with
+    // a generic protocol initializer, but there should be no need to.
+    //
+    // Implement the `internal` `inout` method by taking the logic out of the `mutating`
+    // one, then call the internal one in both the `mutating` method and in the
+    // class-specific `nonmutating` method, which must be declared in an extension
+    // `where Self: AnyObject`.
+    //
+    // This solution avoids needlessly constraining the protocol to class. It was
+    // suggested by Kevin Ballard on the Swift Mailing list (https://is.gd/Hb4f19).
+    // See SR-142 (https://bugs.swift.org/browse/SR-142).
 }
 
 // MARK: - CustomStringConvertible

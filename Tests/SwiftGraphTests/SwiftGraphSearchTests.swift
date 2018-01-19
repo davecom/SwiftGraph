@@ -21,10 +21,10 @@ import XCTest
 
 class SwiftGraphSearchTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    var cityGraph: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington", "Cleveland"])
+    var cityGraph2: _UnweightedGraph<String> = _UnweightedGraph<String>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington", "Cleveland"])
 
     override func setUp() {
         super.setUp()

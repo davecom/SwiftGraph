@@ -29,7 +29,7 @@ import XCTest
 
 class SwiftGraphTests: XCTestCase {
     func testCitesInverseAfterRemove() {
-        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -41,7 +41,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testSequenceTypeAndCollectionType() {
-        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -54,7 +54,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testCounts() {
-        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -70,7 +70,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testSubscript() {
-        let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
+        var g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
         g.add(node: "New York")
         g.add(node: "Miami")
@@ -79,7 +79,7 @@ class SwiftGraphTests: XCTestCase {
     }
 
     func testVarious() {
-        let g: _UnweightedGraph<String> = .init()
+        var g: _UnweightedGraph<String> = .init()
 
         g.add(node: "Atlanta")
         g.add(node: "Miami")
@@ -100,8 +100,8 @@ class SwiftGraphTests: XCTestCase {
         g.unedge("Atlanta", from: "Miami", bidirectional: true)
         g.unedge("Atlanta", from: "Rome", bidirectional: true)
 
-        let wg1 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
-        let wg2 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
+        var wg1 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
+        var wg2 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
 
         XCTAssertEqual(wg1.immutableNodes, wg2.immutableNodes)
         XCTAssertNil(wg1.neighbors(for: "3"), "No neighbors for non-existing node.")
@@ -109,19 +109,20 @@ class SwiftGraphTests: XCTestCase {
         wg1.remove(node: "3")
 
         wg1.edge(0, to: 1, weight: 1)
-        wg2.edge(0, to: 1, weight: 1)
+        wg2.edge(0, to: 1, directed: true, weight: 1)
         let weightedEdge = wg1.edges(for: 0).first!
         let anotherWeightedEdge = wg2.edges(for: 0).first!
+        wg2.edge(0, to: 1, weight: 1)
+        let identicalWeightedEdge = wg2.edges(for: 0)[1]
         XCTAssertTrue(wg1.contains(edge: weightedEdge), "Weighted graph correctly adds weighted edge.")
-        XCTAssertEqual(weightedEdge, anotherWeightedEdge, "== works as expected on WeightedEdge")
+        XCTAssertEqual(weightedEdge, identicalWeightedEdge, "== works as expected on WeightedEdge")
 
         XCTAssertTrue(wg1.edged(from: "0", to: "1"), "Weighted graph correctly checks for existing weighted edge.")
         XCTAssertFalse(wg1.edged(from: "0", to: "2"), "Weighted graph correctly checks for non-existing edge.")
 
         XCTAssertTrue(weightedEdge.weighted, "Edge is correctly weighted.")
 
-        XCTAssertEqual(anotherWeightedEdge.description, "0 <1> 1", ".description works as expected.")
-        anotherWeightedEdge.directed = true
+        XCTAssertEqual(weightedEdge.description, "0 <1> 1", ".description works as expected.")
         XCTAssertEqual(anotherWeightedEdge.description, "0 1> 1", "directed .description works as expected.")
 
         wg1.edge("3", to: "4", weight: 1)
