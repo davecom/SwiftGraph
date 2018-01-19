@@ -16,17 +16,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// This protocol is needed for Dijkstra's algorithm - we need weights in weighted graphs
-/// to be able to be added together.
-public protocol Summable: Comparable {
-    static func + (lhs: Self, rhs: Self) -> Self
-}
-
-extension Int: Summable {}
-extension Double: Summable {}
-extension Float: Summable {}
-extension String: Summable {}
-
 /// A weighted edge whose weight conforms to Comparable.
 public protocol WeightedEdge: Edge, Comparable {
     associatedtype W: Summable
@@ -48,7 +37,7 @@ extension WeightedEdge {
     /// is the `target` node and the previous `target` node is the
     /// new `source` node.
     public var reversed: Self { return Self(source: target, target: source, directed: directed, weight: weight) }
-    }
+}
 
 // MARK: - Equatable
 
