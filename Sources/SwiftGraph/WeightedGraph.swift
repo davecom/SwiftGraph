@@ -79,11 +79,8 @@ extension WeightedGraph {
 }
 
 extension WeightedGraph {
+    // It's being redefined identically because it uses the `[(N, W)]` overload of `neighbors(for:)`.
     public var description: String {
-        var d: String = ""
-        for i in 0 ..< nodes.count {
-            d += "\(nodes[i]) -> \(neighbors(for: i))\n"
-        }
-        return d
+        return nodes.indices.map { "\(nodes[$0]) -> \(neighbors(for: $0))\n" }.joined()
     }
 }

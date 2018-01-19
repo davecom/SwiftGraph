@@ -476,13 +476,9 @@ internal extension Graph {
 
 extension Graph {
     public var description: String {
-        var d: String = ""
-        for i in 0 ..< nodes.count {
-            d += "\(nodes[i]) -> \(neighbors(for: i))\n"
+        return nodes.indices.map { "\(nodes[$0]) -> \(neighbors(for: $0))\n" }.joined()
         }
-        return d
     }
-}
 
 // MARK: - Collection
 
