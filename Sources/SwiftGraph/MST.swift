@@ -35,7 +35,7 @@ public extension WeightedGraph {
 
         var result: [E] = .init() // the final MST goes in here
         var queue: PriorityQueue<E> = PriorityQueue<E>(ascending: true) // minPQ
-        var visited: [Bool] = Array<Bool>(repeating: false, count: nodeCount) // already been to these
+        var visited: [Bool] = .init(repeating: false, count: nodeCount) // already been to these
 
         func visit(_ index: Int) {
             visited[index] = true // mark as visited
