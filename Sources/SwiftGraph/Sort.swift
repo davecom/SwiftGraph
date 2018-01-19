@@ -26,13 +26,8 @@ extension Graph {
 
     /// Topologically sort the graph in `O(n)` time.
     ///
-    /// - returns: The _sorted nodes_, **or** `nil` if the graph cannot be sorted
-    /// because it is a DAG, **or** an `[]` if there are no nodes or edges.
-    public func toposort() -> [N]? {
-        return toposort()?.map(node(at:))
-    }
-
-    /// Topologically sort the graph in `O(n)` time.
+    /// Use `toposort()?.map(node(at:))` or `toposort()?.lazy.map(node(at:))` should you
+    /// need all the respective nodes.
     ///
     /// - returns: The _sorted indices_ of the nodes, **or** `nil` if the graph cannot be
     /// sorted because it is a DAG, **or** an `[]` if there are no nodes or edges.
@@ -51,7 +46,7 @@ extension Graph {
             }
 
             func deepvisit() {
-                for (j, other) in nodes.enumerated() where isDAG && neighbors(for: i).contains(other) {
+                for (j, other) in nodes.enumerated() where isDAG && neighbors(i).contains(other) {
                     visit(j, with: marks[j])
                 }
             }

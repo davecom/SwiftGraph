@@ -32,24 +32,24 @@ class SwiftGraphSortTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // pg 1016 Liang
-        dressDAG.edge("undershorts", to: "shoes", directed: true)
-        dressDAG.edge("pants", to: "shoes", directed: true)
-        dressDAG.edge("socks", to: "shoes", directed: true)
-        dressDAG.edge("undershorts", to: "pants", directed: true)
-        dressDAG.edge("pants", to: "belt", directed: true)
-        dressDAG.edge("belt", to: "jacket", directed: true)
-        dressDAG.edge("shirt", to: "tie", directed: true)
-        dressDAG.edge("shirt", to: "belt", directed: true)
-        dressDAG.edge("tie", to: "jacket", directed: true)
+        dressDAG.link("undershorts", to: "shoes", directed: true)
+        dressDAG.link("pants", to: "shoes", directed: true)
+        dressDAG.link("socks", to: "shoes", directed: true)
+        dressDAG.link("undershorts", to: "pants", directed: true)
+        dressDAG.link("pants", to: "belt", directed: true)
+        dressDAG.link("belt", to: "jacket", directed: true)
+        dressDAG.link("shirt", to: "tie", directed: true)
+        dressDAG.link("shirt", to: "belt", directed: true)
+        dressDAG.link("tie", to: "jacket", directed: true)
         print(dressDAG)
 
         // A simple graph with easy cycles.
-        cyclicGraph.edge("A", to: "B", directed: true)
-        cyclicGraph.edge("B", to: "D", directed: true)
-        cyclicGraph.edge("A", to: "D", directed: true)
-        cyclicGraph.edge("D", to: "C", directed: true)
-        cyclicGraph.edge("C", to: "A", directed: true)
-        cyclicGraph.edge("C", to: "B", directed: true)
+        cyclicGraph.link("A", to: "B", directed: true)
+        cyclicGraph.link("B", to: "D", directed: true)
+        cyclicGraph.link("A", to: "D", directed: true)
+        cyclicGraph.link("D", to: "C", directed: true)
+        cyclicGraph.link("C", to: "A", directed: true)
+        cyclicGraph.link("C", to: "B", directed: true)
     }
 
     func testDAG() {
@@ -58,7 +58,7 @@ class SwiftGraphSortTests: XCTestCase {
     }
 
     func testToposort() {
-        guard let result: [String] = dressDAG.toposort() else {
+        guard let result = dressDAG.toposort() else {
             XCTFail("dressDAG could not be sorted.")
             return
         }

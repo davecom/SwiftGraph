@@ -25,19 +25,19 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter test: Returns true if a given node is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, until at: (N) -> Bool) -> [E] {
+    public func dfs(_ source: Int, until at: (N) -> Bool) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: nodeCount)
         var path: [Int: E] = .init()
         let stack: Stack<Int> = .init()
-        stack.push(from)
+        stack.push(source)
 
         while !stack.isEmpty {
-            let to: Int = stack.pop()
-            if at(node(at: to)) { return route(from, to, in: path) }
+            let target: Int = stack.pop()
+            if at(node(at: target)) { return route(source, target, in: path) }
 
-            visited[to] = true
-            for edge in edges(for: to) where !visited[edge.target] {
+            visited[target] = true
+            for edge in edges[target] where !visited[edge.target] {
                 stack.push(edge.target)
                 path[edge.target] = edge
             }
@@ -52,9 +52,9 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter test: Returns true if a given node is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: N, until at: (N) -> Bool) -> [E] {
-        guard let u = index(of: from) else { return [] }
-        return dfs(from: u, until: at)
+    public func dfs(from source: N, until at: (N) -> Bool) -> [E] {
+        guard let source = index(of: source) else { return [] }
+        return dfs(source, until: at)
     }
 
     /// Find a route from one node to another using a depth-first search.
@@ -62,19 +62,19 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter to: The index of the ending node.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, to: Int) -> [E] {
+    public func dfs(_ source: Int, _ target: Int) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: nodeCount)
         var path: [Int: E] = .init()
         let stack: Stack<Int> = .init()
-        stack.push(from)
+        stack.push(source)
 
         while !stack.isEmpty {
-            let v: Int = stack.pop()
-            if v == to { return route(from, to, in: path) }
+            let current: Int = stack.pop()
+            if current == target { return route(source, target, in: path) }
 
-            visited[v] = true
-            for edge in edges(for: v) where !visited[edge.target] {
+            visited[current] = true
+            for edge in edges[current] where !visited[edge.target] {
                 stack.push(edge.target)
                 path[edge.target] = edge
             }
@@ -88,9 +88,9 @@ extension Graph {
     /// - parameter from: The starting node.
     /// - parameter to: The ending node.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: N, to: N) -> [E] {
-        guard let (u, v) = indices(of: from, to) else { return [] }
-        return dfs(from: u, to: v)
+    public func dfs(from source: N, to target: N) -> [E] {
+        guard let (source, target) = indices(of: source, target) else { return [] }
+        return dfs(source, target)
     }
 }
 
@@ -103,18 +103,18 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter test: Returns true if a given node is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: Int, until at: (N) -> Bool) -> [E] {
+    public func bfs(_ source: Int, until at: (N) -> Bool) -> [E] {
         // pretty standard bfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: nodeCount)
         var path: [Int: E] = .init()
         let queue: Queue<Int> = .init()
-        queue.push(from)
+        queue.push(source)
 
         while !queue.isEmpty {
-            let to: Int = queue.pop()
-            if at(node(at: to)) { return route(from, to, in: path) }
+            let target: Int = queue.pop()
+            if at(node(at: target)) { return route(source, target, in: path) }
 
-            for edge in edges(for: to) where !visited[edge.target] {
+            for edge in edges[target] where !visited[edge.target] {
                 visited[edge.target] = true
                 queue.push(edge.target)
                 path[edge.target] = edge
@@ -130,9 +130,9 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter test: Returns true if a given node is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: N, until at: (N) -> Bool) -> [E] {
-        guard let u = index(of: from) else { return [] }
-        return bfs(from: u, until: at)
+    public func bfs(from source: N, until at: (N) -> Bool) -> [E] {
+        guard let source = index(of: source) else { return [] }
+        return bfs(source, until: at)
     }
 
     /// Find a route from one node to another using a breadth-first search.
@@ -140,18 +140,18 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter to: The index of the ending node.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: Int, to: Int) -> [E] {
+    public func bfs(_ source: Int, _ target: Int) -> [E] {
         // pretty standard bfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: nodeCount)
         var path: [Int: E] = .init()
         let queue: Queue<Int> = .init()
-        queue.push(from)
+        queue.push(source)
 
         while !queue.isEmpty {
-            let v: Int = queue.pop()
-            if v == to { return route(from, to, in: path) }
+            let current: Int = queue.pop()
+            if current == target { return route(source, target, in: path) }
 
-            for edge in edges(for: v) where !visited[edge.target] {
+            for edge in edges[current] where !visited[edge.target] {
                 visited[edge.target] = true
                 queue.push(edge.target)
                 path[edge.target] = edge
@@ -166,9 +166,9 @@ extension Graph {
     /// - parameter from: The starting node.
     /// - parameter to: The ending node.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func bfs(from: N, to: N) -> [E] {
-        guard let (u, v) = indices(of: from, to) else { return [] }
-        return bfs(from: u, to: v)
+    public func bfs(from source: N, to target: N) -> [E] {
+        guard let (source, target) = indices(of: source, target) else { return [] }
+        return bfs(source, target)
     }
 }
 
@@ -181,19 +181,19 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter test: Returns true if a given node is a goal.
     /// - returns: An array of arrays of Edges containing routes to every node connected and passing test(), or an empty array if no routes could be found
-    public func routes(from: Int, until at: (N) -> Bool) -> [[E]] {
+    public func routes(_ source: Int, until at: (N) -> Bool) -> [[E]] {
         // pretty standard bfs that doesn't visit anywhere twice; path tracks route
         var visited: [Bool] = [Bool](repeating: false, count: nodeCount)
         var path: [Int: E] = .init()
         var paths: [[E]] = .init()
         let queue: Queue<Int> = .init()
-        queue.push(from)
+        queue.push(source)
 
         while !queue.isEmpty {
-            let to: Int = queue.pop()
-            if at(node(at: to)) { paths.append(route(from, to, in: path)) }
+            let target: Int = queue.pop()
+            if at(node(at: target)) { paths.append(route(source, target, in: path)) }
 
-            for edge in edges(for: to) where !visited[edge.target] {
+            for edge in edges[target] where !visited[edge.target] {
                 visited[edge.target] = true
                 queue.push(edge.target)
                 path[edge.target] = edge
@@ -209,32 +209,31 @@ extension Graph {
     /// - parameter from: The index of the starting node.
     /// - parameter test: Returns true if a given node is a goal.
     /// - returns: An array of arrays of Edges containing routes to every node connected and passing test(), or an empty array if no routes could be founding the entire route, or an empty array if no route could be found
-    public func routes(from: N, until at: (N) -> Bool) -> [[E]] {
-        guard let u = index(of: from) else { return [] }
-        return routes(from: u, until: at)
+    public func routes(from source: N, until at: (N) -> Bool) -> [[E]] {
+        guard let source = index(of: source) else { return [] }
+        return routes(source, until: at)
     }
 }
 
 extension Graph {
     /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
-    public func route(from: N, to: N, in path: [Int: E]) -> [E] {
-        guard !path.isEmpty, let from = index(of: from), let to = index(of: to) else { return [] }
-        return route(from, to, in: path)
-    }
-
-    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
-    public func route(_ from: Int, _ to: Int, in path: [Int: E]) -> [E] {
+    public func route(_ source: Int, _ target: Int, in path: [Int: E]) -> [E] {
         guard !path.isEmpty else { return [] }
-        var edgePath: [E] = .init()
-        var e: E = path[to]!
-        edgePath.append(e)
+        var edge: E = path[target]!
+        var edgePath: [E] = [edge]
 
-        while e.source != from {
-            e = path[e.source]!
-            edgePath.append(e)
+        while edge.source != source {
+            edge = path[edge.source]!
+            edgePath.append(edge)
         }
 
         return Array(edgePath.reversed())
+    }
+
+    /// Takes a dictionary of `Edge` to reach each node and returns an array of edges that goes from `from` to `to`.
+    public func route(from source: N, to target: N, in path: [Int: E]) -> [E] {
+        guard !path.isEmpty, let (source, target) = indices(of: source, target) else { return [] }
+        return route(source, target, in: path)
     }
 }
 
@@ -246,21 +245,21 @@ public extension WeightedGraph {
     /// - parameter root: The index of the root node to build the shortest paths from.
     /// - parameter startDistance: The distance to get to the root node (typically 0).
     /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each node. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
-    public func dijkstra(root: Int, start distance: W) -> ([W?], [Int: E]) {
+    public func dijkstra(_ root: Int, start distance: W) -> ([W?], [Int: E]) {
         var distances: [W?] = .init(repeating: nil, count: nodeCount) // how far each node is from start
         distances[root] = distance // the start node is startDistance away
         var path: [Int: E] = .init() // how we got to each node
         var queue: PriorityQueue<DijkstraNode<W>> = .init(ascending: true)
         queue.push(DijkstraNode(node: root, distance: distance))
 
-        while let u = queue.pop()?.node { // explore the next closest node
-            guard let distU = distances[u] else { continue } // should already have seen it
-            for edge in edges(for: u) { // look at every edge/node from the node in question
-                let distV = distances[edge.target] // the old distance to this node
-                if distV == nil || distV! > edge.weight + distU { // if we have no old distance or we found a shorter path
-                    distances[edge.target] = edge.weight + distU // update the distance to this node
+        while let source = queue.pop()?.node { // explore the next closest node
+            guard let new = distances[source] else { continue } // should already have seen it
+            for edge in edges[source] { // look at every edge/node from the node in question
+                let old = distances[edge.target] // the old distance to this node
+                if old == nil || old! > edge.weight + new { // if we have no old distance or we found a shorter path
+                    distances[edge.target] = edge.weight + new // update the distance to this node
                     path[edge.target] = edge // update the edge on the shortest path to this node
-                    queue.push(DijkstraNode(node: edge.target, distance: edge.weight + distU)) // explore it soon
+                    queue.push(DijkstraNode(node: edge.target, distance: edge.weight + new)) // explore it soon
                 }
             }
         }
@@ -276,9 +275,9 @@ public extension WeightedGraph {
     /// - parameter root: The node to build the shortest paths from.
     /// - parameter startDistance: The distance to get to the root node (typically 0).
     /// - returns: Returns a tuple of two things: the first, an array containing the distances, the second, a dictionary containing the edge to reach each node. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
-    public func dijkstra(root: N, start distance: W) -> ([W?], [Int: E]) {
-        guard let u = index(of: root) else { return ([], [:]) }
-        return dijkstra(root: u, start: distance)
+    public func dijkstra(from root: N, start distance: W) -> ([W?], [Int: E]) {
+        guard let root = index(of: root) else { return ([], [:]) }
+        return dijkstra(root, start: distance)
     }
 
     /// Finds the shortest paths from some route node to every other node in the graph.
@@ -288,8 +287,8 @@ public extension WeightedGraph {
     /// - parameter root: The index of the root node to build the shortest paths from.
     /// - parameter startDistance: The distance to get to the root node (typically 0).
     /// - returns: Returns a tuple of two things: the first, a dictionary containing the distances associated with the nodes, the second, a dictionary containing the edge to reach each node. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
-    public func dijkstra(root: Int, start distance: W) -> ([N: W?], [Int: E]) {
-        let (distances, edges): ([W?], [Int: E]) = dijkstra(root: root, start: distance)
+    public func dijkstra(_ root: Int, start distance: W) -> ([N: W?], [Int: E]) {
+        let (distances, edges): ([W?], [Int: E]) = dijkstra(root, start: distance)
         var distance: [N: W?] = .init()
         distances.enumerated().forEach {
             distance[node(at: $0.offset)] = $0.element
@@ -305,9 +304,9 @@ public extension WeightedGraph {
     /// - parameter root: The node to build the shortest paths from.
     /// - parameter startDistance: The distance to get to the root node (typically 0).
     /// - returns: Returns a tuple of two things: the first, a dictionary containing the distances associated with the nodes, the second, a dictionary containing the edge to reach each node. Use `route(from:to:in)` to convert the dictionary into something useful for a specific point.
-    public func dijkstra(root: N, start distance: W) -> ([N: W?], [Int: E]) {
-        guard let u = index(of: root) else { return ([:], [:]) }
-        return dijkstra(root: u, start: distance)
+    public func dijkstra(from root: N, start distance: W) -> ([N: W?], [Int: E]) {
+        guard let root = index(of: root) else { return ([:], [:]) }
+        return dijkstra(root, start: distance)
     }
 }
 

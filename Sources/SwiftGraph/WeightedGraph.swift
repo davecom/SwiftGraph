@@ -22,12 +22,12 @@ public protocol WeightedGraph: Graph where E: WeightedEdge {
 
     // MARK: Mutate
 
-    mutating func edge(_ from: Int, to: Int, directed: Bool, weight: W)
-    mutating func edge(_ from: N, to: N, directed: Bool, weight: W)
+    mutating func link(_ source: Int, _ target: Int, directed: Bool, weight: W)
+    mutating func link(_ source: N, to target: N, directed: Bool, weight: W)
 
     // MARK: Find
 
-    func neighbors(for index: Int) -> [(N, W)]
+    func neighbors(_ index: Int) -> [(N, W)]
 
     // MARK: Minimum-Spanning Tree
 
@@ -35,10 +35,10 @@ public protocol WeightedGraph: Graph where E: WeightedEdge {
 
     // MARK: Dijkstra Algorithm
 
-    func dijkstra(root: Int, start distance: W) -> ([W?], [Int: E])
-    func dijkstra(root: N, start distance: W) -> ([W?], [Int: E])
-    func dijkstra(root: Int, start distance: W) -> ([N: W?], [Int: E])
-    func dijkstra(root: N, start distance: W) -> ([N: W?], [Int: E])
+    func dijkstra(_ root: Int, start distance: W) -> ([W?], [Int: E])
+    func dijkstra(from root: N, start distance: W) -> ([W?], [Int: E])
+    func dijkstra(_ root: Int, start distance: W) -> ([N: W?], [Int: E])
+    func dijkstra(from root: N, start distance: W) -> ([N: W?], [Int: E])
 }
 
 extension WeightedGraph {
@@ -48,8 +48,8 @@ extension WeightedGraph {
     /// - parameter to: The ending node's index.
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
-    public mutating func edge(_ from: Int, to: Int, directed: Bool = false, weight: W) {
-        add(edge: E(source: from, target: to, directed: directed, weight: weight))
+    public mutating func link(_ source: Int, _ target: Int, directed: Bool = false, weight: W) {
+        add(E(source: source, target: target, directed: directed, weight: weight))
     }
 
     /// This is a convenience method that adds a weighted edge between
@@ -59,9 +59,9 @@ extension WeightedGraph {
     /// - parameter to: The ending node.
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
-    public mutating func edge(_ from: N, to: N, directed: Bool = false, weight: W) {
-        guard let (from, to) = indices(of: from, to) else { return }
-        edge(from, to: to, directed: directed, weight: weight)
+    public mutating func link(_ source: N, to target: N, directed: Bool = false, weight: W) {
+        guard let (source, target) = indices(of: source, target) else { return }
+        link(source, target, directed: directed, weight: weight)
     }
 }
 
@@ -70,7 +70,7 @@ extension WeightedGraph {
     ///
     /// - parameter index: The index for the node to find the neighbors of.
     /// - returns: An array of tuples including the nodes as the first element and the weights as the second element.
-    public func neighbors(for index: Int) -> [(N, W)] {
+    public func neighbors(_ index: Int) -> [(N, W)] {
         return edges[index].map { (nodes[$0.target], $0.weight) }
     }
 }
@@ -78,6 +78,6 @@ extension WeightedGraph {
 extension WeightedGraph {
     // It's being redefined identically because it uses the `[(N, W)]` overload of `neighbors(for:)`.
     public var description: String {
-        return nodes.indices.map { "\(nodes[$0]) -> \(neighbors(for: $0))\n" }.joined()
+        return nodes.indices.map { "\(nodes[$0]) -> \(neighbors($0))\n" }.joined()
     }
 }

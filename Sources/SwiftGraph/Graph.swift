@@ -43,50 +43,50 @@ public protocol Graph: Collection, Equatable, CustomStringConvertible {
     func index(of node: N) -> Int?
     func indices(of a: N, _ b: N) -> (Int, Int)?
 
-    func neighbors(for index: Int) -> [N]
-    func neighbors(for node: N) -> [N]?
-    func edges(for index: Int) -> [E]
-    func edges(for node: N) -> [E]?
+    func neighbors(_ index: Int) -> [N]
+    func neighbors(of node: N) -> [N]?
+    func edges(_ index: Int) -> [E]
+    func edges(of node: N) -> [E]?
 
-    func contains(node: N) -> Bool
-    func contains(edge: E) -> Bool
-    func edged(from: Int, to: Int) -> Bool
-    func edged(from: N, to: N) -> Bool
+    func contains(_ node: N) -> Bool
+    func contains(_ edge: E) -> Bool
+    func links(_ a: Int, _ b: Int) -> Bool
+    func links(_ a: N, to b: N) -> Bool
 
     // MARK: Mutate
 
-    mutating func add(node: N)
-    mutating func add(edge: E)
+    mutating func add(_ node: N)
+    mutating func add(_ edge: E)
+    mutating func remove(_ node: N)
+    mutating func remove(_ edge: E)
     mutating func remove(at index: Int)
-    mutating func remove(node: N)
-    mutating func remove(edge: E)
-    mutating func unedge(_ a: Int, from b: Int, bidirectional: Bool)
-    mutating func unedge(_ a: N, from b: N, bidirectional: Bool)
+    mutating func unlink(_ source: Int, _ target: Int, bidirectional: Bool)
+    mutating func unlink(_ source: N, from target: N, bidirectional: Bool)
 
-    // edge(:to:) must be implemented in protocols that conform to `Graph`
+    // link(:to:) must be implemented in protocols that conform to `Graph`
     // according to the properties of its `E`. See `UnweightedGraph`.
 
     // MARK: Depth-First Search
 
-    func dfs(from: Int, until at: (N) -> Bool) -> [E]
-    func dfs(from: N, until at: (N) -> Bool) -> [E]
-    func dfs(from: Int, to: Int) -> [E]
-    func dfs(from: N, to: N) -> [E]
+    func dfs(_ source: Int, until at: (N) -> Bool) -> [E]
+    func dfs(from source: N, until at: (N) -> Bool) -> [E]
+    func dfs(_ source: Int, _ target: Int) -> [E]
+    func dfs(from source: N, to target: N) -> [E]
 
     // MARK: Breadth-First Search
 
-    func bfs(from: Int, until at: (N) -> Bool) -> [E]
-    func bfs(from: N, until at: (N) -> Bool) -> [E]
-    func bfs(from: Int, to: Int) -> [E]
-    func bfs(from: N, to: N) -> [E]
+    func bfs(_ source: Int, until at: (N) -> Bool) -> [E]
+    func bfs(from source: N, until at: (N) -> Bool) -> [E]
+    func bfs(_ source: Int, _ target: Int) -> [E]
+    func bfs(from source: N, to target: N) -> [E]
 
     // MARK: Search
 
-    func routes(from: Int, until at: (N) -> Bool) -> [[E]]
+    func routes(_ source: Int, until at: (N) -> Bool) -> [[E]]
     func routes(from: N, until at: (N) -> Bool) -> [[E]]
 
-    func route(from: N, to: N, in path: [Int: E]) -> [E]
-    func route(_ from: Int, _ to: Int, in path: [Int: E]) -> [E]
+    func route(_ source: Int, _ target: Int, in path: [Int: E]) -> [E]
+    func route(from source: N, to target: N, in path: [Int: E]) -> [E]
 
     func nodes(from edges: [E]) -> [N]
 
@@ -97,7 +97,6 @@ public protocol Graph: Collection, Equatable, CustomStringConvertible {
 
     // MARK: Sort
 
-    func toposort() -> [N]?
     func toposort() -> [Int]?
 }
 
@@ -115,9 +114,9 @@ extension Graph {
     }
 
     internal mutating func _add(nodes: [N]) {
-        for node in nodes { add(node: node) }
-        }
+        for node in nodes { add(node) }
     }
+}
 
 // MARK: - Computed Properties
 
@@ -171,7 +170,7 @@ extension Graph {
     ///
     /// - parameter index: The index for the node to find the neighbors of.
     /// - returns: An array of the neighbor nodes.
-    public func neighbors(for index: Int) -> [N] {
+    public func neighbors(_ index: Int) -> [N] {
         func toNode(edge: E) -> N { return nodes[edge.target] }
         return edges[index].map(toNode)
     }
@@ -180,30 +179,31 @@ extension Graph {
     ///
     /// - parameter node: The node to find the neighbors of.
     /// - returns: An optional array of the neighbor nodes.
-    public func neighbors(for node: N) -> [N]? {
+    public func neighbors(of node: N) -> [N]? {
         guard let i = index(of: node) else { return nil }
-        return neighbors(for: i)
+        return neighbors(i)
     }
 
     /// Find all of the edges of a node at a given index.
     ///
+    /// - Note: Prefer the subscript.
     /// - parameter index: The index for the node to find the children of.
-    public func edges(for index: Int) -> [E] {
+    public func edges(_ index: Int) -> [E] {
         return edges[index]
     }
 
     /// Find all of the edges of a given node.
     ///
     /// - parameter node: The node to find the edges of.
-    public func edges(for node: N) -> [E]? {
+    public func edges(of node: N) -> [E]? {
         guard let i = index(of: node) else { return nil }
-        return edges(for: i)
+        return edges[i]
     }
 
     /// Find the first occurence of a node.
     ///
     /// - parameter node: The node you are looking for.
-    public func contains(node: N) -> Bool {
+    public func contains(_ node: N) -> Bool {
         if index(of: node) == nil { return false }
         return true
     }
@@ -211,8 +211,8 @@ extension Graph {
     /// Find the first occurence of an edge.
     ///
     /// - parameter edge: The edge you are looking for.
-    public func contains(edge: E) -> Bool {
-        return edged(from: edge.source, to: edge.target)
+    public func contains(_ edge: E) -> Bool {
+        return links(edge.source, edge.target)
     }
 
     /// Is there an edge from one node to another?
@@ -220,8 +220,8 @@ extension Graph {
     /// - parameter from: The index of the starting edge.
     /// - parameter to: The index of the ending edge.
     /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edged(from: Int, to: Int) -> Bool {
-        return edges[from].map { $0.target }.contains(to)
+    public func links(_ a: Int, _ b: Int) -> Bool {
+        return edges[a].map { $0.target }.contains(b)
     }
 
     /// Is there an edge from one node to another? Note this will look at the first
@@ -231,9 +231,9 @@ extension Graph {
     /// - parameter from: The first node.
     /// - parameter to: The second node.
     /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edged(from: N, to: N) -> Bool {
-        guard let (u, v) = indices(of: from, to) else { return false }
-        return edged(from: u, to: v)
+    public func links(_ a: N, to b: N) -> Bool {
+        guard let (a, b) = indices(of: a, b) else { return false }
+        return links(a, b)
     }
 }
 
@@ -244,19 +244,40 @@ extension Graph {
     ///
     /// - parameter node: The node to be added.
     /// - returns: The index where the node was added.
-    public mutating func add(node: N) {
+    public mutating func add(_ node: N) {
         nodes.append(node)
         edges.append([E]())
     }
-    
+
     /// Add an edge to the graph.
     ///
     /// - parameter edge: The edge to add.
-    public mutating func add(edge: E) {
+    public mutating func add(_ edge: E) {
         edges[edge.source].append(edge)
         if !edge.directed { edges[edge.target].append(edge.reversed) }
     }
-    
+
+    /// Removes the first occurence of a node, all of the edges attached to it,
+    /// and renumbers the indexes of the rest of the edges.
+    ///
+    /// - parameter node: The node to be removed.
+    public mutating func remove(_ node: N) {
+        guard let i = index(of: node) else { return }
+        remove(at: i)
+    }
+
+    /// Removes a specific unweighted edge in both directions (if it's not
+    /// directional). Or just one way if it's directed.
+    ///
+    /// - parameter edge: The edge to be removed.
+    public mutating func remove(_ edge: E) {
+        guard let i = (edges[edge.source]).index(of: edge) else { return }
+        edges[edge.source].remove(at: i)
+
+        guard !edge.directed, let j = (edges[edge.target]).index(of: edge.reversed) else { return }
+        edges[edge.target].remove(at: j)
+    }
+
     /// Removes a node at a specified index, all of the edges attached to it,
     /// and renumbers the indexes of the rest of the edges.
     ///
@@ -279,7 +300,7 @@ extension Graph {
                 edges[j].remove(at: f)
             }
         }
-        
+
         // remove all edges after the node index wise
         // renumber all edges after the node index wise
         for j in (index + 1) ..< edges.count {
@@ -302,55 +323,34 @@ extension Graph {
         edges.remove(at: index)
         nodes.remove(at: index)
     }
-    
-    /// Removes the first occurence of a node, all of the edges attached to it,
-    /// and renumbers the indexes of the rest of the edges.
-    ///
-    /// - parameter node: The node to be removed.
-    public mutating func remove(node: N) {
-        guard let i = index(of: node) else { return }
-        remove(at: i)
-    }
-    
-    /// Removes a specific unweighted edge in both directions (if it's not
-    /// directional). Or just one way if it's directed.
-    ///
-    /// - parameter edge: The edge to be removed.
-    public mutating func remove(edge: E) {
-        guard let i = (edges[edge.source]).index(of: edge) else { return }
-        edges[edge.source].remove(at: i)
-        
-        guard !edge.directed, let j = (edges[edge.target]).index(of: edge.reversed) else { return }
-        edges[edge.target].remove(at: j)
-    }
-    
+
     /// Removes all edges in both directions between nodes at indexes from & to.
     ///
     /// - parameter from: The starting node's index.
     /// - parameter to: The ending node's index.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func unedge(_ a: Int, from b: Int, bidirectional: Bool = true) {
-        for (i, edge) in edges[a].enumerated().reversed() where edge.target == b {
-            edges[a].remove(at: i)
+    public mutating func unlink(_ source: Int, _ target: Int, bidirectional: Bool = true) {
+        for (i, edge) in edges[source].enumerated().reversed() where edge.target == target {
+            edges[source].remove(at: i)
         }
-        
+
         guard bidirectional else { return }
-        
-        for (i, edge) in edges[b].enumerated().reversed() where edge.target == a {
-            edges[b].remove(at: i)
+
+        for (i, edge) in edges[target].enumerated().reversed() where edge.target == source {
+            edges[target].remove(at: i)
         }
     }
-    
+
     /// Removes all edges in both directions between two nodes.
     ///
     /// - parameter from: The starting node.
     /// - parameter to: The ending node.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func unedge(_ a: N, from b: N, bidirectional: Bool = true) {
-        guard let (u, v) = indices(of: a, b) else { return }
-        return unedge(u, from: v, bidirectional: bidirectional)
+    public mutating func unlink(_ source: N, from target: N, bidirectional: Bool = true) {
+        guard let (source, target) = indices(of: source, target) else { return }
+        return unlink(source, target, bidirectional: bidirectional)
     }
-    
+
     // Implementation Note
     //
     // A `mutating` method cannot be used within a class due to immutable `self`.
@@ -375,9 +375,9 @@ extension Graph {
 
 extension Graph {
     public var description: String {
-        return nodes.indices.map { "\(nodes[$0]) -> \(neighbors(for: $0))\n" }.joined()
-        }
+        return nodes.indices.map { "\(nodes[$0]) -> \(neighbors($0))\n" }.joined()
     }
+}
 
 // MARK: - Collection
 

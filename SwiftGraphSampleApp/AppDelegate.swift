@@ -146,12 +146,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func addPositionAndChildren(_ position: NineTailPosition, parent: Int) {
         let index: Int? = ntGraph.index(of: position)
         if let place = index {
-            ntGraph.edge(parent, to: place, directed: true)
+            ntGraph.link(parent, to: place, directed: true)
         } else {
-            ntGraph.add(node: position)
+            ntGraph.add(position)
             let child: Int = ntGraph.index(of: position)!
             if parent != -1 {
-                ntGraph.edge(parent, to: child, directed: true)
+                ntGraph.link(parent, to: child, directed: true)
             }
             for i in 0 ..< 3 {
                 for j in 0 ..< 3 {

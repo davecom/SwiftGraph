@@ -36,7 +36,7 @@ extension Graph {
             let openPath = openPaths.removeFirst() // queue pop()
             if openPath.count > length { return cycles } // do we want to stop at a certain length k
 
-            if let tail = openPath.last, let head = openPath.first, let neighbors = neighbors(for: tail) {
+            if let tail = openPath.last, let head = openPath.first, let neighbors = neighbors(of: tail) {
                 for neighbor in neighbors {
                     if neighbor == head {
                         cycles.append(openPath + [neighbor]) // found a cycle
@@ -64,7 +64,7 @@ extension Graph {
 
             let tail = openPath.tail
             let head = openPath.head
-            let neighborEdges = edges(for: tail)
+            let neighborEdges = edges[tail]
             for neighborEdge in neighborEdges {
                 if neighborEdge.target == head {
                     cycles.append(openPath.path + [neighborEdge]) // found a cycle

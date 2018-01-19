@@ -37,9 +37,9 @@ public extension WeightedGraph {
         var queue: PriorityQueue<E> = PriorityQueue<E>(ascending: true) // minPQ
         var visited: [Bool] = .init(repeating: false, count: nodeCount) // already been to these
 
-        func visit(_ index: Int) {
-            visited[index] = true // mark as visited
-            for edge in edges(for: index) where !visited[edge.target] { // add all edges coming from here to pq
+        func visit(_ current: Int) {
+            visited[current] = true // mark as visited
+            for edge in edges[current] where !visited[edge.target] { // add all edges coming from here to pq
                 queue.push(edge)
             }
         }

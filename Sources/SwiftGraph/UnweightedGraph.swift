@@ -18,8 +18,8 @@
 
 /// A graph with `UnweightedEdge`.
 public protocol UnweightedGraph: Graph where E: UnweightedEdge {
-    mutating func edge(_ from: Int, to: Int, directed: Bool)
-    mutating func edge(_ from: N, to: N, directed: Bool)
+    mutating func link(_ source: Int, _ target: Int, directed: Bool)
+    mutating func link(_ source: N, to target: N, directed: Bool)
 }
 
 extension UnweightedGraph {
@@ -28,8 +28,8 @@ extension UnweightedGraph {
     /// - parameter from: The starting node's index.
     /// - parameter to: The ending node's index.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public mutating func edge(_ from: Int, to: Int, directed: Bool = false) {
-        add(edge: E(source: from, target: to, directed: directed))
+    public mutating func link(_ source: Int, _ target: Int, directed: Bool = false) {
+        add(E(source: source, target: target, directed: directed))
     }
 
     /// This is a convenience method that adds an unweighted, undirected
@@ -38,8 +38,8 @@ extension UnweightedGraph {
     /// - parameter from: The starting node.
     /// - parameter to: The ending node.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public mutating func edge(_ from: N, to: N, directed: Bool = false) {
-        guard let (from, to) = indices(of: from, to) else { return }
-        edge(from, to: to, directed: directed)
+    public mutating func link(_ source: N, to target: N, directed: Bool = false) {
+        guard let (source, target) = indices(of: source, target) else { return }
+        link(source, target, directed: directed)
     }
 }

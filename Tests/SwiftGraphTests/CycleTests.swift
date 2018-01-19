@@ -27,19 +27,19 @@ class CycleTests: XCTestCase {
         super.setUp()
 
         // setup a graph with 5 fully connected nodes
-        for from in 0 ..< fullyConnected.nodeCount {
-            for to in (from + 1) ..< fullyConnected.nodeCount {
-                fullyConnected.edge(from, to: to)
+        for source in 0 ..< fullyConnected.nodeCount {
+            for target in (source + 1) ..< fullyConnected.nodeCount {
+                fullyConnected.link(source, target)
             }
         }
 
         // simple graph with easy known cycles
-        simpleGraph.edge("A", to: "B", directed: true)
-        simpleGraph.edge("B", to: "D", directed: true)
-        simpleGraph.edge("A", to: "D", directed: true)
-        simpleGraph.edge("D", to: "C", directed: true)
-        simpleGraph.edge("C", to: "A", directed: true)
-        simpleGraph.edge("C", to: "B", directed: true)
+        simpleGraph.link("A", to: "B", directed: true)
+        simpleGraph.link("B", to: "D", directed: true)
+        simpleGraph.link("A", to: "D", directed: true)
+        simpleGraph.link("D", to: "C", directed: true)
+        simpleGraph.link("C", to: "A", directed: true)
+        simpleGraph.link("C", to: "B", directed: true)
     }
 
     func testFullyConnectedNodes() {
