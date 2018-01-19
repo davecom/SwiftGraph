@@ -39,19 +39,26 @@ extension Graph {
     public func toposort() -> [Int]? {
         guard !edges.joined().isEmpty else { return [] }
 
-        var sorted = [Int]()
+        var sorted: [Int] = .init()
         var marks = nodes.map(Topomark.initialize)
         var isDAG = true
 
         func visit(_ i: Int, with mark: Topomark) {
-            guard mark == .none else {
-                if mark == .temporary { isDAG = false }
-                return
+            func ok() -> Bool {
+                if mark ~= .none { return true }
+                if mark ~= .temporary { isDAG = false }
+                return false
             }
+
+            func deepvisit() {
+                for (j, other) in nodes.enumerated() where isDAG && neighbors(for: i).contains(other) {
+                    visit(j, with: marks[j])
+                }
+            }
+
+            guard ok() else { return }
             marks[i] = .temporary
-            for (j, other) in nodes.enumerated() where isDAG && neighbors(for: i).contains(other) {
-                visit(j, with: marks[j])
-            }
+            deepvisit()
             marks[i] = .permanent
             sorted.insert(i, at: 0)
         }

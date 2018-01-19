@@ -74,11 +74,7 @@ extension WeightedGraph {
     /// - parameter index: The index for the node to find the neighbors of.
     /// - returns: An array of tuples including the nodes as the first element and the weights as the second element.
     public func neighbors(for index: Int) -> [(N, W)] {
-        var distanceTuples: [(N, W)] = [(N, W)]()
-        for edge in edges[index] {
-            distanceTuples += [(nodes[edge.v], edge.weight)]
-        }
-        return distanceTuples
+        return edges[index].map { (nodes[$0.v], $0.weight) }
     }
 }
 

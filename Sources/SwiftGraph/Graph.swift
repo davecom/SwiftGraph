@@ -68,22 +68,22 @@ public protocol Graph: Collection, CustomStringConvertible {
 
     // MARK: Depth-First Search
 
-    func dfs(from: Int, until test: (N) -> Bool) -> [E]
-    func dfs(from: N, until test: (N) -> Bool) -> [E]
+    func dfs(from: Int, until at: (N) -> Bool) -> [E]
+    func dfs(from: N, until at: (N) -> Bool) -> [E]
     func dfs(from: Int, to: Int) -> [E]
     func dfs(from: N, to: N) -> [E]
 
     // MARK: Breadth-First Search
 
-    func bfs(from: Int, until test: (N) -> Bool) -> [E]
-    func bfs(from: N, until test: (N) -> Bool) -> [E]
+    func bfs(from: Int, until at: (N) -> Bool) -> [E]
+    func bfs(from: N, until at: (N) -> Bool) -> [E]
     func bfs(from: Int, to: Int) -> [E]
     func bfs(from: N, to: N) -> [E]
 
     // MARK: Search
 
-    func routes(from: Int, until test: (N) -> Bool) -> [[E]]
-    func routes(from: N, until test: (N) -> Bool) -> [[E]]
+    func routes(from: Int, until at: (N) -> Bool) -> [[E]]
+    func routes(from: N, until at: (N) -> Bool) -> [[E]]
 
     func route(from: N, to: N, in path: [Int: E]) -> [E]
     func route(_ from: Int, _ to: Int, in path: [Int: E]) -> [E]
@@ -174,7 +174,8 @@ extension Graph {
     /// - parameter index: The index for the node to find the neighbors of.
     /// - returns: An array of the neighbor nodes.
     public func neighbors(for index: Int) -> [N] {
-        return edges[index].map { self.nodes[$0.v] }
+        func toNode(edge: E) -> N { return nodes[edge.v] }
+        return edges[index].map(toNode)
     }
 
     /// Find all of the neighbors of a given node.
@@ -182,10 +183,8 @@ extension Graph {
     /// - parameter node: The node to find the neighbors of.
     /// - returns: An optional array of the neighbor nodes.
     public func neighbors(for node: N) -> [N]? {
-        if let i = index(of: node) {
-            return neighbors(for: i)
-        }
-        return nil
+        guard let i = index(of: node) else { return nil }
+        return neighbors(for: i)
     }
 
     /// Find all of the edges of a node at a given index.
@@ -199,10 +198,8 @@ extension Graph {
     ///
     /// - parameter node: The node to find the edges of.
     public func edges(for node: N) -> [E]? {
-        if let i = index(of: node) {
-            return edges(for: i)
-        }
-        return nil
+        guard let i = index(of: node) else { return nil }
+        return edges(for: i)
     }
 
     /// Find the first occurence of a node.
@@ -389,6 +386,8 @@ internal extension Graph {
     //
     // Avoids needlessly constraining the protocol to class by redefining default
     // implementations within a `where Self: AnyObject` extension. See below.
+    //
+    // Find the documentation for each method in the next extension.
 
     internal func _add(_ node: N, to graph: inout Self) {
         graph.nodes.append(node)
@@ -397,26 +396,24 @@ internal extension Graph {
 
     internal func _add(_ edge: E, to graph: inout Self) {
         graph.edges[edge.u].append(edge)
-        if !edge.directed {
-            graph.edges[edge.v].append(edge.reversed)
-        }
+        if !edge.directed { graph.edges[edge.v].append(edge.reversed) }
     }
 
     internal func _remove(at index: Int, from graph: inout Self) {
         // remove all edges ending at the node, first doing the ones below it
         // renumber edges that end after the index
         for j in 0 ..< index {
-            var toRemove: [Int] = [Int]()
+            var trash: [Int] = .init()
             for l in 0 ..< edges[j].count {
                 if edges[j][l].v == index {
-                    toRemove.append(l)
+                    trash.append(l)
                     continue
                 }
                 if edges[j][l].v > index {
                     graph.edges[j][l].v -= 1
                 }
             }
-            for f in toRemove.reversed() {
+            for f in trash.reversed() {
                 graph.edges[j].remove(at: f)
             }
         }
@@ -424,10 +421,10 @@ internal extension Graph {
         // remove all edges after the node index wise
         // renumber all edges after the node index wise
         for j in (index + 1) ..< edges.count {
-            var toRemove: [Int] = [Int]()
+            var trash: [Int] = .init()
             for l in 0 ..< edges[j].count {
                 if edges[j][l].v == index {
-                    toRemove.append(l)
+                    trash.append(l)
                     continue
                 }
                 graph.edges[j][l].u -= 1
@@ -435,7 +432,7 @@ internal extension Graph {
                     graph.edges[j][l].v -= 1
                 }
             }
-            for f in toRemove.reversed() {
+            for f in trash.reversed() {
                 graph.edges[j].remove(at: f)
             }
         }
@@ -445,20 +442,16 @@ internal extension Graph {
     }
 
     internal func _remove(node: N, from graph: inout Self) {
-        if let i = index(of: node) {
-            return graph.remove(at: i)
-        }
+        guard let i = index(of: node) else { return }
+        graph.remove(at: i)
     }
 
     internal func _remove(edge: E, from graph: inout Self) {
-        if let i = (edges[edge.u]).index(of: edge) {
-            graph.edges[edge.u].remove(at: i)
-            if !edge.directed {
-                if let i = (edges[edge.v]).index(of: edge.reversed) {
-                    graph.edges[edge.v].remove(at: i)
-                }
-            }
-        }
+        guard let i = (edges[edge.u]).index(of: edge) else { return }
+        graph.edges[edge.u].remove(at: i)
+
+        guard !edge.directed, let j = (edges[edge.v]).index(of: edge.reversed) else { return }
+        graph.edges[edge.v].remove(at: j)
     }
 
     internal func _unedge(_ from: Int, to: Int, bidirectional: Bool = true, from graph: inout Self) {
@@ -466,10 +459,10 @@ internal extension Graph {
             graph.edges[from].remove(at: i)
         }
 
-        if bidirectional {
-            for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
-                graph.edges[to].remove(at: i)
-            }
+        guard bidirectional else { return }
+
+        for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
+            graph.edges[to].remove(at: i)
         }
     }
 

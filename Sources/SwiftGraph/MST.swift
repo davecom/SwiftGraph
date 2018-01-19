@@ -32,20 +32,21 @@ public extension WeightedGraph {
     /// - returns: An array of WeightedEdges containing the minimum spanning tree, or nil if the starting node is invalid. If there are is only one node connected to the starting node, an empty list is returned.
     public func mst(start: Int = 0) -> [E]? {
         if start > (nodeCount - 1) || start < 0 { return nil }
-        var result: [E] = [E]() // the final MST goes in here
-        var pq: PriorityQueue<E> = PriorityQueue<E>(ascending: true) // minPQ
+
+        var result: [E] = .init() // the final MST goes in here
+        var queue: PriorityQueue<E> = PriorityQueue<E>(ascending: true) // minPQ
         var visited: [Bool] = Array<Bool>(repeating: false, count: nodeCount) // already been to these
 
         func visit(_ index: Int) {
             visited[index] = true // mark as visited
             for edge in edges(for: index) where !visited[edge.v] { // add all edges coming from here to pq
-                pq.push(edge)
+                queue.push(edge)
             }
         }
 
         visit(start) // the first node is where everything begins
 
-        while let edge = pq.pop() { // keep going as long as there are edges to process
+        while let edge = queue.pop() { // keep going as long as there are edges to process
             if visited[edge.v] { continue } // if we've been both places, ignore
             result.append(edge) // otherwise this is the current smallest so add it to the result set
             visit(edge.v)
@@ -61,12 +62,8 @@ extension WeightedGraph {
     /// Pretty print an edge list returned from an MST.
     /// - parameter edges: The edges from a previously computed MST (on this graph).
     internal func printmst(_ edges: [E]) {
-        for edge in edges {
-            print("\(node(at: edge.u)) \(edge.weight)> \(node(at: edge.v))")
-        }
-        if let weight = weight(of: edges) {
-            print("Total Weight: \(weight)")
-        }
+        edges.forEach { print("\(node(at: $0.u)) \($0.weight)> \(node(at: $0.v))") }
+        if let weight = weight(of: edges) { print("Total Weight: \(weight)") }
     }
 
     /// Find the total weight of the given edges.

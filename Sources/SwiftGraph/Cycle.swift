@@ -29,12 +29,13 @@ extension Graph {
     /// - parameter length: Does the caller only want to detect cycles up to a certain length?
     /// - returns: a list of lists of nodes in cycles
     public func cycles(until length: Int = Int.max) -> [[N]] {
-        var cycles = [[N]]() // store of all found cycles
+        var cycles: [[N]] = .init() // store of all found cycles
         var openPaths: [[N]] = nodes.map { [$0] } // initial open paths are single node lists
 
         while !openPaths.isEmpty {
             let openPath = openPaths.removeFirst() // queue pop()
             if openPath.count > length { return cycles } // do we want to stop at a certain length k
+
             if let tail = openPath.last, let head = openPath.first, let neighbors = neighbors(for: tail) {
                 for neighbor in neighbors {
                     if neighbor == head {
@@ -60,6 +61,7 @@ extension Graph {
         while !openPaths.isEmpty {
             let openPath = openPaths.removeFirst() // queue pop()
             if openPath.path.count > length { return cycles } // do we want to stop at a certain length
+
             let tail = openPath.tail
             let head = openPath.head
             let neighborEdges = edges(for: tail)
@@ -81,22 +83,14 @@ extension Graph {
 private struct Path<E: Edge> {
     var start: Int
     var path: [E] = []
+    var head: Int { return start }
+    var tail: Int { return path.last?.v ?? start }
 
-    init(start: Int) {
-        self.start = start
-    }
+    init(start: Int) { self.start = start }
 
     func byAdding(_ edge: E) -> Path {
-        var mutable = self
-        mutable.path.append(edge)
-        return mutable
-    }
-
-    var head: Int {
-        return start
-    }
-
-    var tail: Int {
-        return path.last?.v ?? start
+        var path = self
+        path.path.append(edge)
+        return path
     }
 }
