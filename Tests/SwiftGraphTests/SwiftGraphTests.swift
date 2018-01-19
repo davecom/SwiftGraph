@@ -109,8 +109,8 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertNil(g.edges(for: "Lagos"))
 
         g.edge("Atlanta", to: "Miami", directed: false)
-        g.unedge("Atlanta", to: "Miami", bidirectional: true)
-        g.unedge("Atlanta", to: "Rome", bidirectional: true)
+        g.unedge("Atlanta", from: "Miami", bidirectional: true)
+        g.unedge("Atlanta", from: "Rome", bidirectional: true)
 
         let wg1 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
         let wg2 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
@@ -154,8 +154,8 @@ class SwiftGraphTests: XCTestCase {
         graph.edge("3", to: "4", directed: false)
         graph.edge("4", to: "5", directed: false)
         let edge = graph.edges(for: "2")!.first!
-        graph.unedge(2, to: 3, bidirectional: true)
-        graph.unedge("4", to: "5", bidirectional: false)
+        graph.unedge(2, from: 3, bidirectional: true)
+        graph.unedge("4", from: "5", bidirectional: false)
         XCTAssertFalse(graph.edged(from: 2, to: 3))
         XCTAssertFalse(graph.edged(from: 3, to: 2))
         XCTAssertFalse(graph.edged(from: "4", to: "5"))
@@ -203,10 +203,10 @@ class SwiftGraphTests: XCTestCase {
         g1.remove(edge: e1)
         XCTAssertFalse(g1.contains(edge: e1))
 
-        g2.unedge(0, to: 1, bidirectional: true)
+        g2.unedge(0, from: 1, bidirectional: true)
         XCTAssertFalse(g2.contains(edge: e2))
 
-        g2.unedge("2", to: "3", bidirectional: true)
+        g2.unedge("2", from: "3", bidirectional: true)
         XCTAssertFalse(g2.contains(edge: e4))
 
         g1.edge("10", to: "11", directed: true)

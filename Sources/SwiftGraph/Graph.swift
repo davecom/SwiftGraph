@@ -60,8 +60,8 @@ public protocol Graph: Collection, CustomStringConvertible {
     mutating func remove(at index: Int)
     mutating func remove(node: N)
     mutating func remove(edge: E)
-    mutating func unedge(_ from: Int, to: Int, bidirectional: Bool)
-    mutating func unedge(_ from: N, to: N, bidirectional: Bool)
+    mutating func unedge(_ a: Int, from b: Int, bidirectional: Bool)
+    mutating func unedge(_ a: N, from b: N, bidirectional: Bool)
 
     // edge(:to:) must be implemented in protocols that conform to `Graph`
     // according to the properties of its `E`. See `UnweightedGraph`.
@@ -286,8 +286,8 @@ extension Graph {
     /// - parameter from: The starting node's index.
     /// - parameter to: The ending node's index.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func unedge(_ from: Int, to: Int, bidirectional: Bool = true) {
-        _unedge(from, to: to, bidirectional: bidirectional, from: &self)
+    public mutating func unedge(_ a: Int, from b: Int, bidirectional: Bool = true) {
+        _unedge(a, from: b, bidirectional: bidirectional, from: &self)
     }
 
     /// Removes all edges in both directions between two nodes.
@@ -295,8 +295,8 @@ extension Graph {
     /// - parameter from: The starting node.
     /// - parameter to: The ending node.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public mutating func unedge(_ from: N, to: N, bidirectional: Bool = true) {
-        _unedge(from, to: to, bidirectional: bidirectional, from: &self)
+    public mutating func unedge(_ a: N, from b: N, bidirectional: Bool = true) {
+        _unedge(a, from: b, bidirectional: bidirectional, from: &self)
     }
 }
 
@@ -359,9 +359,9 @@ extension Graph where Self: AnyObject {
     /// - parameter from: The starting node's index.
     /// - parameter to: The ending node's index.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public func unedge(_ from: Int, to: Int, bidirectional: Bool = true) {
+    public func unedge(_ a: Int, from b: Int, bidirectional: Bool = true) {
         var self_ = self
-        _unedge(from, to: to, bidirectional: bidirectional, from: &self_)
+        _unedge(a, from: b, bidirectional: bidirectional, from: &self_)
     }
 
     /// Removes all edges in both directions between two nodes.
@@ -369,9 +369,9 @@ extension Graph where Self: AnyObject {
     /// - parameter from: The starting node.
     /// - parameter to: The ending node.
     /// - parameter bidirectional: Remove edges coming back (to -> from)
-    public func unedge(_ from: N, to: N, bidirectional: Bool = true) {
+    public func unedge(_ a: N, from b: N, bidirectional: Bool = true) {
         var self_ = self
-        _unedge(from, to: to, bidirectional: bidirectional, from: &self_)
+        _unedge(a, from: b, bidirectional: bidirectional, from: &self_)
     }
 }
 
@@ -454,21 +454,21 @@ internal extension Graph {
         graph.edges[edge.v].remove(at: j)
     }
 
-    internal func _unedge(_ from: Int, to: Int, bidirectional: Bool = true, from graph: inout Self) {
-        for (i, edge) in edges[from].enumerated().reversed() where edge.v == to {
-            graph.edges[from].remove(at: i)
+    internal func _unedge(_ a: Int, from b: Int, bidirectional: Bool = true, from graph: inout Self) {
+        for (i, edge) in edges[a].enumerated().reversed() where edge.v == b {
+            graph.edges[a].remove(at: i)
         }
 
         guard bidirectional else { return }
 
-        for (i, edge) in edges[to].enumerated().reversed() where edge.v == from {
-            graph.edges[to].remove(at: i)
+        for (i, edge) in edges[b].enumerated().reversed() where edge.v == a {
+            graph.edges[b].remove(at: i)
         }
     }
 
-    internal func _unedge(_ from: N, to: N, bidirectional: Bool = true, from graph: inout Self) {
-        guard let (u, v) = indices(of: from, to) else { return }
-        return graph.unedge(u, to: v, bidirectional: bidirectional)
+    internal func _unedge(_ a: N, from b: N, bidirectional: Bool = true, from graph: inout Self) {
+        guard let (u, v) = indices(of: a, b) else { return }
+        return graph.unedge(u, from: v, bidirectional: bidirectional)
     }
 }
 
