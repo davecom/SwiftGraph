@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A graph protocol.
-public protocol Graph: Collection, CustomStringConvertible {
+public protocol Graph: Collection, Equatable, CustomStringConvertible {
     associatedtype N: Hashable
     associatedtype E: Edge
 
@@ -489,4 +489,12 @@ extension Graph {
 
     public func index(after i: Index) -> Index { return i + 1 }
     public subscript(i: Int) -> N { return node(at: i) }
+}
+
+// MARK: - Equatable
+
+extension Graph {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.nodes == rhs.nodes && lhs.edges.elementsEqual(rhs.edges, by: ==)
+    }
 }
