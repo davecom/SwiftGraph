@@ -57,7 +57,7 @@ class SwiftGraphSortTests: XCTestCase {
         XCTAssertFalse(cyclicGraph.isDAG, "A cyclic graph is not a DAG.")
     }
 
-    func testTopologicalSort() {
+    func testToposort() {
         guard let result: [String] = dressDAG.toposort() else {
             XCTFail("dressDAG could not be sorted.")
             return
@@ -72,14 +72,14 @@ class SwiftGraphSortTests: XCTestCase {
         XCTAssertFalse(emptyGraph.isDAG, "A graph with no nodes or edges is not a DAG.")
 
         let result2: [Int] = noEdgesGraph.toposort()!
-        XCTAssertTrue(noEdgesGraph.edges.joined().isEmpty)
+        XCTAssertTrue(noEdgesGraph.edges.joined().isEmpty, "The graph does not have edges.")
         XCTAssertTrue(result2.isEmpty, "A graph with no edges produces an empty sort.")
         XCTAssertFalse(noEdgesGraph.isDAG, "A graph with no edges is not a DAG.")
     }
 
     static var allTests = [
         ("testDAG", testDAG),
-        ("testTopologicalSort", testTopologicalSort),
+        ("testToposort", testToposort),
         ("testEmpty", testEmpty),
     ]
 }

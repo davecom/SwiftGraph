@@ -84,11 +84,6 @@ class SwiftGraphSearchTests: XCTestCase {
         print(cityGraph2.description)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testDFS1() {
         // Seattle -> Miami
         let result = cityGraph.dfs(from: "Seattle", to: "Miami")
@@ -171,31 +166,35 @@ class SwiftGraphSearchTests: XCTestCase {
         print(cityGraph2.nodes(from: result))
     }
 
-    func testEmpty() {
+    func testEmptyDFS() {
         var result = cityGraph2.dfs(from: "Houston") { $0 == "Rome" }
-        XCTAssertTrue(result.isEmpty)
+        XCTAssertTrue(result.isEmpty, "Not found when the test is false.")
         result = cityGraph2.dfs(from: "Rome") { $0 == "Milan" }
-        XCTAssertTrue(result.isEmpty)
+        XCTAssertTrue(result.isEmpty, "Not found when both the node and the test are false.")
         result = cityGraph2.dfs(from: cityGraph2.index(of: "Seattle")!, to: cityGraph2.index(of: "Cleveland")!)
-        XCTAssertTrue(result.isEmpty)
+        XCTAssertTrue(result.isEmpty, "Not found when the nodes are not connected.")
         result = cityGraph2.dfs(from: "Rome", to: "Seattle")
-        XCTAssertTrue(result.isEmpty)
+        XCTAssertTrue(result.isEmpty, "Not found when a node does not exist.")
+    }
 
-        result = cityGraph2.bfs(from: "Houston") { $0 == "Rome" }
-        XCTAssertTrue(result.isEmpty)
+    func testEmptyBFS() {
+        var result = cityGraph2.bfs(from: "Houston") { $0 == "Rome" }
+        XCTAssertTrue(result.isEmpty, "Not found when the test is false.")
         result = cityGraph2.bfs(from: "Rome") { $0 == "Milan" }
-        XCTAssertTrue(result.isEmpty)
+        XCTAssertTrue(result.isEmpty, "Not found when both the node and the test are false.")
         result = cityGraph2.bfs(from: cityGraph2.index(of: "Seattle")!, to: cityGraph2.index(of: "Cleveland")!)
-        XCTAssertTrue(result.isEmpty)
+        XCTAssertTrue(result.isEmpty, "Not found when the nodes are not connected.")
         result = cityGraph2.bfs(from: "Rome", to: "Seattle")
-        XCTAssertTrue(result.isEmpty)
+        XCTAssertTrue(result.isEmpty, "Not found when a node does not exist.")
+    }
 
+    func testEmptyRoutes() {
         let result2 = cityGraph2.routes(from: "Rome", until: { $0 == "Milan" })
-        XCTAssertTrue(result2.isEmpty)
+        XCTAssertTrue(result2.isEmpty, "No route from non-existing node to non-existing test.")
         let result3 = cityGraph2.route(from: "Rome", to: "Milan", in: [:])
-        XCTAssertTrue(result3.isEmpty)
+        XCTAssertTrue(result3.isEmpty, "No route in empty path (nodes).")
         let result4 = cityGraph2.route(0, 1, in: [:])
-        XCTAssertTrue(result4.isEmpty)
+        XCTAssertTrue(result4.isEmpty, "No route in empty path (indices).")
     }
 
     func testBFS1() {
@@ -284,7 +283,7 @@ class SwiftGraphSearchTests: XCTestCase {
         print(cityGraph2.nodes(from: result))
     }
 
-    func testFindAll() {
+    func testRoutes() {
         // New York -> all cities starting with "S"
         let result = cityGraph.routes(from: "New York") { v in
             return v.first == "S"
@@ -302,12 +301,6 @@ class SwiftGraphSearchTests: XCTestCase {
         }
     }
 
-    /* func testPerformanceExample() {
-     // This is an example of a performance test case.
-     self.measureBlock() {
-     // Put the code you want to measure the time of here.
-     }
-     } */
     static var allTests = [
         ("testDFS1", testDFS1),
         ("testDFS2", testDFS2),
@@ -315,13 +308,15 @@ class SwiftGraphSearchTests: XCTestCase {
         ("testDFS4", testDFS4),
         ("testDFS5", testDFS5),
         ("testDFS6", testDFS6),
-        ("testEmpty", testEmpty),
+        ("testEmptyDFS", testEmptyDFS),
+        ("testEmptyBFS", testEmptyBFS),
+        ("testEmptyRoutes", testEmptyRoutes),
         ("testBFS1", testBFS1),
         ("testBFS2", testBFS2),
         ("testBFS3", testBFS3),
         ("testBFS4", testBFS4),
         ("testBFS5", testBFS5),
         ("testBFS6", testBFS6),
-        ("testFindAll", testFindAll),
+        ("testRoutes", testRoutes),
     ]
 }

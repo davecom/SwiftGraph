@@ -86,11 +86,6 @@ class MSTTests: XCTestCase {
         print(cityGraph2.description)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testMST1() {
         // find the minimum spanning tree
         guard let mst = cityGraph.mst() else {
@@ -124,8 +119,8 @@ class MSTTests: XCTestCase {
     }
 
     func testEmpty() {
-        XCTAssertNil(emptyGraph.mst())
-        XCTAssertNil(emptyGraph.weight(of: []))
+        XCTAssertNil(emptyGraph.mst(), "Correctly returns nil for empty graph.")
+        XCTAssertNil(emptyGraph.weight(of: []), "Correctly returns nil for empty path.")
     }
 
     static var allTests = [

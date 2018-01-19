@@ -42,11 +42,6 @@ class CycleTests: XCTestCase {
         simpleGraph.edge("C", to: "B", directed: true)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testFullyConnectedNodes() {
         // check it has 84 cycles
         let cycles: [[String]] = fullyConnected.cycles()
@@ -112,7 +107,6 @@ class CycleTests: XCTestCase {
 }
 
 fileprivate extension Edge {
-
     var asTuple: (Int, Int) {
         return (u, v)
     }

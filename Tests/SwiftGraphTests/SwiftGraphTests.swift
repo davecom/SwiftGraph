@@ -28,17 +28,6 @@ import XCTest
 // and a `nonmutating` variant were not provided).
 
 class SwiftGraphTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testCitesInverseAfterRemove() {
         let g: _UnweightedGraph<String> = _UnweightedGraph<String>()
         g.add(node: "Atlanta")
@@ -95,18 +84,17 @@ class SwiftGraphTests: XCTestCase {
         g.add(node: "Atlanta")
         g.add(node: "Miami")
         g.edge("Atlanta", to: "Miami", directed: false)
-        XCTAssertTrue(g.contains(node: "Atlanta"))
-        XCTAssertFalse(g.contains(node: "New York"))
+        XCTAssertTrue(g.contains(node: "Atlanta"), "Graph contains added node.")
 
         let edge = g.edges(for: "Atlanta")!.first!
-        XCTAssertTrue(g.contains(edge: edge))
-        XCTAssertFalse(edge.weighted)
+        XCTAssertTrue(g.contains(edge: edge), "Graph contains added edge.")
+        XCTAssertFalse(edge.weighted, "Edge is correctly unweighted.")
 
         g.remove(edge: edge)
-        XCTAssertFalse(g.contains(edge: edge))
+        XCTAssertFalse(g.contains(edge: edge), "Edge was correctly removed.")
 
         g.edge("Lagos", to: "Atlanta")
-        XCTAssertNil(g.edges(for: "Lagos"))
+        XCTAssertNil(g.edges(for: "Lagos"), "Edge is not added for non-existing node.")
 
         g.edge("Atlanta", to: "Miami", directed: false)
         g.unedge("Atlanta", from: "Miami", bidirectional: true)
@@ -116,7 +104,7 @@ class SwiftGraphTests: XCTestCase {
         let wg2 = _WeightedGraph<String, Int>(nodes: ["0", "1"])
 
         XCTAssertEqual(wg1.immutableNodes, wg2.immutableNodes)
-        XCTAssertNil(wg1.neighbors(for: "3"))
+        XCTAssertNil(wg1.neighbors(for: "3"), "No neighbors for non-existing node.")
 
         wg1.remove(node: "3")
 
@@ -124,29 +112,27 @@ class SwiftGraphTests: XCTestCase {
         wg2.edge(0, to: 1, weight: 1)
         let weightedEdge = wg1.edges(for: 0).first!
         let anotherWeightedEdge = wg2.edges(for: 0).first!
-        XCTAssertTrue(wg1.contains(edge: weightedEdge))
-        XCTAssertEqual(weightedEdge, anotherWeightedEdge)
+        XCTAssertTrue(wg1.contains(edge: weightedEdge), "Weighted graph correctly adds weighted edge.")
+        XCTAssertEqual(weightedEdge, anotherWeightedEdge, "== works as expected on WeightedEdge")
 
-        XCTAssertTrue(wg1.edged(from: "0", to: "1"))
-        XCTAssertFalse(wg1.edged(from: "0", to: "2"))
+        XCTAssertTrue(wg1.edged(from: "0", to: "1"), "Weighted graph correctly checks for existing weighted edge.")
+        XCTAssertFalse(wg1.edged(from: "0", to: "2"), "Weighted graph correctly checks for non-existing edge.")
 
-        XCTAssertTrue(weightedEdge.weighted)
+        XCTAssertTrue(weightedEdge.weighted, "Edge is correctly weighted.")
 
-        XCTAssertEqual(anotherWeightedEdge.description, "0 <1> 1")
+        XCTAssertEqual(anotherWeightedEdge.description, "0 <1> 1", ".description works as expected.")
         anotherWeightedEdge.directed = true
-        XCTAssertEqual(anotherWeightedEdge.description, "0 1> 1")
+        XCTAssertEqual(anotherWeightedEdge.description, "0 1> 1", "directed .description works as expected.")
 
         wg1.edge("3", to: "4", weight: 1)
-        XCTAssertNil(wg1.edges(for: "3"))
+        XCTAssertNil(wg1.edges(for: "3"), "Weighted edge does not add edges for non-existing nodes.")
 
         let variadicG = _UnweightedGraph(nodes: "0", "1", "2")
-        XCTAssertTrue(variadicG.contains(node: "0"))
-        XCTAssertTrue(variadicG.contains(node: "1"))
-        XCTAssertTrue(variadicG.contains(node: "2"))
+        XCTAssertEqual(variadicG.nodes, ["0", "1", "2"], "Variadic initializer works as expected.")
     }
 
     func testUnedge() {
-        let graph = _UnweightedGraph(nodes: ["0", "1", "2", "3", "4", "5", "6"])
+        var graph = _UnweightedGraphStruct(nodes: ["0", "1", "2", "3", "4", "5", "6"])
         graph.edge("0", to: "1", directed: false)
         graph.edge("1", to: "2", directed: false)
         graph.edge("2", to: "3", directed: false)
@@ -156,19 +142,21 @@ class SwiftGraphTests: XCTestCase {
         let edge = graph.edges(for: "2")!.first!
         graph.unedge(2, from: 3, bidirectional: true)
         graph.unedge("4", from: "5", bidirectional: false)
-        XCTAssertFalse(graph.edged(from: 2, to: 3))
-        XCTAssertFalse(graph.edged(from: 3, to: 2))
-        XCTAssertFalse(graph.edged(from: "4", to: "5"))
+
+        XCTAssertFalse(graph.edged(from: 2, to: 3), "Removes edge.")
+        XCTAssertFalse(graph.edged(from: 3, to: 2), "Removes edge bidirectionally.")
+        XCTAssertFalse(graph.edged(from: "4", to: "5"), "Removes edge when bidirectional is false.")
+        XCTAssertTrue(graph.edged(from: "5", to: "4"), "Persists edge when the other is removed with bidirectional = false.")
 
         graph.edges[edge.u].removeAll()
         graph.edges[edge.v].removeAll()
+        let copy = graph // Must be a struct. Check its type.
         graph.remove(edge: edge)
-        XCTAssertFalse(graph.edged(from: 2, to: 3))
-        XCTAssertFalse(graph.edged(from: 3, to: 2))
+        XCTAssertEqual(copy, graph, "Leaves the graph intact when an edge is not found within the graph.")
 
         graph.edge("6", to: "5", directed: true)
         graph.remove(edge: graph.edges(for: "6")!.first!)
-        XCTAssertFalse(graph.edged(from: "6", to: "5"))
+        XCTAssertFalse(graph.edged(from: "6", to: "5"), "Removes directed edge.")
     }
 
     func testMutatingMethods() {
@@ -176,7 +164,7 @@ class SwiftGraphTests: XCTestCase {
         var g2 = _WeightedGraphStruct<String, Int>(nodes: ["0", "1", "2", "3", "4", "5", "6"])
 
         g1.add(node: "7")
-        XCTAssertTrue(g1.contains(node: "7"))
+        XCTAssertTrue(g1.contains(node: "7"), "(Mutating) Adds a node to an unweighted graph.")
 
         g1.edge(0, to: 1)
         g2.edge(0, to: 1, weight: 1)
@@ -185,44 +173,44 @@ class SwiftGraphTests: XCTestCase {
 
         let e1 = g1.edges(for: 0).first!
         let e2 = g2.edges(for: 0).first!
-        XCTAssertTrue(g1.contains(edge: e1))
-        XCTAssertTrue(g2.contains(edge: e2))
+        XCTAssertTrue(g1.contains(edge: e1), "(Mutating) Adds (indices) an edge to an unweighted graph.")
+        XCTAssertTrue(g2.contains(edge: e2), "(Mutating) Adds (indices) an edge to a weighted graph.")
 
         let e3 = g1.edges(for: "2")!.first!
         let e4 = g2.edges(for: "2")!.first!
-        XCTAssertTrue(g1.contains(edge: e3))
-        XCTAssertTrue(g2.contains(edge: e4))
+        XCTAssertTrue(g1.contains(edge: e3), "(Mutating) Adds (nodes) an edge to an unweighted graph.")
+        XCTAssertTrue(g2.contains(edge: e4), "(Mutating) Adds (nodes) an edge to a weighted graph.")
 
         g1.remove(node: "6")
-        XCTAssertFalse(g1.contains(node: "6"))
+        XCTAssertFalse(g1.contains(node: "6"), "(Mutating) Removes (node) a node from an unweighted graph.")
 
         let v1 = g1.node(at: 3)
         g1.remove(at: 3)
-        XCTAssertFalse(g1.contains(node: v1))
+        XCTAssertFalse(g1.contains(node: v1), "(Mutating) Removes (index) a node from an unweighted graph.")
 
         g1.remove(edge: e1)
-        XCTAssertFalse(g1.contains(edge: e1))
+        XCTAssertFalse(g1.contains(edge: e1), "(Mutating) Removes an edge from an unweighted graph.")
 
         g2.unedge(0, from: 1, bidirectional: true)
-        XCTAssertFalse(g2.contains(edge: e2))
+        XCTAssertFalse(g2.contains(edge: e2), "(Mutating) Removes an edge from two nodes (indices) from a weighted graph.")
 
         g2.unedge("2", from: "3", bidirectional: true)
-        XCTAssertFalse(g2.contains(edge: e4))
+        XCTAssertFalse(g2.contains(edge: e4), "(Mutating) Removes an edge from two nodes (nodes) from a weighted graph.")
 
         g1.edge("10", to: "11", directed: true)
-        XCTAssertNil(g1.edges(for: "10"))
+        XCTAssertNil(g1.edges(for: "10"), "(Mutating) Does not add a directed an edge on a non-existing node in an unweighted graph.")
 
         g2.edge("10", to: "11", directed: true, weight: 1)
-        XCTAssertNil(g2.edges(for: "10"))
+        XCTAssertNil(g2.edges(for: "10"), "(Mutating) Does not add a directed an edge on a non-existing node in a weighted graph.")
     }
 
     func testQueue() {
         let q = Queue<Int>()
         q.push(1)
-        XCTAssertTrue(q.contains(1))
-        XCTAssertFalse(q.contains(2))
+        XCTAssertTrue(q.contains(1), "Adds to the queue.")
+        XCTAssertFalse(q.contains(2), "Checks that an elements doesn't exist in the queue.")
         q.push(10)
-        XCTAssertEqual(q.count, 2)
+        XCTAssertEqual(q.count, 2, "Counts queue elements correctly.")
     }
 
     static var allTests = [

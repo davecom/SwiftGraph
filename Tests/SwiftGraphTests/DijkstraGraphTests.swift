@@ -84,11 +84,6 @@ class DijkstraGraphTests: XCTestCase {
         print(cityGraph2.description)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testDijkstra1() {
         // Seattle -> Miami
         let (nameDistance, path): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph.dijkstra(root: "New York", start: 0)
@@ -232,17 +227,20 @@ class DijkstraGraphTests: XCTestCase {
 
     func testDijkstra4() {
         var (nameDistance, path): ([Int?], [Int: _WeightedEdge<Int>]) = cityGraph2.dijkstra(root: "Rome", start: 0)
-        XCTAssertTrue(nameDistance.isEmpty)
-        XCTAssertTrue(path.isEmpty)
+        XCTAssertTrue(nameDistance.isEmpty, "No distance from non-existing node.")
+        XCTAssertTrue(path.isEmpty, "No path from non-existing node.")
+
         (nameDistance, path) = cityGraph2.dijkstra(root: "Miami", start: 0)
-        XCTAssertFalse(nameDistance.isEmpty)
-        XCTAssertFalse(path.isEmpty)
+        XCTAssertFalse(nameDistance.isEmpty, "Distance exists.")
+        XCTAssertFalse(path.isEmpty, "Path exists.")
 
         let (nameDistance2, path2): ([String: Int?], [Int: _WeightedEdge<Int>]) = cityGraph2.dijkstra(root: "Rome", start: 0)
-        XCTAssertTrue(nameDistance2.isEmpty)
-        XCTAssertTrue(path2.isEmpty)
+        XCTAssertTrue(nameDistance2.isEmpty, "No distance from non-existing node in dictionary overload.")
+        XCTAssertTrue(path2.isEmpty, "No path from non-existing node in dictionary overload.")
 
-        XCTAssertEqual(DijkstraNode<Int>(node: 0, distance: 2), DijkstraNode<Int>(node: 0, distance: 2))
+        let node1 = DijkstraNode<Int>(node: 0, distance: 2)
+        let node2 = DijkstraNode<Int>(node: 0, distance: 2)
+        XCTAssertEqual(node1, node2, "DijkstraNode == operator works correctly.")
     }
 
     func testRemovalWithDijkstra() {
