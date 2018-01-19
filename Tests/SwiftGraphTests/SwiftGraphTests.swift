@@ -145,7 +145,7 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertTrue(variadicG.contains(node: "2"))
     }
 
-    func testRemoveAllEdges() {
+    func testUnedge() {
         let graph = _UnweightedGraph(nodes: ["0", "1", "2", "3", "4", "5", "6"])
         graph.edge("0", to: "1", directed: false)
         graph.edge("1", to: "2", directed: false)
@@ -153,9 +153,22 @@ class SwiftGraphTests: XCTestCase {
         graph.edge("3", to: "2", directed: false)
         graph.edge("3", to: "4", directed: false)
         graph.edge("4", to: "5", directed: false)
+        let edge = graph.edges(for: "2")!.first!
         graph.unedge(2, to: 3, bidirectional: true)
+        graph.unedge("4", to: "5", bidirectional: false)
         XCTAssertFalse(graph.edged(from: 2, to: 3))
         XCTAssertFalse(graph.edged(from: 3, to: 2))
+        XCTAssertFalse(graph.edged(from: "4", to: "5"))
+
+        graph.edges[edge.u].removeAll()
+        graph.edges[edge.v].removeAll()
+        graph.remove(edge: edge)
+        XCTAssertFalse(graph.edged(from: 2, to: 3))
+        XCTAssertFalse(graph.edged(from: 3, to: 2))
+
+        graph.edge("6", to: "5", directed: true)
+        graph.remove(edge: graph.edges(for: "6")!.first!)
+        XCTAssertFalse(graph.edged(from: "6", to: "5"))
     }
 
     func testMutatingMethods() {
@@ -217,7 +230,7 @@ class SwiftGraphTests: XCTestCase {
         ("testSequenceTypeAndCollectionType", testSequenceTypeAndCollectionType),
         ("testCounts", testCounts),
         ("testSubscript", testSubscript),
-        ("testRemoveAllEdges", testRemoveAllEdges),
+        ("testUnedge", testUnedge),
         ("testVarious", testVarious),
         ("testMutatingMethods", testMutatingMethods),
         ("testQueue", testQueue),
