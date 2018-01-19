@@ -30,24 +30,31 @@ extension String: Summable {}
 /// A weighted edge whose weight conforms to Comparable.
 public protocol WeightedEdge: Edge, Comparable {
     associatedtype W: Summable
+
+    // The weight of the edge.
     var weight: W { get }
 
-    init(u: Int, v: Int, directed: Bool, weight: W)
+    init(source: Int, target: Int, directed: Bool, weight: W)
 }
+
+// MARK: - Computed Properties
 
 extension WeightedEdge {
-    public var weighted: Bool {
-        return true
+    /// A Boolean value indicating whether the edge can have a weight.
+    /// A `WeightedEdge`'s `weighted` is always true.
+    public var weighted: Bool { return true }
+
+    /// Returns an edge that is equal to self where the `source` node
+    /// is the `target` node and the previous `target` node is the
+    /// new `source` node.
+    public var reversed: Self { return Self(source: target, target: source, directed: directed, weight: weight) }
     }
 
-    public var reversed: Self {
-        return Self(u: v, v: u, directed: directed, weight: weight)
-    }
-}
+// MARK: - Equatable
 
 extension WeightedEdge {
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
+        return lhs.source == rhs.source && lhs.target == rhs.target && lhs.directed == rhs.directed && lhs.weight == rhs.weight
     }
 
     public static func < (lhs: Self, rhs: Self) -> Bool {
@@ -55,8 +62,10 @@ extension WeightedEdge {
     }
 }
 
+// MARK: - CustomStringConvertible
+
 extension WeightedEdge {
     public var description: String {
-        return directed ? "\(u) \(weight)> \(v)" : "\(u) <\(weight)> \(v)"
+        return directed ? "\(source) \(weight)> \(target)" : "\(source) <\(weight)> \(target)"
     }
 }

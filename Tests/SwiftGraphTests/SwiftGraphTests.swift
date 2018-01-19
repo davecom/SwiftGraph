@@ -148,8 +148,8 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertFalse(graph.edged(from: "4", to: "5"), "Removes edge when bidirectional is false.")
         XCTAssertTrue(graph.edged(from: "5", to: "4"), "Persists edge when the other is removed with bidirectional = false.")
 
-        graph.edges[edge.u].removeAll()
-        graph.edges[edge.v].removeAll()
+        graph.edges[edge.source].removeAll()
+        graph.edges[edge.target].removeAll()
         let copy = graph // Must be a struct. Check its type.
         graph.remove(edge: edge)
         XCTAssertEqual(copy, graph, "Leaves the graph intact when an edge is not found within the graph.")

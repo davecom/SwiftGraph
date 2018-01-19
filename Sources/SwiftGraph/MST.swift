@@ -39,7 +39,7 @@ public extension WeightedGraph {
 
         func visit(_ index: Int) {
             visited[index] = true // mark as visited
-            for edge in edges(for: index) where !visited[edge.v] { // add all edges coming from here to pq
+            for edge in edges(for: index) where !visited[edge.target] { // add all edges coming from here to pq
                 queue.push(edge)
             }
         }
@@ -47,9 +47,9 @@ public extension WeightedGraph {
         visit(start) // the first node is where everything begins
 
         while let edge = queue.pop() { // keep going as long as there are edges to process
-            if visited[edge.v] { continue } // if we've been both places, ignore
+            if visited[edge.target] { continue } // if we've been both places, ignore
             result.append(edge) // otherwise this is the current smallest so add it to the result set
-            visit(edge.v)
+            visit(edge.target)
         }
 
         return result
@@ -62,7 +62,7 @@ extension WeightedGraph {
     /// Pretty print an edge list returned from an MST.
     /// - parameter edges: The edges from a previously computed MST (on this graph).
     internal func printmst(_ edges: [E]) {
-        edges.forEach { print("\(node(at: $0.u)) \($0.weight)> \(node(at: $0.v))") }
+        edges.forEach { print("\(node(at: $0.source)) \($0.weight)> \(node(at: $0.target))") }
         if let weight = weight(of: edges) { print("Total Weight: \(weight)") }
     }
 

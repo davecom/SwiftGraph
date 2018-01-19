@@ -89,10 +89,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph.dfs(from: "Seattle", to: "Miami")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph.node(at: last.v), "Miami", "Miami not the destination")
+            XCTAssertEqual(cityGraph.node(at: last.target), "Miami", "Miami not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph.node(at: first.u), "Seattle", "Seattle is not the start")
+            XCTAssertEqual(cityGraph.node(at: first.source), "Seattle", "Seattle is not the start")
         }
         print(cityGraph.nodes(from: result))
     }
@@ -102,10 +102,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph.dfs(from: "Boston", to: "Los Angeles")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph.node(at: last.v), "Los Angeles", "Los Angeles not the destination")
+            XCTAssertEqual(cityGraph.node(at: last.target), "Los Angeles", "Los Angeles not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph.node(at: first.u), "Boston", "Boston is not the start")
+            XCTAssertEqual(cityGraph.node(at: first.source), "Boston", "Boston is not the start")
         }
         print(cityGraph.nodes(from: result))
     }
@@ -117,10 +117,10 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph2.node(at: last.v), "New York", "New York not the destination")
+            XCTAssertEqual(cityGraph2.node(at: last.target), "New York", "New York not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph2.node(at: first.u), "Houston", "Houston is not the start")
+            XCTAssertEqual(cityGraph2.node(at: first.source), "Houston", "Houston is not the start")
         }
         print(cityGraph2.nodes(from: result))
     }
@@ -130,10 +130,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph2.dfs(from: "Seattle", to: "Miami")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph2.node(at: last.v), "Miami", "Miami not the destination")
+            XCTAssertEqual(cityGraph2.node(at: last.target), "Miami", "Miami not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph2.node(at: first.u), "Seattle", "Seattle is not the start")
+            XCTAssertEqual(cityGraph2.node(at: first.source), "Seattle", "Seattle is not the start")
         }
         print(cityGraph2.nodes(from: result))
     }
@@ -143,10 +143,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph2.dfs(from: "Boston", to: "Los Angeles")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph2.node(at: last.v), "Los Angeles", "Los Angeles not the destination")
+            XCTAssertEqual(cityGraph2.node(at: last.target), "Los Angeles", "Los Angeles not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph2.node(at: first.u), "Boston", "Boston is not the start")
+            XCTAssertEqual(cityGraph2.node(at: first.source), "Boston", "Boston is not the start")
         }
         print(cityGraph2.nodes(from: result))
     }
@@ -158,10 +158,10 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph2.node(at: last.v), "New York", "New York not the destination")
+            XCTAssertEqual(cityGraph2.node(at: last.target), "New York", "New York not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph2.node(at: first.u), "Houston", "Houston is not the start")
+            XCTAssertEqual(cityGraph2.node(at: first.source), "Houston", "Houston is not the start")
         }
         print(cityGraph2.nodes(from: result))
     }
@@ -202,10 +202,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph.bfs(from: "Seattle", to: "Miami")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph.node(at: last.v), "Miami", "Miami not the destination")
+            XCTAssertEqual(cityGraph.node(at: last.target), "Miami", "Miami not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph.node(at: first.u), "Seattle", "Seattle is not the start")
+            XCTAssertEqual(cityGraph.node(at: first.source), "Seattle", "Seattle is not the start")
         }
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Seattle to Miami")
         print(cityGraph.nodes(from: result))
@@ -216,10 +216,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph.bfs(from: "Boston", to: "Los Angeles")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph.node(at: last.v), "Los Angeles", "Los Angeles not the destination")
+            XCTAssertEqual(cityGraph.node(at: last.target), "Los Angeles", "Los Angeles not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph.node(at: first.u), "Boston", "Boston is not the start")
+            XCTAssertEqual(cityGraph.node(at: first.source), "Boston", "Boston is not the start")
         }
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Boston to Los Angeles")
         print(cityGraph.nodes(from: result))
@@ -232,10 +232,10 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph.node(at: last.v), "New York", "New York not the destination")
+            XCTAssertEqual(cityGraph.node(at: last.target), "New York", "New York not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph.node(at: first.u), "Houston", "Houston is not the start")
+            XCTAssertEqual(cityGraph.node(at: first.source), "Houston", "Houston is not the start")
         }
         print(cityGraph.nodes(from: result))
     }
@@ -245,10 +245,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph2.bfs(from: "Seattle", to: "Miami")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Seattle and Miami (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph2.node(at: last.v), "Miami", "Miami not the destination")
+            XCTAssertEqual(cityGraph2.node(at: last.target), "Miami", "Miami not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph2.node(at: first.u), "Seattle", "Seattle is not the start")
+            XCTAssertEqual(cityGraph2.node(at: first.source), "Seattle", "Seattle is not the start")
         }
         XCTAssertEqual(result.count, 3, "Expect to take 3 edges to get from Seattle to Miami")
         print(cityGraph2.nodes(from: result))
@@ -259,10 +259,10 @@ class SwiftGraphSearchTests: XCTestCase {
         let result = cityGraph2.bfs(from: "Boston", to: "Los Angeles")
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Boston and Los Angeles (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph2.node(at: last.v), "Los Angeles", "Los Angeles not the destination")
+            XCTAssertEqual(cityGraph2.node(at: last.target), "Los Angeles", "Los Angeles not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph2.node(at: first.u), "Boston", "Boston is not the start")
+            XCTAssertEqual(cityGraph2.node(at: first.source), "Boston", "Boston is not the start")
         }
         XCTAssertEqual(result.count, 4, "Expect to take 4 edges to get from Boston to Los Angeles")
         print(cityGraph2.nodes(from: result))
@@ -275,10 +275,10 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find connection between Houston and a city starting with N (there is one).")
         if let last = result.last {
-            XCTAssertEqual(cityGraph2.node(at: last.v), "New York", "New York not the destination")
+            XCTAssertEqual(cityGraph2.node(at: last.target), "New York", "New York not the destination")
         }
         if let first = result.first {
-            XCTAssertEqual(cityGraph2.node(at: first.u), "Houston", "Houston is not the start")
+            XCTAssertEqual(cityGraph2.node(at: first.source), "Houston", "Houston is not the start")
         }
         print(cityGraph2.nodes(from: result))
     }

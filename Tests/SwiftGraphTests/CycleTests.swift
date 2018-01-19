@@ -108,6 +108,6 @@ class CycleTests: XCTestCase {
 
 fileprivate extension Edge {
     var asTuple: (Int, Int) {
-        return (u, v)
+        return (source, target)
     }
 }

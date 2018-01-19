@@ -18,7 +18,7 @@
 
 /// A basic unweighted edge.
 protocol UnweightedEdge: Edge {
-    init(u: Int, v: Int, directed: Bool)
+    init(source: Int, target: Int, directed: Bool)
 }
 
 extension UnweightedEdge {
@@ -27,18 +27,18 @@ extension UnweightedEdge {
     }
 
     public var reversed: Self {
-        return Self(u: v, v: u, directed: directed)
+        return Self(source: target, target: source, directed: directed)
     }
 }
 
 extension UnweightedEdge {
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed
+        return lhs.source == rhs.source && lhs.target == rhs.target && lhs.directed == rhs.directed
     }
 }
 
 extension UnweightedEdge {
     public var description: String {
-        return directed ? "\(u) -> \(v)" : "\(u) <-> \(v)"
+        return directed ? "\(source) -> \(target)" : "\(source) <-> \(target)"
     }
 }

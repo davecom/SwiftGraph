@@ -19,29 +19,29 @@
 // swiftlint:disable type_name
 
 internal final class _UnweightedEdge: UnweightedEdge {
-    init(u: Int, v: Int, directed: Bool) {
-        self.u = u
-        self.v = v
+    init(source: Int, target: Int, directed: Bool) {
+        self.source = source
+        self.target = target
         self.directed = directed
     }
 
-    var u: Int
-    var v: Int
-    var directed: Bool
+    var source: Int
+    var target: Int
+    let directed: Bool
 }
 
 internal final class _WeightedEdge<Weight: Summable>: WeightedEdge {
-    init(u: Int, v: Int, directed: Bool, weight: W) {
-        self.u = u
-        self.v = v
+    init(source: Int, target: Int, directed: Bool, weight: W) {
+        self.source = source
+        self.target = target
         self.directed = directed
         self.weight = weight
     }
 
-    var u: Int
-    var v: Int
-    var directed: Bool
-    var weight: W
+    var source: Int
+    var target: Int
+    let directed: Bool
+    let weight: W
 
     typealias W = Weight
 }

@@ -174,7 +174,7 @@ extension Graph {
     /// - parameter index: The index for the node to find the neighbors of.
     /// - returns: An array of the neighbor nodes.
     public func neighbors(for index: Int) -> [N] {
-        func toNode(edge: E) -> N { return nodes[edge.v] }
+        func toNode(edge: E) -> N { return nodes[edge.target] }
         return edges[index].map(toNode)
     }
 
@@ -214,7 +214,7 @@ extension Graph {
     ///
     /// - parameter edge: The edge you are looking for.
     public func contains(edge: E) -> Bool {
-        return edged(from: edge.u, to: edge.v)
+        return edged(from: edge.source, to: edge.target)
     }
 
     /// Is there an edge from one node to another?
@@ -223,7 +223,7 @@ extension Graph {
     /// - parameter to: The index of the ending edge.
     /// - returns: A Bool that is true if such an edge exists, and false otherwise.
     public func edged(from: Int, to: Int) -> Bool {
-        return edges[from].map { $0.v }.contains(to)
+        return edges[from].map { $0.target }.contains(to)
     }
 
     /// Is there an edge from one node to another? Note this will look at the first
@@ -395,8 +395,8 @@ internal extension Graph {
     }
 
     internal func _add(_ edge: E, to graph: inout Self) {
-        graph.edges[edge.u].append(edge)
-        if !edge.directed { graph.edges[edge.v].append(edge.reversed) }
+        graph.edges[edge.source].append(edge)
+        if !edge.directed { graph.edges[edge.target].append(edge.reversed) }
     }
 
     internal func _remove(at index: Int, from graph: inout Self) {
@@ -405,12 +405,12 @@ internal extension Graph {
         for j in 0 ..< index {
             var trash: [Int] = .init()
             for l in 0 ..< edges[j].count {
-                if edges[j][l].v == index {
+                if edges[j][l].target == index {
                     trash.append(l)
                     continue
                 }
-                if edges[j][l].v > index {
-                    graph.edges[j][l].v -= 1
+                if edges[j][l].target > index {
+                    graph.edges[j][l].target -= 1
                 }
             }
             for f in trash.reversed() {
@@ -423,13 +423,13 @@ internal extension Graph {
         for j in (index + 1) ..< edges.count {
             var trash: [Int] = .init()
             for l in 0 ..< edges[j].count {
-                if edges[j][l].v == index {
+                if edges[j][l].target == index {
                     trash.append(l)
                     continue
                 }
-                graph.edges[j][l].u -= 1
-                if edges[j][l].v > index {
-                    graph.edges[j][l].v -= 1
+                graph.edges[j][l].source -= 1
+                if edges[j][l].target > index {
+                    graph.edges[j][l].target -= 1
                 }
             }
             for f in trash.reversed() {
@@ -447,21 +447,21 @@ internal extension Graph {
     }
 
     internal func _remove(edge: E, from graph: inout Self) {
-        guard let i = (edges[edge.u]).index(of: edge) else { return }
-        graph.edges[edge.u].remove(at: i)
+        guard let i = (edges[edge.source]).index(of: edge) else { return }
+        graph.edges[edge.source].remove(at: i)
 
-        guard !edge.directed, let j = (edges[edge.v]).index(of: edge.reversed) else { return }
-        graph.edges[edge.v].remove(at: j)
+        guard !edge.directed, let j = (edges[edge.target]).index(of: edge.reversed) else { return }
+        graph.edges[edge.target].remove(at: j)
     }
 
     internal func _unedge(_ a: Int, from b: Int, bidirectional: Bool = true, from graph: inout Self) {
-        for (i, edge) in edges[a].enumerated().reversed() where edge.v == b {
+        for (i, edge) in edges[a].enumerated().reversed() where edge.target == b {
             graph.edges[a].remove(at: i)
         }
 
         guard bidirectional else { return }
 
-        for (i, edge) in edges[b].enumerated().reversed() where edge.v == a {
+        for (i, edge) in edges[b].enumerated().reversed() where edge.target == a {
             graph.edges[b].remove(at: i)
         }
     }

@@ -66,9 +66,9 @@ extension Graph {
             let head = openPath.head
             let neighborEdges = edges(for: tail)
             for neighborEdge in neighborEdges {
-                if neighborEdge.v == head {
+                if neighborEdge.target == head {
                     cycles.append(openPath.path + [neighborEdge]) // found a cycle
-                } else if !openPath.path.contains(where: { $0.u == neighborEdge.v || $0.v == neighborEdge.v }) && neighborEdge.v > head {
+                } else if !openPath.path.contains(where: { $0.source == neighborEdge.target || $0.target == neighborEdge.target }) && neighborEdge.target > head {
                     openPaths.append(openPath.byAdding(neighborEdge)) // another open path to explore
                 }
             }
@@ -84,7 +84,7 @@ private struct Path<E: Edge> {
     var start: Int
     var path: [E] = []
     var head: Int { return start }
-    var tail: Int { return path.last?.v ?? start }
+    var tail: Int { return path.last?.target ?? start }
 
     init(start: Int) { self.start = start }
 

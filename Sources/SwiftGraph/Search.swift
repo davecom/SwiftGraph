@@ -37,9 +37,9 @@ extension Graph {
             if at(node(at: to)) { return route(from, to, in: path) }
 
             visited[to] = true
-            for edge in edges(for: to) where !visited[edge.v] {
-                stack.push(edge.v)
-                path[edge.v] = edge
+            for edge in edges(for: to) where !visited[edge.target] {
+                stack.push(edge.target)
+                path[edge.target] = edge
             }
         }
 
@@ -74,9 +74,9 @@ extension Graph {
             if v == to { return route(from, to, in: path) }
 
             visited[v] = true
-            for edge in edges(for: v) where !visited[edge.v] {
-                stack.push(edge.v)
-                path[edge.v] = edge
+            for edge in edges(for: v) where !visited[edge.target] {
+                stack.push(edge.target)
+                path[edge.target] = edge
             }
         }
 
@@ -114,10 +114,10 @@ extension Graph {
             let to: Int = queue.pop()
             if at(node(at: to)) { return route(from, to, in: path) }
 
-            for edge in edges(for: to) where !visited[edge.v] {
-                visited[edge.v] = true
-                queue.push(edge.v)
-                path[edge.v] = edge
+            for edge in edges(for: to) where !visited[edge.target] {
+                visited[edge.target] = true
+                queue.push(edge.target)
+                path[edge.target] = edge
             }
         }
 
@@ -151,10 +151,10 @@ extension Graph {
             let v: Int = queue.pop()
             if v == to { return route(from, to, in: path) }
 
-            for edge in edges(for: v) where !visited[edge.v] {
-                visited[edge.v] = true
-                queue.push(edge.v)
-                path[edge.v] = edge
+            for edge in edges(for: v) where !visited[edge.target] {
+                visited[edge.target] = true
+                queue.push(edge.target)
+                path[edge.target] = edge
             }
         }
 
@@ -193,10 +193,10 @@ extension Graph {
             let to: Int = queue.pop()
             if at(node(at: to)) { paths.append(route(from, to, in: path)) }
 
-            for edge in edges(for: to) where !visited[edge.v] {
-                visited[edge.v] = true
-                queue.push(edge.v)
-                path[edge.v] = edge
+            for edge in edges(for: to) where !visited[edge.target] {
+                visited[edge.target] = true
+                queue.push(edge.target)
+                path[edge.target] = edge
             }
         }
 
@@ -229,8 +229,8 @@ extension Graph {
         var e: E = path[to]!
         edgePath.append(e)
 
-        while e.u != from {
-            e = path[e.u]!
+        while e.source != from {
+            e = path[e.source]!
             edgePath.append(e)
         }
 
@@ -256,11 +256,11 @@ public extension WeightedGraph {
         while let u = queue.pop()?.node { // explore the next closest node
             guard let distU = distances[u] else { continue } // should already have seen it
             for edge in edges(for: u) { // look at every edge/node from the node in question
-                let distV = distances[edge.v] // the old distance to this node
+                let distV = distances[edge.target] // the old distance to this node
                 if distV == nil || distV! > edge.weight + distU { // if we have no old distance or we found a shorter path
-                    distances[edge.v] = edge.weight + distU // update the distance to this node
-                    path[edge.v] = edge // update the edge on the shortest path to this node
-                    queue.push(DijkstraNode(node: edge.v, distance: edge.weight + distU)) // explore it soon
+                    distances[edge.target] = edge.weight + distU // update the distance to this node
+                    path[edge.target] = edge // update the edge on the shortest path to this node
+                    queue.push(DijkstraNode(node: edge.target, distance: edge.weight + distU)) // explore it soon
                 }
             }
         }
@@ -335,8 +335,8 @@ extension Graph {
     public func nodes(from edges: [E]) -> [N] {
         var nodes: [N] = .init()
         if let first = edges.first {
-            nodes.append(node(at: first.u))
-            nodes += edges.map { node(at: $0.v) }
+            nodes.append(node(at: first.source))
+            nodes += edges.map { node(at: $0.target) }
         }
         return nodes
     }
