@@ -33,6 +33,8 @@
 		7985B9291E5A503200C100E7 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746441DA56CC500C0E0F6 /* Sort.swift */; };
 		7985B92A1E5A503200C100E7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
 		7985B92B1E5A503200C100E7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
+		B5D229BC207BF30100151820 /* UniqueVerticesGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueVerticesGraph.swift */; };
+		B5D229BF207BF3A800151820 /* UniqueVerticesGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueVerticesGraphTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +98,8 @@
 		7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSearchTests.swift; sourceTree = "<group>"; };
 		7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSortTests.swift; sourceTree = "<group>"; };
 		7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
+		B5D229BB207BF30100151820 /* UniqueVerticesGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueVerticesGraph.swift; path = Sources/SwiftGraph/UniqueVerticesGraph.swift; sourceTree = SOURCE_ROOT; };
+		B5D229BD207BF36900151820 /* UniqueVerticesGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueVerticesGraphTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				5589B46B1C0E753E00D6664E /* Graph.swift */,
+				B5D229BB207BF30100151820 /* UniqueVerticesGraph.swift */,
 				5589B46E1C0E756200D6664E /* UnweightedGraph.swift */,
 				5589B4711C0E757100D6664E /* WeightedGraph.swift */,
 			);
@@ -223,6 +228,7 @@
 				7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */,
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
 				7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */,
+				B5D229BD207BF36900151820 /* UniqueVerticesGraphTests.swift */,
 			);
 			name = SwiftGraphTests;
 			path = Tests/SwiftGraphTests;
@@ -383,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5D229BC207BF30100151820 /* UniqueVerticesGraph.swift in Sources */,
 				7985B9241E5A503200C100E7 /* Graph.swift in Sources */,
 				7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */,
 				7985B9291E5A503200C100E7 /* Sort.swift in Sources */,
@@ -409,6 +416,7 @@
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
+				B5D229BF207BF3A800151820 /* UniqueVerticesGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
