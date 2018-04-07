@@ -19,7 +19,7 @@
 /// The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can
 /// have some method implementations in common. You should generally use one of its two canonical subclasses,
 /// *UnweightedGraph* and *WeightedGraph*, because they offer more functionality and convenience.
-open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
+open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection, Equatable {
     var vertices: [V] = [V]()
     var edges: [[Edge]] = [[Edge]]() //adjacency lists
     
@@ -286,5 +286,32 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
     /// - returns: The vertex at index.
     public subscript(i: Int) -> V {
         return vertexAtIndex(i)
+    }
+
+    /// This operator checks for equality of two Graphs with the same vertex type.
+    ///
+    /// We say to Graphs A and B with vertex type V are equal if:
+    /// * They have the same number of vertices and each vertex of A has an equal vertex on B,
+    ///   where equality is checked with the == operator of V.
+    /// * They have the same number of edges and each edge of A has an equal edge on B,
+    ///   where equality is checked with the == operator of Edge.
+    ///
+    /// The Edge implementations provided with this library implement value-semantics
+    /// equality. So, if V implements value-semantics equality, Graph
+    /// will also have value-semantics equality.
+    ///
+    /// Two isomorphic Graphs are not necessary equal by this operator.
+    /// An instance of Graph is always equal to itself, but two distinct instances
+    /// can be equal by this operator. You can use the === operator to check instance
+    /// identity.
+    ///
+    /// - returns: true if both Graphs are equal, false otherwise.
+    public static func == (lhs: Graph<V>, rhs: Graph<V>) -> Bool {
+
+        let equatableLhsEdges = lhs.edges.reduce([],+).map({ $0.asEquatable() })
+        let equatableRhsEdges = rhs.edges.reduce([],+).map({ $0.asEquatable() })
+
+        return lhs.vertices.hasSameElements(rhs.vertices)
+                && equatableLhsEdges.hasSameElements(equatableRhsEdges)
     }
 }

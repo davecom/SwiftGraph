@@ -33,6 +33,9 @@
 		7985B9291E5A503200C100E7 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746441DA56CC500C0E0F6 /* Sort.swift */; };
 		7985B92A1E5A503200C100E7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
 		7985B92B1E5A503200C100E7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
+		B5A08A4220794345003845CD /* WeightedGraphEqualityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A08A402079426C003845CD /* WeightedGraphEqualityTests.swift */; };
+		B5A08A4520794421003845CD /* GraphEqualityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A08A432079441A003845CD /* GraphEqualityTests.swift */; };
+		B5FB91B520790B8E000D0CF0 /* ArrayCompareElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB91B420790B8E000D0CF0 /* ArrayCompareElements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,9 @@
 		7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSearchTests.swift; sourceTree = "<group>"; };
 		7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSortTests.swift; sourceTree = "<group>"; };
 		7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
+		B5A08A402079426C003845CD /* WeightedGraphEqualityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightedGraphEqualityTests.swift; sourceTree = "<group>"; };
+		B5A08A432079441A003845CD /* GraphEqualityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEqualityTests.swift; sourceTree = "<group>"; };
+		B5FB91B420790B8E000D0CF0 /* ArrayCompareElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayCompareElements.swift; path = Sources/SwiftGraph/ArrayCompareElements.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +210,7 @@
 		7985B8FC1E5A4FB800C100E7 /* SwiftGraph */ = {
 			isa = PBXGroup;
 			children = (
+				B5FB91B620790B95000D0CF0 /* Utils */,
 				5589B4811C0E774300D6664E /* Edges */,
 				5589B4821C0E774F00D6664E /* Graphs */,
 				5589B4831C0E775800D6664E /* Search */,
@@ -223,9 +230,19 @@
 				7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */,
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
 				7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */,
+				B5A08A432079441A003845CD /* GraphEqualityTests.swift */,
+				B5A08A402079426C003845CD /* WeightedGraphEqualityTests.swift */,
 			);
 			name = SwiftGraphTests;
 			path = Tests/SwiftGraphTests;
+			sourceTree = "<group>";
+		};
+		B5FB91B620790B95000D0CF0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B5FB91B420790B8E000D0CF0 /* ArrayCompareElements.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +413,7 @@
 				7985B9211E5A503200C100E7 /* Edge.swift in Sources */,
 				7985B9271E5A503200C100E7 /* SwiftPriorityQueue.swift in Sources */,
 				55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */,
+				B5FB91B520790B8E000D0CF0 /* ArrayCompareElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,8 +425,10 @@
 				7985B91E1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift in Sources */,
 				55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */,
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
+				B5A08A4520794421003845CD /* GraphEqualityTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
+				B5A08A4220794345003845CD /* WeightedGraphEqualityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,4 +25,62 @@ public protocol Edge: CustomStringConvertible {
     var weighted: Bool {get}
     var directed: Bool {get}
     var reversed: Edge {get}
+
+    func isEqualTo(_ other: Edge) -> Bool
+    func asEquatable() -> AnyEquatableEdge
+}
+
+extension Edge {
+    public func asEquatable() -> AnyEquatableEdge {
+        return AnyEquatableEdge(self)
+    }
+}
+
+/// Type erasure over Edge subclasses that implements Equatable
+public struct AnyEquatableEdge: Edge, Equatable {
+    public init(_ edge: Edge) {
+        self.edge = edge
+    }
+    public init(_ anyEdge: AnyEquatableEdge) {
+        self.edge = anyEdge.edge
+    }
+
+    public var u: Int {
+        get {
+            return edge.u
+        }
+        set(newU) {
+            edge.u = newU
+        }
+    }
+    public var v: Int {
+        get {
+            return edge.v
+        }
+        set(newV) {
+            edge.v = newV
+        }
+    }
+    public var weighted: Bool { get { return edge.weighted } }
+    public var directed: Bool { get { return edge.directed } }
+    public var reversed: Edge { get { return edge.reversed } }
+
+    public func isEqualTo(_ other: Edge) -> Bool {
+        return edge.isEqualTo(other)
+    }
+
+    public func asEquatable() -> AnyEquatableEdge {
+        return self
+    }
+
+    public static func ==(lhs: AnyEquatableEdge, rhs: AnyEquatableEdge) -> Bool {
+        return lhs.edge.isEqualTo(rhs.edge)
+    }
+
+    //Implement Printable protocol
+    public var description: String {
+        return edge.description
+    }
+
+    private var edge: Edge
 }
