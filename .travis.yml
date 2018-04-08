@@ -1,6 +1,6 @@
 env:
   global:
-    - CC_TEST_REPORTER_ID=634c4ceaebda472e4459282c241c35e2b876dd8b90c1e52294f1e251b0b5d6f9
+    - CC_TEST_REPORTER_ID=85ed34006e87b97e4f0400748d7f654ba2684a2aa62dceed5c9935930ad5fafa
 matrix:
   include:
     - {os: osx, osx_image: xcode9.3beta, language: swift}
