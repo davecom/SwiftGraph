@@ -31,6 +31,11 @@ open class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
         self.v = v
         self.directed = directed
     }
+
+    public func isEqualTo(_ other: Edge) -> Bool {
+        guard let _other = other as? UnweightedEdge else { return false }
+        return self == _other
+    }
     
     //Implement Printable protocol
     public var description: String {

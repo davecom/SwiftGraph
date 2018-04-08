@@ -39,6 +39,11 @@ open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge, Comparable {
         self.weight = weight
         super.init(u: u, v: v, directed: directed)
     }
+
+    public override func isEqualTo(_ other: Edge) -> Bool {
+        guard let _other = other as? WeightedEdge else { return false }
+        return self == _other
+    }
     
     //Implement Printable protocol
     public override var description: String {

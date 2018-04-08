@@ -7,5 +7,7 @@ XCTMain([
     testCase(SwiftGraphSearchTests.allTests),
     testCase(SwiftGraphSortTests.allTests),
     testCase(SwiftGraphTests.allTests),
+    testCase(GraphEqualityTests.allTests),
+    testCase(WeightedGraphEqualityTests.allTests),
     testCase(CycleTests.allTests),
 ])
