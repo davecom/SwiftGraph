@@ -1,5 +1,5 @@
-import XCTest
 @testable import SwiftGraphTests
+import XCTest
 
 XCTMain([
     testCase(DijkstraGraphTests.allTests),

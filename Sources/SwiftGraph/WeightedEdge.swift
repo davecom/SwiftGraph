@@ -16,44 +16,45 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// This protocol is needed for Dijkstra's algorithm - we need weights in weighted graphs
-/// to be able to be added together
-public protocol Summable {
-    static func +(lhs: Self, rhs: Self) -> Self
+/// A weighted edge whose weight conforms to Comparable.
+public protocol WeightedEdge: Edge, Comparable {
+    associatedtype W: Summable
+
+    // The weight of the edge.
+    var weight: W { get }
+
+    init(source: Int, target: Int, directed: Bool, weight: W)
 }
 
-extension Int: Summable {}
-extension Double: Summable {}
-extension Float: Summable {}
-extension String: Summable {}
+// MARK: - Computed Properties
 
-/// A weighted edge, who's weight subscribes to Comparable.
-open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge, Comparable {
-    public override var weighted: Bool { return true }
-    public let weight: W
-    public override var reversed:Edge {
-        return WeightedEdge(u: v, v: u, directed: directed, weight: weight)
+extension WeightedEdge {
+    /// A Boolean value indicating whether the edge can have a weight.
+    /// A `WeightedEdge`'s `weighted` is always true.
+    public var weighted: Bool { return true }
+
+    /// Returns an edge that is equal to self where the `source` node
+    /// is the `target` node and the previous `target` node is the
+    /// new `source` node.
+    public var reversed: Self { return Self(source: target, target: source, directed: directed, weight: weight) }
+}
+
+// MARK: - Equatable
+
+extension WeightedEdge {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.source == rhs.source && lhs.target == rhs.target && lhs.directed == rhs.directed && lhs.weight == rhs.weight
     }
-    
-    public init(u: Int, v: Int, directed: Bool, weight: W) {
-        self.weight = weight
-        super.init(u: u, v: v, directed: directed)
-    }
-    
-    //Implement Printable protocol
-    public override var description: String {
-        if directed {
-            return "\(u) \(weight)> \(v)"
-        }
-        return "\(u) <\(weight)> \(v)"
-    }
-    
-    //MARK: Operator Overloads
-    static public func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
-        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
-    }
-    
-    static public func < <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+
+    public static func < (lhs: Self, rhs: Self) -> Bool {
         return lhs.weight < rhs.weight
+    }
+}
+
+// MARK: - CustomStringConvertible
+
+extension WeightedEdge {
+    public var description: String {
+        return directed ? "\(source) \(weight)> \(target)" : "\(source) <\(weight)> \(target)"
     }
 }

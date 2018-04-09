@@ -17,12 +17,18 @@
 //  limitations under the License.
 
 /// A protocol that all edges in a graph must conform to.
-public protocol Edge: CustomStringConvertible {
-    /// The origin vertex of the edge
-    var u: Int {get set}  //made modifiable for changing when removing vertices
-    /// The destination vertex of the edge
-    var v: Int {get set}  //made modifiable for changing when removing vertices
-    var weighted: Bool {get}
-    var directed: Bool {get}
-    var reversed: Edge {get}
+public protocol Edge: Equatable, CustomStringConvertible {
+    // Mutability is necessary for initialization and removal logic.
+    // Feel free to constrain it to `internal`.
+
+    /// The origin node of the edge.
+    var source: Int { get set }
+    /// The destination node of the edge.
+    var target: Int { get set }
+
+    /// A Boolean value indicating whether the edge is directed.
+    var directed: Bool { get }
+
+    var weighted: Bool { get }
+    var reversed: Self { get }
 }

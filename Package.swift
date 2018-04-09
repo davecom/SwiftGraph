@@ -8,7 +8,7 @@ let package = Package(
         .library(
             name: "SwiftGraph",
             targets: ["SwiftGraph"]),
-        ],
+    ],
     dependencies: [],
     targets: [
         .target(
@@ -17,5 +17,5 @@ let package = Package(
         .testTarget(
             name: "SwiftGraphTests",
             dependencies: ["SwiftGraph"]),
-        ]
+    ]
 )

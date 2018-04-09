@@ -16,52 +16,30 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-open class UnweightedGraph<T: Equatable>: Graph<T> {
-    public override init() {
-        super.init()
-    }
-    
-    public override init(vertices: [T]) {
-        super.init(vertices: vertices)
-    }
-    
-    /// This is a convenience method that adds an unweighted edge.
-    ///
-    /// - parameter from: The starting vertex's index.
-    /// - parameter to: The ending vertex's index.
-    /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(from: Int, to: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: from, v: to, directed: directed))
-    }
-    
-    /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
-    ///
-    /// - parameter from: The starting vertex.
-    /// - parameter to: The ending vertex.
-    /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(from: T, to: T, directed: Bool = false) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(UnweightedEdge(u: u, v: v, directed: directed))
-            }
-        }
-    }
-    
-    //Have to have two of these because Edge protocol cannot adopt Equatable
-    
-    /// Removes a specific unweighted edge in both directions (if it's not directional). Or just one way if it's directed.
-    ///
-    /// - parameter edge: The edge to be removed.
-    public func removeEdge(_ edge: UnweightedEdge) {
-        if let i = (edges[edge.u] as! [UnweightedEdge]).index(of: edge) {
-            edges[edge.u].remove(at: i)
-            if !edge.directed {
-                if let i = (edges[edge.v] as! [UnweightedEdge]).index(of: edge.reversed as! UnweightedEdge) {
-                    edges[edge.v].remove(at: i)
-                }
-            }
-        }
-    }
+/// A graph with `UnweightedEdge`.
+public protocol UnweightedGraph: Graph where E: UnweightedEdge {
+    mutating func link(_ source: Int, _ target: Int, directed: Bool)
+    mutating func link(_ source: N, to target: N, directed: Bool)
 }
 
+extension UnweightedGraph {
+    /// This is a convenience method that adds an unweighted edge.
+    ///
+    /// - parameter from: The starting node's index.
+    /// - parameter to: The ending node's index.
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public mutating func link(_ source: Int, _ target: Int, directed: Bool = false) {
+        add(E(source: source, target: target, directed: directed))
+    }
+
+    /// This is a convenience method that adds an unweighted, undirected
+    /// edge between the first occurence of two nodes. O(n).
+    ///
+    /// - parameter from: The starting node.
+    /// - parameter to: The ending node.
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public mutating func link(_ source: N, to target: N, directed: Bool = false) {
+        guard let (source, target) = indices(of: source, target) else { return }
+        link(source, target, directed: directed)
+    }
+}

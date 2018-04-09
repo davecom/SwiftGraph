@@ -1,0 +1,50 @@
+disabled_rules:
+ - let_var_whitespace
+ - identifier_name
+
+excluded:
+ - Carthage
+ - Pods
+
+opt_in_rules:
+ - weak_delegate
+ - xctfail_message
+ - unneeded_parentheses_in_closure_argument
+ - trailing_closure
+ # - strict_fileprivate
+ - sorted_imports
+ - sorted_first_last
+ - redundant_nil_coalescing
+ - quick_discouraged_call
+ - prohibited_super_call
+ - pattern_matching_keywords
+ - operator_usage_whitespace
+ # - object_literal
+ # - number_separator
+ - nimble_operator
+ - literal_expression_end_indentation
+ - let_var_whitespace
+ - joined_default_parameter
+ - implicitly_unwrapped_optional
+ - implicit_return
+ - first_where
+ # - file_header
+ - fatal_error_message
+ # - explicit_type_interface
+ # - explicit_top_level_acl
+ - empty_count
+ - contains_over_first_not_nil
+ # - conditional_returns_on_newline
+ - closure_spacing
+ - closure_end_indentation
+ # - attributes
+ - array_init
+
+force_cast: warning
+force_try: warning
+trailing_comma:
+  mandatory_comma: true
+line_length:
+  warning: 160
+  error: 10000
+  ignores_comments: true

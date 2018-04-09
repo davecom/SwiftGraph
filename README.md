@@ -11,9 +11,24 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b93b35351ff96b21678f/maintainability)](https://codeclimate.com/github/davecom/SwiftGraph/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b93b35351ff96b21678f/test_coverage)](https://codeclimate.com/github/davecom/SwiftGraph/test_coverage)
 
-SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, macOS, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
+SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, macOS, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the nodes, and the type of the weights.
 
 It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra's algorithm. Further, it includes utility functions for topological sort, Jarnik's algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), and enumerating all cycles.
+
+- [Installation](#installation)
+    - [CocoaPods](#cocoapods)
+    - [Carthage](#carthage)
+    - [Swift Package Manager (SPM)](#swift-package-manager-spm)
+    - [Manual](#manual)
+- [Tips and Tricks](#tips-and-tricks)
+- [Example](#example)
+- [Documentation](#documentation)
+    - [Edges](#edges)
+    - [Graphs](#graphs)
+    - [Search](#search)
+    - [Sort & Miscellaneous](#sort-miscellaneous)
+- [Authorship & License](#authorship-license)
+- [Future Direction](#future-direction)
 
 ## Installation
 
@@ -40,20 +55,23 @@ Use this repository as your dependency.
 Copy all of the sources in the `Sources` folder into your project.
 
 ## Tips and Tricks
+
 * To get a sense of how to use SwiftGraph, checkout the unit tests
-* Inserting an edge by vertex indices is much faster than inserting an edge by vertex objects that need to have their indices looked up
-* Generally, looking for the index of a vertex is O(n) time, with n being the number of vertices in the graph
-* SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one vertex and another in a graph and `dijkstra()` for finding shortest paths in a weighted graph
+* Inserting an edge by node indices is much faster than inserting an edge by node objects that need to have their indices looked up
+* Generally, looking for the index of a node is O(n) time, with n being the number of nodes in the graph
+* SwiftGraph includes the functions `bfs()` and `dfs()` for finding a route between one node and another in a graph and `dijkstra()` for finding shortest paths in a weighted graph
 * A sample Mac app that implements the Nine Tails problem is included - just change the target of the project to `SwiftGraphSampleApp` to build it
 
 ## Example
 
-For more detail, checkout the *Documentation* section, but this example building up a weighted graph of American cities and doing some operations on it, should get you started.
+For more detail, checkout the _Documentation_ section, but this example building up a weighted graph of American cities and doing some operations on it, should get you started.
 
 ```swift
-let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(nodes: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 ```
-`cityGraph` is a `WeightedGraph` with `String` vertices and `Int` weights on its edges.
+
+`cityGraph` is a `WeightedGraph` with `String` nodes and `Int` weights on its edges.
+
 ```swift
 cityGraph.addEdge(from: "Seattle", to:"Chicago", weight:2097)
 cityGraph.addEdge(from: "Seattle", to:"Chicago", weight:2097)
@@ -80,103 +98,130 @@ cityGraph.addEdge(from: "Atlanta", to: "Miami", weight:661)
 cityGraph.addEdge(from: "Houston", to: "Miami", weight:1187)
 cityGraph.addEdge(from: "Houston", to: "Dallas", weight:239)
 ```
-Convenience methods are used to add `WeightedEdge` connections between various vertices.
+
+Convenience methods are used to add `WeightedEdge` connections between various nodes.
+
 ```swift
 let (distances, pathDict) = cityGraph.dijkstra(root: "New York", startDistance: 0)
 var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
 // shortest distance from New York to San Francisco
-let temp = nameDistance["San Francisco"] 
+let temp = nameDistance["San Francisco"]
 // path between New York and San Francisco
 let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("New York")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
 let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
 ```
-The shortest paths are found between various vertices in the graph using Dijkstra's algorithm.
+
+The shortest paths are found between various nodes in the graph using Dijkstra's algorithm.
+
 ```swift
 let mst = cityGraph.mst()
 ```
-The minimum spanning tree is found connecting all of the vertices in the graph.
+
+The minimum spanning tree is found connecting all of the nodes in the graph.
+
 ```swift
 let cycles = cityGraph.detectCycles()
 ```
+
 All of the cycles in `cityGraph` are found.
+
 ```swift
 let isADAG = cityGraph.isDAG
 ```
+
 `isADAG` is `false` because `cityGraph` is not found to be a Directed Acyclic Graph.
+
 ```swift
 let result = cityGraph.findAll(from: "New York") { v in
     return v.characters.first == "S"
 }
 ```
+
 A breadth-first search is performed, starting from New York, for all cities in `cityGraph` that start with the letter "S."
 
 SwiftGraph contains many more useful features, but hopefully this example was a nice quickstart.
 
 ## Documentation
+
 There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are up-to-date HTML docs available online thanks to the good folks at [CocoaPods](http://cocoadocs.org/docsets/SwiftGraph/) In addition, here's some more basic information:
 
 ### Edges
-Edges connect the vertices in your graph to one another.
 
-* `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer. Further, an edge knows if it's directed, or weighted. An edge can create a reversed version of itself.
+Edges connect the nodes in your graph to one another.
+
+* `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two nodes in the graph. The nodes are specified by their index in the graph which is an integer. Further, an edge knows if it's directed, or weighted. An edge can create a reversed version of itself.
 * `UnweightedEdge` - This is a concrete implementation of `Edge` for unweighted graphs.
-* `WeightedEdge` - A subclass of `UnweightedEdge` that adds weights. Weights are a generic type - they can be anything that implements `Comparable` and `Summable`.  `Summable` is anything that implements the `+` operator.  To add `Summable` support to a data type that already has the plus operator, simply write something like (support in SwiftGraph is already included for `Int`, `Float`, `Double`, and `String`):
+* `WeightedEdge` - A subclass of `UnweightedEdge` that adds weights. Weights are a generic type - they can be anything that implements `Comparable` and `Summable`. `Summable` is anything that implements the `+` operator. To add `Summable` support to a data type that already has the plus operator, simply write something like (support in SwiftGraph is already included for `Int`, `Float`, `Double`, and `String`):
+
 ```swift
 extension Int: Summable {}
 ```
 
 ### Graphs
-Graphs are the data structures at the heart of SwiftGraph. All vertices are assigned an integer index when they are inserted into a graph and it's generally faster to refer to them by their index than by the vertex's actual object.
 
-Graphs implement the standard Swift protocols `SequenceType` (for iterating through all vertices) and `CollectionType` (for grabbing a vertex by its index through a subscript). For instance, the following example prints all vertices in a Graph on separate lines:
+Graphs are the data structures at the heart of SwiftGraph. All nodes are assigned an integer index when they are inserted into a graph and it's generally faster to refer to them by their index than by the node's actual object.
+
+Graphs implement the standard Swift protocols `SequenceType` (for iterating through all nodes) and `CollectionType` (for grabbing a node by its index through a subscript). For instance, the following example prints all nodes in a Graph on separate lines:
+
 ```swift
 for v in g {  // g is a Graph<String>
     print(v)
 }
 ```
-And we can grab a specific vertex by its index using a subscript
+
+And we can grab a specific node by its index using a subscript
+
 ```swift
 print(g[23]) // g is a Graph<String>
 ```
 
-Note: At this time, graphs are *not* thread-safe. However, once a graph is constructed, if you will only be doing lookups and searches through it (no removals of vertices/edges and no additions of vertices/edges) then you should be able to do that from multiple threads. A fully thread-safe graph implementation is a possible future direction.
+Note: At this time, graphs are _not_ thread-safe. However, once a graph is constructed, if you will only be doing lookups and searches through it (no removals of nodes/edges and no additions of nodes/edges) then you should be able to do that from multiple threads. A fully thread-safe graph implementation is a possible future direction.
 
-* `Graph` - This is the base class for all graphs.  Generally, you should use one of its canonical subclasses, `UnweightedGraph` or `WeightedGraph`, because they offer more functionality. The vertices in a `Graph` (defined as a generic at graph creation time) can be of any type that conforms to `Equatable`. `Graph` has methods for:
-  * Adding a vertex
-  * Getting the index of a vertex
-  * Finding the neighbors of an index/vertex
-  * Finding the edges of an index/vertex
-  * Checking if an edge from one index/vertex to another index/vertex exists
-  * Checking if a vertex is in the graph
+* `Graph` - This is the base class for all graphs. Generally, you should use one of its canonical subclasses, `UnweightedGraph` or `WeightedGraph`, because they offer more functionality. The nodes in a `Graph` (defined as a generic at graph creation time) can be of any type that conforms to `Equatable`. `Graph` has methods for:
+  * Adding a node
+  * Getting the index of a node
+  * Finding the neighbors of an index/node
+  * Finding the edges of an index/node
+  * Checking if an edge from one index/node to another index/node exists
+  * Checking if a node is in the graph
   * Adding an edge
-  * Removing all edges between two indexes/vertices
-  * Removing a particular vertex (all other edge relationships are automatically updated at the same time (because the indices of their connections changes) so this is slow - O(v + e) where v is the number of vertices and e is the number of edges)
+  * Removing all edges between two indexes/nodes
+  * Removing a particular node (all other edge relationships are automatically updated at the same time (because the indices of their connections changes) so this is slow - O(v + e) where v is the number of nodes and e is the number of edges)
 * `UnweightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `UnweightedEdge`.
-* `WeightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights.
+* `WeightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor nodes of an index along with their respective weights.
 
 ### Search
+
 Search methods are defined in extensions of `Graph` and `WeightedGraph` in `Search.swift`.
-* `bfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found. A version of this method takes a function, `goalTest()`, that operates on a vertex and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first vertex that returns true from `goalTest()`.
-* `dfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found. A version of this method takes a function, `goalTest()`, that operates on a vertex and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first vertex that returns true from `goalTest()`.
-* `findAll()` Uses a breadth-first search to find all connected vertices from the starting vertex that return true when run through a `goalTest()` function. Paths to the connected vertices are returned in an array, which is empty if no vertices are found.
-* `dijkstra()` (method on `WeightedGraph`) - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
+
+* `bfs()` (method on `Graph`) - Finds a path from one node to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source node to the destination node or an empty array if no path could be found. A version of this method takes a function, `goalTest()`, that operates on a node and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first node that returns true from `goalTest()`.
+* `dfs()` (method on `Graph`) - Finds a path from one node to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source node to the destination node or an empty array if no path could be found. A version of this method takes a function, `goalTest()`, that operates on a node and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first node that returns true from `goalTest()`.
+* `findAll()` Uses a breadth-first search to find all connected nodes from the starting node that return true when run through a `goalTest()` function. Paths to the connected nodes are returned in an array, which is empty if no nodes are found.
+* `dijkstra()` (method on `WeightedGraph`) - Finds the shortest path from a starting node to every other node in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each node in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring node. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting node to any other connected node. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
 
 ### Sort & Miscellaneous
+
 An extension to `Graph` in `Sort.swift` provides facilities for topological sort and detecting a DAG.
-* `topologicalSort()` - Does a topological sort of the vertices in a given graph if possible (returns nil if it finds a cycle). Returns a sorted list of the vertices. Runs in O(n) time.
+
+* `topologicalSort()` - Does a topological sort of the nodes in a given graph if possible (returns nil if it finds a cycle). Returns a sorted list of the nodes. Runs in O(n) time.
 * `isDAG` - A property that uses `topologicalSort()` to determine whether a graph is a DAG (directed-acyclic graph). Runs in O(n) time.
 
 An extension to `WeightedGraph` in `MST.swift` can find a minimum-spanning tree from a weighted graph.
-* `mst()` - Uses Jarnik's Algorithm (aka Prim's Algorithm) to find the tree made of minimum cumulative weight that connects all vertices in a weighted graph. This assumes the graph is completely undirected and connected. If the graph has directed edges, it may not return the right answer. Also, if the graph is not fully connected it will create the tree for the connected component that the starting vertex is a part of. Returns an array of `WeightedEdge`s that compose the tree. Use utility functions `totalWeight()` and `printMST()` to examine the returned MST. Runs in O(n lg n) time.
+
+* `mst()` - Uses Jarnik's Algorithm (aka Prim's Algorithm) to find the tree made of minimum cumulative weight that connects all nodes in a weighted graph. This assumes the graph is completely undirected and connected. If the graph has directed edges, it may not return the right answer. Also, if the graph is not fully connected it will create the tree for the connected component that the starting node is a part of. Returns an array of `WeightedEdge`s that compose the tree. Use utility functions `totalWeight()` and `printMST()` to examine the returned MST. Runs in O(n lg n) time.
 
 An extension to `Graph` in `Cycles.swift` finds all of the cycles in a graph.
-* `detectCycles()` - Uses an algorithm developed by Liu/Wang to find all of the cycles in a graph. Optionally, this method can take one parameter, `upToLength`, that specifies a length at which to stop searching for cycles. For instance, if `upToLength` is 3, `detectCycles()` will find all of the 1 vertex cycles (self-cycles, vertices with edges to themselves), and 3 vertex cycles (connection to another vertex and back again, present in all undirected graphs with more than 1 vertex). There is no such thing as a 2 vertex cycle.
+
+* `detectCycles()` - Uses an algorithm developed by Liu/Wang to find all of the cycles in a graph. Optionally, this method can take one parameter, `upToLength`, that specifies a length at which to stop searching for cycles. For instance, if `upToLength` is 3, `detectCycles()` will find all of the 1 node cycles (self-cycles, nodes with edges to themselves), and 3 node cycles (connection to another node and back again, present in all undirected graphs with more than 1 node). There is no such thing as a 2 node cycle.
 
 ## Authorship & License
+
 SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
 
 ## Future Direction
+
 Future directions for this project to take could include:
+
 * More utility functions
 * A thread safe subclass of `Graph`
 * More extensive performance testing

@@ -19,14 +19,14 @@
 /// Implements a queue - helper class that uses an array internally.
 public class Queue<T: Equatable> {
     private var container: [T] = [T]()
+
     public var isEmpty: Bool { return container.isEmpty }
     public var count: Int { return container.count }
-    public func push(_ thing: T) { container.append(thing) }
+
+    public func push(_ element: T) { container.append(element) }
     public func pop() -> T { return container.remove(at: 0) }
-    public func contains(_ thing: T) -> Bool {
-        if container.index(of: thing) != nil {
-            return true
-        }
+    public func contains(_ element: T) -> Bool {
+        if container.index(of: element) != nil { return true }
         return false
     }
 }

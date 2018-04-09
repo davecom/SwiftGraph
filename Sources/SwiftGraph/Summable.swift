@@ -1,8 +1,8 @@
 //
-//  Stack.swift
+//  Summable.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2017 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,12 +16,15 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// Implements a stack - helper class that uses an array internally.
-public class Stack<T> {
-    private var container: [T] = [T]()
-
-    public var isEmpty: Bool { return container.isEmpty }
-
-    public func push(_ element: T) { container.append(element) }
-    public func pop() -> T { return container.removeLast() }
+/// A protocol that requires a type to implement the `+` operator.
+///
+/// This protocol is needed for Dijkstra's algorithm: weights in weighted
+/// graphs use addition.
+public protocol Summable: Comparable {
+    static func + (lhs: Self, rhs: Self) -> Self
 }
+
+extension Int: Summable {}
+extension Double: Summable {}
+extension Float: Summable {}
+extension String: Summable {}

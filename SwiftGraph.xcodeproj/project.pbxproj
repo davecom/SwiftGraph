@@ -6,7 +6,23 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		164560AD200E5E67003AF4D4 /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 164560B0200E5E67003AF4D4 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+				164560B1200E5E6F003AF4D4 /* Run SwiftLint */,
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+			productName = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		16492F692010078400E61CFD /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16492F67200FB4BB00E61CFD /* Internals.swift */; };
+		16492F6B2011C76700E61CFD /* Summable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16492F6A2011C76700E61CFD /* Summable.swift */; };
 		55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF51F8ADA12001913F7 /* Cycle.swift */; };
 		55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */; };
 		55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620071A194C80000A5F7B /* AppDelegate.swift */; };
@@ -67,6 +83,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		16492F67200FB4BB00E61CFD /* Internals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Internals.swift; path = ../Sources/SwiftGraph/Internals.swift; sourceTree = "<group>"; };
+		16492F6A2011C76700E61CFD /* Summable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Summable.swift; path = Sources/SwiftGraph/Summable.swift; sourceTree = SOURCE_ROOT; };
 		553746441DA56CC500C0E0F6 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Sources/SwiftGraph/Sort.swift; sourceTree = SOURCE_ROOT; };
 		557F55E91F8AB247002AF0BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/SwiftGraph/Edge.swift; sourceTree = SOURCE_ROOT; };
@@ -207,6 +225,8 @@
 				5589B4811C0E774300D6664E /* Edges */,
 				5589B4821C0E774F00D6664E /* Graphs */,
 				5589B4831C0E775800D6664E /* Search */,
+				16492F6A2011C76700E61CFD /* Summable.swift */,
+				16492F67200FB4BB00E61CFD /* Internals.swift */,
 				7985B8FD1E5A4FB800C100E7 /* SwiftGraphFramework.h */,
 				7985B8FE1E5A4FB800C100E7 /* Info.plist */,
 			);
@@ -305,9 +325,13 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Oak Snow Consulting";
 				TargetAttributes = {
+					164560AD200E5E67003AF4D4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					55E620011A194C80000A5F7B = {
 						CreatedOnToolsVersion = 6.1;
 						LastSwiftMigration = 0800;
@@ -340,6 +364,7 @@
 				7985B8FA1E5A4FB800C100E7 /* SwiftGraph */,
 				7985B9021E5A4FB900C100E7 /* SwiftGraphTests */,
 				55E620011A194C80000A5F7B /* SwiftGraphSampleApp */,
+				164560AD200E5E67003AF4D4 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -370,6 +395,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		164560B1200E5E6F003AF4D4 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		55E61FFE1A194C80000A5F7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -383,6 +425,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16492F692010078400E61CFD /* Internals.swift in Sources */,
+				16492F6B2011C76700E61CFD /* Summable.swift in Sources */,
 				7985B9241E5A503200C100E7 /* Graph.swift in Sources */,
 				7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */,
 				7985B9291E5A503200C100E7 /* Sort.swift in Sources */,
@@ -439,6 +483,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		164560AE200E5E67003AF4D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		164560AF200E5E67003AF4D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		55E6201A1A194C80000A5F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -535,6 +595,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -673,6 +734,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		164560B0200E5E67003AF4D4 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				164560AE200E5E67003AF4D4 /* Debug */,
+				164560AF200E5E67003AF4D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		55E61FFD1A194C7F000A5F7B /* Build configuration list for PBXProject "SwiftGraph" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

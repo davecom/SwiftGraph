@@ -16,67 +16,76 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// Functions for sorting a `Graph`
-// MARK: Extension to `Graph` for toplogical sorting
-public extension Graph {
-    // Based on Introduction to Algorithms, 3rd Edition, Cormen et. al., 
-    // The MIT Press, 2009, pg 604-614
-    // and revised pseudocode of the same from Wikipedia
+// MARK: Topological Sorting
+
+extension Graph {
+    // Based on
+    //
+    // “Introduction to Algorithms, 3rd Edition, Cormen et. al., The MIT Press, 2009, pg 604-614”
     // https://en.wikipedia.org/wiki/Topological_sorting#Depth-first_search
-    
-    /// Topologically sorts a `Graph` O(n)
+
+    /// Topologically sort the graph in `O(n)` time.
     ///
-    /// - returns: the sorted vertices, or nil if the graph cannot be sorted due to not being a DAG
-    public func topologicalSort() -> [V]? {
-        var sortedVertices = [V]()
-        let tsNodes = vertices.map{ TSNode<V>(vertex: $0, color: .white) }
-        var notDAG = false
-        
-        func visit(_ node: TSNode<V>) {
-            guard node.color != .gray else {
-                notDAG = true
-                return
+    /// Use `toposort()?.map(node(at:))` or `toposort()?.lazy.map(node(at:))` should you
+    /// need all the respective nodes.
+    ///
+    /// - returns: The _sorted indices_ of the nodes, **or** `nil` if the graph cannot be
+    /// sorted because it is a DAG, **or** an `[]` if there are no nodes or edges.
+    public func toposort() -> [Int]? {
+        guard !edges.joined().isEmpty else { return [] }
+
+        var sorted: [Int] = .init()
+        var marks = nodes.map(Topomark.initialize)
+        var isDAG = true
+
+        func visit(_ i: Int, with mark: Topomark) {
+            func ok() -> Bool {
+                if mark ~= .none { return true }
+                if mark ~= .temporary { isDAG = false }
+                return false
             }
-            if node.color == .white {
-                node.color = .gray
-                for inode in tsNodes where (neighborsForVertex(node.vertex)?.contains(inode.vertex))! {
-                    visit(inode)
+
+            func deepvisit() {
+                for (j, other) in nodes.enumerated() where isDAG && neighbors(i).contains(other) {
+                    visit(j, with: marks[j])
                 }
-                node.color = .black
-                sortedVertices.insert(node.vertex, at: 0)
             }
+
+            guard ok() else { return }
+            marks[i] = .temporary
+            deepvisit()
+            marks[i] = .permanent
+            sorted.insert(i, at: 0)
         }
-        
-        for node in tsNodes where node.color == .white {
-            visit(node)
+
+        for i in nodes.indices where isDAG && marks[i] == .none {
+            visit(i, with: marks[i])
         }
-        
-        if notDAG {
-            return nil
-        }
-        
-        return sortedVertices
+
+        guard isDAG else { return nil }
+        return sorted
     }
-    
-    
-    /// Is the `Graph` a directed-acyclic graph (DAG)? O(n)
-    /// Finds the answer based on the result of a topological sort.
+
+    /// A Boolean value indicating whether the graph is a _directed acyclic graph (DAG)_.
+    /// `O(n)` time because it does a topological sort.
+    ///
+    /// Given that a directed graph is acyclic if and only if it has a topological ordering,
+    /// in case you've already done a topological sort: if the result is `nil` or `[]` then
+    /// the graph _is not_ a _DAG_.
     public var isDAG: Bool {
-        guard let _ = topologicalSort() else { return false }
+        guard let sorted: [Int] = toposort(), !sorted.isEmpty else { return false }
         return true
     }
 }
 
-// MARK: Utility structures for topological sorting
+// MARK: Topological Sorting Utilities
 
-fileprivate enum TSColor { case black, gray, white }
+private enum Topomark {
+    case permanent
+    case temporary
+    case none
 
-fileprivate class TSNode<V> {
-    fileprivate let vertex: V
-    fileprivate var color: TSColor
-    
-    init(vertex: V, color: TSColor) {
-        self.vertex = vertex
-        self.color = color
+    static func initialize(_: Any) -> Topomark {
+        return .none
     }
 }
