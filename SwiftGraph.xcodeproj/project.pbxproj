@@ -33,8 +33,10 @@
 		7985B9291E5A503200C100E7 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746441DA56CC500C0E0F6 /* Sort.swift */; };
 		7985B92A1E5A503200C100E7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
 		7985B92B1E5A503200C100E7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
-		B5D229BC207BF30100151820 /* UniqueVerticesGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueVerticesGraph.swift */; };
-		B5D229BF207BF3A800151820 /* UniqueVerticesGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueVerticesGraphTests.swift */; };
+		B51B460B2083E14200CD0463 /* DisjointUnion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51B460A2083E14200CD0463 /* DisjointUnion.swift */; };
+		B52ABD39208955BD00FBF10C /* DisjointUnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* DisjointUnionTests.swift */; };
+		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
+		B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,8 +100,10 @@
 		7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSearchTests.swift; sourceTree = "<group>"; };
 		7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSortTests.swift; sourceTree = "<group>"; };
 		7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
-		B5D229BB207BF30100151820 /* UniqueVerticesGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueVerticesGraph.swift; path = Sources/SwiftGraph/UniqueVerticesGraph.swift; sourceTree = SOURCE_ROOT; };
-		B5D229BD207BF36900151820 /* UniqueVerticesGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueVerticesGraphTests.swift; sourceTree = "<group>"; };
+		B51B460A2083E14200CD0463 /* DisjointUnion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisjointUnion.swift; sourceTree = "<group>"; };
+		B52ABD37208955B500FBF10C /* DisjointUnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisjointUnionTests.swift; sourceTree = "<group>"; };
+		B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueElementsGraph.swift; path = Sources/SwiftGraph/UniqueElementsGraph.swift; sourceTree = SOURCE_ROOT; };
+		B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				5589B46B1C0E753E00D6664E /* Graph.swift */,
-				B5D229BB207BF30100151820 /* UniqueVerticesGraph.swift */,
+				B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */,
 				5589B46E1C0E756200D6664E /* UnweightedGraph.swift */,
 				5589B4711C0E757100D6664E /* WeightedGraph.swift */,
 			);
@@ -211,6 +215,7 @@
 			children = (
 				5589B4811C0E774300D6664E /* Edges */,
 				5589B4821C0E774F00D6664E /* Graphs */,
+				B58B0D732083DEC400A0E1AB /* Operation */,
 				5589B4831C0E775800D6664E /* Search */,
 				7985B8FD1E5A4FB800C100E7 /* SwiftGraphFramework.h */,
 				7985B8FE1E5A4FB800C100E7 /* Info.plist */,
@@ -228,10 +233,19 @@
 				7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */,
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
 				7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */,
-				B5D229BD207BF36900151820 /* UniqueVerticesGraphTests.swift */,
+				B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */,
+				B52ABD37208955B500FBF10C /* DisjointUnionTests.swift */,
 			);
 			name = SwiftGraphTests;
 			path = Tests/SwiftGraphTests;
+			sourceTree = "<group>";
+		};
+		B58B0D732083DEC400A0E1AB /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				B51B460A2083E14200CD0463 /* DisjointUnion.swift */,
+			);
+			name = Operation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,10 +403,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5D229BC207BF30100151820 /* UniqueVerticesGraph.swift in Sources */,
+				B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */,
 				7985B9241E5A503200C100E7 /* Graph.swift in Sources */,
 				7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */,
 				7985B9291E5A503200C100E7 /* Sort.swift in Sources */,
+				B51B460B2083E14200CD0463 /* DisjointUnion.swift in Sources */,
 				7985B92B1E5A503200C100E7 /* Queue.swift in Sources */,
 				55E784261ED2127D003899D0 /* MST.swift in Sources */,
 				7985B9231E5A503200C100E7 /* WeightedEdge.swift in Sources */,
@@ -413,10 +428,11 @@
 				7985B9201E5A4FCB00C100E7 /* SwiftGraphTests.swift in Sources */,
 				7985B91E1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift in Sources */,
 				55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */,
+				B52ABD39208955BD00FBF10C /* DisjointUnionTests.swift in Sources */,
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
-				B5D229BF207BF3A800151820 /* UniqueVerticesGraphTests.swift in Sources */,
+				B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
