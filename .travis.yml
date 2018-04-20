@@ -8,33 +8,22 @@ matrix:
       osx_image: xcode9.3
       language: swift
       install:
-        - gem install xcpretty --no-ri --no-rdoc
-        - gem install slather --no-ri --no-rdoc
+        - ./BuildScripts/osx_install.sh
+        - ./BuildScripts/osx_coverage_install.sh
+      script: ./BuildScripts/osx_script.sh
       # Coverage delivery to codeclimate setup
       # codeclimate only shows us results of one run, so we just run it once on last xcode release.
-      before_script:
-        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
-        - chmod +x ./cc-test-reporter
-        - ./cc-test-reporter before-build
-      after_script:
-        # Generate cobertura coverage info
-        - slather coverage --input-format profdata -x --scheme SwiftGraph SwiftGraph.xcodeproj
-        # Send coverage info to codeclimate
-        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+      before_script: ./BuildScripts/osx_coverage_before.sh
+      after_script: ./BuildScripts/osx_coverage_after.sh
 
     - os: osx
       osx_image: xcode9.2
       language: swift
+      install: ./BuildScripts/osx_install.sh
+      script: ./BuildScripts/osx_script.sh
 
     - os: osx
       osx_image: xcode9.1
       language: swift
-
-install:
-  - gem install xcpretty --no-ri --no-rdoc
-
-script:
-  # Set pipefail to get status code of xcodebuild if it fails
-  - set -o pipefail
-  # Test
-  - xcodebuild -enableCodeCoverage YES -project SwiftGraph.xcodeproj -scheme SwiftGraph test | xcpretty
+      install: ./BuildScripts/osx_install.sh
+      script: ./BuildScripts/osx_script.sh
