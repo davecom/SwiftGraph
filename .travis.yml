@@ -1,26 +1,40 @@
 env:
   global:
     - CC_TEST_REPORTER_ID=85ed34006e87b97e4f0400748d7f654ba2684a2aa62dceed5c9935930ad5fafa
+
 matrix:
   include:
-    - {os: osx, osx_image: xcode9.3, language: swift}
-    - {os: osx, osx_image: xcode9.2, language: swift}
-    - {os: osx, osx_image: xcode9.1, language: swift}
+    - os: osx
+      osx_image: xcode9.3
+      language: swift
+      install:
+        - gem install xcpretty --no-ri --no-rdoc
+        - gem install slather --no-ri --no-rdoc
+      # Coverage delivery to codeclimate setup
+      # codeclimate only shows us results of one run, so we just run it once on last xcode release.
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
+      after_script:
+        # Generate cobertura coverage info
+        - slather coverage --input-format profdata -x --scheme SwiftGraph SwiftGraph.xcodeproj
+        # Send coverage info to codeclimate
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+    - os: osx
+      osx_image: xcode9.2
+      language: swift
+
+    - os: osx
+      osx_image: xcode9.1
+      language: swift
+
 install:
   - gem install xcpretty --no-ri --no-rdoc
-  - gem install slather --no-ri --no-rdoc
-# Coverage delivery to codeclimate setup
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+
 script:
   # Set pipefail to get status code of xcodebuild if it fails
   - set -o pipefail
   # Test
   - xcodebuild -enableCodeCoverage YES -project SwiftGraph.xcodeproj -scheme SwiftGraph test | xcpretty
-after_script:
-  # Generate cobertura coverage info
-  - slather coverage --input-format profdata -x --scheme SwiftGraph SwiftGraph.xcodeproj
-  # Send coverage info to codeclimate
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
