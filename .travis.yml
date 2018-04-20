@@ -3,7 +3,7 @@ env:
     - CC_TEST_REPORTER_ID=85ed34006e87b97e4f0400748d7f654ba2684a2aa62dceed5c9935930ad5fafa
 matrix:
   include:
-    - {os: osx, osx_image: xcode9.3beta, language: swift}
+    - {os: osx, osx_image: xcode9.3, language: swift}
     - {os: osx, osx_image: xcode9.2, language: swift}
     - {os: osx, osx_image: xcode9.1, language: swift}
 install:
