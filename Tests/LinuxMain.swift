@@ -8,6 +8,6 @@ XCTMain([
     testCase(SwiftGraphSortTests.allTests),
     testCase(SwiftGraphTests.allTests),
     testCase(CycleTests.allTests),
-    testCase(UniqueElementsGraphTests.alltests),
-    testCase(DisjointUnionTests.alltests),
+    testCase(UniqueElementsGraphTests.allTests),
+    testCase(DisjointUnionTests.allTests),
 ])
