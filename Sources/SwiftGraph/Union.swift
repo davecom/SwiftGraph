@@ -19,10 +19,10 @@
 // MARK: - Extension to UniqueVerticesGraph with Union initializer
 public extension UniqueElementsGraph {
     
-    /// Creates a new UniqueVerticesGraph that is the union of two UniqueVerticesGraphs.
+    /// Creates a new UniqueVerticesGraph that is the union of two UniqueVerticesGraphs. O(n^2)
     ///
     /// This operation is commutative in the sense that g1 ∪ g2 has the same vertices and edges
-    /// than g2 ∪ g1. However, the indices of the vertices are not the same.
+    /// than g2 ∪ g1. However, the indices of the vertices are not guaranteed to be the same.
     ///
     /// - Parameters:
     ///   - lhs: One of the graphs to build the union from.
