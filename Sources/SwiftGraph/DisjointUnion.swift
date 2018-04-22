@@ -21,9 +21,12 @@ public extension UniqueElementsGraph {
     
     /// Creates a new UniqueVerticesGraph that is the disjoint union of two UniqueVerticesGraphs.
     ///
+    /// This operation is commutative in the sense that g1 ∪ g2 has the same vertices and edges
+    /// than g2 ∪ g1. However, the indices of the vertices are not the same.
+    ///
     /// - Parameters:
-    ///   - lhs: <#lhs description#>
-    ///   - rhs: <#rhs description#>
+    ///   - lhs: One of the graphs to build the union from.
+    ///   - rhs: The other graph to build the union from.
     public convenience init(disjointUnionOf lhs: UniqueElementsGraph<V>, _ rhs: UniqueElementsGraph<V>) {
         self.init()
 
@@ -45,7 +48,9 @@ public extension UniqueElementsGraph {
         }
 
         for edge in rhs.edges.joined() {
-            addEdge(from: edge.u, to: edge.v, directed: edge.directed)
+            let from = rhs.vertexAtIndex(edge.u)
+            let to = rhs.vertexAtIndex(edge.v)
+            addEdge(from: from, to: to, directed: edge.directed)
         }
     }
 }
