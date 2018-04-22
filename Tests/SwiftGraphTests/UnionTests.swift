@@ -1,5 +1,5 @@
 //
-//  DisjointUnionTests.swift
+//  UnionTests.swift
 //  SwiftGraph
 //
 //  Copyright (c) 2018 Ferran Pujol Camins
@@ -19,7 +19,7 @@
 import XCTest
 @testable import SwiftGraph
 
-class DisjointUnionTests: XCTestCase {
+class UnionTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -31,13 +31,13 @@ class DisjointUnionTests: XCTestCase {
         super.tearDown()
     }
 
-    func testDisjointUnionLastInCommon() {
+    func testUnionLastInCommon() {
         let g1 = UniqueElementsGraph(vertices: ["Atlanta", "Boston"])
         g1.addEdge(from: "Atlanta", to: "Boston", directed: true)
         let g2 = UniqueElementsGraph(vertices: ["Boston", "Chicago"])
         g2.addEdge(from: "Boston", to: "Chicago", directed: false)
 
-        let u = UniqueElementsGraph(disjointUnionOf: g1, g2)
+        let u = UniqueElementsGraph(unionOf: g1, g2)
 
         XCTAssertEqual(u.vertices, ["Atlanta", "Boston", "Chicago"], "Expected vertices on the result graph to be Atlanta, Boston and Chicago.")
         XCTAssertEqual(u.edgeCount, 3, "Expected 3 edges on the result graph.")
@@ -46,13 +46,13 @@ class DisjointUnionTests: XCTestCase {
         XCTAssertTrue(u.edgeExists(from: "Chicago", to: "Boston"), "Expected an edge from Chicago to Boston")
     }
 
-    func testDisjointUnionFirstInCommon() {
+    func testUnionFirstInCommon() {
         let g1 = UniqueElementsGraph(vertices: ["Atlanta", "Boston"])
         g1.addEdge(from: "Atlanta", to: "Boston", directed: true)
         let g2 = UniqueElementsGraph(vertices: ["Atlanta", "Chicago"])
         g2.addEdge(from: "Atlanta", to: "Chicago", directed: false)
 
-        let u = UniqueElementsGraph(disjointUnionOf: g1, g2)
+        let u = UniqueElementsGraph(unionOf: g1, g2)
 
         XCTAssertEqual(u.vertices, ["Atlanta", "Boston", "Chicago"], "Expected vertices on the result graph to be Atlanta, Boston and Chicago.")
         XCTAssertEqual(u.edgeCount, 3, "Expected 3 edges on the result graph.")
@@ -67,7 +67,7 @@ class DisjointUnionTests: XCTestCase {
         let g2 = UniqueElementsGraph(vertices: ["Boston", "Chicago"])
         g2.addEdge(from: "Boston", to: "Chicago", directed: false)
 
-        let _ = UniqueElementsGraph(disjointUnionOf: g1, g2)
+        let _ = UniqueElementsGraph(unionOf: g1, g2)
 
         XCTAssertEqual(g1.vertices, ["Atlanta", "Boston"], "g1: Expected vertices to be Atlanta and Boston.")
         XCTAssertEqual(g1.edgeCount, 1, "g1: Expected exactly 1 edge")
@@ -84,13 +84,13 @@ class DisjointUnionTests: XCTestCase {
         let g = UniqueElementsGraph<String>(vertices:["Atlanta", "Chicago"])
         g.addEdge(from: "Atlanta", to: "Chicago", directed: true)
         
-        let result1 = UniqueElementsGraph(disjointUnionOf: eg, g)
+        let result1 = UniqueElementsGraph(unionOf: eg, g)
         
         XCTAssertEqual(result1.vertices, g.vertices, "Expected same vertices after left union with empty graph")
         XCTAssertEqual(result1.edgeCount, 1, "Expected same edge count after left union with empty graph")
         XCTAssertTrue(result1.edgeExists(from: "Atlanta", to: "Chicago"), "Expected an edge from Chicago to Atlanta after left union with empty graph")
         
-        let result2 = UniqueElementsGraph(disjointUnionOf: g, eg)
+        let result2 = UniqueElementsGraph(unionOf: g, eg)
         
         XCTAssertEqual(result2.vertices, g.vertices, "Expected same vertices after right union with empty graph")
         XCTAssertEqual(result2.edgeCount, 1, "Expected same edge count after right union with empty graph")
@@ -101,7 +101,7 @@ class DisjointUnionTests: XCTestCase {
         let g = UniqueElementsGraph(vertices: ["Atlanta", "Boston"])
         g.addEdge(from: "Atlanta", to: "Boston", directed: true)
 
-        let u = UniqueElementsGraph(disjointUnionOf: g, g)
+        let u = UniqueElementsGraph(unionOf: g, g)
         XCTAssertEqual(u.vertices, g.vertices, "Expected same vertices after union with self")
         XCTAssertEqual(u.edgeCount, 1, "Expected same edge count after union to self")
         XCTAssertTrue(u.edgeExists(from: "Atlanta", to: "Boston"), "Expected an edge from Atlanta to Boston")
@@ -113,8 +113,8 @@ class DisjointUnionTests: XCTestCase {
         let g2 = UniqueElementsGraph(vertices: ["Boston", "Chicago"])
         g2.addEdge(from: "Boston", to: "Chicago", directed: false)
 
-        let u12 = UniqueElementsGraph(disjointUnionOf: g1, g2)
-        let u21 = UniqueElementsGraph(disjointUnionOf: g2, g1)
+        let u12 = UniqueElementsGraph(unionOf: g1, g2)
+        let u21 = UniqueElementsGraph(unionOf: g2, g1)
         // Both result graph must have the same vertices but they can be in different order.
         XCTAssertTrue(arraysHaveSameElements(u12.vertices, u21.vertices), "Expected same vertices for g1 ∪ g2 and g2 ∪ g1")
         XCTAssertTrue(arraysHaveSameElements(u12.neighborsForVertex("Atlanta")!, u21.neighborsForVertex("Atlanta")!), "Expected same neighbors of Atlanta in g1 ∪ g2 and g2 ∪ g1")
@@ -127,8 +127,8 @@ class DisjointUnionTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testDisjointUnionLastInCommon", testDisjointUnionLastInCommon),
-        ("testDisjointUnionFirstInCommon", testDisjointUnionFirstInCommon),
+        ("testUnionLastInCommon", testUnionLastInCommon),
+        ("testUnionFirstInCommon", testUnionFirstInCommon),
         ("testImmutabilityOfInputGraphs", testImmutabilityOfInputGraphs),
         ("testIdentityEmptyGraph", testIdentityEmptyGraph),
         ("testUnionWithSelf", testUnionWithSelf),

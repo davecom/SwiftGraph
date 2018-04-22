@@ -9,5 +9,5 @@ XCTMain([
     testCase(SwiftGraphTests.allTests),
     testCase(CycleTests.allTests),
     testCase(UniqueElementsGraphTests.allTests),
-    testCase(DisjointUnionTests.allTests),
+    testCase(UnionTests.allTests),
 ])

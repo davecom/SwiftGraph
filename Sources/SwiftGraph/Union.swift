@@ -1,5 +1,5 @@
 //
-//  DisjointUnion.swift
+//  Union.swift
 //  SwiftGraph
 //
 //  Copyright (c) 2018 Ferran Pujol Camins
@@ -16,10 +16,10 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-// MARK: - Extension to UniqueVerticesGraph with disjointUnion initializer
+// MARK: - Extension to UniqueVerticesGraph with Union initializer
 public extension UniqueElementsGraph {
     
-    /// Creates a new UniqueVerticesGraph that is the disjoint union of two UniqueVerticesGraphs.
+    /// Creates a new UniqueVerticesGraph that is the union of two UniqueVerticesGraphs.
     ///
     /// This operation is commutative in the sense that g1 ∪ g2 has the same vertices and edges
     /// than g2 ∪ g1. However, the indices of the vertices are not the same.
@@ -27,7 +27,7 @@ public extension UniqueElementsGraph {
     /// - Parameters:
     ///   - lhs: One of the graphs to build the union from.
     ///   - rhs: The other graph to build the union from.
-    public convenience init(disjointUnionOf lhs: UniqueElementsGraph<V>, _ rhs: UniqueElementsGraph<V>) {
+    public convenience init(unionOf lhs: UniqueElementsGraph<V>, _ rhs: UniqueElementsGraph<V>) {
         self.init()
 
         // We know vertices in lhs are unique, so we call Graph.addVertex to avoid the uniqueness check of UniqueElementsGraph.addVertex.

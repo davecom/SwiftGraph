@@ -33,8 +33,8 @@
 		7985B9291E5A503200C100E7 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746441DA56CC500C0E0F6 /* Sort.swift */; };
 		7985B92A1E5A503200C100E7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
 		7985B92B1E5A503200C100E7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
-		B51B460B2083E14200CD0463 /* DisjointUnion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51B460A2083E14200CD0463 /* DisjointUnion.swift */; };
-		B52ABD39208955BD00FBF10C /* DisjointUnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* DisjointUnionTests.swift */; };
+		B51B460B2083E14200CD0463 /* Union.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51B460A2083E14200CD0463 /* Union.swift */; };
+		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
 		B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */; };
 /* End PBXBuildFile section */
@@ -100,8 +100,8 @@
 		7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSearchTests.swift; sourceTree = "<group>"; };
 		7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphSortTests.swift; sourceTree = "<group>"; };
 		7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
-		B51B460A2083E14200CD0463 /* DisjointUnion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisjointUnion.swift; path = ../Sources/SwiftGraph/DisjointUnion.swift; sourceTree = "<group>"; };
-		B52ABD37208955B500FBF10C /* DisjointUnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisjointUnionTests.swift; sourceTree = "<group>"; };
+		B51B460A2083E14200CD0463 /* Union.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Union.swift; path = ../Sources/SwiftGraph/Union.swift; sourceTree = "<group>"; };
+		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
 		B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueElementsGraph.swift; path = Sources/SwiftGraph/UniqueElementsGraph.swift; sourceTree = SOURCE_ROOT; };
 		B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,7 +234,7 @@
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
 				7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */,
 				B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */,
-				B52ABD37208955B500FBF10C /* DisjointUnionTests.swift */,
+				B52ABD37208955B500FBF10C /* UnionTests.swift */,
 			);
 			name = SwiftGraphTests;
 			path = Tests/SwiftGraphTests;
@@ -243,7 +243,7 @@
 		B58B0D732083DEC400A0E1AB /* Operation */ = {
 			isa = PBXGroup;
 			children = (
-				B51B460A2083E14200CD0463 /* DisjointUnion.swift */,
+				B51B460A2083E14200CD0463 /* Union.swift */,
 			);
 			name = Operation;
 			sourceTree = "<group>";
@@ -407,7 +407,7 @@
 				7985B9241E5A503200C100E7 /* Graph.swift in Sources */,
 				7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */,
 				7985B9291E5A503200C100E7 /* Sort.swift in Sources */,
-				B51B460B2083E14200CD0463 /* DisjointUnion.swift in Sources */,
+				B51B460B2083E14200CD0463 /* Union.swift in Sources */,
 				7985B92B1E5A503200C100E7 /* Queue.swift in Sources */,
 				55E784261ED2127D003899D0 /* MST.swift in Sources */,
 				7985B9231E5A503200C100E7 /* WeightedEdge.swift in Sources */,
@@ -428,7 +428,7 @@
 				7985B9201E5A4FCB00C100E7 /* SwiftGraphTests.swift in Sources */,
 				7985B91E1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift in Sources */,
 				55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */,
-				B52ABD39208955BD00FBF10C /* DisjointUnionTests.swift in Sources */,
+				B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */,
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
