@@ -25,6 +25,56 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
     public override init(vertices: [T]) {
         super.init(vertices: vertices)
     }
+
+
+    /// Initialize an UnweightedGraph consisting of path.
+    ///
+    /// The resulting graph has the vertices in path and an edge between
+    /// each pair of consecutive vertices in path.
+    ///
+    /// If path is an empty array, the resulting graph is the empty graph.
+    /// If path is an array with a single vertex, the resulting graph has that vertex and no edges.
+    ///
+    /// - Parameters:
+    ///   - path: An array of vertices representing a path.
+    ///   - directed: If false, undirected edges are created.
+    ///               If true, edges are directed from vertex i to vertex i+1 in path.
+    ///               Default is false.
+    public convenience init(withPath path: [T], directed: Bool = false) {
+        self.init(vertices: path)
+
+        guard path.count >= 2 else {
+            return
+        }
+
+        for i in 0..<path.count - 1 {
+            let vertices = path[i...i+1]
+            self.addEdge(from: vertices.first!, to: vertices.last!, directed: directed)
+        }
+    }
+
+    /// Initialize an UnweightedGraph consisting of cycle.
+    ///
+    /// The resulting graph has the vertices in cycle and an edge between
+    /// each pair of consecutive vertices in cycle,
+    /// plus an edge between the last and the first vertices.
+    ///
+    /// If path is an empty array, the resulting graph is the empty graph.
+    /// If path is an array with a single vertex, the resulting graph has the vertex
+    /// and a single edge to itself if directed is true.
+    /// If directed is false the resulting graph has the vertex and two edges to itself.
+    ///
+    /// - Parameters:
+    ///   - cycle: An array of vertices representing a cycle.
+    ///   - directed: If false, undirected edges are created.
+    ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
+    ///               Default is false.
+    public convenience init(withCycle cycle: [T], directed: Bool = false) {
+        self.init(withPath: cycle, directed: directed)
+        if cycle.count > 0 {
+            self.addEdge(from: cycle.last!, to: cycle.first!, directed: directed)
+        }
+    }
     
     /// This is a convenience method that adds an unweighted edge.
     ///
