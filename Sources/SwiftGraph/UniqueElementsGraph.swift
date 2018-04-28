@@ -43,11 +43,21 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
     ///
     /// - parameter e: The edge to add.
     public override func addEdge(_ e: Edge) {
-        if ((edges[e.u].first{ $0.v == e.v } == nil)) {
-            edges[e.u].append(e)
-        }
-        if !e.directed && (edges[e.v].first{ $0.v == e.u } == nil) {
-            edges[e.v].append(e.reversed)
+        if (e.u == e.v) {
+            let loopCount = edges[e.u].filter{ $0.v == e.u }.reduce(0, {r,_ in r+1})
+            if loopCount == 0 {
+                edges[e.u].append(e)
+            }
+            if !e.directed && loopCount <= 1 {
+                edges[e.u].append(e)
+            }
+        } else {
+            if (edges[e.u].first{ $0.v == e.v } == nil) {
+                edges[e.u].append(e)
+            }
+            if !e.directed && (edges[e.v].first{ $0.v == e.u } == nil) {
+                edges[e.v].append(e.reversed)
+            }
         }
     }
 
