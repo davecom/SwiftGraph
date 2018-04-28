@@ -46,7 +46,7 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
         if ((edges[e.u].first{ $0.v == e.v } == nil)) {
             edges[e.u].append(e)
         }
-        if !e.directed && (edges[e.v].first{ $0.u == e.v } == nil) {
+        if !e.directed && (edges[e.v].first{ $0.v == e.u } == nil) {
             edges[e.v].append(e.reversed)
         }
     }
