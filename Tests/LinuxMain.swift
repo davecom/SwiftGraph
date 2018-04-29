@@ -10,5 +10,6 @@ XCTMain([
     testCase(UnweightedGraphTests.allTests),
     testCase(CycleTests.allTests),
     testCase(UniqueElementsGraphTests.allTests),
+    testCase(UniqueElementsGraphInitTests.allTests),
     testCase(UnionTests.allTests),
 ])

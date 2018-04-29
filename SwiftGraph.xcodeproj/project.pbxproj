@@ -35,6 +35,7 @@
 		7985B92B1E5A503200C100E7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
 		B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */; };
 		B51B460B2083E14200CD0463 /* Union.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51B460A2083E14200CD0463 /* Union.swift */; };
+		B523F2EA2094F0E2006587ED /* UniqueElementsGraphInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523F2E92094F0E2006587ED /* UniqueElementsGraphInitTests.swift */; };
 		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
 		B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */; };
@@ -103,6 +104,7 @@
 		7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGraphTests.swift; sourceTree = "<group>"; };
 		B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnweightedGraphTests.swift; sourceTree = "<group>"; };
 		B51B460A2083E14200CD0463 /* Union.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Union.swift; path = ../Sources/SwiftGraph/Union.swift; sourceTree = "<group>"; };
+		B523F2E92094F0E2006587ED /* UniqueElementsGraphInitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphInitTests.swift; sourceTree = "<group>"; };
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
 		B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueElementsGraph.swift; path = Sources/SwiftGraph/UniqueElementsGraph.swift; sourceTree = SOURCE_ROOT; };
 		B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphTests.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		7985B9091E5A4FB900C100E7 /* SwiftGraphTests */ = {
 			isa = PBXGroup;
 			children = (
+				B523F2E82094F0A1006587ED /* UniqueElementsGraph */,
 				557F55E91F8AB247002AF0BF /* Info.plist */,
 				7985B9191E5A4FCB00C100E7 /* DijkstraGraphTests.swift */,
 				55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */,
@@ -236,11 +239,19 @@
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
 				7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */,
 				B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */,
-				B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */,
 				B52ABD37208955B500FBF10C /* UnionTests.swift */,
 			);
 			name = SwiftGraphTests;
 			path = Tests/SwiftGraphTests;
+			sourceTree = "<group>";
+		};
+		B523F2E82094F0A1006587ED /* UniqueElementsGraph */ = {
+			isa = PBXGroup;
+			children = (
+				B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */,
+				B523F2E92094F0E2006587ED /* UniqueElementsGraphInitTests.swift */,
+			);
+			path = UniqueElementsGraph;
 			sourceTree = "<group>";
 		};
 		B58B0D732083DEC400A0E1AB /* Operation */ = {
@@ -436,6 +447,7 @@
 				B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
+				B523F2EA2094F0E2006587ED /* UniqueElementsGraphInitTests.swift in Sources */,
 				B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

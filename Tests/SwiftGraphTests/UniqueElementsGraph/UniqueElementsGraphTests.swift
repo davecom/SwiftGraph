@@ -85,7 +85,7 @@ class UniqueElementsGraphTests: XCTestCase {
         g.addEdge(from: "Atlanta", to: "Atlanta", directed: false)
         XCTAssertEqual(g.edgeCount, 4, "Expected two edges")
     }
-    
+
     func testUniqueDirectedEdges() {
         let g = UniqueElementsGraph<String>(vertices:["Atlanta", "Chicago"])
         g.addEdge(from: "Atlanta", to: "Chicago", directed: true)
