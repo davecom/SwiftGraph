@@ -128,8 +128,12 @@ class UniqueElementsGraphTests: XCTestCase {
         ("testUniqueVertexAfterAddition", testUniqueVertexAfterAddition),
         ("testUniqueVertexAfterInit", testUniqueVertexAfterInit),
         ("testUniqueUndirectedEdges", testUniqueUndirectedEdges),
+        ("testUniqueUndirectedEdges2", testUniqueUndirectedEdges2),
+        ("testUniqueUndirectedLoop", testUniqueUndirectedLoop),
+        ("testUniqueUndirectedLoop2", testUniqueUndirectedLoop2),
         ("testUniqueDirectedEdges", testUniqueDirectedEdges),
         ("testUniqueDirectedLoop", testUniqueDirectedLoop),
+        ("testUniqueDirectedLoop2", testUniqueDirectedLoop),
         ("testUniqueEdgesCombined", testUniqueEdgesCombined)
     ]
 }
