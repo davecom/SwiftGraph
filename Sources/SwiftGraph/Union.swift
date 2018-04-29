@@ -27,7 +27,7 @@ public extension UniqueElementsGraph {
     /// - Parameters:
     ///   - lhs: One of the graphs to build the union from.
     ///   - rhs: The other graph to build the union from.
-    public convenience init(unionOf lhs: UniqueElementsGraph<V>, _ rhs: UniqueElementsGraph<V>) {
+    public convenience init(unionOf lhs: UniqueElementsGraph<V>, _ others: UniqueElementsGraph<V>...) {
         self.init()
 
         // We know vertices in lhs are unique, so we call Graph.addVertex to avoid the uniqueness check of UniqueElementsGraph.addVertex.
@@ -41,16 +41,18 @@ public extension UniqueElementsGraph {
             addEdge(from: edge.u, to: edge.v, directed: edge.directed)
         }
 
-        // Vertices in rhs might be equal to some vertex in lhs, so we need to add them
-        // with addVertex to guarantee uniqueness.
-        for vertex in rhs.vertices {
-            _ = addVertex(vertex)
-        }
+        for g in others {
+            // Vertices in rhs might be equal to some vertex in lhs, so we need to add them
+            // with addVertex to guarantee uniqueness.
+            for vertex in g.vertices {
+                _ = addVertex(vertex)
+            }
 
-        for edge in rhs.edges.joined() {
-            let from = rhs.vertexAtIndex(edge.u)
-            let to = rhs.vertexAtIndex(edge.v)
-            addEdge(from: from, to: to, directed: edge.directed)
+            for edge in g.edges.joined() {
+                let from = g.vertexAtIndex(edge.u)
+                let to = g.vertexAtIndex(edge.v)
+                addEdge(from: from, to: to, directed: edge.directed)
+            }
         }
     }
 }

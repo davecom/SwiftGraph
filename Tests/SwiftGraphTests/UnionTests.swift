@@ -159,6 +159,19 @@ class UnionTests: XCTestCase {
         XCTAssertTrue(g1_23.edgeExists(from: "C", to: "A"), "g1 ∪ (g2 ∪ g3): Expected an edge from C to A")
     }
 
+    func testMultipleParameters() {
+        let g1 = UniqueElementsGraph(withPath:["A", "B"])
+        let g2 = UniqueElementsGraph(withPath:["B", "C"])
+        let g3 = UniqueElementsGraph(withPath:["C", "A"])
+
+        let g = UniqueElementsGraph(unionOf: g1, g2, g3)
+
+        XCTAssertEqual(g.vertices, ["A", "B", "C"], "g: Expected vertices to be A, B and C")
+        XCTAssertTrue(g.edgeExists(from: "A", to: "B"), "g: Expected an edge from A to B")
+        XCTAssertTrue(g.edgeExists(from: "B", to: "C"), "g: Expected an edge from B to C")
+        XCTAssertTrue(g.edgeExists(from: "C", to: "A"), "g: Expected an edge from C to A")
+    }
+
     static var allTests = [
         ("testUnionLastInCommon", testUnionLastInCommon),
         ("testUnionFirstInCommon", testUnionFirstInCommon),
@@ -167,7 +180,8 @@ class UnionTests: XCTestCase {
         ("testIdentityEmptyGraph", testIdentityEmptyGraph),
         ("testUnionWithSelf", testUnionWithSelf),
         ("testCommutativity", testCommutativity),
-        ("testAssociativity", testAssociativity)
+        ("testAssociativity", testAssociativity),
+        ("testMultipleParameters", testMultipleParameters)
     ]
 
     func arraysHaveSameElements<T: Equatable>(_ a1: [T], _ a2: [T]) -> Bool {
