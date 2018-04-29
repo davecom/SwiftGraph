@@ -137,8 +137,26 @@ class UnionTests: XCTestCase {
         XCTAssertTrue(arraysHaveSameElements(u12.neighborsForVertex("Chicago")!, u21.neighborsForVertex("Chicago")!), "Expected same neighbors of Chicago in g1 ∪ g2 and g2 ∪ g1")
     }
 
-    func associativityTest() {
+    func testAssociativity() {
+        let g1 = UniqueElementsGraph(withPath:["A", "B"])
+        let g2 = UniqueElementsGraph(withPath:["B", "C"])
+        let g3 = UniqueElementsGraph(withPath:["C", "A"])
 
+        let g12 = UniqueElementsGraph(unionOf: g1, g2)
+        let g12_3 = UniqueElementsGraph(unionOf: g12, g3)
+
+        let g23 = UniqueElementsGraph(unionOf: g2, g3)
+        let g1_23 = UniqueElementsGraph(unionOf: g1, g23)
+
+        XCTAssertTrue(arraysHaveSameElements(g12_3.vertices, g1_23.vertices), "Expected same vertices for (g1 ∪ g2) ∪ g3 and g1 ∪ (g2 ∪ g3)")
+
+        XCTAssertTrue(g12_3.edgeExists(from: "A", to: "B"), "(g1 ∪ g2) ∪ g3: Expected an edge from A to B")
+        XCTAssertTrue(g12_3.edgeExists(from: "B", to: "C"), "(g1 ∪ g2) ∪ g3: Expected an edge from B to C")
+        XCTAssertTrue(g12_3.edgeExists(from: "C", to: "A"), "(g1 ∪ g2) ∪ g3: Expected an edge from C to A")
+
+        XCTAssertTrue(g1_23.edgeExists(from: "A", to: "B"), "g1 ∪ (g2 ∪ g3): Expected an edge from A to B")
+        XCTAssertTrue(g1_23.edgeExists(from: "B", to: "C"), "g1 ∪ (g2 ∪ g3): Expected an edge from B to C")
+        XCTAssertTrue(g1_23.edgeExists(from: "C", to: "A"), "g1 ∪ (g2 ∪ g3): Expected an edge from C to A")
     }
 
     static var allTests = [
@@ -148,7 +166,8 @@ class UnionTests: XCTestCase {
         ("testImmutabilityOfInputGraphs", testImmutabilityOfInputGraphs),
         ("testIdentityEmptyGraph", testIdentityEmptyGraph),
         ("testUnionWithSelf", testUnionWithSelf),
-        ("testCommutativity", testCommutativity)
+        ("testCommutativity", testCommutativity),
+        ("testAssociativity", testAssociativity)
     ]
 
     func arraysHaveSameElements<T: Equatable>(_ a1: [T], _ a2: [T]) -> Bool {
