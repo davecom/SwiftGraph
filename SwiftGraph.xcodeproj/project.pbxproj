@@ -219,7 +219,7 @@
 			children = (
 				5589B4811C0E774300D6664E /* Edges */,
 				5589B4821C0E774F00D6664E /* Graphs */,
-				B58B0D732083DEC400A0E1AB /* Operation */,
+				B58B0D732083DEC400A0E1AB /* Operations */,
 				5589B4831C0E775800D6664E /* Search */,
 				7985B8FD1E5A4FB800C100E7 /* SwiftGraphFramework.h */,
 				7985B8FE1E5A4FB800C100E7 /* Info.plist */,
@@ -254,12 +254,12 @@
 			path = UniqueElementsGraph;
 			sourceTree = "<group>";
 		};
-		B58B0D732083DEC400A0E1AB /* Operation */ = {
+		B58B0D732083DEC400A0E1AB /* Operations */ = {
 			isa = PBXGroup;
 			children = (
 				B51B460A2083E14200CD0463 /* Union.swift */,
 			);
-			name = Operation;
+			name = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
