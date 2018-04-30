@@ -60,26 +60,4 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
             }
         }
     }
-
-    /// This is a convenience method that adds an unweighted edge.
-    ///
-    /// - parameter from: The starting vertex's index.
-    /// - parameter to: The ending vertex's index.
-    /// - parameter directed: Is the edge directed? (default `false`)
-    public override func addEdge(from: Int, to: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: from, v: to, directed: directed))
-    }
-
-    /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
-    ///
-    /// - parameter from: The starting vertex.
-    /// - parameter to: The ending vertex.
-    /// - parameter directed: Is the edge directed? (default `false`)
-    public override func addEdge(from: V, to: V, directed: Bool = false) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(UnweightedEdge(u: u, v: v, directed: directed))
-            }
-        }
-    }
 }
