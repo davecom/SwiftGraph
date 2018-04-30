@@ -152,9 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				5589B46B1C0E753E00D6664E /* Graph.swift */,
-				B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */,
 				5589B46E1C0E756200D6664E /* UnweightedGraph.swift */,
 				5589B4711C0E757100D6664E /* WeightedGraph.swift */,
+				B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */,
 			);
 			name = Graphs;
 			path = ../SwiftGraph;

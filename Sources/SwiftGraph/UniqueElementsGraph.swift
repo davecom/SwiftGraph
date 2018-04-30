@@ -33,17 +33,18 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
     /// - parameter v: The vertex to be added.
     /// - returns: The index where the vertex was added, or the index of the equal vertex already belonging to the graph.
     public override func addVertex(_ v: V) -> Int {
-        if let equalVertexIndex = vertices.index(where: { $0 == v }) {
+        if let equalVertexIndex = indexOfVertex(v) {
             return equalVertexIndex
         }
         return super.addVertex(v)
     }
 
+    // TODO: Add proper description of this override and proper comments in method
     /// Add an edge to the graph. It should take
     ///
     /// - parameter e: The edge to add.
     public override func addEdge(_ e: Edge) {
-        if (e.u == e.v) {
+        if e.u == e.v {
             let loopCount = edges[e.u].filter{ $0.v == e.u }.reduce(0, {r,_ in r+1})
             if loopCount == 0 {
                 edges[e.u].append(e)
@@ -52,10 +53,10 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
                 edges[e.u].append(e)
             }
         } else {
-            if (edges[e.u].first{ $0.v == e.v } == nil) {
+            if !edgeExists(from: e.u, to: e.v) {
                 edges[e.u].append(e)
             }
-            if !e.directed && (edges[e.v].first{ $0.v == e.u } == nil) {
+            if !e.directed && !edgeExists(from: e.v, to: e.u) {
                 edges[e.v].append(e.reversed)
             }
         }
