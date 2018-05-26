@@ -113,7 +113,7 @@ A breadth-first search is performed, starting from New York, for all cities in `
 SwiftGraph contains many more useful features, but hopefully this example was a nice quickstart.
 
 ## Documentation
-There is a large amount of documentation in the source code using the latest Apple documentation technique - so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. There are up-to-date HTML docs available online thanks to the good folks at [CocoaPods](http://cocoadocs.org/docsets/SwiftGraph/) In addition, here's some more basic information:
+There is a large amount of documentation in the source code using the latest Apple documentation technique—so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. We are looking [for a new HTML docs provider](https://github.com/davecom/SwiftGraph/issues/20) since CocoaPods no longer offers that service. In addition, here's an overview of each of SwiftGraph's components:
 
 ### Edges
 Edges connect the vertices in your graph to one another.
@@ -180,3 +180,4 @@ Future directions for this project to take could include:
 * More utility functions
 * A thread safe subclass of `Graph`
 * More extensive performance testing
+* Integration with Swift serialization (`Codable` support)
