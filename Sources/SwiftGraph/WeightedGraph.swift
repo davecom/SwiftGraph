@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-open class WeightedGraph<T: Equatable, W: Comparable & Summable>: Graph<T> {
+open class WeightedGraph<T: Equatable & Codable, W: Comparable & Summable & Codable>: Graph<T> {
     public override init() {
         super.init()
     }
@@ -99,5 +99,42 @@ open class WeightedGraph<T: Equatable, W: Comparable & Summable>: Graph<T> {
         }
         return d
     }
-}
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        var edgesByVertex:[[WeightedEdge<W>]] = []
+        
+        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
+        var edgesByVertexIndex = try rootContainer.nestedUnkeyedContainer(forKey: CodingKeys.edges)
+        
+        while !edgesByVertexIndex.isAtEnd {
+            var edgesContainer = try edgesByVertexIndex.nestedUnkeyedContainer()
+            let edges: [WeightedEdge<W>] = try edgesContainer.decode([WeightedEdge<W>].self)
+            edgesByVertex.append(edges)
+        }
+        self.edges = edgesByVertex
+    }
+    
+    class EdgeDoesNotConformToEncodableError: Error {
+        // TODO: which edge
+    }
+    
+    override public func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
 
+        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
+        
+        var edgesByVertexIndex = rootContainer.nestedUnkeyedContainer(forKey: CodingKeys.edges)
+        for edgesForVertexIndex in self.edges {
+            var edgesForVertex = edgesByVertexIndex.nestedUnkeyedContainer()
+            let encodables = try edgesForVertexIndex.map { (edge) -> WeightedEdge<W> in
+                guard let encodable = edge as? WeightedEdge<W> else {
+                    throw EdgeDoesNotConformToEncodableError()
+                }
+                return encodable
+            }
+            try edgesForVertex.encode(encodables)
+        }
+    }
+}

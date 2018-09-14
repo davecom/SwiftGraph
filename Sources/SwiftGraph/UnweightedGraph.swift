@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-open class UnweightedGraph<T: Equatable>: Graph<T> {
+open class UnweightedGraph<T: Equatable & Codable>: Graph<T> {
     public override init() {
         super.init()
     }
@@ -113,5 +113,43 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
             }
         }
     }
-}
+    
+    public required init(from decoder: Decoder) throws  {
+        try super.init(from: decoder)
+        
+        var edgesByVertex:[[UnweightedEdge]] = []
 
+        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
+        
+        var edgesByVertexIndex = try rootContainer.nestedUnkeyedContainer(forKey: CodingKeys.edges)
+        
+        while !edgesByVertexIndex.isAtEnd {
+            var edgesContainer = try edgesByVertexIndex.nestedUnkeyedContainer()
+            let edges: [UnweightedEdge] = try edgesContainer.decode([UnweightedEdge].self)
+            edgesByVertex.append(edges)
+        }
+        self.edges = edgesByVertex
+    }
+    
+    class EdgeDoesNotConformToEncodableError: Error {
+        // TODO: which edge
+    }
+    
+    override public func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+
+        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
+
+        var edgesByVertexIndex = rootContainer.nestedUnkeyedContainer(forKey: CodingKeys.edges)
+        for edgesForVertexIndex in self.edges {
+            var edgesForVertex = edgesByVertexIndex.nestedUnkeyedContainer()
+            let encodables = try edgesForVertexIndex.map { (edge) -> UnweightedEdge in
+                guard let encodable = edge as? UnweightedEdge else {
+                    throw EdgeDoesNotConformToEncodableError()
+                }
+                return encodable
+            }
+            try edgesForVertex.encode(encodables)
+        }
+    }
+}

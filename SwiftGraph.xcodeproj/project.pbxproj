@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C4DE653214B742400985BBB /* SwiftGraphCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DE651214B73E800985BBB /* SwiftGraphCodableTests.swift */; };
 		55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF51F8ADA12001913F7 /* Cycle.swift */; };
 		55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */; };
 		55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620071A194C80000A5F7B /* AppDelegate.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C4DE651214B73E800985BBB /* SwiftGraphCodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGraphCodableTests.swift; sourceTree = "<group>"; };
 		553746441DA56CC500C0E0F6 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Sources/SwiftGraph/Sort.swift; sourceTree = SOURCE_ROOT; };
 		557F55E91F8AB247002AF0BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/SwiftGraph/Edge.swift; sourceTree = SOURCE_ROOT; };
@@ -238,6 +240,7 @@
 				7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */,
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
 				7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */,
+				3C4DE651214B73E800985BBB /* SwiftGraphCodableTests.swift */,
 				B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */,
 				B52ABD37208955B500FBF10C /* UnionTests.swift */,
 			);
@@ -447,6 +450,7 @@
 				B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
+				3C4DE653214B742400985BBB /* SwiftGraphCodableTests.swift in Sources */,
 				B523F2EA2094F0E2006587ED /* UniqueElementsGraphInitTests.swift in Sources */,
 				B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */,
 			);
