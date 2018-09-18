@@ -5,7 +5,7 @@ env:
 matrix:
   include:
     - os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       language: swift
       install:
         - ./BuildScripts/osx_install.sh
@@ -17,13 +17,7 @@ matrix:
       after_script: ./BuildScripts/osx_coverage_after.sh
 
     - os: osx
-      osx_image: xcode9.2
-      language: swift
-      install: ./BuildScripts/osx_install.sh
-      script: ./BuildScripts/osx_script.sh
-
-    - os: osx
-      osx_image: xcode9.1
+      osx_image: xcode9.3
       language: swift
       install: ./BuildScripts/osx_install.sh
       script: ./BuildScripts/osx_script.sh
