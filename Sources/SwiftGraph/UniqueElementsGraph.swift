@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A subclass of UnweightedGraph that ensures there are no pairs of equal vertices and no repeated edges.
-open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
+open class UniqueElementsGraph<V: Equatable & Codable>: UnweightedGraph<V> {
 
     public override init() {
         super.init()
@@ -27,7 +27,11 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
     public override init(vertices: [V]) {
         super.init(vertices: vertices)
     }
-
+    
+    public required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
     /// Add a vertex to the graph if no equal vertex already belongs to the Graph. O(n)
     ///
     /// - parameter v: The vertex to be added.

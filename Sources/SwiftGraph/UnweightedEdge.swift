@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A basic unweighted edge.
-open class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
+open class UnweightedEdge: Edge, Equatable, CustomStringConvertible, Codable {
     public var u: Int
     public var v: Int
     public var weighted: Bool { return false }
@@ -43,5 +43,28 @@ open class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
     //MARK: Operator Overloads
     static public func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
         return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed
+    }
+    
+    //MARK: Codable
+    /// An enum with all of UnweightedEdge's encoding and decoding members.
+    fileprivate enum CodingKeys: String, CodingKey {
+        case u = "u"
+        case v = "v"
+        case weighted = "weighted"
+        case directed = "directed"
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.u = try rootContainer.decode(Int.self, forKey: CodingKeys.u)
+        self.v = try rootContainer.decode(Int.self, forKey: CodingKeys.v)
+        self.directed = try rootContainer.decode(Bool.self, forKey: CodingKeys.directed)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
+        try rootContainer.encode(self.u, forKey: CodingKeys.u)
+        try rootContainer.encode(self.v, forKey: CodingKeys.v)
+        try rootContainer.encode(self.directed, forKey: CodingKeys.directed)
     }
 }

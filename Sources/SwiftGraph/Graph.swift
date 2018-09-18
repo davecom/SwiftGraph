@@ -19,7 +19,7 @@
 /// The superclass for all graphs. Defined as a class instead of a protocol so that its subclasses can
 /// have some method implementations in common. You should generally use one of its two canonical subclasses,
 /// *UnweightedGraph* and *WeightedGraph*, because they offer more functionality and convenience.
-open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
+open class Graph<V: Equatable & Codable>: CustomStringConvertible, Sequence, Collection, Codable {
     var vertices: [V] = [V]()
     var edges: [[Edge]] = [[Edge]]() //adjacency lists
     
@@ -286,5 +286,21 @@ open class Graph<V: Equatable>: CustomStringConvertible, Sequence, Collection {
     /// - returns: The vertex at index.
     public subscript(i: Int) -> V {
         return vertexAtIndex(i)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case vertices = "vertices"
+        case edges = "edges"
+    }
+    
+    public required init(from decoder: Decoder) throws  {
+        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
+        let vertices = try rootContainer.decode([V].self, forKey: CodingKeys.vertices)
+        self.vertices = vertices
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
+        try rootContainer.encode(self.vertices, forKey: CodingKeys.vertices)
     }
 }

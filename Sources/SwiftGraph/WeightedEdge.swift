@@ -28,7 +28,7 @@ extension Float: Summable {}
 extension String: Summable {}
 
 /// A weighted edge, who's weight subscribes to Comparable.
-open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge, Comparable {
+open class WeightedEdge<W: Comparable & Summable & Codable>: UnweightedEdge, Comparable {
     public override var weighted: Bool { return true }
     public let weight: W
     public override var reversed:Edge {
@@ -56,4 +56,24 @@ open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge, Comparable {
     static public func < <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
         return lhs.weight < rhs.weight
     }
+    
+    //MARK: Codable
+    /// An enum with all of WeightedEdge's encoding and decoding members.
+    fileprivate enum CodingKeys: String, CodingKey {
+        case weight = "weight"
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.weight = try rootContainer.decode(W.self, forKey: CodingKeys.weight)
+
+        try super.init(from: decoder)
+    }
+    
+    override public func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
+        try rootContainer.encode(self.weight, forKey: CodingKeys.weight)
+    }
 }
+
