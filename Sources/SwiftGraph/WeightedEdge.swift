@@ -35,6 +35,12 @@ open class WeightedEdge<W: Comparable & Numeric & Codable>: UnweightedEdge, Comp
         try super.init(from: decoder)
     }
     
+    open override func encode(to encoder: Encoder) throws {
+        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
+        try rootContainer.encode(weight, forKey: CodingKeys.weight)
+        try super.encode(to: encoder)
+    }
+    
     //Implement Printable protocol
     public override var description: String {
         return "\(u) \(weight)> \(v)"

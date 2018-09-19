@@ -266,3 +266,4 @@ extension Graph {
         return vertexAtIndex(i)
     }
 }
+

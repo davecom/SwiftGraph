@@ -79,3 +79,30 @@ open class WeightedGraph<V: Equatable, W: Comparable & Numeric & Codable>: Graph
     }
 }
 
+public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & Numeric & Codable> : WeightedGraph<V, W>, Codable {
+    enum CodingKeys: String, CodingKey {
+        case vertices = "vertices"
+        case edges = "edges"
+    }
+    
+    override public init() {
+        super.init()
+    }
+    
+    override public init(vertices: [V]) {
+        super.init(vertices: vertices)
+    }
+    
+    public required init(from decoder: Decoder) throws  {
+        super.init()
+        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.vertices = try rootContainer.decode([V].self, forKey: CodingKeys.vertices)
+        self.edges = try rootContainer.decode([[E]].self, forKey: CodingKeys.edges)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
+        try rootContainer.encode(self.vertices, forKey: CodingKeys.vertices)
+        try rootContainer.encode(self.edges, forKey: CodingKeys.edges)
+    }
+}
