@@ -1,3 +1,14 @@
+### 2.0.0
+- **This is an API breaking refactor**
+- This version requires Swift 4.2 (Xcode 10)
+- `Graph` is now a protocol instead of a class
+- `edgesToVertices()` is now a method on `Graph` instead of a free function
+- The `Edge` protocol has been significantly simplifieid
+- `UnweightedEdge` and `WeightedEdge` are now `Codable`
+- Subclasses of `Graph` `CodableUnweightedGraph` and `CodableWeightedGraph` provide serialization support to JSON and anything else `Codable` supports (thanks for the help, @yoiang)
+- Experimental subclass of `UnweightedGraph`, `UniqueElementsGraph` provides a union operation and guarantees no duplicate vertices & edges in a graph (thanks @ferranpujolcamins)
+- Cycle detector method that returns edges (thanks @ZevEisenberg)
+
 ### 1.5.1
 - Project reorganized to support testing on Linux, just run `swift test`
 - `Package.swift` updated for Swift 4 package management style

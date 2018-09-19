@@ -17,7 +17,7 @@ It includes copious in-source documentation, unit tests, as well as search funct
 
 ## Installation
 
-SwiftGraph 2.0 (WIP on master) and above requires Swift 4.2 (Xcode 10). Use SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support.
+SwiftGraph 2.0  and above requires Swift 4.2 (Xcode 10). Use SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph runs fine and is tested on Linux.
 
 ### CocoaPods
 
@@ -28,7 +28,7 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 1.5.1
+github "davecom/SwiftGraph" ~> 2.0.0
 ```
 
 ### Swift Package Manager (SPM)
@@ -88,7 +88,7 @@ var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distance
 let temp = nameDistance["San Francisco"] 
 // path between New York and San Francisco
 let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("New York")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
-let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
+let stops: [String] = cightGraph.edgesToVertices(edges: path)
 ```
 The shortest paths are found between various vertices in the graph using Dijkstra's algorithm.
 ```swift
@@ -118,17 +118,14 @@ There is a large amount of documentation in the source code using the latest App
 ### Edges
 Edges connect the vertices in your graph to one another.
 
-* `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer. Further, an edge knows if it's directed, or weighted. An edge can create a reversed version of itself.
+* `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer.
 * `UnweightedEdge` - This is a concrete implementation of `Edge` for unweighted graphs.
-* `WeightedEdge` - A subclass of `UnweightedEdge` that adds weights. Weights are a generic type - they can be anything that implements `Comparable` and `Summable`.  `Summable` is anything that implements the `+` operator.  To add `Summable` support to a data type that already has the plus operator, simply write something like (support in SwiftGraph is already included for `Int`, `Float`, `Double`, and `String`):
-```swift
-extension Int: Summable {}
-```
+* `WeightedEdge` - A subclass of `UnweightedEdge` that adds weights. Weights are a generic type - they can be anything that implements `Comparable`, `Numeric` and `Codable`.  Typical weight types are `Int` and `Float`.
 
 ### Graphs
 Graphs are the data structures at the heart of SwiftGraph. All vertices are assigned an integer index when they are inserted into a graph and it's generally faster to refer to them by their index than by the vertex's actual object.
 
-Graphs implement the standard Swift protocols `SequenceType` (for iterating through all vertices) and `CollectionType` (for grabbing a vertex by its index through a subscript). For instance, the following example prints all vertices in a Graph on separate lines:
+Graphs implement the standard Swift protocols `Collection` (for iterating through all vertices and for grabbing a vertex by its index through a subscript). For instance, the following example prints all vertices in a Graph on separate lines:
 ```swift
 for v in g {  // g is a Graph<String>
     print(v)
@@ -141,7 +138,7 @@ print(g[23]) // g is a Graph<String>
 
 Note: At this time, graphs are *not* thread-safe. However, once a graph is constructed, if you will only be doing lookups and searches through it (no removals of vertices/edges and no additions of vertices/edges) then you should be able to do that from multiple threads. A fully thread-safe graph implementation is a possible future direction.
 
-* `Graph` - This is the base class for all graphs.  Generally, you should use one of its canonical subclasses, `UnweightedGraph` or `WeightedGraph`, because they offer more functionality. The vertices in a `Graph` (defined as a generic at graph creation time) can be of any type that conforms to `Equatable`. `Graph` has methods for:
+* `Graph` (Protocol) - This is the base protocol for all graphs.  Generally, you should use one of its canonical class implementations, `UnweightedGraph` or `WeightedGraph`, instead of rolling your own adopter, because they offer significant built-in functionality. The vertices in a `Graph` (defined as a generic at graph creation time) can be of any type that conforms to `Equatable`. `Graph` has methods for:
   * Adding a vertex
   * Getting the index of a vertex
   * Finding the neighbors of an index/vertex
@@ -151,8 +148,10 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
   * Adding an edge
   * Removing all edges between two indexes/vertices
   * Removing a particular vertex (all other edge relationships are automatically updated at the same time (because the indices of their connections changes) so this is slow - O(v + e) where v is the number of vertices and e is the number of edges)
-* `UnweightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `UnweightedEdge`.
-* `WeightedGraph` - A subclass of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights.
+* `UnweightedGraph` - A generic class implementation of `Graph` that adds convenience methods for adding and removing edges of type `UnweightedEdge`. `UnweightedGraph` is generic over the type of the vertices.
+* `WeightedGraph` - A generic class implementation of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights. `WeightedGraph` is generic over the types of the vertices and its weights.
+* `CodableUnweightedGraph` and `CodableWeightedGraph` - Subclasses of `UnweightedGraph` and `WeightedGraph` that add support for the `Codable` protocol. Their vertex and weight types must also be `Codable`. This allows serialization of graphs to formats like JSON.
+* `UniqueElementsGraph` - an experimental subclass of `UnweightedGraph` with support for union operations that ensures all vertices and edges in a graph are unique.
 
 ### Search
 Search methods are defined in extensions of `Graph` and `WeightedGraph` in `Search.swift`.
@@ -172,12 +171,14 @@ An extension to `WeightedGraph` in `MST.swift` can find a minimum-spanning tree 
 An extension to `Graph` in `Cycles.swift` finds all of the cycles in a graph.
 * `detectCycles()` - Uses an algorithm developed by Liu/Wang to find all of the cycles in a graph. Optionally, this method can take one parameter, `upToLength`, that specifies a length at which to stop searching for cycles. For instance, if `upToLength` is 3, `detectCycles()` will find all of the 1 vertex cycles (self-cycles, vertices with edges to themselves), and 3 vertex cycles (connection to another vertex and back again, present in all undirected graphs with more than 1 vertex). There is no such thing as a 2 vertex cycle.
 
-## Authorship & License
-SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub.
+## Authorship, License, & Contributors
+SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub. 
+
+I would like to thank all of the contributors who have helped improve SwiftGraph over the years, and have kept me motivated. Contributing to SwiftGraph, in-line with the Apache license, means also releasing your contribution under the same license as the original project. However, the Apache license is permissive, and you are free to include SwiftGraph in a commercial, closed source product as long as you give it & its author credit (in fact SwiftGraph has already found its way into several products). See `LICENSE` for details.
 
 ## Future Direction
 Future directions for this project to take could include:
 * More utility functions
-* A thread safe subclass of `Graph`
+* A thread safe implementation of `Graph`
 * More extensive performance testing
-* Integration with Swift serialization (`Codable` support)
+* GraphML Support

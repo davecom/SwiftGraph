@@ -234,4 +234,10 @@ extension SwiftGraphCodableTests {
         self.validateDijkstra1(cityGraph: g2)
         //        XCTAssertEqual(g, self.cityGraph())
     }
+    
+    static var allTests = [
+        ("testEncodable", testEncodable),
+        ("testDecodable", testDecodable),
+        ("testComplexWeightedEncodableDecodable", testComplexWeightedEncodableDecodable)
+    ]
 }
