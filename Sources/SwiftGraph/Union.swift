@@ -32,13 +32,13 @@ public extension UniqueElementsGraph {
 
         // We know vertices in lhs are unique, so we call Graph.addVertex to avoid the uniqueness check of UniqueElementsGraph.addVertex.
         for vertex in lhs.vertices {
-            _ = (self as Graph).addVertex(vertex)
+            _ = self.addVertex(vertex)
         }
 
         // When vertices are removed from Graph, edges can be mutated,
         // so we need to add new copies of them for the result graph.
         for edge in lhs.edges.joined() {
-            addEdge(from: edge.u, to: edge.v, directed: edge.directed)
+            addEdge(edge)
         }
 
         for g in others {
@@ -49,9 +49,7 @@ public extension UniqueElementsGraph {
             }
 
             for edge in g.edges.joined() {
-                let from = g.vertexAtIndex(edge.u)
-                let to = g.vertexAtIndex(edge.v)
-                addEdge(from: from, to: to, directed: edge.directed)
+                addEdge(from: g[edge.u], to: g[edge.v], directed: true)
             }
         }
     }

@@ -22,7 +22,11 @@ public protocol Edge: CustomStringConvertible {
     var u: Int {get set}  //made modifiable for changing when removing vertices
     /// The destination vertex of the edge
     var v: Int {get set}  //made modifiable for changing when removing vertices
-    var weighted: Bool {get}
-    var directed: Bool {get}
-    var reversed: Edge {get}
+}
+
+extension Edge where Self: Equatable {
+    //MARK: Operator Overloads
+    static public func ==(lhs: Self, rhs: Self) -> Bool {
+        return lhs.u == rhs.u && lhs.v == rhs.v
+    }
 }

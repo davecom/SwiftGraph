@@ -17,13 +17,17 @@
 //  limitations under the License.
 
 /// A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-open class UnweightedGraph<T: Equatable>: Graph<T> {
-    public override init() {
-        super.init()
+open class UnweightedGraph<V: Equatable>: Graph {
+    public var vertices: [V] = [V]()
+    public var edges: [[UnweightedEdge]] = [[UnweightedEdge]]() //adjacency lists
+    
+    public init() {
     }
     
-    public override init(vertices: [T]) {
-        super.init(vertices: vertices)
+    public init(vertices: [V]) {
+        for vertex in vertices {
+            _ = self.addVertex(vertex)
+        }
     }
 
 
@@ -40,7 +44,7 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in path.
     ///               Default is false.
-    public convenience init(withPath path: [T], directed: Bool = false) {
+    public convenience init(withPath path: [V], directed: Bool = false) {
         self.init(vertices: path)
 
         guard path.count >= 2 else {
@@ -69,7 +73,7 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
     ///               Default is false.
-    public convenience init(withCycle cycle: [T], directed: Bool = false) {
+    public convenience init(withCycle cycle: [V], directed: Bool = false) {
         self.init(withPath: cycle, directed: directed)
         if cycle.count > 0 {
             self.addEdge(from: cycle.last!, to: cycle.first!, directed: directed)
@@ -82,7 +86,11 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(from: Int, to: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: from, v: to, directed: directed))
+        addEdge(UnweightedEdge(u: from, v: to))
+        if !directed {
+            addEdge(UnweightedEdge(u: to, v: from))
+        }
+        
     }
     
     /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
@@ -90,25 +98,12 @@ open class UnweightedGraph<T: Equatable>: Graph<T> {
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(from: T, to: T, directed: Bool = false) {
+    public func addEdge(from: V, to: V, directed: Bool = false) {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
-                addEdge(UnweightedEdge(u: u, v: v, directed: directed))
-            }
-        }
-    }
-    
-    //Have to have two of these because Edge protocol cannot adopt Equatable
-    
-    /// Removes a specific unweighted edge in both directions (if it's not directional). Or just one way if it's directed.
-    ///
-    /// - parameter edge: The edge to be removed.
-    public func removeEdge(_ edge: UnweightedEdge) {
-        if let i = (edges[edge.u] as! [UnweightedEdge]).index(of: edge) {
-            edges[edge.u].remove(at: i)
-            if !edge.directed {
-                if let i = (edges[edge.v] as! [UnweightedEdge]).index(of: edge.reversed as! UnweightedEdge) {
-                    edges[edge.v].remove(at: i)
+                addEdge(UnweightedEdge(u: u, v: v))
+                if !directed {
+                    addEdge(UnweightedEdge(u: v, v: u))
                 }
             }
         }

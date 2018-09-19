@@ -17,31 +17,17 @@
 //  limitations under the License.
 
 /// A basic unweighted edge.
-open class UnweightedEdge: Edge, Equatable, CustomStringConvertible {
+open class UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable {
     public var u: Int
     public var v: Int
-    public var weighted: Bool { return false }
-    public let directed: Bool
-    public var reversed:Edge {
-        return UnweightedEdge(u: v, v: u, directed: directed)
-    }
     
-    public init(u: Int, v: Int, directed: Bool) {
+    public init(u: Int, v: Int) {
         self.u = u
         self.v = v
-        self.directed = directed
     }
     
     //Implement Printable protocol
     public var description: String {
-        if directed {
-            return "\(u) -> \(v)"
-        }
-        return "\(u) <-> \(v)"
-    }
-    
-    //MARK: Operator Overloads
-    static public func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
-        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed
+        return "\(u) -> \(v)"
     }
 }

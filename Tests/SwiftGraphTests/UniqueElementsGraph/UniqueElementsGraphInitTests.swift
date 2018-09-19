@@ -61,7 +61,7 @@ class UniqueElementsGraphInitTests: XCTestCase {
         XCTAssertTrue(g4Path.edgeExists(from: "Boston", to: "Atlanta"), "g4Path: Expected an edge from Boston to Atlanta")
 
         let g5Path = UniqueElementsGraph(withPath:["Atlanta", "Boston", "Chicago", "Atlanta", "Denver", "Chicago", "Atlanta"])
-        XCTAssertEqual(g5Path.vertices, ["Atlanta", "Boston", "Chicago", "Denver"], "g4Path: Expected vertices to be Atlanta, Boston, Chiicago and Denver.")
+        XCTAssertEqual(g5Path.vertices, ["Atlanta", "Boston", "Chicago", "Denver"], "g5Path: Expected vertices to be Atlanta, Boston, Chiicago and Denver.")
         XCTAssertEqual(g5Path.edgeCount, 10, "g5Path: Expected exactly 10 edges")
         XCTAssertTrue(g5Path.edgeExists(from: "Atlanta", to: "Boston"), "g5Path: Expected an edge from Atlanta to Boston")
         XCTAssertTrue(g5Path.edgeExists(from: "Boston", to: "Atlanta"), "g5Path: Expected an edge from Boston to Atlanta")
@@ -118,7 +118,7 @@ class UniqueElementsGraphInitTests: XCTestCase {
 
         let g1Cycle = UniqueElementsGraph(withCycle:["Atlanta"])
         XCTAssertEqual(g1Cycle.vertices, ["Atlanta"], "g1Cycle: Expected only Atlanta vertex")
-        XCTAssertEqual(g1Cycle.edgeCount, 2, "g1Cycle: Expected 2 edges")
+        XCTAssertEqual(g1Cycle.edgeCount, 1, "g1Cycle: Expected 1 edges")
         XCTAssertTrue(g1Cycle.edgeExists(from: "Atlanta", to: "Atlanta"), "g1Cycle: Expected an edge from Atlanta to Atlanta")
 
         let g2Cycle = UniqueElementsGraph(withCycle:["Atlanta", "Boston"])
@@ -139,14 +139,14 @@ class UniqueElementsGraphInitTests: XCTestCase {
 
         let g4Cycle = UniqueElementsGraph(withCycle:["Atlanta", "Boston", "Atlanta"])
         XCTAssertEqual(g4Cycle.vertices, ["Atlanta", "Boston"], "g4Cycle: Expected vertices to be Atlanta and Boston.")
-        XCTAssertEqual(g4Cycle.edgeCount, 4, "g4Cycle: Expected exactly 4 edges")
+        XCTAssertEqual(g4Cycle.edgeCount, 3, "g4Cycle: Expected exactly 3 edges")
         XCTAssertTrue(g4Cycle.edgeExists(from: "Atlanta", to: "Boston"), "g4Cycle: Expected an edge from Atlanta to Boston")
         XCTAssertTrue(g4Cycle.edgeExists(from: "Boston", to: "Atlanta"), "g4Cycle: Expected an edge from Boston to Atlanta")
         XCTAssertTrue(g4Cycle.edgeExists(from: "Atlanta", to: "Atlanta"), "g4Cycle: Expected an edge from Atlanta to Boston")
 
         let g5Cycle = UniqueElementsGraph(withCycle:["Atlanta", "Boston", "Chicago", "Atlanta", "Denver", "Chicago", "Atlanta"])
         XCTAssertEqual(g5Cycle.vertices, ["Atlanta", "Boston", "Chicago", "Denver"], "g5Cycle: Expected vertices to be Atlanta, Boston, Chiicago and Denver.")
-        XCTAssertEqual(g5Cycle.edgeCount, 12, "g5Path: Expected exactly 12 edges")
+        XCTAssertEqual(g5Cycle.edgeCount, 11, "g5Path: Expected exactly 11 edges")
         XCTAssertTrue(g5Cycle.edgeExists(from: "Atlanta", to: "Boston"), "g5Cycle: Expected an edge from Atlanta to Boston")
         XCTAssertTrue(g5Cycle.edgeExists(from: "Boston", to: "Atlanta"), "g5Cycle: Expected an edge from Boston to Atlanta")
         XCTAssertTrue(g5Cycle.edgeExists(from: "Boston", to: "Chicago"), "g5Cycle: Expected an edge from Boston to Chicago")

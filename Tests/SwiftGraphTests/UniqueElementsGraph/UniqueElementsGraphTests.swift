@@ -69,10 +69,10 @@ class UniqueElementsGraphTests: XCTestCase {
         let g = UniqueElementsGraph(vertices:["Atlanta"])
         g.addEdge(from: "Atlanta", to: "Atlanta", directed: false)
         XCTAssertTrue(g.edgeExists(from: "Atlanta", to: "Atlanta"), "Expected an edge from Atlanta to Atlanta")
-        XCTAssertEqual(g.edgeCount, 2, "Expected two edges")
+        XCTAssertEqual(g.edgeCount, 1, "Expect one edge")
 
         g.addEdge(from: "Atlanta", to: "Atlanta", directed: false)
-        XCTAssertEqual(g.edgeCount, 2, "Expected two edges")
+        XCTAssertEqual(g.edgeCount, 1, "Expected one edge")
     }
 
     func testUniqueUndirectedLoop2() {
@@ -80,10 +80,10 @@ class UniqueElementsGraphTests: XCTestCase {
         g.addEdge(from: "Atlanta", to: "Boston", directed: false)
         g.addEdge(from: "Atlanta", to: "Atlanta", directed: false)
         XCTAssertTrue(g.edgeExists(from: "Atlanta", to: "Atlanta"), "Expected an edge from Atlanta to Atlanta")
-        XCTAssertEqual(g.edgeCount, 4, "Expected two edges")
+        XCTAssertEqual(g.edgeCount, 3, "Expected three edges")
 
         g.addEdge(from: "Atlanta", to: "Atlanta", directed: false)
-        XCTAssertEqual(g.edgeCount, 4, "Expected two edges")
+        XCTAssertEqual(g.edgeCount, 3, "Expected three edges")
     }
 
     func testUniqueDirectedEdges() {

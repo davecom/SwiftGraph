@@ -177,7 +177,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func solve(_ sender: AnyObject) {
         let temp = ntGraph.bfs(from: ntView.position, to: NineTailPosition(matrix: [[.Tails, .Tails, .Tails],[.Tails, .Tails, .Tails], [.Tails, .Tails, .Tails]]))
-        path = edgesToVertices(edges: temp, graph: ntGraph)
+        path = ntGraph.edgesToVertices(edges: temp)
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(AppDelegate.timerFire(_:)), userInfo: nil, repeats: true)
     }
     

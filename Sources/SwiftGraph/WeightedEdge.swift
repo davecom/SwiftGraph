@@ -16,41 +16,33 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// This protocol is needed for Dijkstra's algorithm - we need weights in weighted graphs
-/// to be able to be added together
-public protocol Summable {
-    static func +(lhs: Self, rhs: Self) -> Self
-}
-
-extension Int: Summable {}
-extension Double: Summable {}
-extension Float: Summable {}
-extension String: Summable {}
-
 /// A weighted edge, who's weight subscribes to Comparable.
-open class WeightedEdge<W: Comparable & Summable>: UnweightedEdge, Comparable {
-    public override var weighted: Bool { return true }
+open class WeightedEdge<W: Comparable & Numeric & Codable>: UnweightedEdge, Comparable {
     public let weight: W
-    public override var reversed:Edge {
-        return WeightedEdge(u: v, v: u, directed: directed, weight: weight)
+    
+    public init(u: Int, v: Int, weight: W) {
+        self.weight = weight
+        super.init(u: u, v: v)
     }
     
-    public init(u: Int, v: Int, directed: Bool, weight: W) {
-        self.weight = weight
-        super.init(u: u, v: v, directed: directed)
+    enum CodingKeys: String, CodingKey {
+        case weight
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.weight = try values.decode(W.self, forKey: CodingKeys.weight)
+        try super.init(from: decoder)
     }
     
     //Implement Printable protocol
     public override var description: String {
-        if directed {
-            return "\(u) \(weight)> \(v)"
-        }
-        return "\(u) <\(weight)> \(v)"
+        return "\(u) \(weight)> \(v)"
     }
     
     //MARK: Operator Overloads
     static public func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
-        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.directed == rhs.directed && lhs.weight == rhs.weight
+        return lhs.u == rhs.u && lhs.v == rhs.v && lhs.weight == rhs.weight
     }
     
     static public func < <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {

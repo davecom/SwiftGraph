@@ -25,39 +25,112 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
 
     /// Init the Graph with vertices, but removes duplicates. O(n^2)
     public override init(vertices: [V]) {
-        super.init(vertices: vertices)
+        super.init()
+        for vertex in vertices {
+            _ = self.addVertex(vertex) // make sure to call our version
+        }
+    }
+    
+    /// Initialize an UnweightedGraph consisting of path.
+    ///
+    /// The resulting graph has the vertices in path and an edge between
+    /// each pair of consecutive vertices in path.
+    ///
+    /// If path is an empty array, the resulting graph is the empty graph.
+    /// If path is an array with a single vertex, the resulting graph has that vertex and no edges.
+    ///
+    /// - Parameters:
+    ///   - path: An array of vertices representing a path.
+    ///   - directed: If false, undirected edges are created.
+    ///               If true, edges are directed from vertex i to vertex i+1 in path.
+    ///               Default is false.
+    public convenience init(withPath path: [V], directed: Bool = false) {
+        self.init(vertices: path)
+        
+        guard path.count >= 2 else {
+            return
+        }
+        
+        for i in 0..<path.count - 1 {
+            let vertices = path[i...i+1]
+            self.addEdge(from: vertices.first!, to: vertices.last!, directed: directed)
+        }
+    }
+    
+    /// Initialize an UnweightedGraph consisting of cycle.
+    ///
+    /// The resulting graph has the vertices in cycle and an edge between
+    /// each pair of consecutive vertices in cycle,
+    /// plus an edge between the last and the first vertices.
+    ///
+    /// If path is an empty array, the resulting graph is the empty graph.
+    /// If path is an array with a single vertex, the resulting graph has the vertex
+    /// and a single edge to itself if directed is true.
+    /// If directed is false the resulting graph has the vertex and two edges to itself.
+    ///
+    /// - Parameters:
+    ///   - cycle: An array of vertices representing a cycle.
+    ///   - directed: If false, undirected edges are created.
+    ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
+    ///               Default is false.
+    public convenience init(withCycle cycle: [V], directed: Bool = false) {
+        self.init(withPath: cycle, directed: directed)
+        if cycle.count > 0 {
+            self.addEdge(from: cycle.last!, to: cycle.first!, directed: directed)
+        }
     }
 
     /// Add a vertex to the graph if no equal vertex already belongs to the Graph. O(n)
     ///
     /// - parameter v: The vertex to be added.
     /// - returns: The index where the vertex was added, or the index of the equal vertex already belonging to the graph.
-    public override func addVertex(_ v: V) -> Int {
+    public func addVertex(_ v: V) -> Int {
         if let equalVertexIndex = indexOfVertex(v) {
             return equalVertexIndex
         }
         return super.addVertex(v)
     }
 
-    // TODO: Add proper description of this override and proper comments in method
-    /// Add an edge to the graph. It should take
+    /// Only allow the edge to be added once
     ///
     /// - parameter e: The edge to add.
-    public override func addEdge(_ e: Edge) {
-        if e.u == e.v {
-            let loopCount = edges[e.u].filter{ $0.v == e.u }.reduce(0, {r,_ in r+1})
-            if loopCount == 0 {
-                edges[e.u].append(e)
+    public func addEdge(_ e: E) {
+        if !edgeExists(from: e.u, to: e.v) {
+            edges[e.u].append(e)
+        }
+    }
+    
+    /// Only allow the edge to be added once
+    ///
+    /// - parameter from: The starting vertex's index.
+    /// - parameter to: The ending vertex's index.
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public override func addEdge(from: Int, to: Int, directed: Bool = false) {
+        if !edgeExists(from: from, to: to) {
+            addEdge(UnweightedEdge(u: from, v: to))
+            if !directed && !edgeExists(from: to, to: from) {
+                addEdge(UnweightedEdge(u: to, v: from))
             }
-            if !e.directed && loopCount <= 1 {
-                edges[e.u].append(e)
-            }
-        } else {
-            if !edgeExists(from: e.u, to: e.v) {
-                edges[e.u].append(e)
-            }
-            if !e.directed && !edgeExists(from: e.v, to: e.u) {
-                edges[e.v].append(e.reversed)
+        }
+        
+        
+    }
+    
+    /// Only allow the edge to be added once
+    ///
+    /// - parameter from: The starting vertex.
+    /// - parameter to: The ending vertex.
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public override func addEdge(from: V, to: V, directed: Bool = false) {
+        if let u = indexOfVertex(from) {
+            if let v = indexOfVertex(to) {
+                if !edgeExists(from: u, to: v) {
+                    addEdge(UnweightedEdge(u: u, v: v))
+                    if !directed && !edgeExists(from: v, to: u) {
+                        addEdge(UnweightedEdge(u: v, v: u))
+                    }
+                }
+                
             }
         }
     }

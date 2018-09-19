@@ -40,7 +40,7 @@ public extension WeightedGraph {
         func visit(_ index: Int) {
             visited[index] = true // mark as visited
             for edge in edgesForIndex(index) { // add all edges coming from here to pq
-                if !visited[edge.v] { pq.push(edge as! WeightedEdge<W>) }
+                if !visited[edge.v] { pq.push(edge) }
             }
         }
         

@@ -157,7 +157,7 @@ class DijkstraGraphTests: XCTestCase {
         
         //path between New York and San Francisco
         let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("New York")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
+        let stops: [String] = cityGraph.edgesToVertices(edges: path)
         print("\(stops))")
         XCTAssertEqual(stops, ["New York", "Chicago", "Denver", "San Francisco"], "Atlanta should be 888 miles away.")
         //println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
@@ -195,7 +195,7 @@ class DijkstraGraphTests: XCTestCase {
         
         //path between New York and Seattle
         let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("Miami")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph)
+        let stops: [String] = cityGraph.edgesToVertices(edges: path)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Dallas", "Los Angeles", "San Francisco"], "Shortest path to San Francisco is not right.")
         //println(edgesToVertices(result, cityGraph))  // not sure why description not called by println
@@ -234,7 +234,7 @@ class DijkstraGraphTests: XCTestCase {
         
         //path between New York and Seattle
         let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph2.indexOfVertex("Miami")!, to: cityGraph2.indexOfVertex("San Francisco")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph2)
+        let stops: [String] = cityGraph2.edgesToVertices(edges: path)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Houston", "Phoenix", "Riverside", "San Francisco"], "Shortest path to San Francisco is not right.")
         //println(edgesToVertices(result, cityGraph2))  // not sure why description not called by println
@@ -252,7 +252,7 @@ class DijkstraGraphTests: XCTestCase {
         }
         
         let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("Miami")!, to: cityGraph3.indexOfVertex("Chicago")!, pathDict: pathDict)
-        let stops: [String] = edgesToVertices(edges: path, graph: cityGraph3)
+        let stops: [String] = cityGraph3.edgesToVertices(edges: path)
         print("\(stops))")
         XCTAssertEqual(stops, ["Miami", "Atlanta", "New York", "Chicago"], "Shortest path to Chicago is not right.")
 
