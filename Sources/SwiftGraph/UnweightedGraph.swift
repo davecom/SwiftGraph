@@ -98,12 +98,10 @@ open class UnweightedGraph<V: Equatable>: Graph {
     /// - parameter to: The ending vertex.
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(from: V, to: V, directed: Bool = false) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(UnweightedEdge(u: u, v: v))
-                if !directed {
-                    addEdge(UnweightedEdge(u: v, v: u))
-                }
+        if let u = indexOfVertex(from), let v = indexOfVertex(to) {
+            addEdge(UnweightedEdge(u: u, v: v))
+            if !directed {
+                addEdge(UnweightedEdge(u: v, v: u))
             }
         }
     }

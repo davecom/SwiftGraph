@@ -36,7 +36,7 @@ class SwiftGraphCodableTests: XCTestCase {
      {"edges":[[{"u":0,"v":1}],[{"u":1,"v":0}]],"vertices":["New York","Miami"]}
      """
     
-    func testEncodable() {
+    func testEncodableDecodable() {
         let g = expectedUnweightedGraph
         
         let jsonData: Data
@@ -47,24 +47,24 @@ class SwiftGraphCodableTests: XCTestCase {
             return
         }
         let jsonString = String(data: jsonData, encoding: .utf8)
-        XCTAssertEqual(jsonString, expectedString)
-    }
-    
-    func testDecodable() {
-        guard let jsonData = expectedString.data(using: .utf8) else {
+
+        guard let jsonData2 = expectedString.data(using: .utf8) else {
             XCTFail("Unable to serialize expected JSON string into Data")
             return
         }
         
-        let g: UnweightedGraph<String>
+        let g2: CodableUnweightedGraph<String>
         do {
-            g = try JSONDecoder().decode(CodableUnweightedGraph<String>.self, from: jsonData)
+            g2 = try JSONDecoder().decode(CodableUnweightedGraph<String>.self, from: jsonData2)
         } catch {
             XCTFail("JSONDecoder().decode(CodableUnweightedGraph<String>.self, from: jsonData) threw: \(error)")
             return
         }
-        XCTAssertEqual(g.neighborsForVertex("Miami")!, g.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miami and New York Connected bi-directionally")
+        XCTAssertEqual(g2.neighborsForVertex("Miami")!, g2.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miami and New York Connected bi-directionally")
         //        XCTAssertEqual(g, expectedUnweightedGraph)
+        let jsonData3 = try! JSONEncoder().encode(g2)
+        let jsonString2: String = String(data: jsonData3, encoding: .utf8)!
+        XCTAssertEqual(jsonString, jsonString2)
     }
 }
 
@@ -236,8 +236,7 @@ extension SwiftGraphCodableTests {
     }
     
     static var allTests = [
-        ("testEncodable", testEncodable),
-        ("testDecodable", testDecodable),
+        ("testEncodableDecodable", testEncodableDecodable),
         ("testComplexWeightedEncodableDecodable", testComplexWeightedEncodableDecodable)
     ]
 }

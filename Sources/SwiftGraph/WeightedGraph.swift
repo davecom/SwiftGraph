@@ -62,10 +62,8 @@ open class WeightedGraph<V: Equatable, W: Comparable & Numeric & Codable>: Graph
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
     public func addEdge(from: V, to: V, weight: W, directed: Bool = false) {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                addEdge(from: u, to: v, weight: weight, directed: directed)
-            }
+        if let u = indexOfVertex(from), let v = indexOfVertex(to) {
+            addEdge(from: u, to: v, weight: weight, directed: directed)
         }
     }
     
