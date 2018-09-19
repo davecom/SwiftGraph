@@ -17,7 +17,7 @@ It includes copious in-source documentation, unit tests, as well as search funct
 
 ## Installation
 
-SwiftGraph 1.5.0 and above requires Swift 4. Use SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support.
+SwiftGraph 2.0 (WIP on master) and above requires Swift 4.2 (Xcode 10). Use SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support.
 
 ### CocoaPods
 
