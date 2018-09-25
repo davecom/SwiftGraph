@@ -88,7 +88,7 @@ var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distance
 let temp = nameDistance["San Francisco"] 
 // path between New York and San Francisco
 let path: [WeightedEdge<Int>] = pathDictToPath(from: cityGraph.indexOfVertex("New York")!, to: cityGraph.indexOfVertex("San Francisco")!, pathDict: pathDict)
-let stops: [String] = cightGraph.edgesToVertices(edges: path)
+let stops: [String] = cityGraph.edgesToVertices(edges: path)
 ```
 The shortest paths are found between various vertices in the graph using Dijkstra's algorithm.
 ```swift
