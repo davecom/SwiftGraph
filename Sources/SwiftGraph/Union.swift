@@ -19,31 +19,36 @@
 // MARK: - Extension to UniqueVerticesGraph with Union initializer
 public extension UniqueElementsGraph {
     
-    /// Creates a new UniqueVerticesGraph that is the union of two UniqueVerticesGraphs. O(n^2)
+    /// Creates a new UniqueVerticesGraph that is the union of several UniqueVerticesGraphs.
     ///
     /// This operation is commutative in the sense that g1 ∪ g2 has the same vertices and edges
-    /// than g2 ∪ g1. However, the indices of the vertices are not guaranteed to be the same.
+    /// than g2 ∪ g1. However, the indices of the vertices are not guaranteed to be conserved.
+    ///
+    /// This operation is O(k*n^2), where k is the number of graphs and n the number of vertices of
+    /// the largest graph.
     ///
     /// - Parameters:
-    ///   - lhs: One of the graphs to build the union from.
-    ///   - rhs: The other graph to build the union from.
-    public convenience init(unionOf lhs: UniqueElementsGraph<V>, _ others: UniqueElementsGraph<V>...) {
+    ///   - graphs: Array of graphs to build the union from.
+    public convenience init(unionOf graphs: [UniqueElementsGraph<V>]) {
         self.init()
 
+        guard let firstGraph = graphs.first else { return }
+        let others = graphs.dropFirst()
+
         // We know vertices in lhs are unique, so we call Graph.addVertex to avoid the uniqueness check of UniqueElementsGraph.addVertex.
-        for vertex in lhs.vertices {
-            _ = self.addVertex(vertex)
+        for vertex in firstGraph.vertices {
+            _ = super.addVertex(vertex)
         }
 
-        // When vertices are removed from Graph, edges can be mutated,
+        // When vertices are removed from Graph, edges might mutate,
         // so we need to add new copies of them for the result graph.
-        for edge in lhs.edges.joined() {
+        for edge in firstGraph.edges.joined() {
             addEdge(edge)
         }
 
         for g in others {
             // Vertices in rhs might be equal to some vertex in lhs, so we need to add them
-            // with addVertex to guarantee uniqueness.
+            // with self.addVertex to guarantee uniqueness.
             for vertex in g.vertices {
                 _ = addVertex(vertex)
             }
@@ -52,5 +57,9 @@ public extension UniqueElementsGraph {
                 addEdge(from: g[edge.u], to: g[edge.v], directed: true)
             }
         }
+    }
+
+    public convenience init(unionOf graphs: UniqueElementsGraph<V>...) {
+        self.init(unionOf: graphs)
     }
 }
