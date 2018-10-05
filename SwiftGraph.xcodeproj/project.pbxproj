@@ -30,16 +30,19 @@
 		7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B46E1C0E756200D6664E /* UnweightedGraph.swift */; };
 		7985B9261E5A503200C100E7 /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4711C0E757100D6664E /* WeightedGraph.swift */; };
 		7985B9271E5A503200C100E7 /* SwiftPriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */; };
-		7985B9281E5A503200C100E7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* Search.swift */; };
+		7985B9281E5A503200C100E7 /* GraphTraverser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4741C0E758500D6664E /* GraphTraverser.swift */; };
 		7985B9291E5A503200C100E7 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553746441DA56CC500C0E0F6 /* Sort.swift */; };
-		7985B92A1E5A503200C100E7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B4771C0E759800D6664E /* Stack.swift */; };
-		7985B92B1E5A503200C100E7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B47A1C0E75A700D6664E /* Queue.swift */; };
 		B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */; };
 		B51B460B2083E14200CD0463 /* Union.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51B460A2083E14200CD0463 /* Union.swift */; };
 		B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */; };
 		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
 		B54FDA6E21729EFF00057C51 /* Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA6D21729EFF00057C51 /* Constructors.swift */; };
 		B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA702172A34D00057C51 /* ConstructorsTests.swift */; };
+		B5560B2E2197B305003B13F1 /* DFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5560B2D2197B304003B13F1 /* DFS.swift */; };
+		B5560B302197B3BC003B13F1 /* BFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5560B2F2197B3BC003B13F1 /* BFS.swift */; };
+		B5560B322197B4D1003B13F1 /* Dijkstra.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5560B312197B4D1003B13F1 /* Dijkstra.swift */; };
+		B58A391B21987D7E0045B9FB /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A391921987D7E0045B9FB /* Stack.swift */; };
+		B58A391C21987D7E0045B9FB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A391A21987D7E0045B9FB /* Queue.swift */; };
 		B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
 		B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */; };
@@ -97,9 +100,7 @@
 		5589B46B1C0E753E00D6664E /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Sources/SwiftGraph/Graph.swift; sourceTree = SOURCE_ROOT; };
 		5589B46E1C0E756200D6664E /* UnweightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnweightedGraph.swift; path = Sources/SwiftGraph/UnweightedGraph.swift; sourceTree = SOURCE_ROOT; };
 		5589B4711C0E757100D6664E /* WeightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightedGraph.swift; path = Sources/SwiftGraph/WeightedGraph.swift; sourceTree = SOURCE_ROOT; };
-		5589B4741C0E758500D6664E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = Sources/SwiftGraph/Search.swift; sourceTree = SOURCE_ROOT; };
-		5589B4771C0E759800D6664E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Sources/SwiftGraph/Stack.swift; sourceTree = SOURCE_ROOT; };
-		5589B47A1C0E75A700D6664E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Sources/SwiftGraph/Queue.swift; sourceTree = SOURCE_ROOT; };
+		5589B4741C0E758500D6664E /* GraphTraverser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphTraverser.swift; path = Sources/SwiftGraph/GraphTraverser.swift; sourceTree = SOURCE_ROOT; };
 		55DCCBF51F8ADA12001913F7 /* Cycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cycle.swift; path = Sources/SwiftGraph/Cycle.swift; sourceTree = SOURCE_ROOT; };
 		55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleTests.swift; sourceTree = "<group>"; };
 		55E620021A194C80000A5F7B /* SwiftGraphSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGraphSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +126,11 @@
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
 		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constructors.swift; path = ../Sources/SwiftGraph/Constructors.swift; sourceTree = "<group>"; };
 		B54FDA702172A34D00057C51 /* ConstructorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsTests.swift; sourceTree = "<group>"; };
+		B5560B2D2197B304003B13F1 /* DFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DFS.swift; path = ../Sources/SwiftGraph/DFS.swift; sourceTree = "<group>"; };
+		B5560B2F2197B3BC003B13F1 /* BFS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BFS.swift; path = ../Sources/SwiftGraph/BFS.swift; sourceTree = "<group>"; };
+		B5560B312197B4D1003B13F1 /* Dijkstra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Dijkstra.swift; path = ../Sources/SwiftGraph/Dijkstra.swift; sourceTree = "<group>"; };
+		B58A391921987D7E0045B9FB /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Sources/SwiftGraph/Stack.swift; sourceTree = SOURCE_ROOT; };
+		B58A391A21987D7E0045B9FB /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Sources/SwiftGraph/Queue.swift; sourceTree = SOURCE_ROOT; };
 		B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsPerformanceTests.swift; sourceTree = "<group>"; };
 		B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueElementsGraph.swift; path = Sources/SwiftGraph/UniqueElementsGraph.swift; sourceTree = SOURCE_ROOT; };
 		B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphTests.swift; sourceTree = "<group>"; };
@@ -196,13 +202,16 @@
 		5589B4831C0E775800D6664E /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				B58A391A21987D7E0045B9FB /* Queue.swift */,
+				B58A391921987D7E0045B9FB /* Stack.swift */,
 				55FB2D651CE25E0800C2B876 /* SwiftPriorityQueue.swift */,
 				55E784251ED2127D003899D0 /* MST.swift */,
 				55DCCBF51F8ADA12001913F7 /* Cycle.swift */,
-				5589B4741C0E758500D6664E /* Search.swift */,
+				5589B4741C0E758500D6664E /* GraphTraverser.swift */,
+				B5560B2D2197B304003B13F1 /* DFS.swift */,
+				B5560B2F2197B3BC003B13F1 /* BFS.swift */,
+				B5560B312197B4D1003B13F1 /* Dijkstra.swift */,
 				553746441DA56CC500C0E0F6 /* Sort.swift */,
-				5589B4771C0E759800D6664E /* Stack.swift */,
-				5589B47A1C0E75A700D6664E /* Queue.swift */,
 			);
 			name = Search;
 			path = ../SwiftGraph;
@@ -511,21 +520,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */,
+				B5560B2E2197B305003B13F1 /* DFS.swift in Sources */,
 				7985B9241E5A503200C100E7 /* Graph.swift in Sources */,
+				B58A391C21987D7E0045B9FB /* Queue.swift in Sources */,
 				7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */,
 				7985B9291E5A503200C100E7 /* Sort.swift in Sources */,
 				B51B460B2083E14200CD0463 /* Union.swift in Sources */,
-				7985B92B1E5A503200C100E7 /* Queue.swift in Sources */,
 				B54FDA6E21729EFF00057C51 /* Constructors.swift in Sources */,
 				55E784261ED2127D003899D0 /* MST.swift in Sources */,
 				7985B9231E5A503200C100E7 /* WeightedEdge.swift in Sources */,
 				7985B9261E5A503200C100E7 /* WeightedGraph.swift in Sources */,
+				B58A391B21987D7E0045B9FB /* Stack.swift in Sources */,
 				7985B9221E5A503200C100E7 /* UnweightedEdge.swift in Sources */,
-				7985B92A1E5A503200C100E7 /* Stack.swift in Sources */,
-				7985B9281E5A503200C100E7 /* Search.swift in Sources */,
+				7985B9281E5A503200C100E7 /* GraphTraverser.swift in Sources */,
 				7985B9211E5A503200C100E7 /* Edge.swift in Sources */,
 				7985B9271E5A503200C100E7 /* SwiftPriorityQueue.swift in Sources */,
+				B5560B302197B3BC003B13F1 /* BFS.swift in Sources */,
 				55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */,
+				B5560B322197B4D1003B13F1 /* Dijkstra.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,10 +21,10 @@ import XCTest
 
 class SwiftGraphSearchTests: XCTestCase {
     // pg 1016 Liang
-    let cityGraph: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+    let cityGraph: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"].shuffled())
     
     // 15 largest MSAs in United States as of 2016
-    let cityGraph2: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    let cityGraph2: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"].shuffled())
     
     override func setUp() {
         super.setUp()
@@ -180,6 +180,30 @@ class SwiftGraphSearchTests: XCTestCase {
         print(cityGraph2.edgesToVertices(edges: result))
     }
 
+    func testVisitDfs() {
+        let cities = Set(cityGraph2.vertices)
+        var result: [String] = []
+        cityGraph2.visitDfs(from: "Seattle") { (v) in
+            result.append(v)
+            return true
+        }
+        XCTAssertEqual(cities.count, result.count, "Not all cities visited")
+        XCTAssertTrue(cities == Set(result), "Not all cities visited")
+    }
+
+    func testVisitDfsOrdered() {
+        let oracle = "Denver - Chicago - Boston - New York - Atlanta - Dallas - Houston - Miami - Kansas City - Los Angeles - San Francisco - Seattle"
+        var result: [String] = []
+        DFS(on: cityGraph).withVisitOrder({ $0.sorted(by: {
+            self.cityGraph.vertexAtIndex($0.v) < self.cityGraph.vertexAtIndex($1.v)
+        }) })
+        .visit(from: "Denver") { (v) in
+            result.append(v)
+            return true
+        }
+        XCTAssertTrue(oracle == result.joined(separator: " - "), "Cities visited in the wrong order")
+    }
+    
     func testDFSWithCycle() {
         let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
 
@@ -287,6 +311,39 @@ class SwiftGraphSearchTests: XCTestCase {
         print(cityGraph2.edgesToVertices(edges: result))
     }
 
+    func testBFSNotFound() {
+        // Houston -> first city starting with "Z"
+        let result = cityGraph2.bfs(from: "Houston") { v in
+            return v.first == "Z"
+        }
+        XCTAssertTrue(result.isEmpty, "Found a city starting with Z when there's none.")
+        print(cityGraph2.edgesToVertices(edges: result))
+    }
+
+    func testVisitBfs() {
+        let cities = Set(cityGraph2.vertices)
+        var result: [String] = []
+        cityGraph2.visitBfs(from: "Seattle") { (v) in
+            result.append(v)
+            return true
+        }
+        XCTAssertEqual(cities.count, result.count, "Not all cities visited")
+        XCTAssertTrue(cities == Set(result), "Not all cities visited")
+    }
+
+    func testVisitBfsOrdered() {
+        let oracle = "Denver - Chicago - Kansas City - Los Angeles - San Francisco - Seattle - Boston - New York - Atlanta - Dallas - Houston - Miami"
+        var result: [String] = []
+        BFS(on: cityGraph).withVisitOrder({ $0.sorted(by: {
+            self.cityGraph.vertexAtIndex($0.v) < self.cityGraph.vertexAtIndex($1.v)
+        }) })
+            .visit(from: "Denver") { (v) in
+                result.append(v)
+                return true
+        }
+        XCTAssertTrue(oracle == result.joined(separator: " - "), "Cities visited in the wrong order")
+    }
+
     func testBFSWithCycle() {
         let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
 
@@ -305,7 +362,7 @@ class SwiftGraphSearchTests: XCTestCase {
     
     func testFindAll() {
         // New York -> all cities starting with "S"
-        let result = cityGraph.findAll(from: "New York") { v in
+        let result = cityGraph.findAllBFS(from: "New York") { v in
             return v.first == "S"
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find any connections between New York and a city starting with S (there is one).")
