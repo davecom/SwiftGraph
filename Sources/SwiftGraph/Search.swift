@@ -46,15 +46,16 @@ public extension Graph {
         let stack: Stack<Int> = Stack<Int>()
         var state: R = reducer.initialState
         stack.push(from)
+        visited[from] = true
         while !stack.isEmpty {
             let v: Int = stack.pop()
             if goalTest(v) {
                 return (state, v)
             }
-            visited[v] = true
             for e in edgesForIndex(v) {
                 if !visited[e.v] {
                     stack.push(e.v)
+                    visited[e.v] = true
                     state = reducer.reduce(state, e)
                 }
             }

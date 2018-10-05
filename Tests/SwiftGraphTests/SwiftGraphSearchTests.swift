@@ -182,11 +182,12 @@ class SwiftGraphSearchTests: XCTestCase {
 
     func testVisit() {
         let cities = Set(cityGraph2.vertices)
-        var result = Set(["Seattle"])
+        var result = ["Seattle"]
         cityGraph2.visit(from: "Seattle") { (v) in
-            result.insert(v)
+            result.append(v)
         }
-        XCTAssertTrue(cities == result, "Not all cities visited")
+        XCTAssertEqual(cities.count, result.count, "Not all cities visited")
+        XCTAssertTrue(cities == Set(result), "Not all cities visited")
     }
     
     func testBFS1() {
