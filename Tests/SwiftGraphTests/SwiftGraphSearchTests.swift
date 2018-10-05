@@ -179,6 +179,15 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertTrue(result.isEmpty, "Found a city starting with Z when there's none.")
         print(cityGraph2.edgesToVertices(edges: result))
     }
+
+    func testVisit() {
+        let cities = Set(cityGraph2.vertices)
+        var result = Set(["Seattle"])
+        cityGraph2.visit(from: "Seattle") { (v) in
+            result.insert(v)
+        }
+        XCTAssertTrue(cities == result, "Not all cities visited")
+    }
     
     func testBFS1() {
         // Seattle -> Miami

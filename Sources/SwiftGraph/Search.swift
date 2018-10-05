@@ -99,7 +99,7 @@ public extension Graph {
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a depth-first search.
     ///
-    /// - parameter from: The index of the starting vertex.
+    /// - parameter from: The starting vertex.
     /// - parameter goalTest: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
     public func dfs(from: V, goalTest: (V) -> Bool) -> [E] {
@@ -130,6 +130,17 @@ public extension Graph {
             }
         }
         return []
+    }
+
+    public func visit(from: Int, executing closure: @escaping (Int)->()) {
+        _ = dfs(from: from, goalTest: { _ in false }, reducer: Reducer<(),E>(initialState: ()) { (_, e) in
+                closure(e.v)
+            });
+    }
+
+    public func visit(from: V, executing closure: @escaping (V)->()) {
+        guard let v = indexOfVertex(from) else { return }
+        visit(from: v, executing: { closure(self.vertexAtIndex($0))})
     }
 
     /// Find a route from a vertex to the first that satisfies goalTest()
