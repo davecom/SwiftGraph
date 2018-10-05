@@ -25,9 +25,9 @@ public extension Graph {
     /// using a depth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
-    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - parameter goalTest: Returns true if a given vertex index is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, goalTest: (V) -> Bool) -> [E] {
+    public func dfs(from: Int, goalTest: (Int) -> Bool) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let stack: Stack<Int> = Stack<Int>()
@@ -35,7 +35,7 @@ public extension Graph {
         stack.push(from)
         while !stack.isEmpty {
             let v: Int = stack.pop()
-            if goalTest(vertexAtIndex(v)) {
+            if goalTest(v) {
                 // figure out route of edges based on pathDict
                 return pathDictToPath(from: from, to: v, pathDict: pathDict) as! [Self.E]
             }
@@ -49,7 +49,17 @@ public extension Graph {
         }
         return [] // no route found
     }
-    
+
+    /// Find a route from a vertex to the first that satisfies goalTest()
+    /// using a depth-first search.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
+    public func dfs(from: Int, goalTest: (V) -> Bool) -> [E] {
+        return dfs(from: from, goalTest: { goalTest(vertexAtIndex($0)) })
+    }
+
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a depth-first search.
     ///
@@ -69,26 +79,7 @@ public extension Graph {
     /// - parameter to: The index of the ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
     public func dfs(from: Int, to: Int) -> [E] {
-        // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
-        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
-        let stack: Stack<Int> = Stack<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
-        stack.push(from)
-        while !stack.isEmpty {
-            let v: Int = stack.pop()
-            if v == to {
-                // figure out route of edges based on pathDict
-                return pathDictToPath(from: from, to: to, pathDict: pathDict) as! [Self.E]
-            }
-            visited[v] = true
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    stack.push(e.v)
-                    pathDict[e.v] = e
-                }
-            }
-        }
-        return [] // no solution found
+        return dfs(from: from, goalTest: { $0 == to })
     }
 
     /// Find a route from one vertex to another using a depth-first search.
