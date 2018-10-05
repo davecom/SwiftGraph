@@ -18,8 +18,49 @@
 
 /// Functions for searching a graph & utility functions for supporting them
 
+public struct Reducer<R, A> {
+    let initialState: R
+    let reduce: (R, A) -> R
+}
+
 // MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
 public extension Graph {
+
+    /// Perform a computation over the graph visiting the vertices using a
+    /// depth-first algorithm.
+    ///
+    /// The state of the computation is initially set to the reducer's initial state.
+    /// Then, the reducer produces the next state from the previous state and the
+    /// last visited vertex. The computation ends when the visited vertex satisfies goalTest
+    /// or all vertices are visited.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex index is a goal.
+    /// - parameter reducer: A reducer that is fed with each visited vertex. The reducer is passed
+    ///                      the previous state and the visited vertex and it produces the new state.
+    /// - returns: A tuple consisting of the final state produced by the reducer and the first
+    ///            vertex found to satisfy goalTest. If no vertex is found, a tuple containing
+    ///            the initial state of the reducer and nil is returned.
+    public func dfs<R>(from: Int, goalTest: (Int) -> Bool, reducer: Reducer<R, E>) -> (state: R, vertexFound: Int?) {
+        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
+        let stack: Stack<Int> = Stack<Int>()
+        var state: R = reducer.initialState
+        stack.push(from)
+        while !stack.isEmpty {
+            let v: Int = stack.pop()
+            if goalTest(v) {
+                return (state, v)
+            }
+            visited[v] = true
+            for e in edgesForIndex(v) {
+                if !visited[e.v] {
+                    stack.push(e.v)
+                    state = reducer.reduce(state, e)
+                }
+            }
+        }
+        return (reducer.initialState, nil) // no route found
+    }
 
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a depth-first search.
@@ -29,25 +70,20 @@ public extension Graph {
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
     public func dfs(from: Int, goalTest: (Int) -> Bool) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
-        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
-        let stack: Stack<Int> = Stack<Int>()
-        var pathDict: [Int: E] = [Int: E]()
-        stack.push(from)
-        while !stack.isEmpty {
-            let v: Int = stack.pop()
-            if goalTest(v) {
-                // figure out route of edges based on pathDict
-                return pathDictToPath(from: from, to: v, pathDict: pathDict) as! [Self.E]
+        let reducer = Reducer(
+            initialState: [:],
+            reduce: { (pathDict: [Int: E], e: E) -> [Int: E] in
+                var pathDict = pathDict
+                pathDict[e.v] = e
+                return pathDict
             }
-            visited[v] = true
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    stack.push(e.v)
-                    pathDict[e.v] = e
-                }
-            }
+        )
+
+        let result = dfs(from: from, goalTest: goalTest, reducer: reducer)
+        if let vertexFound = result.vertexFound {
+            return pathDictToPath(from: from, to: vertexFound, pathDict: result.state) as! [E]
         }
-        return [] // no route found
+        return []
     }
 
     /// Find a route from a vertex to the first that satisfies goalTest()
