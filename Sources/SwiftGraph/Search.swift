@@ -18,13 +18,13 @@
 
 /// Functions for searching a graph & utility functions for supporting them
 
-typealias DFS<G: Graph> = Search<G, Stack<G.E>>
-typealias BFS<G: Graph> = Search<G, Queue<G.E>>
+public typealias DFS<G: Graph> = Search<G, Stack<G.E>>
+public typealias BFS<G: Graph> = Search<G, Queue<G.E>>
 
 /// This class implements the depth-first search algorithms
-struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
-    typealias V = G.V
-    typealias E = G.E
+public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
+    public typealias V = G.V
+    public typealias E = G.E
 
     /// The graph on which the search or computation will be performed
     public let graph: G

@@ -18,7 +18,7 @@
 
 /// An abstract edge container used to store the discovered edges whose destination vertex still
 /// has to be visited.
-protocol EdgeContainer {
+public protocol EdgeContainer {
     associatedtype E
 
     /// Indicates wheter this container is a first-in-first-out container or a
@@ -43,9 +43,9 @@ protocol EdgeContainer {
 public class Stack<T>: EdgeContainer {
     private var container: [T] = [T]()
 
-    static var isFIFO: Bool { get { return false } }
+    public static var isFIFO: Bool { get { return false } }
 
-    required init() {}
+    public required init() {}
     public var isEmpty: Bool { return container.isEmpty }
     public func push(_ thing: T) { container.append(thing) }
     public func pop() -> T { return container.removeLast() }
@@ -55,9 +55,9 @@ public class Stack<T>: EdgeContainer {
 public class Queue<T: Equatable>: EdgeContainer {
     private var container: [T] = [T]()
 
-    static var isFIFO: Bool { get { return true } }
+    public static var isFIFO: Bool { get { return true } }
 
-    required init() {}
+    public required init() {}
     public var isEmpty: Bool { return container.isEmpty }
     public var count: Int { return container.count }
     public func push(_ thing: T) { container.append(thing) }
