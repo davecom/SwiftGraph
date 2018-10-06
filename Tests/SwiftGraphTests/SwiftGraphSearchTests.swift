@@ -180,17 +180,17 @@ class SwiftGraphSearchTests: XCTestCase {
         print(cityGraph2.edgesToVertices(edges: result))
     }
 
-    func testVisit() {
+    func testVisitDfs() {
         let cities = Set(cityGraph2.vertices)
         var result: [String] = []
-        cityGraph2.visit(from: "Seattle") { (v) in
+        cityGraph2.visitDfs(from: "Seattle") { (v) in
             result.append(v)
         }
         XCTAssertEqual(cities.count, result.count, "Not all cities visited")
         XCTAssertTrue(cities == Set(result), "Not all cities visited")
     }
 
-    func testVisitOrdered() {
+    func testVisitDfsOrdered() {
         let oracle = "Denver - Chicago - Boston - New York - Atlanta - Dallas - Houston - Miami - Kansas City - Los Angeles - San Francisco - Seattle"
         var result: [String] = []
         DFS(on: cityGraph).withVisitOrder({ $0.sorted(by: {
@@ -286,6 +286,37 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Houston", "Houston is not the start")
         }
         print(cityGraph2.edgesToVertices(edges: result))
+    }
+
+    func testBFSNotFound() {
+        // Houston -> first city starting with "Z"
+        let result = cityGraph2.bfs(from: "Houston") { v in
+            return v.first == "Z"
+        }
+        XCTAssertTrue(result.isEmpty, "Found a city starting with Z when there's none.")
+        print(cityGraph2.edgesToVertices(edges: result))
+    }
+
+    func testVisitBfs() {
+        let cities = Set(cityGraph2.vertices)
+        var result: [String] = []
+        cityGraph2.visitBfs(from: "Seattle") { (v) in
+            result.append(v)
+        }
+        XCTAssertEqual(cities.count, result.count, "Not all cities visited")
+        XCTAssertTrue(cities == Set(result), "Not all cities visited")
+    }
+
+    func testVisitBfsOrdered() {
+        let oracle = "Denver - Chicago - Kansas City - Los Angeles - San Francisco - Seattle - Boston - New York - Atlanta - Dallas - Houston - Miami"
+        var result: [String] = []
+        BFS(on: cityGraph).withVisitOrder({ $0.sorted(by: {
+            self.cityGraph.vertexAtIndex($0.v) < self.cityGraph.vertexAtIndex($1.v)
+        }) })
+            .visit(from: "Denver") { (v) in
+                result.append(v)
+        }
+        XCTAssertTrue(oracle == result.joined(separator: " - "), "Cities visited in the wrong order")
     }
     
     func testFindAll() {
