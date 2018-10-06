@@ -185,6 +185,7 @@ class SwiftGraphSearchTests: XCTestCase {
         var result: [String] = []
         cityGraph2.visitDfs(from: "Seattle") { (v) in
             result.append(v)
+            return true
         }
         XCTAssertEqual(cities.count, result.count, "Not all cities visited")
         XCTAssertTrue(cities == Set(result), "Not all cities visited")
@@ -198,6 +199,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }) })
         .visit(from: "Denver") { (v) in
             result.append(v)
+            return true
         }
         XCTAssertTrue(oracle == result.joined(separator: " - "), "Cities visited in the wrong order")
     }
@@ -302,6 +304,7 @@ class SwiftGraphSearchTests: XCTestCase {
         var result: [String] = []
         cityGraph2.visitBfs(from: "Seattle") { (v) in
             result.append(v)
+            return true
         }
         XCTAssertEqual(cities.count, result.count, "Not all cities visited")
         XCTAssertTrue(cities == Set(result), "Not all cities visited")
@@ -315,6 +318,7 @@ class SwiftGraphSearchTests: XCTestCase {
         }) })
             .visit(from: "Denver") { (v) in
                 result.append(v)
+                return true
         }
         XCTAssertTrue(oracle == result.joined(separator: " - "), "Cities visited in the wrong order")
     }

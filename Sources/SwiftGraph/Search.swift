@@ -58,8 +58,9 @@ public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
     /// - parameter goalTest: Returns true if a given vertex index is a goal.
     /// - parameter reducer: A reducer that is fed with each visited vertex. The input parameter
     ///                      is the edge from the previous vertex to the visited vertex.
+    ///                      If the return value is false, the neighbours of the vertex are not visited.
     /// - returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
-    public func from(_ initalVertex: Int, goalTest: (Int) -> Bool, reducer: (E)->()) -> Int? {
+    public func from(_ initalVertex: Int, goalTest: (Int) -> Bool, reducer: (E)->(Bool)) -> Int? {
         // Setup
 
         if goalTest(initalVertex) {
@@ -88,11 +89,13 @@ public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
         while !container.isEmpty {
             let edge: E = container.pop()
             let v = edge.v
-            reducer(edge)
+            let shouldVisitNeighbours = reducer(edge)
             if goalTest(v) {
                 return v
             }
-            visitNeighbours(v: v)
+            if shouldVisitNeighbours {
+                visitNeighbours(v: v)
+            }
         }
         return nil // no route found
     }
@@ -106,8 +109,9 @@ public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
     public func from(_ initalVertex: Int, goalTest: (Int) -> Bool) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
         var pathDict:[Int: E] = [:]
-        let result = from(initalVertex, goalTest: goalTest, reducer: { (e: E) -> Void in
+        let result = from(initalVertex, goalTest: goalTest, reducer: { (e: E) -> Bool in
             pathDict[e.v] = e
+            return true
         })
         if let vertexFound = result {
             return pathDictToPath(from: initalVertex, to: vertexFound, pathDict: pathDict) as! [E]
@@ -167,10 +171,12 @@ public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
     /// - Parameters:
     ///   - initalVertex: The index of the initial vertex
     ///   - closure: The closure to execute on each visited vertex. Takes the index of
-    ///              the visited vertex as input parameter
-    public func visit(from initalVertex: Int, executing closure: @escaping (Int)->()) {
-        closure(initalVertex)
-        _ = from(initalVertex, goalTest: { _ in false }, reducer: { closure($0.v) })
+    ///              the visited vertex as input parameter.
+    ///              If the return value is false, the neighbours of the vertex are not visited.
+    public func visit(from initalVertex: Int, executing closure: @escaping (Int)->(Bool)) {
+        if closure(initalVertex) {
+            _ = from(initalVertex, goalTest: { _ in false }, reducer: { closure($0.v) })
+        }
     }
 
     /// Visit all reachable vertices from the initial vertex in depth-first search order
@@ -180,7 +186,8 @@ public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
     ///   - initalVertex: The index of the initial vertex
     ///   - closure: The closure to execute on each visited vertex.
     ///              Takes the visited vertex as input parameter.
-    public func visit(from initalVertex: V, executing closure: @escaping (V)->()) {
+    ///              If the return value is false, the neighbours of the vertex are not visited.
+    public func visit(from initalVertex: V, executing closure: @escaping (V)->(Bool)) {
         guard let v = graph.indexOfVertex(initalVertex) else { return }
         visit(from: v, executing: { closure(self.graph.vertexAtIndex($0))})
     }
@@ -222,7 +229,8 @@ public extension Graph {
     ///   - initalVertex: The index of the initial vertex
     ///   - closure: The closure to execute on each visited vertex.
     ///              Takes the visited vertex as input parameter.
-    public func visitDfs(from: V, executing closure: @escaping (V)->()) {
+    ///              If the return value is false, the neighbours of the vertex are not visited.
+    public func visitDfs(from: V, executing closure: @escaping (V)->(Bool)) {
         DFS(on: self).visit(from: from, executing: closure)
     }
     
@@ -254,7 +262,8 @@ public extension Graph {
     ///   - initalVertex: The index of the initial vertex
     ///   - closure: The closure to execute on each visited vertex.
     ///              Takes the visited vertex as input parameter.
-    public func visitBfs(from: V, executing closure: @escaping (V)->()) {
+    ///              If the return value is false, the neighbours of the vertex are not visited.
+    public func visitBfs(from: V, executing closure: @escaping (V)->(Bool)) {
         DFS(on: self).visit(from: from, executing: closure)
     }
     
