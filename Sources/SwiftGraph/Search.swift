@@ -18,8 +18,35 @@
 
 /// Functions for searching a graph & utility functions for supporting them
 
-// MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
-public extension Graph {
+/// This class implements the depth-first search algorithms
+struct DFS<G: Graph> {
+    typealias V = G.V
+    typealias E = G.E
+
+    /// The graph on which the search or computation will be performed
+    public let graph: G
+
+    /// This closure lets you customize the order in which the graph is traversed.
+    /// It takes as a parameter the edges with origin on the visited vertex
+    /// and it must output the same set of edges in desired visiting order.
+    public var visitOrder: ([E]) -> [E] = { $0 }
+
+    /// Create a DSL object to perform a dsl search or computation on a graph.
+    ///
+    /// - Parameter graph: The graph on which the search or computation will be performed
+    public init(on graph: G) {
+        self.graph = graph
+    }
+
+    /// Return a new DFS object with visitOrder set to the passed closure
+    ///
+    /// - Parameter visitOrder: The visi orrder of the new DSL
+    /// - Returns: A new DFS object with visitOrder set to the passed closure
+    public func withVisitOrder(_ visitOrder: @escaping ([E]) -> [E]) -> DFS<G> {
+        var dfs = DFS(on: graph)
+        dfs.visitOrder = visitOrder
+        return dfs
+    }
 
     /// Perform a computation over the graph visiting the vertices using a
     /// depth-first algorithm.
@@ -29,23 +56,38 @@ public extension Graph {
     /// - parameter reducer: A reducer that is fed with each visited vertex. The input parameter
     ///                      is the edge from the previous vertex to the visited vertex.
     /// - returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
-    public func dfs(from: Int, goalTest: (Int) -> Bool, reducer: (E)->()) -> Int? {
-        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
-        let stack: Stack<Int> = Stack<Int>()
-        stack.push(from)
-        visited[from] = true
+    public func from(_ initalVertex: Int, goalTest: (Int) -> Bool, reducer: (E)->()) -> Int? {
+        // Setup
+
+        if goalTest(initalVertex) {
+            return initalVertex
+        }
+
+        var visited: [Bool] = [Bool](repeating: false, count: graph.vertexCount)
+        let stack: Stack<E> = Stack<E>()
+
+        func visitNeighbours(v: Int) {
+            for e in visitOrder(graph.edgesForIndex(v)).reversed() {
+                if !visited[e.v] {
+                    stack.push(e)
+                    visited[e.v] = true
+                }
+            }
+        }
+
+        // Dfs
+
+        visited[initalVertex] = true
+        visitNeighbours(v: initalVertex)
+
         while !stack.isEmpty {
-            let v: Int = stack.pop()
+            let edge: E = stack.pop()
+            let v = edge.v
+            reducer(edge)
             if goalTest(v) {
                 return v
             }
-            for e in edgesForIndex(v) {
-                if !visited[e.v] {
-                    stack.push(e.v)
-                    visited[e.v] = true
-                    reducer(e)
-                }
-            }
+            visitNeighbours(v: v)
         }
         return nil // no route found
     }
@@ -56,14 +98,14 @@ public extension Graph {
     /// - parameter from: The index of the starting vertex.
     /// - parameter goalTest: Returns true if a given vertex index is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, goalTest: (Int) -> Bool) -> [E] {
+    public func from(_ initalVertex: Int, goalTest: (Int) -> Bool) -> [E] {
         // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
         var pathDict:[Int: E] = [:]
-        let result = dfs(from: from, goalTest: goalTest, reducer: { (e: E) -> Void in
+        let result = from(initalVertex, goalTest: goalTest, reducer: { (e: E) -> Void in
             pathDict[e.v] = e
         })
         if let vertexFound = result {
-            return pathDictToPath(from: from, to: vertexFound, pathDict: pathDict) as! [E]
+            return pathDictToPath(from: initalVertex, to: vertexFound, pathDict: pathDict) as! [E]
         }
         return []
     }
@@ -74,8 +116,8 @@ public extension Graph {
     /// - parameter from: The index of the starting vertex.
     /// - parameter goalTest: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, goalTest: (V) -> Bool) -> [E] {
-        return dfs(from: from, goalTest: { goalTest(vertexAtIndex($0)) })
+    public func from(_ initalVertex: Int, goalTest: (V) -> Bool) -> [E] {
+        return from(initalVertex, goalTest: { goalTest(graph.vertexAtIndex($0)) })
     }
 
     /// Find a route from a vertex to the first that satisfies goalTest()
@@ -84,20 +126,20 @@ public extension Graph {
     /// - parameter from: The starting vertex.
     /// - parameter goalTest: Returns true if a given vertex is a goal.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: V, goalTest: (V) -> Bool) -> [E] {
-        if let u = indexOfVertex(from) {
-            return dfs(from: u, goalTest: goalTest)
+    public func from(_ initalVertex: V, goalTest: (V) -> Bool) -> [E] {
+        if let u = graph.indexOfVertex(initalVertex) {
+            return from(u, goalTest: goalTest)
         }
         return []
     }
-    
+
     /// Find a route from one vertex to another using a depth-first search.
     ///
     /// - parameter from: The index of the starting vertex.
     /// - parameter to: The index of the ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: Int, to: Int) -> [E] {
-        return dfs(from: from, goalTest: { $0 == to })
+    public func from(_ initalVertex: Int, to: Int) -> [E] {
+        return from(initalVertex, goalTest: { $0 == to })
     }
 
     /// Find a route from one vertex to another using a depth-first search.
@@ -105,22 +147,140 @@ public extension Graph {
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
-    public func dfs(from: V, to: V) -> [E] {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return dfs(from: u, to: v)
+    public func from(_ initalVertex: V, to: V) -> [E] {
+        if let u = graph.indexOfVertex(initalVertex) {
+            if let v = graph.indexOfVertex(to) {
+                return from(u, to: v)
             }
         }
         return []
     }
 
-    public func visit(from: Int, executing closure: @escaping (Int)->()) {
-        _ = dfs(from: from, goalTest: { _ in false }, reducer: { closure($0.v) })
+    /// Visit all reachable vertices from the initial vertex in depth-first search order
+    /// and execute a closure on each visited vertex.
+    ///
+    /// - Parameters:
+    ///   - initalVertex: The index of the initial vertex
+    ///   - closure: The closure to execute on each visited vertex. Takes the index of
+    ///              the visited vertex as input parameter
+    public func visit(from initalVertex: Int, executing closure: @escaping (Int)->()) {
+        closure(initalVertex)
+        _ = from(initalVertex, goalTest: { _ in false }, reducer: { closure($0.v) })
     }
 
+    /// Visit all reachable vertices from the initial vertex in depth-first search order
+    /// and execute a closure on each visited vertex.
+    ///
+    /// - Parameters:
+    ///   - initalVertex: The index of the initial vertex
+    ///   - closure: The closure to execute on each visited vertex.
+    ///              Takes the visited vertex as input parameter.
+    public func visit(from initalVertex: V, executing closure: @escaping (V)->()) {
+        guard let v = graph.indexOfVertex(initalVertex) else { return }
+        visit(from: v, executing: { closure(self.graph.vertexAtIndex($0))})
+    }
+}
+
+// MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
+//       These are convenience methods that construct the appropiate DFS object for self
+public extension Graph {
+
+    /// Perform a computation over the graph visiting the vertices using a
+    /// depth-first algorithm.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex index is a goal.
+    /// - parameter reducer: A reducer that is fed with each visited vertex. The input parameter
+    ///                      is the edge from the previous vertex to the visited vertex.
+    /// - returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
+    public func dfs(from: Int, goalTest: (Int) -> Bool, reducer: (E)->()) -> Int? {
+        return DFS(on: self).from(from, goalTest: goalTest, reducer: reducer)
+    }
+
+    /// Find a route from a vertex to the first that satisfies goalTest()
+    /// using a depth-first search.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex index is a goal.
+    /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
+    public func dfs(from: Int, goalTest: (Int) -> Bool) -> [E] {
+        return DFS(on: self).from(from, goalTest: goalTest)
+    }
+
+    /// Find a route from a vertex to the first that satisfies goalTest()
+    /// using a depth-first search.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
+    public func dfs(from: Int, goalTest: (V) -> Bool) -> [E] {
+        return DFS(on: self).from(from, goalTest: goalTest)
+    }
+
+    /// Find a route from a vertex to the first that satisfies goalTest()
+    /// using a depth-first search.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - parameter from: The starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
+    public func dfs(from: V, goalTest: (V) -> Bool) -> [E] {
+        return DFS(on: self).from(from, goalTest: goalTest)
+    }
+    
+    /// Find a route from one vertex to another using a depth-first search.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter to: The index of the ending vertex.
+    /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
+    public func dfs(from: Int, to: Int) -> [E] {
+        return DFS(on: self).from(from, to: to)
+    }
+
+    /// Find a route from one vertex to another using a depth-first search.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - parameter from: The starting vertex.
+    /// - parameter to: The ending vertex.
+    /// - returns: An array of Edges containing the entire route, or an empty array if no route could be found
+    public func dfs(from: V, to: V) -> [E] {
+        return DFS(on: self).from(from, to: to)
+    }
+
+    /// Visit all reachable vertices from the initial vertex in depth-first search order
+    /// and execute a closure on each visited vertex.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - Parameters:
+    ///   - initalVertex: The index of the initial vertex
+    ///   - closure: The closure to execute on each visited vertex. Takes the index of
+    ///              the visited vertex as input parameter
+    public func visit(from: Int, executing closure: @escaping (Int)->()) {
+        DFS(on: self).visit(from: from, executing: closure)
+    }
+
+    /// Visit all reachable vertices from the initial vertex in depth-first search order
+    /// and execute a closure on each visited vertex.
+    ///
+    /// The order in which the neighbours of a vertex are visited is undetermined.
+    ///
+    /// - Parameters:
+    ///   - initalVertex: The index of the initial vertex
+    ///   - closure: The closure to execute on each visited vertex.
+    ///              Takes the visited vertex as input parameter.
     public func visit(from: V, executing closure: @escaping (V)->()) {
-        guard let v = indexOfVertex(from) else { return }
-        visit(from: v, executing: { closure(self.vertexAtIndex($0))})
+        DFS(on: self).visit(from: from, executing: closure)
     }
 
     /// Find a route from a vertex to the first that satisfies goalTest()
