@@ -1,5 +1,5 @@
 //
-//  Search.swift
+//  GraphTraverser.swift
 //  SwiftGraph
 //
 //  Copyright (c) 2014-2016 David Kopec
@@ -18,11 +18,22 @@
 
 /// Functions for searching a graph & utility functions for supporting them
 
-public typealias DFS<G: Graph> = Search<G, Stack<G.E>>
-public typealias BFS<G: Graph> = Search<G, Queue<G.E>>
+/// A class encapsulating a depth-first search algorithm.
+public typealias DFS<G: Graph> = GraphTraverser<G, Stack<G.E>>
 
-/// This class implements the depth-first search algorithms
-public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
+/// A class encapsulating a breadth-first search algorithm.
+public typealias BFS<G: Graph> = GraphTraverser<G, Queue<G.E>>
+
+/// A class encapsulating an abstract algorithm that traverses the nodes of a graph.
+///
+/// Depending on its type parameter C and its run.time setup, GraphTraverser
+/// specializes to different algorithms such as depth or breadth-first search.
+///
+/// The type parameter C determines how the graph is traversed. The edges on the graph
+/// are visited in the order that C pops them out.
+///
+/// The methods on this class offer different variations on the algorithm.
+public struct GraphTraverser<G: Graph, C: EdgeContainer> where C.E == G.E {
     public typealias V = G.V
     public typealias E = G.E
 
@@ -45,8 +56,8 @@ public struct Search<G: Graph, C: EdgeContainer> where C.E == G.E {
     ///
     /// - Parameter visitOrder: The visi orrder of the new DSL
     /// - Returns: A new DFS object with visitOrder set to the passed closure
-    public func withVisitOrder(_ visitOrder: @escaping ([E]) -> [E]) -> Search {
-        var dfs = Search(on: graph)
+    public func withVisitOrder(_ visitOrder: @escaping ([E]) -> [E]) -> GraphTraverser {
+        var dfs = GraphTraverser(on: graph)
         dfs.visitOrder = visitOrder
         return dfs
     }

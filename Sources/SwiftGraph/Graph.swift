@@ -16,7 +16,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// The protocl for all graphs.
+/// The protocol for all graphs.
 /// You should generally use one of its two canonical class implementations,
 /// *UnweightedGraph* and *WeightedGraph*
 public protocol Graph: class, CustomStringConvertible, Collection {
