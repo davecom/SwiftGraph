@@ -40,6 +40,8 @@ public struct GraphTraverser<G: Graph, C: EdgeContainer> where C.E == G.E {
     /// The graph on which the search or computation will be performed
     public let graph: G
 
+    private let edgeContainerFactory: () -> C
+
     /// This closure lets you customize the order in which the graph is traversed.
     /// It takes as a parameter the edges with origin on the visited vertex
     /// and it must output the same set of edges in desired visiting order.
@@ -48,8 +50,10 @@ public struct GraphTraverser<G: Graph, C: EdgeContainer> where C.E == G.E {
     /// Create a DSL object to perform a dsl search or computation on a graph.
     ///
     /// - Parameter graph: The graph on which the search or computation will be performed
-    public init(on graph: G) {
+    /// - Parameter edgeContainerFactory: A closure that initializes an edge container of type C
+    public init(on graph: G, withEdgeContainerFactory edgeContainerFactory: @escaping () -> C = C.init) {
         self.graph = graph
+        self.edgeContainerFactory = edgeContainerFactory
     }
 
     /// Return a new DFS object with visitOrder set to the passed closure
@@ -79,7 +83,7 @@ public struct GraphTraverser<G: Graph, C: EdgeContainer> where C.E == G.E {
         }
 
         var visited: [Bool] = [Bool](repeating: false, count: graph.vertexCount)
-        let container: C = C()
+        let container: C = edgeContainerFactory()
 
         func visitNeighbours(v: Int) {
             var neighbours = visitOrder(graph.edgesForIndex(v))
