@@ -84,10 +84,10 @@ open class UnweightedGraph<V: Equatable>: Graph {
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(from: Int, to: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: from, v: to))
+    public func addEdge(fromIndex: Int, toIndex: Int, directed: Bool = false) {
+        addEdge(UnweightedEdge(u: fromIndex, v: toIndex))
         if !directed {
-            addEdge(UnweightedEdge(u: to, v: from))
+            addEdge(UnweightedEdge(u: toIndex, v: fromIndex))
         }
         
     }
