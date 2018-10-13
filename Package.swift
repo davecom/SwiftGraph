@@ -17,5 +17,8 @@ let package = Package(
         .testTarget(
             name: "SwiftGraphTests",
             dependencies: ["SwiftGraph"]),
+        .testTarget(
+            name: "SwiftGraphPerformanceTests",
+            dependencies: ["SwiftGraph"]),
         ]
 )
