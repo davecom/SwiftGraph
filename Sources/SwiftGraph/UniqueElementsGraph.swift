@@ -56,7 +56,7 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public override func addEdge(from u: Int, to v: Int, directed: Bool = false) {
+    public override func addEdge(fromIndex u: Int, toIndex v: Int, directed: Bool = false) {
         if !edgeExists(from: u, to: v) {
             addEdge(UnweightedEdge(u: u, v: v))
             if !directed && !edgeExists(from: v, to: u) {
@@ -72,7 +72,7 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
     /// - parameter directed: Is the edge directed? (default `false`)
     public override func addEdge(from: V, to: V, directed: Bool = false) {
         if let u = indexOfVertex(from), let v = indexOfVertex(to) {
-            addEdge(from: u, to: v, directed: directed)
+            addEdge(fromIndex: u, toIndex: v, directed: directed)
         }
     }
 }
