@@ -40,29 +40,39 @@ public protocol EdgeContainer {
 }
 
 /// Implements a stack - helper class that uses an array internally.
-public class Stack<T>: EdgeContainer {
-    private var container: [T] = [T]()
+final public class Stack<T>: EdgeContainer {
+    public var container: [T] = [T]()
 
-    public static var isFIFO: Bool { get { return false } }
+    public static var isFIFO: Bool {
+        @inline(__always) get { return false }
+    }
 
     public required init() {}
-    public var isEmpty: Bool { return container.isEmpty }
-    public func push(_ thing: T) { container.append(thing) }
-    public func pop() -> T { return container.removeLast() }
+    public var isEmpty: Bool {
+        @inline(__always) get { return container.isEmpty }
+    }
+    @inline(__always) public func push(_ thing: T) { container.append(thing) }
+    @inline(__always) public func pop() -> T { return container.removeLast() }
 }
 
 /// Implements a queue - helper class that uses an array internally.
-public class Queue<T: Equatable>: EdgeContainer {
-    private var container: [T] = [T]()
+final public class Queue<T: Equatable>: EdgeContainer {
+    public var container: [T] = [T]()
 
-    public static var isFIFO: Bool { get { return true } }
+    public static var isFIFO: Bool {
+        @inline(__always) get { return true }
+    }
 
     public required init() {}
-    public var isEmpty: Bool { return container.isEmpty }
-    public var count: Int { return container.count }
-    public func push(_ thing: T) { container.append(thing) }
-    public func pop() -> T { return container.remove(at: 0) }
-    public func contains(_ thing: T) -> Bool {
+    public var isEmpty: Bool {
+        @inline(__always) get { return container.isEmpty }
+    }
+    public var count: Int {
+        @inline(__always) get { return container.count }
+    }
+    @inline(__always) public func push(_ thing: T) { container.append(thing) }
+    @inline(__always) public func pop() -> T { return container.remove(at: 0) }
+    @inline(__always) public func contains(_ thing: T) -> Bool {
         if container.index(of: thing) != nil {
             return true
         }
