@@ -39,6 +39,9 @@
 		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
 		B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */; };
+		B5DD6DA22171EE35007EFF44 /* DFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD6DA02171DC8F007EFF44 /* DFS.swift */; };
+		B5DD6DA52171EEE1007EFF44 /* SearchPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */; };
+		B5DD6DA82171F0DA007EFF44 /* GraphGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD6DA72171F0DA007EFF44 /* GraphGeneration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +111,9 @@
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
 		B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueElementsGraph.swift; path = Sources/SwiftGraph/UniqueElementsGraph.swift; sourceTree = SOURCE_ROOT; };
 		B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphTests.swift; sourceTree = "<group>"; };
+		B5DD6DA02171DC8F007EFF44 /* DFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFS.swift; sourceTree = "<group>"; };
+		B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPerformanceTests.swift; sourceTree = "<group>"; };
+		B5DD6DA72171F0DA007EFF44 /* GraphGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphGeneration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +235,9 @@
 		7985B9091E5A4FB900C100E7 /* SwiftGraphTests */ = {
 			isa = PBXGroup;
 			children = (
+				B5DD6DA62171EF7E007EFF44 /* TestUtils */,
+				B5DD6DA32171EEBD007EFF44 /* Performance Tests */,
+				B5DD6D9F2171DC6C007EFF44 /* Reference Implementations */,
 				B523F2E82094F0A1006587ED /* UniqueElementsGraph */,
 				557F55E91F8AB247002AF0BF /* Info.plist */,
 				7985B9191E5A4FCB00C100E7 /* DijkstraGraphTests.swift */,
@@ -260,6 +269,30 @@
 				B51B460A2083E14200CD0463 /* Union.swift */,
 			);
 			name = Operations;
+			sourceTree = "<group>";
+		};
+		B5DD6D9F2171DC6C007EFF44 /* Reference Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				B5DD6DA02171DC8F007EFF44 /* DFS.swift */,
+			);
+			path = "Reference Implementations";
+			sourceTree = "<group>";
+		};
+		B5DD6DA32171EEBD007EFF44 /* Performance Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */,
+			);
+			path = "Performance Tests";
+			sourceTree = "<group>";
+		};
+		B5DD6DA62171EF7E007EFF44 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				B5DD6DA72171F0DA007EFF44 /* GraphGeneration.swift */,
+			);
+			path = TestUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,7 +480,10 @@
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
 				55F5EA5B2151E33100DFC301 /* SwiftGraphCodableTests.swift in Sources */,
+				B5DD6DA52171EEE1007EFF44 /* SearchPerformanceTests.swift in Sources */,
+				B5DD6DA22171EE35007EFF44 /* DFS.swift in Sources */,
 				B523F2EA2094F0E2006587ED /* UniqueElementsGraphInitTests.swift in Sources */,
+				B5DD6DA82171F0DA007EFF44 /* GraphGeneration.swift in Sources */,
 				B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
