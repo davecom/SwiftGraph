@@ -31,4 +31,9 @@ class ConstructorsPerformanceTests: XCTestCase {
             _ = CompleteGraph.build(withVertices: Array(0...1999))
         }
     }
+
+    static var allTests = [
+        ("testStarGraphConstructor", testStarGraphConstructor),
+        ("testCompleteGraphConstructor", testCompleteGraphConstructor),
+    ]
 }

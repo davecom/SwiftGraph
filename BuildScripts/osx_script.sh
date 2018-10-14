@@ -3,3 +3,4 @@
 set -v -o pipefail
 # Test
 xcodebuild -enableCodeCoverage YES -project SwiftGraph.xcodeproj -scheme SwiftGraph test | xcpretty
+xcodebuild -enableCodeCoverage NO -project SwiftGraph.xcodeproj -scheme SwiftGraphPerformanceTests test | xcpretty

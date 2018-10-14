@@ -26,4 +26,8 @@ class SearchPerformanceTests: XCTestCase {
             _ = g.dfs(from: 0, goalTest: { _ in false })
         }
     }
+
+    static var allTests = [
+        ("testDfsInStarGraph", testDfsInStarGraph),
+    ]
 }
