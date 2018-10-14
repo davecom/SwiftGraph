@@ -13,4 +13,5 @@ XCTMain([
     testCase(UniqueElementsGraphInitTests.allTests),
     testCase(UnionTests.allTests),
     testCase(SwiftGraphCodableTests.allTests),
+    testCase(ConstructorsTests.allTests)
 ])
