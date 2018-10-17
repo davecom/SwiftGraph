@@ -31,32 +31,6 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
         }
     }
 
-    /// Initialize an UnweightedGraph consisting of path.
-    ///
-    /// The resulting graph has the vertices in path and an edge between
-    /// each pair of consecutive vertices in path.
-    ///
-    /// If path is an empty array, the resulting graph is the empty graph.
-    /// If path is an array with a single vertex, the resulting graph has that vertex and no edges.
-    ///
-    /// - Parameters:
-    ///   - path: An array of vertices representing a path.
-    ///   - directed: If false, undirected edges are created.
-    ///               If true, edges are directed from vertex i to vertex i+1 in path.
-    ///               Default is false.
-    public convenience init(withPath path: [V], directed: Bool = false) {
-        self.init(vertices: path)
-
-        guard path.count >= 2 else {
-            return
-        }
-
-        for i in 0..<path.count - 1 {
-            let vertices = path[i...i+1]
-            self.addEdge(from: vertices.first!, to: vertices.last!, directed: directed)
-        }
-    }
-
     /// Initialize an UnweightedGraph consisting of cycle.
     ///
     /// The resulting graph has the vertices in cycle and an edge between
@@ -124,6 +98,78 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
     public func addEdge(from: V, to: V, directed: Bool = false) {
         if let u = indexOfVertex(from), let v = indexOfVertex(to) {
             addEdge(fromIndex: u, toIndex: v, directed: directed)
+        }
+    }
+}
+
+extension UniqueElementsGraph {
+    /// Initialize an UnweightedGraph consisting of path.
+    ///
+    /// The resulting graph has the vertices in path and an edge between
+    /// each pair of consecutive vertices in path.
+    ///
+    /// If path is an empty array, the resulting graph is the empty graph.
+    /// If path is an array with a single vertex, the resulting graph has that vertex and no edges.
+    ///
+    /// - Parameters:
+    ///   - path: An array of vertices representing a path.
+    ///   - directed: If false, undirected edges are created.
+    ///               If true, edges are directed from vertex i to vertex i+1 in path.
+    ///               Default is false.
+    public convenience init(withPath path: [V], directed: Bool = false) {
+        self.init(vertices: path)
+
+        guard path.count >= 2 else {
+            return
+        }
+
+        for i in 0..<path.count - 1 {
+            let vertices = path[i...i+1]
+            self.addEdge(from: vertices.first!, to: vertices.last!, directed: directed)
+        }
+    }
+
+}
+
+extension UniqueElementsGraph where V: Hashable {
+    /// Initialize an UnweightedGraph consisting of path.
+    ///
+    /// The resulting graph has the vertices in path and an edge between
+    /// each pair of consecutive vertices in path.
+    ///
+    /// If path is an empty array, the resulting graph is the empty graph.
+    /// If path is an array with a single vertex, the resulting graph has that vertex and no edges.
+    ///
+    /// - Parameters:
+    ///   - path: An array of vertices representing a path.
+    ///   - directed: If false, undirected edges are created.
+    ///               If true, edges are directed from vertex i to vertex i+1 in path.
+    ///               Default is false.
+    public convenience init(withPath path: [V], directed: Bool = false) {
+        self.init()
+
+        guard path.count >= 2 else {
+            if let v = path.first {
+                _ = addVertex(v)
+            }
+            return
+        }
+
+        var indices: [Int] = []
+        var indexForVertex: Dictionary<V, Int> = [:]
+
+        for v in path {
+            if let index = indexForVertex[v] {
+                indices.append(index)
+            } else {
+                let index = addVertex(v)
+                indices.append(index)
+                indexForVertex[v] = index
+            }
+        }
+
+        for i in 0..<path.count - 1 {
+            addEdge(fromIndex: indices[i], toIndex: indices[i+1], directed: directed)
         }
     }
 }

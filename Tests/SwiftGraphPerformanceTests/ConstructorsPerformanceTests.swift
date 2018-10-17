@@ -20,6 +20,11 @@ import XCTest
 @testable import SwiftGraph
 
 class ConstructorsPerformanceTests: XCTestCase {
+
+    struct AnyEquatable<T: Equatable>: Equatable {
+        let value: T
+    }
+
     func testPathUnweightedGraphConstructor() {
         self.measure {
             _ = UnweightedGraph(withPath: Array(1...99999))
@@ -33,8 +38,15 @@ class ConstructorsPerformanceTests: XCTestCase {
     }
 
     func testPathUniqueElementsGraphConstructor() {
+        let array = Array(1...2999).map({ AnyEquatable(value: $0) })
         self.measure {
-            _ = UniqueElementsGraph(withPath: Array(1...2999))
+            _ = UniqueElementsGraph<AnyEquatable>(withPath: array)
+        }
+    }
+
+    func testPathUniqueElementsGraphHashableConstructor() {
+        self.measure {
+            _ = UniqueElementsGraph<Int>(withPath: Array(1...2999))
         }
     }
 
