@@ -123,9 +123,9 @@ extension UniqueElementsGraph {
             return
         }
 
+        let indices = path.map({ indexOfVertex($0)! })
         for i in 0..<path.count - 1 {
-            let vertices = path[i...i+1]
-            self.addEdge(from: vertices.first!, to: vertices.last!, directed: directed)
+            addEdge(fromIndex: indices[i], toIndex: indices[i+1], directed: directed)
         }
     }
 
