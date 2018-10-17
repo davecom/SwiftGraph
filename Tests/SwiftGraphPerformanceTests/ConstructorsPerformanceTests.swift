@@ -20,6 +20,30 @@ import XCTest
 @testable import SwiftGraph
 
 class ConstructorsPerformanceTests: XCTestCase {
+    func testPathUnweightedGraphConstructor() {
+        self.measure {
+            _ = UnweightedGraph(withPath: Array(1...2999))
+        }
+    }
+
+    func testCycleUnweightedGraphConstructor() {
+        self.measure {
+            _ = UnweightedGraph(withCycle: Array(1...2999))
+        }
+    }
+
+    func testPathUniqueElementsGraphConstructor() {
+        self.measure {
+            _ = UniqueElementsGraph(withPath: Array(1...2999))
+        }
+    }
+
+    func testCycleUniqueElementsGraphConstructor() {
+        self.measure {
+            _ = UniqueElementsGraph(withCycle: Array(1...2999))
+        }
+    }
+
     func testStarGraphConstructor() {
         self.measure {
             _ = StarGraph.build(withCenter: 0, andLeafs: Array(1...999999))
@@ -33,6 +57,10 @@ class ConstructorsPerformanceTests: XCTestCase {
     }
 
     static var allTests = [
+        ("testPathUnweightedGraphConstructor", testPathUnweightedGraphConstructor),
+        ("testCycleUnweightedGraphConstructor", testCycleUnweightedGraphConstructor),
+        ("testPathUniqueElementsGraphConstructor", testPathUniqueElementsGraphConstructor),
+        ("testCycleUniqueElementsGraphConstructor", testCycleUniqueElementsGraphConstructor),
         ("testStarGraphConstructor", testStarGraphConstructor),
         ("testCompleteGraphConstructor", testCompleteGraphConstructor),
     ]
