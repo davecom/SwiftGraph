@@ -17,15 +17,15 @@
 //  limitations under the License.
 
 /// A subclass of UnweightedGraph that ensures there are no pairs of equal vertices and no repeated edges.
-open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
+open class UniqueElementsGraph<V: Equatable>: Graph {
+    public var vertices: [V] = [V]()
+    public var edges: [[UnweightedEdge]] = [[UnweightedEdge]]() //adjacency lists
 
-    public override init() {
-        super.init()
+    public init() {
     }
 
     /// Init the Graph with vertices, but removes duplicates. O(n^2)
-    public override init(vertices: [V]) {
-        super.init()
+    public init(vertices: [V]) {
         for vertex in vertices {
             _ = self.addVertex(vertex) // make sure to call our version
         }
@@ -88,13 +88,15 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
         if let equalVertexIndex = indexOfVertex(v) {
             return equalVertexIndex
         }
-        return super.addVertex(v)
+        vertices.append(v)
+        edges.append([E]())
+        return vertices.count - 1
     }
 
     /// Only allow the edge to be added once
     ///
     /// - parameter e: The edge to add.
-    public func addEdge(_ e: E) {
+    public func addEdge(_ e: UnweightedEdge) {
         if !edgeExists(from: e.u, to: e.v) {
             edges[e.u].append(e)
         }
@@ -105,7 +107,7 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
     /// - parameter from: The starting vertex's index.
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public override func addEdge(fromIndex u: Int, toIndex v: Int, directed: Bool = false) {
+    public func addEdge(fromIndex u: Int, toIndex v: Int, directed: Bool = false) {
         if !edgeExists(from: u, to: v) {
             addEdge(UnweightedEdge(u: u, v: v))
             if !directed && !edgeExists(from: v, to: u) {
@@ -119,7 +121,7 @@ open class UniqueElementsGraph<V: Equatable>: UnweightedGraph<V> {
     /// - parameter from: The starting vertex.
     /// - parameter to: The ending vertex.
     /// - parameter directed: Is the edge directed? (default `false`)
-    public override func addEdge(from: V, to: V, directed: Bool = false) {
+    public func addEdge(from: V, to: V, directed: Bool = false) {
         if let u = indexOfVertex(from), let v = indexOfVertex(to) {
             addEdge(fromIndex: u, toIndex: v, directed: directed)
         }
