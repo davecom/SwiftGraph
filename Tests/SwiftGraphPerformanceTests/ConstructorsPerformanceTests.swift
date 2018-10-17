@@ -27,13 +27,13 @@ class ConstructorsPerformanceTests: XCTestCase {
 
     func testPathUnweightedGraphConstructor() {
         self.measure {
-            _ = UnweightedGraph(withPath: Array(1...99999))
+            _ = UnweightedGraph(withPath: Array(1...999999))
         }
     }
 
     func testCycleUnweightedGraphConstructor() {
         self.measure {
-            _ = UnweightedGraph(withCycle: Array(1...99999))
+            _ = UnweightedGraph(withCycle: Array(1...999999))
         }
     }
 
