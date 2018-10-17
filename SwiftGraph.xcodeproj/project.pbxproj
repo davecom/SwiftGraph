@@ -40,8 +40,11 @@
 		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
 		B54FDA6E21729EFF00057C51 /* Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA6D21729EFF00057C51 /* Constructors.swift */; };
 		B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA702172A34D00057C51 /* ConstructorsTests.swift */; };
+		B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
 		B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */; };
+		B5EACB1D2172315E00E527BD /* SwiftGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7985B8FB1E5A4FB800C100E7 /* SwiftGraph.framework */; };
+		B5EACB292172336900E527BD /* SearchPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,13 @@
 			remoteInfo = SwiftGraphFramework;
 		};
 		7985B90E1E5A4FB900C100E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E61FFA1A194C7F000A5F7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7985B8FA1E5A4FB800C100E7;
+			remoteInfo = SwiftGraphFramework;
+		};
+		B5EACB0C2172315E00E527BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E61FFA1A194C7F000A5F7B /* Project object */;
 			proxyType = 1;
@@ -112,8 +122,11 @@
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
 		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constructors.swift; path = ../Sources/SwiftGraph/Constructors.swift; sourceTree = "<group>"; };
 		B54FDA702172A34D00057C51 /* ConstructorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsTests.swift; sourceTree = "<group>"; };
+		B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsPerformanceTests.swift; sourceTree = "<group>"; };
 		B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueElementsGraph.swift; path = Sources/SwiftGraph/UniqueElementsGraph.swift; sourceTree = SOURCE_ROOT; };
 		B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphTests.swift; sourceTree = "<group>"; };
+		B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPerformanceTests.swift; sourceTree = "<group>"; };
+		B5EACB222172315E00E527BD /* SwiftGraphPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGraphPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +150,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7985B9041E5A4FB900C100E7 /* SwiftGraph.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5EACB1C2172315E00E527BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5EACB1D2172315E00E527BD /* SwiftGraph.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +207,7 @@
 			children = (
 				7985B8FC1E5A4FB800C100E7 /* SwiftGraph */,
 				7985B9091E5A4FB900C100E7 /* SwiftGraphTests */,
+				B5EACB09217230ED00E527BD /* SwiftGraphPerformanceTests */,
 				55E620041A194C80000A5F7B /* SwiftGraphSampleApp */,
 				55E620031A194C80000A5F7B /* Products */,
 			);
@@ -197,6 +219,7 @@
 				55E620021A194C80000A5F7B /* SwiftGraphSampleApp.app */,
 				7985B8FB1E5A4FB800C100E7 /* SwiftGraph.framework */,
 				7985B9031E5A4FB900C100E7 /* SwiftGraphTests.xctest */,
+				B5EACB222172315E00E527BD /* SwiftGraphPerformanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -279,6 +302,16 @@
 			name = Operations;
 			sourceTree = "<group>";
 		};
+		B5EACB09217230ED00E527BD /* SwiftGraphPerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */,
+				B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */,
+			);
+			name = SwiftGraphPerformanceTests;
+			path = Tests/SwiftGraphPerformanceTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -348,6 +381,24 @@
 			productReference = 7985B9031E5A4FB900C100E7 /* SwiftGraphTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		B5EACB0A2172315E00E527BD /* SwiftGraphPerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5EACB1F2172315E00E527BD /* Build configuration list for PBXNativeTarget "SwiftGraphPerformanceTests" */;
+			buildPhases = (
+				B5EACB0D2172315E00E527BD /* Sources */,
+				B5EACB1C2172315E00E527BD /* Frameworks */,
+				B5EACB1E2172315E00E527BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5EACB0B2172315E00E527BD /* PBXTargetDependency */,
+			);
+			name = SwiftGraphPerformanceTests;
+			productName = SwiftGraphFrameworkTests;
+			productReference = B5EACB222172315E00E527BD /* SwiftGraphPerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -390,6 +441,7 @@
 			targets = (
 				7985B8FA1E5A4FB800C100E7 /* SwiftGraph */,
 				7985B9021E5A4FB900C100E7 /* SwiftGraphTests */,
+				B5EACB0A2172315E00E527BD /* SwiftGraphPerformanceTests */,
 				55E620011A194C80000A5F7B /* SwiftGraphSampleApp */,
 			);
 		};
@@ -413,6 +465,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7985B9011E5A4FB900C100E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5EACB1E2172315E00E527BD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -472,6 +531,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5EACB0D2172315E00E527BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5EACB292172336900E527BD /* SearchPerformanceTests.swift in Sources */,
+				B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -484,6 +552,11 @@
 			isa = PBXTargetDependency;
 			target = 7985B8FA1E5A4FB800C100E7 /* SwiftGraph */;
 			targetProxy = 7985B90E1E5A4FB900C100E7 /* PBXContainerItemProxy */;
+		};
+		B5EACB0B2172315E00E527BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7985B8FA1E5A4FB800C100E7 /* SwiftGraph */;
+			targetProxy = B5EACB0C2172315E00E527BD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -730,6 +803,178 @@
 			};
 			name = Release;
 		};
+		B5EACB202172315E00E527BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		B5EACB212172315E00E527BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		B5EACB242172316D00E527BD /* Performance Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_CODE_COVERAGE = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = "Performance Tests";
+		};
+		B5EACB252172316D00E527BD /* Performance Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFramework;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Performance Tests";
+		};
+		B5EACB262172316D00E527BD /* Performance Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+			};
+			name = "Performance Tests";
+		};
+		B5EACB272172316D00E527BD /* Performance Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftGraphSampleApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = "Performance Tests";
+		};
+		B5EACB282172316D00E527BD /* Performance Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+			};
+			name = "Performance Tests";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -737,6 +982,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55E6201A1A194C80000A5F7B /* Debug */,
+				B5EACB242172316D00E527BD /* Performance Tests */,
 				55E6201B1A194C80000A5F7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -746,6 +992,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55E6201D1A194C80000A5F7B /* Debug */,
+				B5EACB272172316D00E527BD /* Performance Tests */,
 				55E6201E1A194C80000A5F7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -755,6 +1002,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7985B9121E5A4FB900C100E7 /* Debug */,
+				B5EACB252172316D00E527BD /* Performance Tests */,
 				7985B9131E5A4FB900C100E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -764,7 +1012,18 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7985B9141E5A4FB900C100E7 /* Debug */,
+				B5EACB262172316D00E527BD /* Performance Tests */,
 				7985B9151E5A4FB900C100E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5EACB1F2172315E00E527BD /* Build configuration list for PBXNativeTarget "SwiftGraphPerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5EACB202172315E00E527BD /* Debug */,
+				B5EACB282172316D00E527BD /* Performance Tests */,
+				B5EACB212172315E00E527BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

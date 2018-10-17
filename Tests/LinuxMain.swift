@@ -1,5 +1,6 @@
 import XCTest
 @testable import SwiftGraphTests
+@testable import SwiftGraphPerformanceTests
 
 XCTMain([
     testCase(DijkstraGraphTests.allTests),
@@ -13,5 +14,8 @@ XCTMain([
     testCase(UniqueElementsGraphInitTests.allTests),
     testCase(UnionTests.allTests),
     testCase(SwiftGraphCodableTests.allTests),
-    testCase(ConstructorsTests.allTests)
+    testCase(ConstructorsTests.allTests),
+
+    testCase(SearchPerformanceTests.allTests),
+    testCase(ConstructorsPerformanceTests.allTests),
 ])
