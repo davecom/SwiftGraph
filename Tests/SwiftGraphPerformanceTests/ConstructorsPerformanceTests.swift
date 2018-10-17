@@ -56,6 +56,13 @@ class ConstructorsPerformanceTests: XCTestCase {
         }
     }
 
+    func testCycleUniqueElementsHashableConstructor() {
+        let array = Array(1...2999).map({ AnyEquatable(value: $0) })
+        self.measure {
+            _ = UniqueElementsGraph(withCycle: array)
+        }
+    }
+
     func testStarGraphConstructor() {
         self.measure {
             _ = StarGraph.build(withCenter: 0, andLeafs: Array(1...999999))
@@ -72,7 +79,9 @@ class ConstructorsPerformanceTests: XCTestCase {
         ("testPathUnweightedGraphConstructor", testPathUnweightedGraphConstructor),
         ("testCycleUnweightedGraphConstructor", testCycleUnweightedGraphConstructor),
         ("testPathUniqueElementsGraphConstructor", testPathUniqueElementsGraphConstructor),
+        ("testPathUniqueElementsGraphHashableConstructor", testPathUniqueElementsGraphHashableConstructor),
         ("testCycleUniqueElementsGraphConstructor", testCycleUniqueElementsGraphConstructor),
+        ("testCycleUniqueElementsHashableConstructor", testCycleUniqueElementsHashableConstructor),
         ("testStarGraphConstructor", testStarGraphConstructor),
         ("testCompleteGraphConstructor", testCompleteGraphConstructor),
     ]

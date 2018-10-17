@@ -30,29 +30,6 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
             _ = self.addVertex(vertex) // make sure to call our version
         }
     }
-
-    /// Initialize an UnweightedGraph consisting of cycle.
-    ///
-    /// The resulting graph has the vertices in cycle and an edge between
-    /// each pair of consecutive vertices in cycle,
-    /// plus an edge between the last and the first vertices.
-    ///
-    /// If path is an empty array, the resulting graph is the empty graph.
-    /// If path is an array with a single vertex, the resulting graph has the vertex
-    /// and a single edge to itself if directed is true.
-    /// If directed is false the resulting graph has the vertex and two edges to itself.
-    ///
-    /// - Parameters:
-    ///   - cycle: An array of vertices representing a cycle.
-    ///   - directed: If false, undirected edges are created.
-    ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
-    ///               Default is false.
-    public convenience init(withCycle cycle: [V], directed: Bool = false) {
-        self.init(withPath: cycle, directed: directed)
-        if cycle.count > 0 {
-            self.addEdge(from: cycle.last!, to: cycle.first!, directed: directed)
-        }
-    }
     
     /// Add a vertex to the graph if no equal vertex already belongs to the Graph. O(n)
     ///
@@ -103,7 +80,14 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
 }
 
 extension UniqueElementsGraph {
-    /// Initialize an UnweightedGraph consisting of path.
+
+    private func addEdgesForPath(withIndices indices: [Int], directed: Bool) {
+        for i in 0..<indices.count - 1 {
+            addEdge(fromIndex: indices[i], toIndex: indices[i+1], directed: directed)
+        }
+    }
+
+    /// Initialize an UniqueElementsGraph consisting of path.
     ///
     /// The resulting graph has the vertices in path and an edge between
     /// each pair of consecutive vertices in path.
@@ -124,27 +108,40 @@ extension UniqueElementsGraph {
         }
 
         let indices = path.map({ indexOfVertex($0)! })
-        for i in 0..<path.count - 1 {
-            addEdge(fromIndex: indices[i], toIndex: indices[i+1], directed: directed)
+        addEdgesForPath(withIndices: indices, directed: directed)
+    }
+
+    /// Initialize an UniqueElementsGraph consisting of cycle.
+    ///
+    /// The resulting graph has the vertices in cycle and an edge between
+    /// each pair of consecutive vertices in cycle,
+    /// plus an edge between the last and the first vertices.
+    ///
+    /// If path is an empty array, the resulting graph is the empty graph.
+    /// If path is an array with a single vertex, the resulting graph has the vertex
+    /// and a single edge to itself if directed is true.
+    /// If directed is false the resulting graph has the vertex and two edges to itself.
+    ///
+    /// - Parameters:
+    ///   - cycle: An array of vertices representing a cycle.
+    ///   - directed: If false, undirected edges are created.
+    ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
+    ///               Default is false.
+    public convenience init(withCycle cycle: [V], directed: Bool = false) {
+        self.init(vertices: cycle)
+
+        guard cycle.count >= 2 else {
+            return
         }
+
+        let indices = cycle.map({ indexOfVertex($0)! })
+        addEdgesForPath(withIndices: indices, directed: directed)
+        addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
     }
 
 }
 
 extension UniqueElementsGraph where V: Hashable {
-    /// Initialize an UnweightedGraph consisting of path.
-    ///
-    /// The resulting graph has the vertices in path and an edge between
-    /// each pair of consecutive vertices in path.
-    ///
-    /// If path is an empty array, the resulting graph is the empty graph.
-    /// If path is an array with a single vertex, the resulting graph has that vertex and no edges.
-    ///
-    /// - Parameters:
-    ///   - path: An array of vertices representing a path.
-    ///   - directed: If false, undirected edges are created.
-    ///               If true, edges are directed from vertex i to vertex i+1 in path.
-    ///               Default is false.
     public convenience init(withPath path: [V], directed: Bool = false) {
         self.init()
 
@@ -155,6 +152,28 @@ extension UniqueElementsGraph where V: Hashable {
             return
         }
 
+        let indices = indicesForPath(path)
+        addEdgesForPath(withIndices: indices, directed: directed)
+    }
+
+
+    public convenience init(withCycle cycle: [V], directed: Bool = false) {
+        self.init()
+
+        guard cycle.count >= 2 else {
+            if let v = cycle.first {
+                let index = addVertex(v)
+                addEdge(fromIndex: index, toIndex: index)
+            }
+            return
+        }
+
+        let indices = indicesForPath(cycle)
+        addEdgesForPath(withIndices: indices, directed: directed)
+        addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
+    }
+
+    private func indicesForPath(_ path: [V]) -> [Int] {
         var indices: [Int] = []
         var indexForVertex: Dictionary<V, Int> = [:]
 
@@ -167,9 +186,6 @@ extension UniqueElementsGraph where V: Hashable {
                 indexForVertex[v] = index
             }
         }
-
-        for i in 0..<path.count - 1 {
-            addEdge(fromIndex: indices[i], toIndex: indices[i+1], directed: directed)
-        }
+        return indices
     }
 }
