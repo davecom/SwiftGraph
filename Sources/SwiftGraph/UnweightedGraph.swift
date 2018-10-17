@@ -51,8 +51,7 @@ open class UnweightedGraph<V: Equatable>: Graph {
         }
 
         for i in 0..<path.count - 1 {
-            let vertices = path[i...i+1]
-            self.addEdge(from: vertices.first!, to: vertices.last!, directed: directed)
+            self.addEdge(fromIndex: i, toIndex: i+1, directed: directed)
         }
     }
 
@@ -75,7 +74,7 @@ open class UnweightedGraph<V: Equatable>: Graph {
     public convenience init(withCycle cycle: [V], directed: Bool = false) {
         self.init(withPath: cycle, directed: directed)
         if cycle.count > 0 {
-            self.addEdge(from: cycle.last!, to: cycle.first!, directed: directed)
+            self.addEdge(fromIndex: cycle.count-1, toIndex: 0, directed: directed)
         }
     }
     

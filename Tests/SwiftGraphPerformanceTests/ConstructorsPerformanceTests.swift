@@ -22,13 +22,13 @@ import XCTest
 class ConstructorsPerformanceTests: XCTestCase {
     func testPathUnweightedGraphConstructor() {
         self.measure {
-            _ = UnweightedGraph(withPath: Array(1...2999))
+            _ = UnweightedGraph(withPath: Array(1...99999))
         }
     }
 
     func testCycleUnweightedGraphConstructor() {
         self.measure {
-            _ = UnweightedGraph(withCycle: Array(1...2999))
+            _ = UnweightedGraph(withCycle: Array(1...99999))
         }
     }
 
