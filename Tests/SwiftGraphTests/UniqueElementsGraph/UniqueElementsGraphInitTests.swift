@@ -19,14 +19,6 @@
 import XCTest
 @testable import SwiftGraph
 
-struct EquatableString: ExpressibleByStringLiteral, Equatable {
-    init(stringLiteral: String) {
-        s = stringLiteral
-    }
-
-    let s: String
-}
-
 class UniqueElementsGraphInitTests: XCTestCase {
 
     func testPathInitializerUndirected() {

@@ -46,6 +46,8 @@
 		B5EACB1D2172315E00E527BD /* SwiftGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7985B8FB1E5A4FB800C100E7 /* SwiftGraph.framework */; };
 		B5EACB292172336900E527BD /* SearchPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */; };
 		B5EF143121791009008FCC5C /* UniqueElementsGraphInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF143021791009008FCC5C /* UniqueElementsGraphInitTests.swift */; };
+		B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */; };
+		B5EF1437217913F1008FCC5C /* EquatableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF1436217913F1008FCC5C /* EquatableTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,8 @@
 		B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPerformanceTests.swift; sourceTree = "<group>"; };
 		B5EACB222172315E00E527BD /* SwiftGraphPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGraphPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EF143021791009008FCC5C /* UniqueElementsGraphInitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphInitTests.swift; sourceTree = "<group>"; };
+		B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableTests.swift; sourceTree = "<group>"; };
+		B5EF1436217913F1008FCC5C /* EquatableTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +266,7 @@
 		7985B9091E5A4FB900C100E7 /* SwiftGraphTests */ = {
 			isa = PBXGroup;
 			children = (
+				B5EF1435217913E0008FCC5C /* Utils */,
 				B54FDA6F2172A30600057C51 /* Constructors */,
 				B523F2E82094F0A1006587ED /* UniqueElementsGraph */,
 				557F55E91F8AB247002AF0BF /* Info.plist */,
@@ -283,8 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */,
-				B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */,
+				B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */,
 				B5EF143021791009008FCC5C /* UniqueElementsGraphInitTests.swift */,
+				B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */,
 			);
 			path = UniqueElementsGraph;
 			sourceTree = "<group>";
@@ -313,6 +319,14 @@
 			);
 			name = SwiftGraphPerformanceTests;
 			path = Tests/SwiftGraphPerformanceTests;
+			sourceTree = "<group>";
+		};
+		B5EF1435217913E0008FCC5C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B5EF1436217913F1008FCC5C /* EquatableTypes.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,8 +539,10 @@
 				B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */,
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */,
+				B5EF1437217913F1008FCC5C /* EquatableTypes.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
+				B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */,
 				55F5EA5B2151E33100DFC301 /* SwiftGraphCodableTests.swift in Sources */,
 				B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */,
 				B5EF143121791009008FCC5C /* UniqueElementsGraphInitTests.swift in Sources */,
