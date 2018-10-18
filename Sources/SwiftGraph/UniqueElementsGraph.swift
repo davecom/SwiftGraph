@@ -104,6 +104,9 @@ extension UniqueElementsGraph {
         self.init(vertices: path)
 
         guard path.count >= 2 else {
+            if let v = path.first {
+                _ = addVertex(v)
+            }
             return
         }
 
@@ -131,6 +134,10 @@ extension UniqueElementsGraph {
         self.init(vertices: cycle)
 
         guard cycle.count >= 2 else {
+            if let v = cycle.first {
+                let index = addVertex(v)
+                addEdge(fromIndex: index, toIndex: index)
+            }
             return
         }
 
