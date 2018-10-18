@@ -16,6 +16,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+/// A wrapper around String but dropping Hashable conformance
 struct EquatableString: ExpressibleByStringLiteral, Equatable {
     init(stringLiteral: String) {
         s = stringLiteral
