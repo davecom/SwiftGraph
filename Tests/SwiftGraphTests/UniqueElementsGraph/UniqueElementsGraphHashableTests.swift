@@ -123,17 +123,4 @@ class UniqueElementsGraphTests: XCTestCase {
         XCTAssertTrue(g.edgeExists(from: "Chicago", to: "Atlanta"), "Expected an edge from Chicago to Atlanta")
         XCTAssertEqual(g.edgeCount, 2, "Expected two edges")
     }
-
-    static var allTests = [
-        ("testUniqueVertexAfterAddition", testUniqueVertexAfterAddition),
-        ("testUniqueVertexAfterInit", testUniqueVertexAfterInit),
-        ("testUniqueUndirectedEdges", testUniqueUndirectedEdges),
-        ("testUniqueUndirectedEdges2", testUniqueUndirectedEdges2),
-        ("testUniqueUndirectedLoop", testUniqueUndirectedLoop),
-        ("testUniqueUndirectedLoop2", testUniqueUndirectedLoop2),
-        ("testUniqueDirectedEdges", testUniqueDirectedEdges),
-        ("testUniqueDirectedLoop", testUniqueDirectedLoop),
-        ("testUniqueDirectedLoop2", testUniqueDirectedLoop),
-        ("testUniqueEdgesCombined", testUniqueEdgesCombined)
-    ]
 }

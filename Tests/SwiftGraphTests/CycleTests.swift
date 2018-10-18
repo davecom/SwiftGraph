@@ -94,13 +94,6 @@ class CycleTests: XCTestCase {
             XCTFail("Arrays not equal: \(lhs), \(rhs)", line: line)
         }
     }
-    
-    static var allTests = [
-        ("testFullyConnectedVertices", testFullyConnectedVertices),
-        ("testFullyConnectedEdges", testFullyConnectedEdges),
-        ("testDetectCyclesVertices1", testDetectCyclesVertices1),
-        ("testDetectCyclesEdges1", testDetectCyclesEdges1)
-    ]
 }
 
 fileprivate extension Edge {

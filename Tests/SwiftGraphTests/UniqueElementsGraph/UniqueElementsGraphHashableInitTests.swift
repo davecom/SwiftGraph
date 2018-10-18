@@ -216,12 +216,5 @@ class UniqueElementsGraphHashableInitTests: XCTestCase {
         XCTAssertTrue(g6Cycle.edgeExists(from: "Boston", to: "Eugene"), "g6Cycle: Expected an edge from Boston to Eugene")
         XCTAssertTrue(g6Cycle.edgeExists(from: "Eugene", to: "Atlanta"), "g6Cycle: Expected an edge from Eugene to Atlanta")
     }
-
-    static var allTests = [
-        ("testPathInitializerDirected", testPathInitializerDirected),
-        ("testPathInitializerUndirected", testPathInitializerUndirected),
-        ("testCycleInitializerDirected", testCycleInitializerDirected),
-        ("testCycleInitializerUndirected", testCycleInitializerUndirected)
-    ]
 }
 

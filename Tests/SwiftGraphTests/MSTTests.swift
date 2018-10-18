@@ -120,9 +120,4 @@ class MSTTests: XCTestCase {
         XCTAssertEqual(mst.count, cityGraph2.count - 1, "MST should contain edges between all vertices so count should be # of vertices - 1")
         XCTAssertEqual(totalWeight, 5372, "MST should cost 5372 for cityGraph2")
     }
-    
-    static var allTests = [
-        ("testMST1", testMST1),
-        ("testMST2", testMST2)
-    ]
 }
