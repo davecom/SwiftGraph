@@ -37,7 +37,7 @@ public extension UniqueElementsGraph {
 
         // We know vertices in lhs are unique, so we call Graph.addVertex to avoid the uniqueness check of UniqueElementsGraph.addVertex.
         for vertex in firstGraph.vertices {
-            _ = super.addVertex(vertex)
+            _ = addVertex(vertex)
         }
 
         // When vertices are removed from Graph, edges might mutate,

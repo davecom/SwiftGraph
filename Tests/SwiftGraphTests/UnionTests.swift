@@ -178,19 +178,6 @@ class UnionTests: XCTestCase {
         XCTAssertTrue(g.edgeExists(from: "C", to: "A"), "g: Expected an edge from C to A")
     }
 
-    static var allTests = [
-        ("testEmptyGraph", testEmptyGraph),
-        ("testUnionLastInCommon", testUnionLastInCommon),
-        ("testUnionFirstInCommon", testUnionFirstInCommon),
-        ("testDisjointUnion", testDisjointUnion),
-        ("testImmutabilityOfInputGraphs", testImmutabilityOfInputGraphs),
-        ("testIdentityEmptyGraph", testIdentityEmptyGraph),
-        ("testUnionWithSelf", testUnionWithSelf),
-        ("testCommutativity", testCommutativity),
-        ("testAssociativity", testAssociativity),
-        ("testMultipleParameters", testMultipleParameters)
-    ]
-
     func arraysHaveSameElements<T: Equatable>(_ a1: [T], _ a2: [T]) -> Bool {
         guard a1.count == a2.count else {
             return false

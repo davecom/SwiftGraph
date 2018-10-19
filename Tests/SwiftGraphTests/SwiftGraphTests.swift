@@ -95,18 +95,4 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertFalse(graph.edgeExists(from: 2, to: 3))
         XCTAssertFalse(graph.edgeExists(from: 3, to: 2))
     }
-    
-    //func testPerformanceExample() {
-        // This is an example of a performance test case.
-     //   self.measureBlock() {
-            // Put the code you want to measure the time of here.
-     //   }
-    //}
-    static var allTests = [
-        ("testCitesInverseAfterRemove", testCitesInverseAfterRemove),
-        ("testSequenceTypeAndCollectionType", testSequenceTypeAndCollectionType),
-        ("testCounts", testCounts),
-        ("testSubscript", testSubscript),
-        ("testRemoveAllEdges", testRemoveAllEdges)
-    ]
 }

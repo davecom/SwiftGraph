@@ -58,12 +58,4 @@ class ConstructorsTests: XCTestCase {
         XCTAssertEqual(g.edgeCount, 0, "The singleton complete graph must contain no edges")
         XCTAssertEqual(g.vertices, [0], "The singleton complete graph must contain one vertex")
     }
-
-    static var allTests = [
-        ("testStarGraphConstructor", testStarGraphConstructor),
-        ("testSingletonStarGraphConstructor", testSingletonStarGraphConstructor),
-        ("testCompleteGraphConstructor", testCompleteGraphConstructor),
-        ("testEmptyCompleteGraphConstructor", testEmptyCompleteGraphConstructor),
-        ("testSingletonCompleteGraphConstructor", testSingletonCompleteGraphConstructor)
-    ]
 }

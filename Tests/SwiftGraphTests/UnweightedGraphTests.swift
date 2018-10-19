@@ -126,12 +126,5 @@ class UnweightedGraphTests: XCTestCase {
         XCTAssertTrue(g3Cycle.edgeExists(from: "Boston", to: "Chicago"), "g3Cycle: Expected an edge from Boston to Chicago")
         XCTAssertTrue(g3Cycle.edgeExists(from: "Chicago", to: "Atlanta"), "g3Cycle: Expected an edge from Chicago to Atlanta")
     }
-
-    static var allTests = [
-        ("testPathInitializerDirected", testPathInitializerDirected),
-        ("testPathInitializerUndirected", testPathInitializerUndirected),
-        ("testCycleInitializerDirected", testCycleInitializerDirected),
-        ("testCycleInitializerUndirected", testCycleInitializerUndirected)
-    ]
 }
 

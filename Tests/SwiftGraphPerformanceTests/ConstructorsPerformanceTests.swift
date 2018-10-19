@@ -20,6 +20,49 @@ import XCTest
 @testable import SwiftGraph
 
 class ConstructorsPerformanceTests: XCTestCase {
+
+    struct AnyEquatable<T: Equatable>: Equatable {
+        let value: T
+    }
+
+    func testPathUnweightedGraphConstructor() {
+        self.measure {
+            _ = UnweightedGraph(withPath: Array(1...999999))
+        }
+    }
+
+    func testCycleUnweightedGraphConstructor() {
+        self.measure {
+            _ = UnweightedGraph(withCycle: Array(1...999999))
+        }
+    }
+
+    func testPathUniqueElementsGraphConstructor() {
+        let array = Array(1...2999).map({ AnyEquatable(value: $0) })
+        self.measure {
+            _ = UniqueElementsGraph<AnyEquatable>(withPath: array)
+        }
+    }
+
+    func testPathUniqueElementsGraphHashableConstructor() {
+        self.measure {
+            _ = UniqueElementsGraph<Int>(withPath: Array(1...2999))
+        }
+    }
+
+    func testCycleUniqueElementsGraphConstructor() {
+        self.measure {
+            _ = UniqueElementsGraph(withCycle: Array(1...2999))
+        }
+    }
+
+    func testCycleUniqueElementsHashableConstructor() {
+        let array = Array(1...2999).map({ AnyEquatable(value: $0) })
+        self.measure {
+            _ = UniqueElementsGraph(withCycle: array)
+        }
+    }
+
     func testStarGraphConstructor() {
         self.measure {
             _ = StarGraph.build(withCenter: 0, andLeafs: Array(1...999999))
@@ -33,6 +76,12 @@ class ConstructorsPerformanceTests: XCTestCase {
     }
 
     static var allTests = [
+        ("testPathUnweightedGraphConstructor", testPathUnweightedGraphConstructor),
+        ("testCycleUnweightedGraphConstructor", testCycleUnweightedGraphConstructor),
+        ("testPathUniqueElementsGraphConstructor", testPathUniqueElementsGraphConstructor),
+        ("testPathUniqueElementsGraphHashableConstructor", testPathUniqueElementsGraphHashableConstructor),
+        ("testCycleUniqueElementsGraphConstructor", testCycleUniqueElementsGraphConstructor),
+        ("testCycleUniqueElementsHashableConstructor", testCycleUniqueElementsHashableConstructor),
         ("testStarGraphConstructor", testStarGraphConstructor),
         ("testCompleteGraphConstructor", testCompleteGraphConstructor),
     ]
