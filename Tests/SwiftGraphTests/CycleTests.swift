@@ -29,7 +29,7 @@ class CycleTests: XCTestCase {
         // setup a graph with 5 fully connected vertices
         for from in 0..<fullyConnected.vertexCount {
             for to in (from + 1)..<fullyConnected.vertexCount {
-                fullyConnected.addEdge(from: from, to: to)
+                fullyConnected.addEdge(fromIndex: from, toIndex: to)
             }
         }
         
@@ -94,13 +94,6 @@ class CycleTests: XCTestCase {
             XCTFail("Arrays not equal: \(lhs), \(rhs)", line: line)
         }
     }
-    
-    static var allTests = [
-        ("testFullyConnectedVertices", testFullyConnectedVertices),
-        ("testFullyConnectedEdges", testFullyConnectedEdges),
-        ("testDetectCyclesVertices1", testDetectCyclesVertices1),
-        ("testDetectCyclesEdges1", testDetectCyclesEdges1)
-    ]
 }
 
 fileprivate extension Edge {

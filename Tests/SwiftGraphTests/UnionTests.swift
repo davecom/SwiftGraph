@@ -31,6 +31,12 @@ class UnionTests: XCTestCase {
         super.tearDown()
     }
 
+    func testEmptyGraph() {
+        let g = UniqueElementsGraph<Int>(unionOf: [])
+        XCTAssertEqual(g.vertexCount, 0, "Expected 0 vertices on the empty graph.")
+        XCTAssertEqual(g.edgeCount, 0, "Expected 0 edges on the empty graph.")
+    }
+
     func testUnionLastInCommon() {
         let g1 = UniqueElementsGraph(vertices: ["Atlanta", "Boston"])
         g1.addEdge(from: "Atlanta", to: "Boston", directed: true)
@@ -171,18 +177,6 @@ class UnionTests: XCTestCase {
         XCTAssertTrue(g.edgeExists(from: "B", to: "C"), "g: Expected an edge from B to C")
         XCTAssertTrue(g.edgeExists(from: "C", to: "A"), "g: Expected an edge from C to A")
     }
-
-    static var allTests = [
-        ("testUnionLastInCommon", testUnionLastInCommon),
-        ("testUnionFirstInCommon", testUnionFirstInCommon),
-        ("testDisjointUnion", testDisjointUnion),
-        ("testImmutabilityOfInputGraphs", testImmutabilityOfInputGraphs),
-        ("testIdentityEmptyGraph", testIdentityEmptyGraph),
-        ("testUnionWithSelf", testUnionWithSelf),
-        ("testCommutativity", testCommutativity),
-        ("testAssociativity", testAssociativity),
-        ("testMultipleParameters", testMultipleParameters)
-    ]
 
     func arraysHaveSameElements<T: Equatable>(_ a1: [T], _ a2: [T]) -> Bool {
         guard a1.count == a2.count else {
