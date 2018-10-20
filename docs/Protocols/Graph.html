@@ -1,0 +1,2474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Graph Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Graph" class="dashAnchor"></a>
+    <a title="Graph Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SwiftGraph Docs</a> (73% documented)</p>
+        <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SwiftGraph Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Graph Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CodableUnweightedGraph.html">CodableUnweightedGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CodableWeightedGraph.html">CodableWeightedGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Queue.html">Queue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Stack.html">Stack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UniqueElementsGraph.html">UniqueElementsGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UnweightedEdge.html">UnweightedEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UnweightedGraph.html">UnweightedGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeightedEdge.html">WeightedEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeightedGraph.html">WeightedGraph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSLR_SeR_SER_SjR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeCyxGGSi_SiSDySiAHGtSLRzSeRzSERzSjRzlF">pathDictToPath(from:to:pathDict:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA4Edge_pGSi_SiSDySiAaF_pGtF">pathDictToPath(from:to:pathDict:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeCyq_GG_AA0gB0Cyxq_GtSQRzSLR_SeR_SER_SjR_r0_lF">printMST(edges:graph:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeCyxGGSLRzSeRzSERzSjRzlF">totalWeight(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Edge.html">Edge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Graph.html">Graph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/PriorityQueue.html">PriorityQueue</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Graph</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Graph</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>The protocl for all graphs.
+You should generally use one of its two canonical class implementations,
+<em>UnweightedGraph</em> and <em>WeightedGraph</em></p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0P1VQa"></a>
+                    <a name="//apple_ref/swift/Alias/V" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0P1VQa">V</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0P1EQa"></a>
+                    <a name="//apple_ref/swift/Alias/E" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0P1EQa">E</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Edge.html">Edge</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0P8verticesSay1VQzGvp"></a>
+                    <a name="//apple_ref/swift/Property/vertices" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0P8verticesSay1VQzGvp">vertices</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">vertices</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0P5edgesSaySay1EQzGGvp"></a>
+                    <a name="//apple_ref/swift/Property/edges" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0P5edgesSaySay1EQzGGvp">edges</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">edges</span><span class="p">:</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Extension%20to%20%60Graph%60%20for%20detecting%20cycles"></a>
+                <a name="//apple_ref/swift/Section/Extension to `Graph` for detecting cycles" class="dashAnchor"></a>
+                <a href="#/Extension%20to%20%60Graph%60%20for%20detecting%20cycles">
+                  <h3 class="section-name">Extension to `Graph` for detecting cycles</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE12detectCycles10upToLengthSaySay1VQzGGSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/detectCycles(upToLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE12detectCycles10upToLengthSaySay1VQzGGSi_tF">detectCycles(upToLength:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find all of the cycles in a <code>Graph</code>, expressed as vertices.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">detectCycles</span><span class="p">(</span><span class="n">upToLength</span> <span class="nv">maxK</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n">max</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>upToLength</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Does the caller only want to detect cycles up to a certain length?</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a list of lists of vertices in cycles</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Cycle.swift#L31-L50">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE4Patha"></a>
+                    <a name="//apple_ref/swift/Alias/Path" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE4Patha">Path</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">Path</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Cycle.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE9PathTuplea"></a>
+                    <a name="//apple_ref/swift/Alias/PathTuple" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE9PathTuplea">PathTuple</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">PathTuple</span> <span class="o">=</span> <span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0PAAE4Patha">Path</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Cycle.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE19detectCyclesAsEdges10upToLengthSaySay1EQzGGSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/detectCyclesAsEdges(upToLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE19detectCyclesAsEdges10upToLengthSaySay1EQzGGSi_tF">detectCyclesAsEdges(upToLength:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find all of the cycles in a <code>Graph</code>, expressed as edges.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">detectCyclesAsEdges</span><span class="p">(</span><span class="n">upToLength</span> <span class="nv">maxK</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n">max</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>upToLength</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Does the caller only want to detect cycles up to a certain length?</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a list of lists of edges in cycles</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Cycle.swift#L58-L79">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE11vertexCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/vertexCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE11vertexCountSivp">vertexCount</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>How many vertices are in the graph?</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">vertexCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L31-L33">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE9edgeCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/edgeCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE9edgeCountSivp">edgeCount</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>How many edges are in the graph?</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">edgeCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L36-L38">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE13vertexAtIndexy1VQzSiF"></a>
+                    <a name="//apple_ref/swift/Method/vertexAtIndex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE13vertexAtIndexy1VQzSiF">vertexAtIndex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a vertex by its index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">vertexAtIndex</span><span class="p">(</span><span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The vertex at i.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L44-L46">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE13indexOfVertexySiSg1VQzF"></a>
+                    <a name="//apple_ref/swift/Method/indexOfVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE13indexOfVertexySiSg1VQzF">indexOfVertex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find the first occurence of a vertex if it exists.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">indexOfVertex</span><span class="p">(</span><span class="n">_</span> <span class="nv">vertex</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The vertex you are looking for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The index of the vertex. Return nil if it can&rsquo;t find it.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L53-L58">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE17neighborsForIndexySay1VQzGSiF"></a>
+                    <a name="//apple_ref/swift/Method/neighborsForIndex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE17neighborsForIndexySay1VQzGSiF">neighborsForIndex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find all of the neighbors of a vertex at a given index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">neighborsForIndex</span><span class="p">(</span><span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index for the vertex to find the neighbors of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of the neighbor vertices.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L64-L66">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE18neighborsForVertexySay1VQzGSgAFF"></a>
+                    <a name="//apple_ref/swift/Method/neighborsForVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE18neighborsForVertexySay1VQzGSgAFF">neighborsForVertex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find all of the neighbors of a given Vertex.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">neighborsForVertex</span><span class="p">(</span><span class="n">_</span> <span class="nv">vertex</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The vertex to find the neighbors of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An optional array of the neighbor vertices.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L72-L77">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE13edgesForIndexySay1EQzGSiF"></a>
+                    <a name="//apple_ref/swift/Method/edgesForIndex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE13edgesForIndexySay1EQzGSiF">edgesForIndex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find all of the edges of a vertex at a given index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">edgesForIndex</span><span class="p">(</span><span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index for the vertex to find the children of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L82-L84">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE14edgesForVertexySay1EQzGSg1VQzF"></a>
+                    <a name="//apple_ref/swift/Method/edgesForVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE14edgesForVertexySay1EQzGSg1VQzF">edgesForVertex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find all of the edges of a given vertex.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">edgesForVertex</span><span class="p">(</span><span class="n">_</span> <span class="nv">vertex</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The vertex to find the edges of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L89-L94">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE10edgeExists4from2toSbSi_SitF"></a>
+                    <a name="//apple_ref/swift/Method/edgeExists(from:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE10edgeExists4from2toSbSi_SitF">edgeExists(from:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is there an edge from one vertex to another?</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">edgeExists</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting edge.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the ending edge.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A Bool that is true if such an edge exists, and false otherwise.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L101-L103">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE10edgeExists4from2toSb1VQz_AHtF"></a>
+                    <a name="//apple_ref/swift/Method/edgeExists(from:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE10edgeExists4from2toSb1VQz_AHtF">edgeExists(from:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">edgeExists</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The second vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A Bool that is true if such an edge exists, and false otherwise.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L110-L117">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE08vertexInB00C0Sb1VQz_tF"></a>
+                    <a name="//apple_ref/swift/Method/vertexInGraph(vertex:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE08vertexInB00C0Sb1VQz_tF">vertexInGraph(vertex:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find the first occurence of a vertex.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">vertexInGraph</span><span class="p">(</span><span class="nv">vertex</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The vertex you are looking for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L122-L127">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE9addVertexySi1VQzF"></a>
+                    <a name="//apple_ref/swift/Method/addVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE9addVertexySi1VQzF">addVertex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a vertex to the graph.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addVertex</span><span class="p">(</span><span class="n">_</span> <span class="nv">v</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>v</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The vertex to be added.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The index where the vertex was added.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L133-L137">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE7addEdgeyy1EQzF"></a>
+                    <a name="//apple_ref/swift/Method/addEdge(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE7addEdgeyy1EQzF">addEdge(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add an edge to the graph. It should take</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addEdge</span><span class="p">(</span><span class="n">_</span> <span class="nv">e</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>e</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The edge to add.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L142-L144">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE14removeAllEdges4from2to13bidirectionalySi_SiSbtF"></a>
+                    <a name="//apple_ref/swift/Method/removeAllEdges(from:to:bidirectional:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE14removeAllEdges4from2to13bidirectionalySi_SiSbtF">removeAllEdges(from:to:bidirectional:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes all edges in both directions between vertices at indexes from &amp; to.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeAllEdges</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">bidirectional</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting vertex&rsquo;s index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ending vertex&rsquo;s index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bidirectional</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Remove edges coming back (to -&gt; from)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L151-L157">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE14removeAllEdges4from2to13bidirectionaly1VQz_AISbtF"></a>
+                    <a name="//apple_ref/swift/Method/removeAllEdges(from:to:bidirectional:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE14removeAllEdges4from2to13bidirectionaly1VQz_AISbtF">removeAllEdges(from:to:bidirectional:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes all edges in both directions between two vertices.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeAllEdges</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">bidirectional</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ending vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bidirectional</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Remove edges coming back (to -&gt; from)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L164-L170">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE10removeEdgeyy1EQzF"></a>
+                    <a name="//apple_ref/swift/Method/removeEdge(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE10removeEdgeyy1EQzF">removeEdge(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove the first edge found to be equal to <em>e</em></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeEdge</span><span class="p">(</span><span class="n">_</span> <span class="nv">e</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>e</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The edge to remove.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L175-L179">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE19removeVertexAtIndexyySiF"></a>
+                    <a name="//apple_ref/swift/Method/removeVertexAtIndex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE19removeVertexAtIndexyySiF">removeVertexAtIndex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes a vertex at a specified index, all of the edges attached to it, and renumbers the indexes of the rest of the edges.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeVertexAtIndex</span><span class="p">(</span><span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L184-L225">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE12removeVertexyy1VQzF"></a>
+                    <a name="//apple_ref/swift/Method/removeVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE12removeVertexyy1VQzF">removeVertex(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes the first occurence of a vertex, all of the edges attached to it, and renumbers the indexes of the rest of the edges.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeVertex</span><span class="p">(</span><span class="n">_</span> <span class="nv">vertex</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The vertex to be removed..</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L230-L234">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Implement%20Printable%20protocol"></a>
+                <a name="//apple_ref/swift/Section/Implement Printable protocol" class="dashAnchor"></a>
+                <a href="#/Implement%20Printable%20protocol">
+                  <h3 class="section-name">Implement Printable protocol</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L238-L244">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Implement%20CollectionType"></a>
+                <a name="//apple_ref/swift/Section/Implement CollectionType" class="dashAnchor"></a>
+                <a href="#/Implement%20CollectionType">
+                  <h3 class="section-name">Implement CollectionType</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl10startIndex0B0Qzvp"></a>
+                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl10startIndex0B0Qzvp">startIndex</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L248-L250">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl8endIndex0B0Qzvp"></a>
+                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl8endIndex0B0Qzvp">endIndex</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L252-L254">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl5index5after5IndexQzAD_tF"></a>
+                    <a name="//apple_ref/swift/Method/index(after:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl5index5after5IndexQzAD_tF">index(after:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">after</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L256-L258">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAEy1VQzSicip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAEy1VQzSicip">subscript(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The same as vertexAtIndex() - returns the vertex at index</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">i</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of vertex to return.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The vertex at index.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L265-L267">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Depth-First%20Search%20and%20Breadth-First%20Search%20Extensions%20to%20%60Graph%60"></a>
+                <a name="//apple_ref/swift/Section/Depth-First Search and Breadth-First Search Extensions to `Graph`" class="dashAnchor"></a>
+                <a href="#/Depth-First%20Search%20and%20Breadth-First%20Search%20Extensions%20to%20%60Graph%60">
+                  <h3 class="section-name">Depth-First Search and Breadth-First Search Extensions to `Graph`</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3dfs4from8goalTestSay1EQzGSi_Sb1VQzXEtF"></a>
+                    <a name="//apple_ref/swift/Method/dfs(from:goalTest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3dfs4from8goalTestSay1EQzGSi_Sb1VQzXEtF">dfs(from:goalTest:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from a vertex to the first that satisfies goalTest()
+using a depth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">goalTest</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>goalTest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns true if a given vertex is a goal.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L30-L51">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3dfs4from8goalTestSay1EQzG1VQz_SbAKXEtF"></a>
+                    <a name="//apple_ref/swift/Method/dfs(from:goalTest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3dfs4from8goalTestSay1EQzG1VQz_SbAKXEtF">dfs(from:goalTest:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from a vertex to the first that satisfies goalTest()
+using a depth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">goalTest</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>goalTest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns true if a given vertex is a goal.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L59-L64">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3dfs4from2toSay1EQzGSi_SitF"></a>
+                    <a name="//apple_ref/swift/Method/dfs(from:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3dfs4from2toSay1EQzGSi_SitF">dfs(from:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from one vertex to another using a depth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the ending vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L71-L92">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3dfs4from2toSay1EQzG1VQz_AKtF"></a>
+                    <a name="//apple_ref/swift/Method/dfs(from:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3dfs4from2toSay1EQzG1VQz_AKtF">dfs(from:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from one vertex to another using a depth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ending vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L99-L106">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3bfs4from8goalTestSay1EQzGSi_Sb1VQzXEtF"></a>
+                    <a name="//apple_ref/swift/Method/bfs(from:goalTest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3bfs4from8goalTestSay1EQzGSi_Sb1VQzXEtF">bfs(from:goalTest:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from a vertex to the first that satisfies goalTest()
+using a breadth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">bfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">goalTest</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>goalTest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns true if a given vertex is a goal.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L114-L136">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3bfs4from8goalTestSay1EQzG1VQz_SbAKXEtF"></a>
+                    <a name="//apple_ref/swift/Method/bfs(from:goalTest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3bfs4from8goalTestSay1EQzG1VQz_SbAKXEtF">bfs(from:goalTest:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from a vertex to the first that satisfies goalTest()
+using a breadth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">bfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">goalTest</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>goalTest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns true if a given vertex is a goal.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L144-L149">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3bfs4from2toSay1EQzGSi_SitF"></a>
+                    <a name="//apple_ref/swift/Method/bfs(from:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3bfs4from2toSay1EQzGSi_SitF">bfs(from:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from one vertex to another using a breadth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">bfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the ending vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L156-L178">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE3bfs4from2toSay1EQzG1VQz_AKtF"></a>
+                    <a name="//apple_ref/swift/Method/bfs(from:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE3bfs4from2toSay1EQzG1VQz_AKtF">bfs(from:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find a route from one vertex to another using a breadth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">bfs</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ending vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Edges containing the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L185-L192">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE7findAll4from8goalTestSaySay1EQzGGSi_Sb1VQzXEtF"></a>
+                    <a name="//apple_ref/swift/Method/findAll(from:goalTest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE7findAll4from8goalTestSaySay1EQzGGSi_Sb1VQzXEtF">findAll(from:goalTest:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find path routes from a vertex to all others the
+function goalTest() returns true for using a breadth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">findAll</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">goalTest</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>goalTest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns true if a given vertex is a goal.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L200-L223">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE7findAll4from8goalTestSaySay1EQzGG1VQz_SbALXEtF"></a>
+                    <a name="//apple_ref/swift/Method/findAll(from:goalTest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE7findAll4from8goalTestSaySay1EQzGG1VQz_SbALXEtF">findAll(from:goalTest:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find path routes from a vertex to all others the
+function goalTest() returns true for using a breadth-first search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">findAll</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">,</span> <span class="nv">goalTest</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the starting vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>goalTest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns true if a given vertex is a goal.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be founding the entire route, or an empty array if no route could be found</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L231-L236">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Dijkstra%20Utilites"></a>
+                <a name="//apple_ref/swift/Section/Dijkstra Utilites" class="dashAnchor"></a>
+                <a href="#/Dijkstra%20Utilites">
+                  <h3 class="section-name">Dijkstra Utilites</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE15edgesToVertices0C0Say1VQzGSay1EQzG_tF"></a>
+                    <a name="//apple_ref/swift/Method/edgesToVertices(edges:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE15edgesToVertices0C0Say1VQzGSay1EQzG_tF">edgesToVertices(edges:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">edgesToVertices</span><span class="p">(</span><span class="nv">edges</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1EQa">E</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Search.swift#L313-L320">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Extension%20to%20%60Graph%60%20for%20toplogical%20sorting"></a>
+                <a name="//apple_ref/swift/Section/Extension to `Graph` for toplogical sorting" class="dashAnchor"></a>
+                <a href="#/Extension%20to%20%60Graph%60%20for%20toplogical%20sorting">
+                  <h3 class="section-name">Extension to `Graph` for toplogical sorting</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE15topologicalSortSay1VQzGSgyF"></a>
+                    <a name="//apple_ref/swift/Method/topologicalSort()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE15topologicalSortSay1VQzGSgyF">topologicalSort()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Topologically sorts a <code>Graph</code> O(n)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">topologicalSort</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Graph.html#/s:10SwiftGraph0B0P1VQa">V</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the sorted vertices, or nil if the graph cannot be sorted due to not being a DAG</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Sort.swift#L30-L59">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph0B0PAAE5isDAGSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isDAG" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph0B0PAAE5isDAGSbvp">isDAG</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is the <code>Graph</code> a directed-acyclic graph (DAG)? O(n)
+Finds the answer based on the result of a topological sort.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isDAG</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Sort.swift#L64-L67">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2018-10-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PriorityQueue Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/PriorityQueue" class="dashAnchor"></a>
+    <a title="PriorityQueue Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SwiftGraph Docs</a> (73% documented)</p>
+        <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SwiftGraph Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        PriorityQueue Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CodableUnweightedGraph.html">CodableUnweightedGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CodableWeightedGraph.html">CodableWeightedGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Queue.html">Queue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Stack.html">Stack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UniqueElementsGraph.html">UniqueElementsGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UnweightedEdge.html">UnweightedEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UnweightedGraph.html">UnweightedGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeightedEdge.html">WeightedEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeightedGraph.html">WeightedGraph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSLR_SeR_SER_SjR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeCyxGGSi_SiSDySiAHGtSLRzSeRzSERzSjRzlF">pathDictToPath(from:to:pathDict:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA4Edge_pGSi_SiSDySiAaF_pGtF">pathDictToPath(from:to:pathDict:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeCyq_GG_AA0gB0Cyxq_GtSQRzSLR_SeR_SER_SjR_r0_lF">printMST(edges:graph:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeCyxGGSLRzSeRzSERzSjRzlF">totalWeight(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Edge.html">Edge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Graph.html">Graph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/PriorityQueue.html">PriorityQueue</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PriorityQueue</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PriorityQueue</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+
+                </div>
+              </div>
+            <p>A PriorityQueue takes objects to be pushed of any type that implements Comparable.
+It will pop the objects in the order that they would be sorted. A pop() or a push()
+can be accomplished in O(lg n) time. It can be specified whether the objects should
+be popped in ascending or descending order (Max Priority Queue or Min Priority Queue)
+at the time of initialization.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV9ascending14startingValuesACyxGSb_SayxGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(ascending:startingValues:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV9ascending14startingValuesACyxGSb_SayxGtcfc">init(ascending:startingValues:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">ascending</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">startingValues</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L37-L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV5order14startingValuesACyxGSbx_xtc_SayxGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(order:startingValues:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV5order14startingValuesACyxGSbx_xtc_SayxGtcfc">init(order:startingValues:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new PriorityQueue with the given ordering.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">order</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">T</span><span class="p">,</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">startingValues</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A function that specifies whether its first argument should
+               come after the second argument in the PriorityQueue.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startingValues</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of elements to initialize the PriorityQueue with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L46-L56">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV5countSivp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV5countSivp">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>How many elements the Priority Queue stores</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L59">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV7isEmptySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV7isEmptySbvp">isEmpty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>true if and only if the Priority Queue is empty</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L62">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV4pushyyxF"></a>
+                    <a name="//apple_ref/swift/Method/push(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV4pushyyxF">push(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a new element onto the Priority Queue. O(lg n)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">push</span><span class="p">(</span><span class="n">_</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>element</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The element to be inserted into the Priority Queue.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L67-L70">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV3popxSgyF"></a>
+                    <a name="//apple_ref/swift/Method/pop()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV3popxSgyF">pop()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove and return the element with the highest priority (or lowest if ascending). O(lg n)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">pop</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The element with the highest priority in the Priority Queue, or nil if the PriorityQueue is empty.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L75-L85">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV6removeyyxF"></a>
+                    <a name="//apple_ref/swift/Method/remove(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV6removeyyxF">remove(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes the first occurence of a particular item. Finds it by value comparison using ==. O(n)
+Silently exits if no occurrence found.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="n">_</span> <span class="nv">item</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>item</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The item to remove the first occurrence of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L92-L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV9removeAllyyxF"></a>
+                    <a name="//apple_ref/swift/Method/removeAll(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV9removeAllyyxF">removeAll(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes all occurences of a particular item. Finds it by value comparison using ==. O(n)
+Silently exits if no occurrence found.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">removeAll</span><span class="p">(</span><span class="n">_</span> <span class="nv">item</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>item</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The item to remove.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L105-L112">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV4peekxSgyF"></a>
+                    <a name="//apple_ref/swift/Method/peek()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV4peekxSgyF">peek()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a look at the current highest priority item, without removing it. O(1)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">peek</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The element with the highest priority in the PriorityQueue, or nil if the PriorityQueue is empty.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L117-L119">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph13PriorityQueueV5clearyyF"></a>
+                    <a name="//apple_ref/swift/Method/clear()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph13PriorityQueueV5clearyyF">clear()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Eliminate all of the elements from the Priority Queue.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">clear</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L122-L124">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/GeneratorType"></a>
+                <a name="//apple_ref/swift/Section/GeneratorType" class="dashAnchor"></a>
+                <a href="#/GeneratorType">
+                  <h3 class="section-name">GeneratorType</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:St7ElementQa"></a>
+                    <a name="//apple_ref/swift/Alias/Element" class="dashAnchor"></a>
+                    <a class="token" href="#/s:St7ElementQa">Element</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Element</span> <span class="o">=</span> <span class="kt">T</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:St4next7ElementQzSgyF"></a>
+                    <a name="//apple_ref/swift/Method/next()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:St4next7ElementQzSgyF">next()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/PriorityQueue.html#/s:St7ElementQa">Element</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/SequenceType"></a>
+                <a name="//apple_ref/swift/Section/SequenceType" class="dashAnchor"></a>
+                <a href="#/SequenceType">
+                  <h3 class="section-name">SequenceType</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ST8IteratorQa"></a>
+                    <a name="//apple_ref/swift/Alias/Iterator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ST8IteratorQa">Iterator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Iterator</span> <span class="o">=</span> <span class="kt">PriorityQueue</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ST12makeIterator0B0QzyF"></a>
+                    <a name="//apple_ref/swift/Method/makeIterator()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ST12makeIterator0B0QzyF">makeIterator()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeIterator</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/PriorityQueue.html#/s:ST8IteratorQa">Iterator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CollectionType"></a>
+                <a name="//apple_ref/swift/Section/CollectionType" class="dashAnchor"></a>
+                <a href="#/CollectionType">
+                  <h3 class="section-name">CollectionType</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl5IndexQa"></a>
+                    <a name="//apple_ref/swift/Alias/Index" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl5IndexQa">Index</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Index</span> <span class="o">=</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl10startIndex0B0Qzvp"></a>
+                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl10startIndex0B0Qzvp">startIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl8endIndex0B0Qzvp"></a>
+                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl8endIndex0B0Qzvp">endIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sly7ElementQz5IndexQzcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sly7ElementQz5IndexQzcip">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">i</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl5index5after5IndexQzAD_tF"></a>
+                    <a name="//apple_ref/swift/Method/index(after:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl5index5after5IndexQzAD_tF">index(after:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">after</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">PriorityQueue</span><span class="o">.</span><span class="kt"><a href="../Structs/PriorityQueue.html#/s:Sl5IndexQa">Index</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">PriorityQueue</span><span class="o">.</span><span class="kt"><a href="../Structs/PriorityQueue.html#/s:Sl5IndexQa">Index</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L175-L177">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CustomStringConvertible,%20CustomDebugStringConvertible"></a>
+                <a name="//apple_ref/swift/Section/CustomStringConvertible, CustomDebugStringConvertible" class="dashAnchor"></a>
+                <a href="#/CustomStringConvertible,%20CustomDebugStringConvertible">
+                  <h3 class="section-name">CustomStringConvertible, CustomDebugStringConvertible</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s28CustomDebugStringConvertibleP16debugDescriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s28CustomDebugStringConvertibleP16debugDescriptionSSvp">debugDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/SwiftPriorityQueue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2018-10-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

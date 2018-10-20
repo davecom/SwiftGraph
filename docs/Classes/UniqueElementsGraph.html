@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UnweightedGraph Class Reference</title>
+    <title>UniqueElementsGraph Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/UnweightedGraph" class="dashAnchor"></a>
-    <a title="UnweightedGraph Class Reference"></a>
+    <a name="//apple_ref/swift/Class/UniqueElementsGraph" class="dashAnchor"></a>
+    <a title="UniqueElementsGraph Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">SwiftGraph Docs</a> (73% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">SwiftGraph Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UnweightedGraph Class Reference
+        UniqueElementsGraph Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -104,14 +104,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UnweightedGraph</h1>
+            <h1>UniqueElementsGraph</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UnweightedGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html">Graph</a></span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Classes/UnweightedGraph.html">UnweightedGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                 </div>
               </div>
-            <p>A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.</p>
+            <p>A subclass of UnweightedGraph that ensures there are no pairs of equal vertices and no repeated edges.</p>
 
           </section>
           <section class="section task-group-section">
@@ -120,69 +120,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0C8verticesSayxGvp"></a>
-                    <a name="//apple_ref/swift/Property/vertices" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0C8verticesSayxGvp">vertices</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">vertices</span><span class="p">:</span> <span class="p">[</span><span class="kt">V</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0C5edgesSaySayAA0C4EdgeCGGvp"></a>
-                    <a name="//apple_ref/swift/Property/edges" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0C5edgesSaySayAA0C4EdgeCGGvp">edges</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">edges</span><span class="p">:</span> <span class="p">[[</span><span class="kt"><a href="../Classes/UnweightedEdge.html">UnweightedEdge</a></span><span class="p">]]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0CACyxGycfc"></a>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0CACyxGycfc"></a>
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0CACyxGycfc">init()</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CACyxGycfc">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -197,12 +137,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L24-L25">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L22-L24">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -210,9 +150,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0C8verticesACyxGSayxG_tcfc"></a>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0C8verticesACyxGSayxG_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(vertices:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0C8verticesACyxGSayxG_tcfc">init(vertices:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C8verticesACyxGSayxG_tcfc">init(vertices:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -220,19 +160,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Init the Graph with vertices, but removes duplicates. O(n^2)</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">vertices</span><span class="p">:</span> <span class="p">[</span><span class="kt">V</span><span class="p">])</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">vertices</span><span class="p">:</span> <span class="p">[</span><span class="kt">V</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L27-L31">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L27-L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -240,9 +180,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0C8withPath8directedACyxGSayxG_Sbtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(withPath:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0C8withPath8directedACyxGSayxG_Sbtcfc">init(withPath:directed:)</a>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0C9addVertexySixF"></a>
+                    <a name="//apple_ref/swift/Method/addVertex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C9addVertexySixF">addVertex(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -250,20 +190,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize an UnweightedGraph consisting of path.</p>
-
-<p>The resulting graph has the vertices in path and an edge between
-each pair of consecutive vertices in path.</p>
-
-<p>If path is an empty array, the resulting graph is the empty graph.
-If path is an array with a single vertex, the resulting graph has that vertex and no edges.</p>
+                        <p>Add a vertex to the graph if no equal vertex already belongs to the Graph. O(n)</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="n">withPath</span> <span class="nv">path</span><span class="p">:</span> <span class="p">[</span><span class="kt">V</span><span class="p">],</span> <span class="nv">directed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addVertex</span><span class="p">(</span><span class="n">_</span> <span class="nv">v</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -274,34 +208,24 @@ If path is an array with a single vertex, the resulting graph has that vertex an
                             <tr>
                               <td>
                                 <code>
-                                <em>path</em>
+                                <em>v</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>An array of vertices representing a path.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>directed</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>If false, undirected edges are created.
-      If true, edges are directed from vertex i to vertex i+1 in path.
-      Default is false.</p>
+                                  <p>The vertex to be added.</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The index where the vertex was added, or the index of the equal vertex already belonging to the graph.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L46-L57">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L38-L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -309,9 +233,9 @@ If path is an array with a single vertex, the resulting graph has that vertex an
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0C9withCycle8directedACyxGSayxG_Sbtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(withCycle:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0C9withCycle8directedACyxGSayxG_Sbtcfc">init(withCycle:directed:)</a>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0C7addEdgeyyAA010UnweightedF0CF"></a>
+                    <a name="//apple_ref/swift/Method/addEdge(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C7addEdgeyyAA010UnweightedF0CF">addEdge(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -319,23 +243,14 @@ If path is an array with a single vertex, the resulting graph has that vertex an
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize an UnweightedGraph consisting of cycle.</p>
-
-<p>The resulting graph has the vertices in cycle and an edge between
-each pair of consecutive vertices in cycle,
-plus an edge between the last and the first vertices.</p>
-
-<p>If path is an empty array, the resulting graph is the empty graph.
-If path is an array with a single vertex, the resulting graph has the vertex
-and a single edge to itself if directed is true.
-If directed is false the resulting graph has the vertex and two edges to itself.</p>
+                        <p>Only allow the edge to be added once</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="n">withCycle</span> <span class="nv">cycle</span><span class="p">:</span> <span class="p">[</span><span class="kt">V</span><span class="p">],</span> <span class="nv">directed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addEdge</span><span class="p">(</span><span class="n">_</span> <span class="nv">e</span><span class="p">:</span> <span class="kt">E</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -346,26 +261,12 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                             <tr>
                               <td>
                                 <code>
-                                <em>cycle</em>
+                                <em>e</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>An array of vertices representing a cycle.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>directed</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>If false, undirected edges are created.
-      If true, edges are directed from vertex i to vertex i+1 in cycle.
-      Default is false.</p>
+                                  <p>The edge to add.</p>
                                 </div>
                               </td>
                             </tr>
@@ -373,7 +274,7 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L75-L80">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L48-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -381,9 +282,9 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0C7addEdge4from2to8directedySi_SiSbtF"></a>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0C7addEdge4from2to8directedySi_SiSbtF"></a>
                     <a name="//apple_ref/swift/Method/addEdge(from:to:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0C7addEdge4from2to8directedySi_SiSbtF">addEdge(from:to:directed:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C7addEdge4from2to8directedySi_SiSbtF">addEdge(from:to:directed:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -391,14 +292,14 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This is a convenience method that adds an unweighted edge.</p>
+                        <p>Only allow the edge to be added once</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addEdge</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">directed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">addEdge</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">directed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -446,7 +347,7 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L87-L93">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L59-L68">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -454,9 +355,9 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph010UnweightedB0C7addEdge4from2to8directedyx_xSbtF"></a>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0C7addEdge4from2to8directedyx_xSbtF"></a>
                     <a name="//apple_ref/swift/Method/addEdge(from:to:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph010UnweightedB0C7addEdge4from2to8directedyx_xSbtF">addEdge(from:to:directed:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C7addEdge4from2to8directedyx_xSbtF">addEdge(from:to:directed:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -464,14 +365,14 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.</p>
+                        <p>Only allow the edge to be added once</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addEdge</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">V</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">V</span><span class="p">,</span> <span class="nv">directed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">addEdge</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">V</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">V</span><span class="p">,</span> <span class="nv">directed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -519,7 +420,82 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L100-L107">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L75-L85">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Extension%20to%20UniqueVerticesGraph%20with%20Union%20initializer"></a>
+                <a name="//apple_ref/swift/Section/Extension to UniqueVerticesGraph with Union initializer" class="dashAnchor"></a>
+                <a href="#/Extension%20to%20UniqueVerticesGraph%20with%20Union%20initializer">
+                  <h3 class="section-name">Extension to UniqueVerticesGraph with Union initializer</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0C7unionOf_ACyxGAE_AEdtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(unionOf:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C7unionOf_ACyxGAE_AEdtcfc">init(unionOf:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new UniqueVerticesGraph that is the union of two UniqueVerticesGraphs. O(n^2)</p>
+
+<p>This operation is commutative in the sense that g1 ∪ g2 has the same vertices and edges
+than g2 ∪ g1. However, the indices of the vertices are not guaranteed to be the same.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="n">unionOf</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt">UniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">others</span><span class="p">:</span> <span class="kt">UniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;...</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>One of the graphs to build the union from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The other graph to build the union from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Union.swift#L30-L55">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
