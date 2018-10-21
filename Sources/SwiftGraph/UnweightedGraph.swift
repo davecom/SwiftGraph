@@ -119,6 +119,12 @@ public final class CodableUnweightedGraph<V: Codable & Equatable> : UnweightedGr
     override public init(vertices: [V]) {
         super.init(vertices: vertices)
     }
+
+    public convenience init(fromGraph g: UnweightedGraph<V>) {
+        self.init()
+        vertices = g.vertices
+        edges = g.edges
+    }
     
     public required init(from decoder: Decoder) throws  {
         super.init()
