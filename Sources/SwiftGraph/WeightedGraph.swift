@@ -90,6 +90,12 @@ public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & 
     override public init(vertices: [V]) {
         super.init(vertices: vertices)
     }
+
+    public convenience init(fromGraph g: WeightedGraph<V, W>) {
+        self.init()
+        vertices = g.vertices
+        edges = g.edges
+    }
     
     public required init(from decoder: Decoder) throws  {
         super.init()
