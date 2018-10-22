@@ -74,15 +74,4 @@ class ConstructorsPerformanceTests: XCTestCase {
             _ = CompleteGraph.build(withVertices: Array(0...1999))
         }
     }
-
-    static var allTests = [
-        ("testPathUnweightedGraphConstructor", testPathUnweightedGraphConstructor),
-        ("testCycleUnweightedGraphConstructor", testCycleUnweightedGraphConstructor),
-        ("testPathUniqueElementsGraphConstructor", testPathUniqueElementsGraphConstructor),
-        ("testPathUniqueElementsGraphHashableConstructor", testPathUniqueElementsGraphHashableConstructor),
-        ("testCycleUniqueElementsGraphConstructor", testCycleUniqueElementsGraphConstructor),
-        ("testCycleUniqueElementsHashableConstructor", testCycleUniqueElementsHashableConstructor),
-        ("testStarGraphConstructor", testStarGraphConstructor),
-        ("testCompleteGraphConstructor", testCompleteGraphConstructor),
-    ]
 }
