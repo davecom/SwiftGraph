@@ -170,6 +170,15 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(cityGraph2.edgesToVertices(edges: result))
     }
+
+    func testDFSNotFound() {
+        // Houston -> first city starting with "Z"
+        let result = cityGraph2.dfs(from: "Houston") { v in
+            return v.first == "Z"
+        }
+        XCTAssertTrue(result.isEmpty, "Found a city starting with Z when there's none.")
+        print(cityGraph2.edgesToVertices(edges: result))
+    }
     
     func testBFS1() {
         // Seattle -> Miami

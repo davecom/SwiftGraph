@@ -27,7 +27,23 @@ class SearchPerformanceTests: XCTestCase {
         }
     }
 
+    func testDfsInPath() {
+        let g = UnweightedGraph(withPath: Array(0...999999))
+        self.measure {
+            _ = g.dfs(from: 0, goalTest: { _ in false })
+        }
+    }
+
+    func testDfsInCompleteGraph() {
+        let g = CompleteGraph.build(withVertices: Array(0...2999))
+        self.measure {
+            _ = g.dfs(from: 0, goalTest: { _ in false })
+        }
+    }
+
     static var allTests = [
         ("testDfsInStarGraph", testDfsInStarGraph),
+        ("testDfsInPath", testDfsInPath),
+        ("testDfsInCompleteGraph", testDfsInCompleteGraph)
     ]
 }

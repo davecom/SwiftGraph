@@ -56,6 +56,7 @@ extension SwiftGraphSearchTests {
         ("testDFS4", testDFS4),
         ("testDFS5", testDFS5),
         ("testDFS6", testDFS6),
+        ("testDFSNotFound", testDFSNotFound),
         ("testFindAll", testFindAll),
     ]
 }
