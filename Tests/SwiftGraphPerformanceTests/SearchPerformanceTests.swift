@@ -35,7 +35,7 @@ class SearchPerformanceTests: XCTestCase {
     }
 
     func testDfsInCompleteGraph() {
-        let g = CompleteGraph.build(withVertices: Array(0...249))
+        let g = CompleteGraph.build(withVertices: Array(0...2999))
         self.measure {
             _ = g.dfs(from: 0, goalTest: { _ in false })
         }
