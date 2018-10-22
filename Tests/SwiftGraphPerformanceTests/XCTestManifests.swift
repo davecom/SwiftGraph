@@ -15,6 +15,8 @@ extension ConstructorsPerformanceTests {
 
 extension SearchPerformanceTests {
     static let __allTests = [
+        ("testDfsInCompleteGraph", testDfsInCompleteGraph),
+        ("testDfsInPath", testDfsInPath),
         ("testDfsInStarGraph", testDfsInStarGraph),
     ]
 }

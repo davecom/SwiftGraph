@@ -283,5 +283,4 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertTrue(endCities.contains("San Francisco"), "Should contain a route to San Francisco")
         }
     }
-        ("testDFSNotFound", testDFSNotFound),
 }
