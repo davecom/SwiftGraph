@@ -16,33 +16,21 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+
 /// A weighted edge, who's weight subscribes to Comparable.
-open class WeightedEdge<W: Comparable & Numeric & Codable>: UnweightedEdge, Comparable {
-    public let weight: W
+public struct WeightedEdge<W: Comparable & Numeric & Codable>: Edge, CustomStringConvertible, Codable, Equatable, Comparable {
+    public var u: Int
+    public var v: Int
+    public var weight: W
     
     public init(u: Int, v: Int, weight: W) {
+        self.u = u
+        self.v = v
         self.weight = weight
-        super.init(u: u, v: v)
     }
-    
-    enum CodingKeys: String, CodingKey {
-        case weight
-    }
-    
-    required public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.weight = try values.decode(W.self, forKey: CodingKeys.weight)
-        try super.init(from: decoder)
-    }
-    
-    open override func encode(to encoder: Encoder) throws {
-        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
-        try rootContainer.encode(weight, forKey: CodingKeys.weight)
-        try super.encode(to: encoder)
-    }
-    
+
     //Implement Printable protocol
-    public override var description: String {
+    public var description: String {
         return "\(u) \(weight)> \(v)"
     }
     

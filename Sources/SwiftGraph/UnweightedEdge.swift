@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A basic unweighted edge.
-open class UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable {
+public struct UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable {
     public var u: Int
     public var v: Int
     
