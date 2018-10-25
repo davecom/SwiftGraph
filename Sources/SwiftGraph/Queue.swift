@@ -18,15 +18,47 @@
 
 /// Implements a queue - helper class that uses an array internally.
 public class Queue<T: Equatable> {
-    private var container: [T] = [T]()
-    public var isEmpty: Bool { return container.isEmpty }
-    public var count: Int { return container.count }
-    public func push(_ thing: T) { container.append(thing) }
-    public func pop() -> T { return container.remove(at: 0) }
+    private var container = [T]()
+    private var head = 0
+
+    public init() {}
+
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    public func push(_ element: T) {
+        container.append(element)
+    }
+
+    public func pop() -> T {
+        let element = container[head]
+        head += 1
+
+        // If queue has more than 50 elements and more than 50% of allocated elements are popped.
+        // Don't calculate the percentage with floating point, it decreases the performance considerably.
+        if container.count > 50 && head * 2 > container.count {
+            container.removeFirst(head)
+            head = 0
+        }
+
+        return element
+    }
+
+    public var front: T {
+        return container[head]
+    }
+
+    public var count: Int {
+        return container.count - head
+    }
+
     public func contains(_ thing: T) -> Bool {
-        if container.index(of: thing) != nil {
+        let content = container.dropFirst(head)
+        if content.firstIndex(of: thing) != nil {
             return true
         }
         return false
     }
 }
+
