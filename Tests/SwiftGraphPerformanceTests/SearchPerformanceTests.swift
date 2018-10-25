@@ -20,30 +20,55 @@ import XCTest
 @testable import SwiftGraph
 
 class SearchPerformanceTests: XCTestCase {
+    let starGraph = StarGraph.build(withCenter: 0, andLeafs: Array(1...99999))
+    let pathGraph = UnweightedGraph(withPath: Array(0...99999))
+    let completeGraph = CompleteGraph.build(withVertices: Array(0...2499))
+
     func testDfsInStarGraph() {
-        let g = StarGraph.build(withCenter: 0, andLeafs: Array(1...999999))
         self.measure {
-            _ = g.dfs(from: 0, goalTest: { _ in false })
+            _ = starGraph.dfs(from: 0, goalTest: { _ in false })
+        }
+    }
+
+    func testBfsInStarGraph() {
+        self.measure {
+            _ = starGraph.bfs(from: 0, goalTest: { _ in false })
+        }
+    }
+
+    func testBfsInStarGraphByIndex() {
+        self.measure {
+            _ = starGraph.bfs(fromIndex: 0, toIndex: -1)
         }
     }
 
     func testDfsInPath() {
-        let g = UnweightedGraph(withPath: Array(0...999999))
         self.measure {
-            _ = g.dfs(from: 0, goalTest: { _ in false })
+            _ = pathGraph.dfs(from: 0, goalTest: { _ in false })
+        }
+    }
+
+    func testDfsInPathByIndex() {
+        self.measure {
+            _ = pathGraph.dfs(fromIndex: 0, toIndex: -1)
+        }
+    }
+
+    func testBfsInPath() {
+        self.measure {
+            _ = pathGraph.bfs(from: 0, goalTest: { _ in false })
         }
     }
 
     func testDfsInCompleteGraph() {
-        let g = CompleteGraph.build(withVertices: Array(0...2999))
         self.measure {
-            _ = g.dfs(from: 0, goalTest: { _ in false })
+            _ = completeGraph.dfs(from: 0, goalTest: { _ in false })
         }
     }
 
-    static var allTests = [
-        ("testDfsInStarGraph", testDfsInStarGraph),
-        ("testDfsInPath", testDfsInPath),
-        ("testDfsInCompleteGraph", testDfsInCompleteGraph)
-    ]
+    func testBfsInCompleteGraph() {
+        self.measure {
+            _ = completeGraph.bfs(from: 0, goalTest: { _ in false })
+        }
+    }
 }
