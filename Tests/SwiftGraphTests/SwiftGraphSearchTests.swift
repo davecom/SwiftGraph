@@ -286,6 +286,22 @@ class SwiftGraphSearchTests: XCTestCase {
         }
         print(cityGraph2.edgesToVertices(edges: result))
     }
+
+    func testBFSWithCycle() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+
+        let paths = [
+            g.bfs(from: "A", to: "C"),
+            g.bfs(from: "A", to: "B"),
+            g.bfs(from: "B", to: "A"),
+            g.bfs(from: "B", to: "C"),
+            g.bfs(from: "C", to: "A"),
+            g.bfs(from: "C", to: "B")
+        ]
+
+        let allPathsHavLenght1 = paths.allSatisfy { $0.count == 1 }
+        XCTAssertTrue(allPathsHavLenght1, "In a Triangle Graph, the bfs must visit all nodes directly.")
+    }
     
     func testFindAll() {
         // New York -> all cities starting with "S"
