@@ -179,7 +179,28 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertTrue(result.isEmpty, "Found a city starting with Z when there's none.")
         print(cityGraph2.edgesToVertices(edges: result))
     }
-    
+
+    func testDFSWithCycle() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+
+        let paths = [
+            g.dfs(from: "A", to: "C"),
+            g.dfs(from: "A", to: "B"),
+            g.dfs(from: "B", to: "A"),
+            g.dfs(from: "B", to: "C"),
+            g.dfs(from: "C", to: "A"),
+            g.dfs(from: "C", to: "B"),
+        ]
+
+        // Since we don't specify the visit order of the neighbours of a vertex, we can't assure
+        // all paths have lenght 2. By now, we are happy only asserting that at least one of the paths
+        // is lenght 2. This indicates that we are not prematurely marking as visited the neighbours
+        // of the current vertex.
+        let atLeastOnePathHasLenght2 = paths.first(where: { $0.count == 2 }) != nil
+
+        XCTAssertTrue(atLeastOnePathHasLenght2, "In a Complete Graph, the dfs must visit all nodes in the same path")
+    }
+
     func testBFS1() {
         // Seattle -> Miami
         let result = cityGraph.bfs(from: "Seattle", to: "Miami")
@@ -264,6 +285,22 @@ class SwiftGraphSearchTests: XCTestCase {
             XCTAssertEqual(cityGraph2.vertexAtIndex(first.u), "Houston", "Houston is not the start")
         }
         print(cityGraph2.edgesToVertices(edges: result))
+    }
+
+    func testBFSWithCycle() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+
+        let paths = [
+            g.bfs(from: "A", to: "C"),
+            g.bfs(from: "A", to: "B"),
+            g.bfs(from: "B", to: "A"),
+            g.bfs(from: "B", to: "C"),
+            g.bfs(from: "C", to: "A"),
+            g.bfs(from: "C", to: "B")
+        ]
+
+        let allPathsHavLenght1 = paths.allSatisfy { $0.count == 1 }
+        XCTAssertTrue(allPathsHavLenght1, "In a Triangle Graph, the bfs must visit all nodes directly.")
     }
     
     func testFindAll() {

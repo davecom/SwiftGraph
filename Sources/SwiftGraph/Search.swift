@@ -33,17 +33,16 @@ public extension Graph {
         let stack: Stack<Int> = Stack<Int>()
         var pathDict: [Int: E] = [Int: E]()
         stack.push(fromIndex)
-        visited[fromIndex] = true
         while !stack.isEmpty {
             let v: Int = stack.pop()
             if goalTest(vertexAtIndex(v)) {
                 // figure out route of edges based on pathDict
                 return pathDictToPath(from: fromIndex, to: v, pathDict: pathDict) as! [Self.E]
             }
+            visited[v] = true
             for e in edgesForIndex(v) {
                 if !visited[e.v] {
                     stack.push(e.v)
-                    visited[e.v] = true
                     pathDict[e.v] = e
                 }
             }
@@ -75,17 +74,16 @@ public extension Graph {
         let stack: Stack<Int> = Stack<Int>()
         var pathDict: [Int: Edge] = [Int: Edge]()
         stack.push(fromIndex)
-        visited[fromIndex] = true
         while !stack.isEmpty {
             let v: Int = stack.pop()
             if v == toIndex {
                 // figure out route of edges based on pathDict
                 return pathDictToPath(from: fromIndex, to: toIndex, pathDict: pathDict) as! [Self.E]
             }
+            visited[v] = true
             for e in edgesForIndex(v) {
                 if !visited[e.v] {
                     stack.push(e.v)
-                    visited[e.v] = true
                     pathDict[e.v] = e
                 }
             }
