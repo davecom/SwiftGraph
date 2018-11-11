@@ -225,6 +225,38 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertTrue(atLeastOnePathHasLenght2, "In a Complete Graph, the dfs must visit all nodes in the same path")
     }
 
+    func testDFSVisitOrderWithCycle() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+
+        let path = DFS(on: g).withVisitOrder({ $0.sorted(by: { $0.v < $1.v }) })
+            .from("A", to: "C")
+
+        XCTAssertEqual(path.count, 2, "In a Complete Graph, the dfs must visit all nodes in the same path")
+    }
+
+    func testDfsInCompleteGraphWithGoalTestByIndex() {
+        var visited = Array<Bool>.init(repeating: false, count: 200)
+        let graph = CompleteGraph.build(withVertices: Array(0...199))
+        _ = graph.dfs(fromIndex: 0, goalTest: { i in
+            visited[i] = true
+            return false
+        })
+        let numVisitedVertices = visited.filter({ $0 }).count
+        XCTAssertEqual(numVisitedVertices, 200, "The DFS must visit all the vertices")
+    }
+
+    func testDfsGoalTestOnInitialVertex() {
+        var visited = false
+        let graph = CompleteGraph.build(withVertices: Array(0...3))
+        _ = graph.dfs(fromIndex: 0, goalTest: { i in
+            if (i == 0) {
+                visited = true
+            }
+            return true
+        })
+        XCTAssertTrue(visited, "The DFS must check if the initialVertex is already a goal.")
+    }
+
     func testBFS1() {
         // Seattle -> Miami
         let result = cityGraph.bfs(from: "Seattle", to: "Miami")
@@ -358,6 +390,38 @@ class SwiftGraphSearchTests: XCTestCase {
 
         let allPathsHavLenght1 = paths.allSatisfy { $0.count == 1 }
         XCTAssertTrue(allPathsHavLenght1, "In a Triangle Graph, the bfs must visit all nodes directly.")
+    }
+
+    func testBFSVisitOrderWithCycle() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+
+        let path = BFS(on: g).withVisitOrder({ $0.sorted(by: { $0.v < $1.v }) })
+            .from("A", to: "C")
+
+        XCTAssertEqual(path.count, 1, "In a Complete Graph, the bfs must visit all nodes directly")
+    }
+
+    func testBfsInCompleteGraphWithGoalTestByIndex() {
+        var visited = Array<Bool>.init(repeating: false, count: 200)
+        let graph = CompleteGraph.build(withVertices: Array(0...199))
+        _ = graph.bfs(fromIndex: 0, goalTest: { i in
+            visited[i] = true
+            return false
+        })
+        let numVisitedVertices = visited.filter({ $0 }).count
+        XCTAssertEqual(numVisitedVertices, 200, "The BFS must visit all the vertices")
+    }
+
+    func testBfsGoalTestOnInitialVertex() {
+        var visited = false
+        let graph = CompleteGraph.build(withVertices: Array(0...3))
+        _ = graph.bfs(fromIndex: 0, goalTest: { i in
+            if (i == 0) {
+                visited = true
+            }
+            return true
+        })
+        XCTAssertTrue(visited, "The BFS must check if the initialVertex is already a goal.")
     }
     
     func testFindAll() {

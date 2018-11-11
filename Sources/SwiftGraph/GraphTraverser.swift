@@ -41,9 +41,11 @@ protocol GraphTraverser {
     ///   - initalVertexIndex: The index of the initial vertex
     ///   - goalTest: Returns true if a given vertex index is a goal. When this closure returns true
     ///               The algorithm stops traversing the graph when this closure returns true.
+    ///               The initial vertex is checked against the closure too.
     ///   - reducer: A reducer that is fed with each visited vertex. The input parameter
     ///              is the edge from the previous vertex to the visited vertex.
     ///              If the return value is false, the neighbours of the input vertex will not be visited.
+    ///              The initialVertex is not fed to the reducer.
     /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
     func from(_ initalVertexIndex: Int, goalTest: (Int) -> Bool, reducer: G.Reducer) -> Int?
 }
