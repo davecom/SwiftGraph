@@ -111,6 +111,52 @@ public extension Graph {
         return []
     }
 
+    /// Find path routes from a vertex to all others the
+    /// function goalTest() returns true for using a depth-first search.
+    ///
+    /// - parameter fromIndex: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be found
+    public func findAllDfs(fromIndex: Int, goalTest: (V) -> Bool) -> [[E]] {
+        // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
+        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
+        let stack: Stack<Int> = Stack<Int>()
+        var pathDict: [Int: Edge] = [Int: Edge]()
+        var paths: [[Edge]] = [[Edge]]()
+        stack.push(fromIndex)
+        while !stack.isEmpty {
+            let v: Int = stack.pop()
+            if (visited[v]) {
+                continue
+            }
+            visited[v] = true
+            if goalTest(vertexAtIndex(v)) {
+                // figure out route of edges based on pathDict
+                paths.append(pathDictToPath(from: fromIndex, to: v, pathDict: pathDict))
+            }
+            for e in edgesForIndex(v) {
+                if !visited[e.v] {
+                    stack.push(e.v)
+                    pathDict[e.v] = e
+                }
+            }
+        }
+        return paths as! [[Self.E]]
+    }
+
+    /// Find path routes from a vertex to all others the
+    /// function goalTest() returns true for using a depth-first search.
+    ///
+    /// - parameter from: The index of the starting vertex.
+    /// - parameter goalTest: Returns true if a given vertex is a goal.
+    /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be founding the entire route, or an empty array if no route could be found
+    public func findAllDfs(from: V, goalTest: (V) -> Bool) -> [[E]] {
+        if let u = indexOfVertex(from) {
+            return findAllDfs(fromIndex: u, goalTest: goalTest)
+        }
+        return []
+    }
+
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a breadth-first search.
     ///

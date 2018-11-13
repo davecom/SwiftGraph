@@ -61,6 +61,7 @@ extension SwiftGraphSearchTests {
         ("testDFSNotFound", testDFSNotFound),
         ("testDFSWithCycle", testDFSWithCycle),
         ("testFindAllBfs", testFindAllBfs),
+        ("testFindAllDfs", testFindAllDfs),
     ]
 }
 

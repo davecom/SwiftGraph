@@ -211,6 +211,24 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertEqual(visitLog, ["A", "C", "B"])
     }
 
+    func testFindAllDfs() {
+        // New York -> all cities starting with "S"
+        let result = cityGraph.findAllDfs(from: "New York") { v in
+            return v.first == "S"
+        }
+        XCTAssertFalse(result.isEmpty, "Couldn't find any connections between New York and a city starting with S (there is one).")
+        XCTAssertEqual(result.count, 2, "Should be 2 cities found starting with S")
+        if let last = result.last, let first = result.first {
+            let pathOne = cityGraph.edgesToVertices(edges: last)
+            print(pathOne)
+            let pathTwo = cityGraph.edgesToVertices(edges: first)
+            print(pathTwo)
+            let endCities = [pathOne.last!, pathTwo.last!]
+            XCTAssertTrue(endCities.contains("Seattle"), "Should contain a route to Seattle")
+            XCTAssertTrue(endCities.contains("San Francisco"), "Should contain a route to San Francisco")
+        }
+    }
+
     func testBFS1() {
         // Seattle -> Miami
         let result = cityGraph.bfs(from: "Seattle", to: "Miami")
