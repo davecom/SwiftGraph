@@ -313,9 +313,9 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertTrue(allPathsHavLenght1, "In a Triangle Graph, the bfs must visit all nodes directly.")
     }
     
-    func testFindAll() {
+    func testFindAllBfs() {
         // New York -> all cities starting with "S"
-        let result = cityGraph.findAll(from: "New York") { v in
+        let result = cityGraph.findAllBfs(from: "New York") { v in
             return v.first == "S"
         }
         XCTAssertFalse(result.isEmpty, "Couldn't find any connections between New York and a city starting with S (there is one).")

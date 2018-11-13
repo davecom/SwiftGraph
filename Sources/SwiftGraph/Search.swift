@@ -203,7 +203,7 @@ public extension Graph {
     /// - parameter fromIndex: The index of the starting vertex.
     /// - parameter goalTest: Returns true if a given vertex is a goal.
     /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be found
-    public func findAll(fromIndex: Int, goalTest: (V) -> Bool) -> [[E]] {
+    public func findAllBfs(fromIndex: Int, goalTest: (V) -> Bool) -> [[E]] {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
@@ -234,9 +234,9 @@ public extension Graph {
     /// - parameter from: The index of the starting vertex.
     /// - parameter goalTest: Returns true if a given vertex is a goal.
     /// - returns: An array of arrays of Edges containing routes to every vertex connected and passing goalTest(), or an empty array if no routes could be founding the entire route, or an empty array if no route could be found
-    public func findAll(from: V, goalTest: (V) -> Bool) -> [[E]] {
+    public func findAllBfs(from: V, goalTest: (V) -> Bool) -> [[E]] {
         if let u = indexOfVertex(from) {
-            return findAll(fromIndex: u, goalTest: goalTest)
+            return findAllBfs(fromIndex: u, goalTest: goalTest)
         }
         return []
     }
