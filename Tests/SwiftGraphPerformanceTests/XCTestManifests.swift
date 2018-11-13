@@ -15,14 +15,26 @@ extension ConstructorsPerformanceTests {
 
 extension SearchPerformanceTests {
     static let __allTests = [
-        ("testBfsInCompleteGraph", testBfsInCompleteGraph),
+        ("testBfsInCompleteGraphWithGoalTest", testBfsInCompleteGraphWithGoalTest),
+        ("testBfsInCompleteGraphWithGoalTestByIndex", testBfsInCompleteGraphWithGoalTestByIndex),
         ("testBfsInPath", testBfsInPath),
+        ("testBfsInPathByIndex", testBfsInPathByIndex),
+        ("testBfsInPathWithGoalTest", testBfsInPathWithGoalTest),
+        ("testBfsInPathWithGoalTestByIndex", testBfsInPathWithGoalTestByIndex),
         ("testBfsInStarGraph", testBfsInStarGraph),
         ("testBfsInStarGraphByIndex", testBfsInStarGraphByIndex),
-        ("testDfsInCompleteGraph", testDfsInCompleteGraph),
+        ("testBfsInStarGraphWithGoalTest", testBfsInStarGraphWithGoalTest),
+        ("testBfsInStarGraphWithGoalTestByIndex", testBfsInStarGraphWithGoalTestByIndex),
+        ("testDfsInCompleteGraphWithGoalTest", testDfsInCompleteGraphWithGoalTest),
+        ("testDfsInCompleteGraphWithGoalTestByIndex", testDfsInCompleteGraphWithGoalTestByIndex),
         ("testDfsInPath", testDfsInPath),
         ("testDfsInPathByIndex", testDfsInPathByIndex),
+        ("testDfsInPathWithGoalTest", testDfsInPathWithGoalTest),
+        ("testDfsInPathWithGoalTestByIndex", testDfsInPathWithGoalTestByIndex),
         ("testDfsInStarGraph", testDfsInStarGraph),
+        ("testDfsInStarGraphByIndex", testDfsInStarGraphByIndex),
+        ("testDfsInStarGraphWithGoalTest", testDfsInStarGraphWithGoalTest),
+        ("testDfsInStarGraphWithGoalTestByIndex", testDfsInStarGraphWithGoalTestByIndex),
     ]
 }
 
