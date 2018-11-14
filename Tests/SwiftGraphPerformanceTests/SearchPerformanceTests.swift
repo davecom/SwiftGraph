@@ -22,8 +22,7 @@ import XCTest
 class SearchPerformanceTests: XCTestCase {
     let starGraph = StarGraph.build(withCenter: 0, andLeafs: Array(1...99999))
     let pathGraph = UnweightedGraph(withPath: Array(0...99999))
-    let smallCompleteGraph = CompleteGraph.build(withVertices: Array(0...299))
-    let bigCompleteGraph = CompleteGraph.build(withVertices: Array(0...2499))
+    let completeGraph = CompleteGraph.build(withVertices: Array(0...2499))
 
     // MARK: With Goal Test
 
@@ -77,25 +76,25 @@ class SearchPerformanceTests: XCTestCase {
 
     func testDfsInCompleteGraphWithGoalTest() {
         self.measure {
-            _ = smallCompleteGraph.dfs(from: 0, goalTest: { _ in false })
+            _ = completeGraph.dfs(from: 0, goalTest: { _ in false })
         }
     }
 
     func testDfsInCompleteGraphWithGoalTestByIndex() {
         self.measure {
-            _ = smallCompleteGraph.dfs(fromIndex: 0, goalTest: { _ in false })
+            _ = completeGraph.dfs(fromIndex: 0, goalTest: { _ in false })
         }
     }
 
     func testBfsInCompleteGraphWithGoalTest() {
         self.measure {
-            _ = bigCompleteGraph.bfs(from: 0, goalTest: { _ in false })
+            _ = completeGraph.bfs(from: 0, goalTest: { _ in false })
         }
     }
 
     func testBfsInCompleteGraphWithGoalTestByIndex() {
         self.measure {
-            _ = bigCompleteGraph.bfs(fromIndex: 0, goalTest: { _ in false })
+            _ = completeGraph.bfs(fromIndex: 0, goalTest: { _ in false })
         }
     }
 

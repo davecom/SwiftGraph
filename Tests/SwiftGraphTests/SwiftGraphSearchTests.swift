@@ -201,6 +201,16 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertTrue(atLeastOnePathHasLenght2, "In a Complete Graph, the dfs must visit all nodes in the same path")
     }
 
+    func testDfsDoesntVisitTwice() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+        var visitLog: [String] = []
+        _ = g.dfs(from: "A", goalTest: { (v) -> Bool in
+            visitLog.append(v)
+            return false
+        })
+        XCTAssertEqual(visitLog, ["A", "C", "B"])
+    }
+
     func testBFS1() {
         // Seattle -> Miami
         let result = cityGraph.bfs(from: "Seattle", to: "Miami")

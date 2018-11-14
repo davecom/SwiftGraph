@@ -234,9 +234,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>1.476</real>
+					<real>1.13</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInCompleteGraphWithGoalTestByIndex()</key>
@@ -244,9 +244,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>1.4764</real>
+					<real>1.13</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInPath()</key>
@@ -254,9 +254,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.11116</real>
+					<real>0.104</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInPathByIndex()</key>
@@ -264,9 +264,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.092551</real>
+					<real>0.0917</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInPathWithGoalTest()</key>
@@ -274,9 +274,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.080523</real>
+					<real>0.0819</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInPathWithGoalTestByIndex()</key>
@@ -284,9 +284,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.085359</real>
+					<real>0.0825</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInStarGraph()</key>
@@ -294,9 +294,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.055614</real>
+					<real>0.0514</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInStarGraphByIndex()</key>
@@ -304,9 +304,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.045118</real>
+					<real>0.0401</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInStarGraphWithGoalTest()</key>
@@ -314,9 +314,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.084091</real>
+					<real>0.0788</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 			<key>testDfsInStarGraphWithGoalTestByIndex()</key>
@@ -324,9 +324,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.083461</real>
+					<real>0.0787</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>13 Nov 2018 at 20:21:05</string>
+					<string>Local Baseline</string>
 				</dict>
 			</dict>
 		</dict>
