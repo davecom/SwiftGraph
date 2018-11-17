@@ -211,6 +211,43 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertEqual(visitLog, ["A", "C", "B"])
     }
 
+    func testDfsInCompleteGraphWithGoalTestByIndex() {
+        var visited = Array<Bool>.init(repeating: false, count: 200)
+        let graph = CompleteGraph.build(withVertices: Array(0...199))
+        _ = graph.dfs(fromIndex: 0, goalTest: { i in
+            visited[i] = true
+            return false
+        })
+        let numVisitedVertices = visited.filter({ $0 }).count
+        XCTAssertEqual(numVisitedVertices, 200, "The DFS must visit all the vertices")
+    }
+
+    func testDfsGoalTestOnInitialVertex() {
+        var visited = false
+        let graph = CompleteGraph.build(withVertices: Array(0...3))
+        _ = graph.dfs(fromIndex: 0, goalTest: { i in
+            if (i == 0) {
+                visited = true
+            }
+            return true
+        })
+        XCTAssertTrue(visited, "The DFS must check if the initialVertex is already a goal.")
+    }
+
+    func testDfsVisitOrderWithCycle() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+        var visited: [String] = []
+        _ = g.dfs(fromIndex: g.indexOfVertex("A")!,
+                  goalTest: { i in return false },
+                  visitOrder: { $0.sorted(by: { $0.v < $1.v }) },
+                  reducer: { e in
+                    visited.append(g.vertexAtIndex(e.v))
+                    return true
+                  }
+        )
+        XCTAssertEqual(visited, ["C", "B"])
+    }
+
     func testFindAllDfs() {
         // New York -> all cities starting with "S"
         let result = cityGraph.findAllDfs(from: "New York") { v in
@@ -329,6 +366,52 @@ class SwiftGraphSearchTests: XCTestCase {
 
         let allPathsHavLenght1 = paths.allSatisfy { $0.count == 1 }
         XCTAssertTrue(allPathsHavLenght1, "In a Triangle Graph, the bfs must visit all nodes directly.")
+    }
+
+    func testBFSNotFound() {
+        // Houston -> first city starting with "Z"
+        let result = cityGraph2.bfs(from: "Houston") { v in
+            return v.first == "Z"
+        }
+        XCTAssertTrue(result.isEmpty, "Found a city starting with Z when there's none.")
+        print(cityGraph2.edgesToVertices(edges: result))
+    }
+
+    func testBfsInCompleteGraphWithGoalTestByIndex() {
+        var visited = Array<Bool>.init(repeating: false, count: 200)
+        let graph = CompleteGraph.build(withVertices: Array(0...199))
+        _ = graph.bfs(fromIndex: 0, goalTest: { i in
+            visited[i] = true
+            return false
+        })
+        let numVisitedVertices = visited.filter({ $0 }).count
+        XCTAssertEqual(numVisitedVertices, 200, "The BFS must visit all the vertices")
+    }
+
+    func testBfsGoalTestOnInitialVertex() {
+        var visited = false
+        let graph = CompleteGraph.build(withVertices: Array(0...3))
+        _ = graph.bfs(fromIndex: 0, goalTest: { i in
+            if (i == 0) {
+                visited = true
+            }
+            return true
+        })
+        XCTAssertTrue(visited, "The BFS must check if the initialVertex is already a goal.")
+    }
+
+    func testBfsVisitOrderWithCycle() {
+        let g = CompleteGraph.build(withVertices: ["A", "B", "C"])
+        var visited: [String] = []
+        _ = g.bfs(fromIndex: g.indexOfVertex("A")!,
+                  goalTest: { i in return false },
+                  visitOrder: { $0.sorted(by: { $0.v < $1.v }) },
+                  reducer: { e in
+                    visited.append(g.vertexAtIndex(e.v))
+                    return true
+                  }
+        )
+        XCTAssertEqual(visited, ["B", "C"])
     }
     
     func testFindAllBfs() {

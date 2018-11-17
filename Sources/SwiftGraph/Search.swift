@@ -198,7 +198,7 @@ public extension Graph {
         return []
     }
 
-    public func bfs(from initalVertexIndex: Int,
+    public func bfs(fromIndex initalVertexIndex: Int,
                     goalTest: (Int) -> Bool,
                     visitOrder: ([E]) -> [E],
                     reducer: (E) -> Bool) -> Int? {
