@@ -21,6 +21,47 @@
 // MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
 public extension Graph {
 
+    public func dfs(fromIndex initalVertexIndex: Int,
+                    goalTest: (Int) -> Bool,
+                    visitOrder: ([E]) -> [E],
+                    reducer: (E) -> Bool) -> Int? {
+
+        if goalTest(initalVertexIndex) {
+            return initalVertexIndex
+        }
+        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
+        let container = Stack<E>()
+
+        visited[initalVertexIndex] = true
+        let neighbours = edgesForIndex(initalVertexIndex)
+        for e in visitOrder(neighbours) {
+            if !visited[e.v] {
+                container.push(e)
+            }
+        }
+        while !container.isEmpty {
+            let edge: E = container.pop()
+            let v = edge.v
+            if visited[v] {
+                continue
+            }
+            let shouldVisitNeighbours = reducer(edge)
+            if goalTest(v) {
+                return v
+            }
+            if shouldVisitNeighbours {
+                visited[v] = true
+                let neighbours = edgesForIndex(v)
+                for e in visitOrder(neighbours) {
+                    if !visited[e.v] {
+                        container.push(e)
+                    }
+                }
+            }
+        }
+        return nil // no route found
+    }
+
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a depth-first search.
     ///
@@ -155,6 +196,45 @@ public extension Graph {
             return findAllDfs(fromIndex: u, goalTest: goalTest)
         }
         return []
+    }
+
+    public func bfs(from initalVertexIndex: Int,
+                    goalTest: (Int) -> Bool,
+                    visitOrder: ([E]) -> [E],
+                    reducer: (E) -> Bool) -> Int? {
+
+        if goalTest(initalVertexIndex) {
+            return initalVertexIndex
+        }
+        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
+        let container = Queue<E>()
+
+        visited[initalVertexIndex] = true
+        let neighbours = edgesForIndex(initalVertexIndex)
+        for e in visitOrder(neighbours) {
+            if !visited[e.v] {
+                container.push(e)
+                visited[e.v] = true
+            }
+        }
+        while !container.isEmpty {
+            let edge: E = container.pop()
+            let v = edge.v
+            let shouldVisitNeighbours = reducer(edge)
+            if goalTest(v) {
+                return v
+            }
+            if shouldVisitNeighbours {
+                let neighbours = edgesForIndex(v)
+                for e in visitOrder(neighbours) {
+                    if !visited[e.v] {
+                        container.push(e)
+                        visited[e.v] = true
+                    }
+                }
+            }
+        }
+        return nil // no route found
     }
 
     /// Find a route from a vertex to the first that satisfies goalTest()
