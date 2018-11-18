@@ -50,6 +50,10 @@ extension SwiftGraphSearchTests {
         ("testBFS4", testBFS4),
         ("testBFS5", testBFS5),
         ("testBFS6", testBFS6),
+        ("testBfsGoalTestOnInitialVertex", testBfsGoalTestOnInitialVertex),
+        ("testBfsInCompleteGraphWithGoalTestByIndex", testBfsInCompleteGraphWithGoalTestByIndex),
+        ("testBFSNotFound", testBFSNotFound),
+        ("testBfsVisitOrderWithCycle", testBfsVisitOrderWithCycle),
         ("testBFSWithCycle", testBFSWithCycle),
         ("testDFS1", testDFS1),
         ("testDFS2", testDFS2),
@@ -58,9 +62,13 @@ extension SwiftGraphSearchTests {
         ("testDFS5", testDFS5),
         ("testDFS6", testDFS6),
         ("testDfsDoesntVisitTwice", testDfsDoesntVisitTwice),
+        ("testDfsGoalTestOnInitialVertex", testDfsGoalTestOnInitialVertex),
+        ("testDfsInCompleteGraphWithGoalTestByIndex", testDfsInCompleteGraphWithGoalTestByIndex),
         ("testDFSNotFound", testDFSNotFound),
+        ("testDfsVisitOrderWithCycle", testDfsVisitOrderWithCycle),
         ("testDFSWithCycle", testDFSWithCycle),
-        ("testFindAll", testFindAll),
+        ("testFindAllBfs", testFindAllBfs),
+        ("testFindAllDfs", testFindAllDfs),
     ]
 }
 
