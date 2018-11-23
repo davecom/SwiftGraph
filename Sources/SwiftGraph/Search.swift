@@ -21,6 +21,21 @@
 // MARK: Depth-First Search and Breadth-First Search Extensions to `Graph`
 public extension Graph {
 
+    /// Perform a computation over the graph visiting the vertices using a
+    /// depth-first algorithm.
+    ///
+    /// The vertices of the graph are visited one time at most.
+    ///
+    /// - Parameters:
+    ///   - initalVertexIndex: The index of the vertex that will be visited first.
+    ///   - goalTest: Returns true if a given vertex index is a goal.
+    ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
+    ///                 of its outgoing edges will be passed to this closure and the neighbours will
+    ///                 be visited in the order of the resulting array.
+    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///              is the edge from the previously visited vertex to the currently visited vertex.
+    ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
+    /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
     public func dfs(fromIndex initalVertexIndex: Int,
                     goalTest: (Int) -> Bool,
                     visitOrder: ([E]) -> [E],
@@ -198,6 +213,21 @@ public extension Graph {
         return []
     }
 
+    /// Perform a computation over the graph visiting the vertices using a
+    /// breadth-first algorithm.
+    ///
+    /// The vertices of the graph are visited one time at most.
+    ///
+    /// - Parameters:
+    ///   - initalVertexIndex: The index of the vertex that will be visited first.
+    ///   - goalTest: Returns true if a given vertex index is a goal.
+    ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
+    ///                 of its outgoing edges will be passed to this closure and the neighbours will
+    ///                 be visited in the order of the resulting array.
+    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///              is the edge from the previously visited vertex to the currently visited vertex.
+    ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
+    /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
     public func bfs(fromIndex initalVertexIndex: Int,
                     goalTest: (Int) -> Bool,
                     visitOrder: ([E]) -> [E],
