@@ -248,6 +248,29 @@ class SwiftGraphSearchTests: XCTestCase {
         XCTAssertEqual(visited, ["C", "B"])
     }
 
+    func testTraverseDfsOnCycle() {
+        let g = UnweightedGraph(withCycle: ["A", "B", "C"], directed: true)
+        let aIndex = g.indexOfVertex("A")!
+
+        // First vertex is not fed to the reducer
+        var visitedCound = 1
+        var visitLog = "A"
+
+        let finalVertexIndex = g.traverseDfs(fromIndex: aIndex,
+                                             goalTest: { _ in visitedCound == 3},
+                                             visitOrder: { $0 },
+                                             reducer: {
+                                                visitLog += g.vertexAtIndex($0.v)
+                                                if $0.v == aIndex {
+                                                    visitedCound += 1
+                                                }
+                                                return true
+                                             }
+        )
+        XCTAssertEqual(finalVertexIndex, aIndex, "The traversal must finish on vertex A")
+        XCTAssertEqual(visitLog, "ABCABCA", "The cycle must be traversed twice")
+    }
+
     func testFindAllDfs() {
         // New York -> all cities starting with "S"
         let result = cityGraph.findAllDfs(from: "New York") { v in
@@ -412,6 +435,29 @@ class SwiftGraphSearchTests: XCTestCase {
                   }
         )
         XCTAssertEqual(visited, ["B", "C"])
+    }
+
+    func testTraverseBfsOnCycle() {
+        let g = UnweightedGraph(withCycle: ["A", "B", "C"], directed: true)
+        let aIndex = g.indexOfVertex("A")!
+
+        // First vertex is not fed to the reducer
+        var visitedCound = 1
+        var visitLog = "A"
+
+        let finalVertexIndex = g.traverseBfs(fromIndex: aIndex,
+                                             goalTest: { _ in visitedCound == 3},
+                                             visitOrder: { $0 },
+                                             reducer: {
+                                                visitLog += g.vertexAtIndex($0.v)
+                                                if $0.v == aIndex {
+                                                    visitedCound += 1
+                                                }
+                                                return true
+        }
+        )
+        XCTAssertEqual(finalVertexIndex, aIndex, "The traversal must finish on vertex A")
+        XCTAssertEqual(visitLog, "ABCABCA", "The cycle must be traversed twice")
     }
     
     func testFindAllBfs() {

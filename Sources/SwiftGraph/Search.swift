@@ -77,6 +77,53 @@ public extension Graph {
         return nil // no route found
     }
 
+    /// Perform a computation over the graph visiting the vertices using a
+    /// depth-first algorithm.
+    ///
+    /// The vertices of the graph can be visited more than once. This means that the algorithm is
+    /// not guaranteed to terminate if tha graph has cycles, it dependes on what goalTest and reducer are used.
+    ///
+    /// - Parameters:
+    ///   - initalVertexIndex: The index of the vertex that will be visited first.
+    ///   - goalTest: Returns true if a given vertex index is a goal.
+    ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
+    ///                 of its outgoing edges will be passed to this closure and the neighbours will
+    ///                 be visited in the order of the resulting array.
+    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///              is the edge from the previously visited vertex to the currently visited vertex.
+    ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
+    /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
+    public func traverseDfs(fromIndex initalVertexIndex: Int,
+                            goalTest: (Int) -> Bool,
+                            visitOrder: ([E]) -> [E],
+                            reducer: (E) -> Bool) -> Int? {
+
+        if goalTest(initalVertexIndex) {
+            return initalVertexIndex
+        }
+        let container = Stack<E>()
+
+        let neighbours = edgesForIndex(initalVertexIndex)
+        for e in visitOrder(neighbours) {
+            container.push(e)
+        }
+        while !container.isEmpty {
+            let edge: E = container.pop()
+            let v = edge.v
+            let shouldVisitNeighbours = reducer(edge)
+            if goalTest(v) {
+                return v
+            }
+            if shouldVisitNeighbours {
+                let neighbours = edgesForIndex(v)
+                for e in visitOrder(neighbours) {
+                    container.push(e)
+                }
+            }
+        }
+        return nil // no route found
+    }
+
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a depth-first search.
     ///
@@ -266,6 +313,54 @@ public extension Graph {
         }
         return nil // no route found
     }
+
+    /// Perform a computation over the graph visiting the vertices using a
+    /// breadth-first algorithm.
+    ///
+    /// The vertices of the graph can be visited more than once. This means that the algorithm is
+    /// not guaranteed to terminate if tha graph has cycles, it dependes on what goalTest and reducer are used.
+    ///
+    /// - Parameters:
+    ///   - initalVertexIndex: The index of the vertex that will be visited first.
+    ///   - goalTest: Returns true if a given vertex index is a goal.
+    ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
+    ///                 of its outgoing edges will be passed to this closure and the neighbours will
+    ///                 be visited in the order of the resulting array.
+    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///              is the edge from the previously visited vertex to the currently visited vertex.
+    ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
+    /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
+    public func traverseBfs(fromIndex initalVertexIndex: Int,
+                            goalTest: (Int) -> Bool,
+                            visitOrder: ([E]) -> [E],
+                            reducer: (E) -> Bool) -> Int? {
+
+        if goalTest(initalVertexIndex) {
+            return initalVertexIndex
+        }
+        let container = Queue<E>()
+
+        let neighbours = edgesForIndex(initalVertexIndex)
+        for e in visitOrder(neighbours) {
+            container.push(e)
+        }
+        while !container.isEmpty {
+            let edge: E = container.pop()
+            let v = edge.v
+            let shouldVisitNeighbours = reducer(edge)
+            if goalTest(v) {
+                return v
+            }
+            if shouldVisitNeighbours {
+                let neighbours = edgesForIndex(v)
+                for e in visitOrder(neighbours) {
+                    container.push(e)
+                }
+            }
+        }
+        return nil // no route found
+    }
+
 
     /// Find a route from a vertex to the first that satisfies goalTest()
     /// using a breadth-first search.
