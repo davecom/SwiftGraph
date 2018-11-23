@@ -32,7 +32,7 @@ public extension Graph {
     ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
     ///                 of its outgoing edges will be passed to this closure and the neighbours will
     ///                 be visited in the order of the resulting array.
-    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///   - reducer: A closure that is fed with each visited edge. The input parameter
     ///              is the edge from the previously visited vertex to the currently visited vertex.
     ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
     /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
@@ -89,7 +89,7 @@ public extension Graph {
     ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
     ///                 of its outgoing edges will be passed to this closure and the neighbours will
     ///                 be visited in the order of the resulting array.
-    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///   - reducer: A closure that is fed with each visited edge. The input parameter
     ///              is the edge from the previously visited vertex to the currently visited vertex.
     ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
     /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
@@ -271,7 +271,7 @@ public extension Graph {
     ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
     ///                 of its outgoing edges will be passed to this closure and the neighbours will
     ///                 be visited in the order of the resulting array.
-    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///   - reducer: A closure that is fed with each visited edge. The input parameter
     ///              is the edge from the previously visited vertex to the currently visited vertex.
     ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
     /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
@@ -326,7 +326,7 @@ public extension Graph {
     ///   - visitOrder: A closure that orders an array of edges. For each visited vertex, the array
     ///                 of its outgoing edges will be passed to this closure and the neighbours will
     ///                 be visited in the order of the resulting array.
-    ///   - reducer: A closure that is fed with each visited vertex. The input parameter
+    ///   - reducer: A closure that is fed with each visited edge. The input parameter
     ///              is the edge from the previously visited vertex to the currently visited vertex.
     ///              If the return value is false, the neighbours of the currently visited vertex won't be visited.
     /// - Returns: The index of the first vertex found to satisfy goalTest or nil if no vertex is found.
