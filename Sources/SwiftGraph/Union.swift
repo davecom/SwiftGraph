@@ -29,7 +29,7 @@ public extension UniqueElementsGraph {
     ///
     /// - Parameters:
     ///   - graphs: Array of graphs to build the union from.
-    public convenience init(unionOf graphs: [UniqueElementsGraph<V>]) {
+    convenience init(unionOf graphs: [UniqueElementsGraph<V>]) {
         self.init()
 
         guard let firstGraph = graphs.first else { return }
@@ -59,7 +59,7 @@ public extension UniqueElementsGraph {
         }
     }
 
-    public convenience init(unionOf graphs: UniqueElementsGraph<V>...) {
+    convenience init(unionOf graphs: UniqueElementsGraph<V>...) {
         self.init(unionOf: graphs)
     }
 }

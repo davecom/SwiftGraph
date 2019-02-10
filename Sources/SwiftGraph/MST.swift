@@ -31,7 +31,7 @@ public extension WeightedGraph {
     ///
     /// - parameter start: The index of the vertex to start creating the MST from.
     /// - returns: An array of WeightedEdges containing the minimum spanning tree, or nil if the starting vertex is invalid. If there are is only one vertex connected to the starting vertex, an empty list is returned.
-    public func mst(start: Int = 0) -> [WeightedEdge<W>]? {
+    func mst(start: Int = 0) -> [WeightedEdge<W>]? {
         if start > (vertexCount - 1) || start < 0 { return nil }
         var result: [WeightedEdge<W>] = [WeightedEdge<W>]() // the final MST goes in here
         var pq: PriorityQueue<WeightedEdge<W>> = PriorityQueue<WeightedEdge<W>>(ascending: true) // minPQ
