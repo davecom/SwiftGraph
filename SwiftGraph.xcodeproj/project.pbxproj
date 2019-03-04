@@ -38,6 +38,7 @@
 		B51B460B2083E14200CD0463 /* Union.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51B460A2083E14200CD0463 /* Union.swift */; };
 		B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */; };
 		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
+		B52C867B222DC89400CF6B49 /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C867A222DC89400CF6B49 /* UnionTests.swift */; };
 		B54FDA6E21729EFF00057C51 /* Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA6D21729EFF00057C51 /* Constructors.swift */; };
 		B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA702172A34D00057C51 /* ConstructorsTests.swift */; };
 		B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */; };
@@ -123,6 +124,7 @@
 		B51B460A2083E14200CD0463 /* Union.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Union.swift; path = ../Sources/SwiftGraph/Union.swift; sourceTree = "<group>"; };
 		B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableInitTests.swift; sourceTree = "<group>"; };
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
+		B52C867A222DC89400CF6B49 /* UnionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
 		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constructors.swift; path = ../Sources/SwiftGraph/Constructors.swift; sourceTree = "<group>"; };
 		B54FDA702172A34D00057C51 /* ConstructorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsTests.swift; sourceTree = "<group>"; };
 		B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsPerformanceTests.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			children = (
 				B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */,
 				B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */,
+				B52C867A222DC89400CF6B49 /* UnionTests.swift */,
 			);
 			name = SwiftGraphPerformanceTests;
 			path = Tests/SwiftGraphPerformanceTests;
@@ -555,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52C867B222DC89400CF6B49 /* UnionTests.swift in Sources */,
 				B5EACB292172336900E527BD /* SearchPerformanceTests.swift in Sources */,
 				B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */,
 			);
