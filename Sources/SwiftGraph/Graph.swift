@@ -49,7 +49,6 @@ extension Graph {
     ///
     /// - parameter vertex: The vertex you are looking for.
     /// - returns: The index of the vertex. Return nil if it can't find it.
-    
     public func indexOfVertex(_ vertex: V) -> Int? {
         if let i = vertices.index(of: vertex) {
             return i
@@ -92,7 +91,11 @@ extension Graph {
         }
         return nil
     }
-    
+
+    public func edgeExists(_ edge: E) -> Bool {
+        return edgeExists(from: edge.u, to: edge.v)
+    }
+
     /// Is there an edge from one vertex to another?
     ///
     /// - parameter from: The index of the starting edge.

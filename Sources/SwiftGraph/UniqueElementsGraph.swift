@@ -48,7 +48,7 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
     ///
     /// - parameter e: The edge to add.
     public func addEdge(_ e: UnweightedEdge) {
-        if !edgeExists(from: e.u, to: e.v) {
+        if !edgeExists(e) {
             edges[e.u].append(e)
         }
     }
@@ -59,10 +59,12 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(fromIndex u: Int, toIndex v: Int, directed: Bool = false) {
-        if !edgeExists(from: u, to: v) {
-            addEdge(UnweightedEdge(u: u, v: v))
-            if !directed && !edgeExists(from: v, to: u) {
-                addEdge(UnweightedEdge(u: v, v: u))
+        let edge = UnweightedEdge(u: u, v: v)
+        if !edgeExists(edge) {
+            addEdge(edge)
+            let reverseEdge = UnweightedEdge(u: v, v: u)
+            if !directed && !edgeExists(reverseEdge) {
+                addEdge(reverseEdge)
             }
         }
     }
