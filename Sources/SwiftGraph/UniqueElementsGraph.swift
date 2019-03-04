@@ -16,10 +16,12 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+typealias UniqueElementsGraph<V: Equatable> = UniqueElementsGraphCustomEdge<V, UnweightedEdge>
+
 /// A subclass of UnweightedGraph that ensures there are no pairs of equal vertices and no repeated edges.
-open class UniqueElementsGraph<V: Equatable>: Graph {
+open class UniqueElementsGraphCustomEdge<V: Equatable, E: Edge&Equatable>: Graph {
     public var vertices: [V] = [V]()
-    public var edges: [[UnweightedEdge]] = [[UnweightedEdge]]() //adjacency lists
+    public var edges: [[E]] = [[E]]() //adjacency lists
 
     public init() {
     }
@@ -47,12 +49,14 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
     /// Only allow the edge to be added once
     ///
     /// - parameter e: The edge to add.
-    public func addEdge(_ e: UnweightedEdge) {
+    public func addEdge(_ e: E) {
         if !edgeExists(e) {
             edges[e.u].append(e)
         }
     }
-    
+}
+
+extension UniqueElementsGraphCustomEdge where E == UnweightedEdge {
     /// Only allow the edge to be added once
     ///
     /// - parameter from: The starting vertex's index.
@@ -68,7 +72,7 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
             }
         }
     }
-    
+
     /// Only allow the edge to be added once
     ///
     /// - parameter from: The starting vertex.
@@ -79,9 +83,6 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
             addEdge(fromIndex: u, toIndex: v, directed: directed)
         }
     }
-}
-
-extension UniqueElementsGraph {
 
     private func addEdgesForPath(withIndices indices: [Int], directed: Bool) {
         for i in 0..<indices.count - 1 {
@@ -147,10 +148,9 @@ extension UniqueElementsGraph {
         addEdgesForPath(withIndices: indices, directed: directed)
         addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
     }
-
 }
 
-extension UniqueElementsGraph where V: Hashable {
+extension UniqueElementsGraphCustomEdge where V: Hashable, E == UnweightedEdge {
     public convenience init(withPath path: [V], directed: Bool = false) {
         self.init()
 

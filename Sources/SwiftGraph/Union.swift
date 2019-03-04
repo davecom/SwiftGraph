@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 // MARK: - Extension to UniqueVerticesGraph with Union initializer
-public extension UniqueElementsGraph {
+public extension UniqueElementsGraphCustomEdge {
     
     /// Creates a new UniqueVerticesGraph that is the union of several UniqueVerticesGraphs.
     ///
@@ -29,7 +29,7 @@ public extension UniqueElementsGraph {
     ///
     /// - Parameters:
     ///   - graphs: Array of graphs to build the union from.
-    public convenience init(unionOf graphs: [UniqueElementsGraph<V>]) {
+    public convenience init(unionOf graphs: [UniqueElementsGraphCustomEdge]) {
         self.init()
 
         guard let firstGraph = graphs.first else { return }
@@ -53,13 +53,17 @@ public extension UniqueElementsGraph {
                 _ = addVertex(vertex)
             }
 
-            for edge in g.edges.joined() {
-                addEdge(from: g[edge.u], to: g[edge.v], directed: true)
+            for var edge in g.edges.joined() {
+                if let u = indexOfVertex(g[edge.u]), let v = indexOfVertex(g[edge.v]) {
+                    edge.u = u
+                    edge.v = v
+                    addEdge(edge)
+                }
             }
         }
     }
 
-    public convenience init(unionOf graphs: UniqueElementsGraph<V>...) {
+    public convenience init(unionOf graphs: UniqueElementsGraphCustomEdge...) {
         self.init(unionOf: graphs)
     }
 }

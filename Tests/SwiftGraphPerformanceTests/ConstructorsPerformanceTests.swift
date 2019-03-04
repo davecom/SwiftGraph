@@ -40,13 +40,13 @@ class ConstructorsPerformanceTests: XCTestCase {
     func testPathUniqueElementsGraphConstructor() {
         let array = Array(1...2999).map({ AnyEquatable(value: $0) })
         self.measure {
-            _ = UniqueElementsGraph<AnyEquatable>(withPath: array)
+            _ = UniqueElementsGraph(withPath: array)
         }
     }
 
     func testPathUniqueElementsGraphHashableConstructor() {
         self.measure {
-            _ = UniqueElementsGraph<Int>(withPath: Array(1...2999))
+            _ = UniqueElementsGraph(withPath: Array(1...2999))
         }
     }
 
