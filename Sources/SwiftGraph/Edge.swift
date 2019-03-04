@@ -17,16 +17,12 @@
 //  limitations under the License.
 
 /// A protocol that all edges in a graph must conform to.
-public protocol Edge: CustomStringConvertible {
+public protocol Edge: CustomStringConvertible, Equatable {
     /// The origin vertex of the edge
     var u: Int {get set}  //made modifiable for changing when removing vertices
     /// The destination vertex of the edge
     var v: Int {get set}  //made modifiable for changing when removing vertices
 }
 
-extension Edge where Self: Equatable {
-    //MARK: Operator Overloads
-    static public func ==(lhs: Self, rhs: Self) -> Bool {
-        return lhs.u == rhs.u && lhs.v == rhs.v
-    }
-}
+// Edges conforming this protocol can be searched in a graph only their start and end nodes.
+public protocol SearchableByNodes: Edge {}

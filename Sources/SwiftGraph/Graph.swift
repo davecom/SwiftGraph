@@ -21,7 +21,7 @@
 /// *UnweightedGraph* and *WeightedGraph*
 public protocol Graph: class, CustomStringConvertible, Collection {
     associatedtype V: Equatable
-    associatedtype E: Edge & Equatable
+    associatedtype E: Edge
     var vertices: [V] { get set }
     var edges: [[E]] { get set }
 }
@@ -90,33 +90,6 @@ extension Graph {
             return edgesForIndex(i)
         }
         return nil
-    }
-
-    public func edgeExists(_ edge: E) -> Bool {
-        return edgeExists(from: edge.u, to: edge.v)
-    }
-
-    /// Is there an edge from one vertex to another?
-    ///
-    /// - parameter from: The index of the starting edge.
-    /// - parameter to: The index of the ending edge.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: Int, to: Int) -> Bool {
-        return edges[from].map({$0.v}).contains(to)
-    }
-    
-    /// Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.
-    ///
-    /// - parameter from: The first vertex.
-    /// - parameter to: The second vertex.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: V, to: V) -> Bool {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v)
-            }
-        }
-        return false
     }
     
     /// Find the first occurence of a vertex.
@@ -270,3 +243,45 @@ extension Graph {
     }
 }
 
+extension Graph {
+    /// Returns true if the passed edge is in the grph.
+    ///
+    /// - parameter edge: The edge to find in the graph.
+    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
+    public func edgeExists(_ edge: E) -> Bool {
+        return edges[edge.u].contains(edge)
+    }
+}
+
+extension Graph where E: SearchableByNodes {
+    /// Returns true if the passed edge is in the grph.
+    ///
+    /// - parameter edge: The edge to find in the graph.
+    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
+    public func edgeExists(_ edge: E) -> Bool {
+        return edgeExists(from: edge.u, to: edge.v)
+    }
+
+    /// Is there an edge from one vertex to another?
+    ///
+    /// - parameter from: The index of the starting edge.
+    /// - parameter to: The index of the ending edge.
+    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
+    public func edgeExists(from: Int, to: Int) -> Bool {
+        return edges[from].map({$0.v}).contains(to)
+    }
+
+    /// Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.
+    ///
+    /// - parameter from: The first vertex.
+    /// - parameter to: The second vertex.
+    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
+    public func edgeExists(from: V, to: V) -> Bool {
+        if let u = indexOfVertex(from) {
+            if let v = indexOfVertex(to) {
+                return edgeExists(from: u, to: v)
+            }
+        }
+        return false
+    }
+}

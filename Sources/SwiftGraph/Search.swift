@@ -144,7 +144,7 @@ public extension Graph {
             visited[v] = true
             if goalTest(vertexAtIndex(v)) {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: fromIndex, to: v, pathDict: pathDict) as! [Self.E]
+                return pathDictToPath(from: fromIndex, to: v, pathDict: pathDict)
             }
             for e in edgesForIndex(v) {
                 if !visited[e.v] {
@@ -178,7 +178,7 @@ public extension Graph {
         // pretty standard dfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let stack: Stack<Int> = Stack<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var pathDict: [Int: E] = [Int: E]()
         stack.push(fromIndex)
         while !stack.isEmpty {
             let v: Int = stack.pop()
@@ -188,7 +188,7 @@ public extension Graph {
             visited[v] = true
             if v == toIndex {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: fromIndex, to: toIndex, pathDict: pathDict) as! [Self.E]
+                return pathDictToPath(from: fromIndex, to: toIndex, pathDict: pathDict)
             }
             for e in edgesForIndex(v) {
                 if !visited[e.v] {
@@ -224,8 +224,8 @@ public extension Graph {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let stack: Stack<Int> = Stack<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
-        var paths: [[Edge]] = [[Edge]]()
+        var pathDict: [Int: E] = [Int: E]()
+        var paths: [[E]] = [[E]]()
         stack.push(fromIndex)
         while !stack.isEmpty {
             let v: Int = stack.pop()
@@ -244,7 +244,7 @@ public extension Graph {
                 }
             }
         }
-        return paths as! [[Self.E]]
+        return paths
     }
 
     /// Find path routes from a vertex to all others the
@@ -372,13 +372,13 @@ public extension Graph {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var pathDict: [Int: E] = [Int: E]()
         queue.push(fromIndex)
         while !queue.isEmpty {
             let v: Int = queue.pop()
             if goalTest(vertexAtIndex(v)) {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: fromIndex, to: v, pathDict: pathDict) as! [Self.E]
+                return pathDictToPath(from: fromIndex, to: v, pathDict: pathDict)
             }
             
             for e in edgesForIndex(v) {
@@ -414,13 +414,13 @@ public extension Graph {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
+        var pathDict: [Int: E] = [Int: E]()
         queue.push(fromIndex)
         while !queue.isEmpty {
             let v: Int = queue.pop()
             if v == toIndex {
                 // figure out route of edges based on pathDict
-                return pathDictToPath(from: fromIndex, to: toIndex, pathDict: pathDict) as! [Self.E]
+                return pathDictToPath(from: fromIndex, to: toIndex, pathDict: pathDict)
             }
             
             for e in edgesForIndex(v) {
@@ -458,8 +458,8 @@ public extension Graph {
         // pretty standard bfs that doesn't visit anywhere twice; pathDict tracks route
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         let queue: Queue<Int> = Queue<Int>()
-        var pathDict: [Int: Edge] = [Int: Edge]()
-        var paths: [[Edge]] = [[Edge]]()
+        var pathDict: [Int: E] = [Int: E]()
+        var paths: [[E]] = [[E]]()
         queue.push(fromIndex)
         while !queue.isEmpty {
             let v: Int = queue.pop()
@@ -476,7 +476,7 @@ public extension Graph {
                 }
             }
         }
-        return paths as! [[Self.E]]
+        return paths
     }
     
     /// Find path routes from a vertex to all others the
@@ -579,12 +579,12 @@ extension Graph {
 
 /// Takes a dictionary of edges to reach each node and returns an array of edges
 /// that goes from `from` to `to`
-public func pathDictToPath(from: Int, to: Int, pathDict:[Int:Edge]) -> [Edge] {
+public func pathDictToPath<E: Edge>(from: Int, to: Int, pathDict: [Int: E]) -> [E] {
     if pathDict.count == 0 {
         return []
     }
-    var edgePath: [Edge] = [Edge]()
-    var e: Edge = pathDict[to]!
+    var edgePath: [E] = [E]()
+    var e: E = pathDict[to]!
     edgePath.append(e)
     while (e.u != from) {
         e = pathDict[e.u]!

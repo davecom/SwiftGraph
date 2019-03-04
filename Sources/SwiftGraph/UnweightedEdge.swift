@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A basic unweighted edge.
-public struct UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable {
+public struct UnweightedEdge: SearchableByNodes, CustomStringConvertible, Codable {
     public var u: Int
     public var v: Int
     
@@ -26,8 +26,13 @@ public struct UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable 
         self.v = v
     }
     
-    //Implement Printable protocol
+    // Implement Printable protocol
     public var description: String {
         return "\(u) -> \(v)"
+    }
+
+    // MARK: Operator Overloads
+    static public func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
+        return lhs.u == rhs.u && lhs.v == rhs.v
     }
 }

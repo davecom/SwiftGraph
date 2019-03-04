@@ -18,7 +18,7 @@
 
 
 /// A weighted edge, who's weight subscribes to Comparable.
-public struct WeightedEdge<W: Comparable & Numeric & Codable>: Edge, CustomStringConvertible, Codable, Equatable, Comparable {
+public struct WeightedEdge<W: Comparable & Numeric & Codable>: SearchableByNodes, CustomStringConvertible, Codable, Comparable {
     public var u: Int
     public var v: Int
     public var weight: W
@@ -29,12 +29,12 @@ public struct WeightedEdge<W: Comparable & Numeric & Codable>: Edge, CustomStrin
         self.weight = weight
     }
 
-    //Implement Printable protocol
+    // Implement Printable protocol
     public var description: String {
         return "\(u) \(weight)> \(v)"
     }
     
-    //MARK: Operator Overloads
+    // MARK: Operator Overloads
     static public func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
         return lhs.u == rhs.u && lhs.v == rhs.v && lhs.weight == rhs.weight
     }
