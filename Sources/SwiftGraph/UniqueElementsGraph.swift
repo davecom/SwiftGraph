@@ -18,7 +18,7 @@
 
 typealias UniqueElementsGraph<V: Equatable> = UniqueElementsGraphCustomEdge<V, UnweightedEdge>
 
-/// A subclass of UnweightedGraph that ensures there are no pairs of equal vertices and no repeated edges.
+/// A Grpah that ensures there are no pairs of equal vertices and no repeated edges.
 open class UniqueElementsGraphCustomEdge<V: Equatable, E: Edge&Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[E]] = [[E]]() //adjacency lists
@@ -196,5 +196,63 @@ extension UniqueElementsGraphCustomEdge where V: Hashable, E == UnweightedEdge {
             }
         }
         return indices
+    }
+}
+
+// A UniqueElementsGraph with ContainerEdges.
+// Edges are only considered duplicates when they have the same start and end nodes and same value.
+// This means that there can be multiple edges between the same pair of vertices if the edges have different values.
+class UniqueElementsGraphContainerEdge<V: Equatable, Value: Equatable>: UniqueElementsGraphCustomEdge<V, ContainerEdge<Value>> {
+
+    /// This is a convenience method that adds a container edge.
+    ///
+    /// - parameter from: The starting vertex's index.
+    /// - parameter to: The ending vertex's index.
+    /// - parameter value: The value that will be associated to the edge
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public func addEdge(fromIndex: Int, toIndex: Int, value: Value, directed: Bool = false) {
+        addEdge(ContainerEdge<Value>(u: fromIndex, v: toIndex, value: value))
+        if !directed {
+            addEdge(ContainerEdge<Value>(u: toIndex, v: fromIndex, value: value))
+        }
+
+    }
+
+    /// This is a convenience method that adds a container edge between the first occurence of two vertices. It takes O(n) time.
+    ///
+    /// - parameter from: The starting vertex.
+    /// - parameter to: The ending vertex.
+    /// - parameter value: The value that will be associated to the edge
+    /// - parameter directed: Is the edge directed? (default `false`)
+    public func addEdge(from: V, to: V, value: Value, directed: Bool = false) {
+        if let u = indexOfVertex(from), let v = indexOfVertex(to) {
+            addEdge(ContainerEdge<Value>(u: u, v: v, value: value))
+            if !directed {
+                addEdge(ContainerEdge<Value>(u: v, v: u, value: value))
+            }
+        }
+    }
+
+    /// Returns all the values associated to the edges between two vertex indices.
+    ///
+    /// - Parameters:
+    ///   - from: The starting vertex index
+    ///   - to: The ending vertex index
+    /// - Returns: An array with all the values associated to edges between the provided indexes.
+    public func values(from: Int, to: Int) -> [Value] {
+        return edges[from].filter { $0.v == to }.map { $0.value }
+    }
+
+    /// Returns all the values associated to the edges between two vertices.
+    ///
+    /// - Parameters:
+    ///   - from: The starting vertex
+    ///   - to: The ending vertex
+    /// - Returns: An array with all the values associated to edges between the provided vertices.
+    public func values(from: V, to: V) -> [Value] {
+        if let u = indexOfVertex(from), let v = indexOfVertex(to) {
+            return edges[u].filter { $0.v == v }.map { $0.value }
+        }
+        return []
     }
 }

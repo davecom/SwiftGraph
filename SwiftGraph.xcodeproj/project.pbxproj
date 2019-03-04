@@ -39,6 +39,9 @@
 		B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */; };
 		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
 		B52C867B222DC89400CF6B49 /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C867A222DC89400CF6B49 /* UnionTests.swift */; };
+		B52C867D222DD18500CF6B49 /* ContainerEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C867C222DD18500CF6B49 /* ContainerEdge.swift */; };
+		B52C867F222DD5F700CF6B49 /* UniqueElementsGraphContainerEdgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C867E222DD5F700CF6B49 /* UniqueElementsGraphContainerEdgeTests.swift */; };
+		B52C8681222DD9F800CF6B49 /* ArrayHasSameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C8680222DD9F800CF6B49 /* ArrayHasSameElements.swift */; };
 		B54FDA6E21729EFF00057C51 /* Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA6D21729EFF00057C51 /* Constructors.swift */; };
 		B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA702172A34D00057C51 /* ConstructorsTests.swift */; };
 		B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */; };
@@ -125,6 +128,9 @@
 		B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableInitTests.swift; sourceTree = "<group>"; };
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
 		B52C867A222DC89400CF6B49 /* UnionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
+		B52C867C222DD18500CF6B49 /* ContainerEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerEdge.swift; path = Sources/SwiftGraph/ContainerEdge.swift; sourceTree = SOURCE_ROOT; };
+		B52C867E222DD5F700CF6B49 /* UniqueElementsGraphContainerEdgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphContainerEdgeTests.swift; sourceTree = "<group>"; };
+		B52C8680222DD9F800CF6B49 /* ArrayHasSameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayHasSameElements.swift; sourceTree = "<group>"; };
 		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constructors.swift; path = ../Sources/SwiftGraph/Constructors.swift; sourceTree = "<group>"; };
 		B54FDA702172A34D00057C51 /* ConstructorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsTests.swift; sourceTree = "<group>"; };
 		B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsPerformanceTests.swift; sourceTree = "<group>"; };
@@ -177,6 +183,7 @@
 			children = (
 				5589B4621C0E72CC00D6664E /* Edge.swift */,
 				5589B4651C0E734F00D6664E /* UnweightedEdge.swift */,
+				B52C867C222DD18500CF6B49 /* ContainerEdge.swift */,
 				5589B4681C0E74CD00D6664E /* WeightedEdge.swift */,
 			);
 			name = Edges;
@@ -293,6 +300,7 @@
 				B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */,
 				B5EF143021791009008FCC5C /* UniqueElementsGraphInitTests.swift */,
 				B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */,
+				B52C867E222DD5F700CF6B49 /* UniqueElementsGraphContainerEdgeTests.swift */,
 			);
 			path = UniqueElementsGraph;
 			sourceTree = "<group>";
@@ -328,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				B5EF1436217913F1008FCC5C /* EquatableTypes.swift */,
+				B52C8680222DD9F800CF6B49 /* ArrayHasSameElements.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -527,6 +536,7 @@
 				7985B92A1E5A503200C100E7 /* Stack.swift in Sources */,
 				7985B9281E5A503200C100E7 /* Search.swift in Sources */,
 				7985B9211E5A503200C100E7 /* Edge.swift in Sources */,
+				B52C867D222DD18500CF6B49 /* ContainerEdge.swift in Sources */,
 				7985B9271E5A503200C100E7 /* SwiftPriorityQueue.swift in Sources */,
 				55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */,
 			);
@@ -543,6 +553,8 @@
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */,
 				B5EF1437217913F1008FCC5C /* EquatableTypes.swift in Sources */,
+				B52C867F222DD5F700CF6B49 /* UniqueElementsGraphContainerEdgeTests.swift in Sources */,
+				B52C8681222DD9F800CF6B49 /* ArrayHasSameElements.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
 				B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */,
