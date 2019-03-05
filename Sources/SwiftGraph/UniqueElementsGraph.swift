@@ -18,7 +18,7 @@
 
 public typealias UniqueElementsGraph<V: Equatable> = UniqueElementsGraphCustomEdge<V, UnweightedEdge>
 
-/// A Grpah that ensures there are no pairs of equal vertices and no repeated edges.
+/// A Graph that ensures there are no pairs of equal vertices and no repeated edges.
 open class UniqueElementsGraphCustomEdge<V: Equatable, E: Edge&Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[E]] = [[E]]() //adjacency lists
