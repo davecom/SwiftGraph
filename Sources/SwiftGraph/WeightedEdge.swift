@@ -18,7 +18,7 @@
 
 
 /// A weighted edge, who's weight subscribes to Comparable.
-public struct WeightedEdge<W: Comparable & Numeric & Codable>: Edge, CustomStringConvertible, Codable, Equatable, Comparable {
+public struct WeightedEdge<W: Comparable & Codable>: Edge, CustomStringConvertible, Codable, Equatable, Comparable {
     public var u: Int
     public var v: Int
     public var weight: W

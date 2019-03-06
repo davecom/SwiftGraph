@@ -58,7 +58,7 @@ public extension WeightedGraph {
 
 /// Find the total weight of a list of weighted edges
 /// - parameter edges The edge array to find the total weight of.
-public func totalWeight<W>(_ edges: [WeightedEdge<W>]) -> W? {
+public func totalWeight<W: Numeric>(_ edges: [WeightedEdge<W>]) -> W? {
     guard let firstWeight = edges.first?.weight else { return nil }
     return edges.dropFirst().reduce(firstWeight) { (result, next) -> W in
         return result + next.weight
@@ -67,7 +67,7 @@ public func totalWeight<W>(_ edges: [WeightedEdge<W>]) -> W? {
 
 /// Pretty print an edge list returned from an MST
 /// - parameter edges The edge array representing the MST
-public func printMST<V, W>(edges: [WeightedEdge<W>], graph: WeightedGraph<V, W>) {
+public func printMST<V, W: Numeric>(edges: [WeightedEdge<W>], graph: WeightedGraph<V, W>) {
     for edge in edges {
         print("\(graph.vertexAtIndex(edge.u)) \(edge.weight)> \(graph.vertexAtIndex(edge.v))")
     }

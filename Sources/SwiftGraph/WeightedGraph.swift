@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-open class WeightedGraph<V: Equatable, W: Comparable & Numeric & Codable>: Graph {
+open class WeightedGraph<V: Equatable, W: Comparable & Codable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[WeightedEdge<W>]] = [[WeightedEdge<W>]]() //adjacency lists
     
@@ -77,7 +77,7 @@ open class WeightedGraph<V: Equatable, W: Comparable & Numeric & Codable>: Graph
     }
 }
 
-public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & Numeric & Codable> : WeightedGraph<V, W>, Codable {
+public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & Codable> : WeightedGraph<V, W>, Codable {
     enum CodingKeys: String, CodingKey {
         case vertices = "vertices"
         case edges = "edges"
