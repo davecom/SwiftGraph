@@ -177,17 +177,4 @@ class UnionTests: XCTestCase {
         XCTAssertTrue(g.edgeExists(from: "B", to: "C"), "g: Expected an edge from B to C")
         XCTAssertTrue(g.edgeExists(from: "C", to: "A"), "g: Expected an edge from C to A")
     }
-
-    func arraysHaveSameElements<T: Equatable>(_ a1: [T], _ a2: [T]) -> Bool {
-        guard a1.count == a2.count else {
-            return false
-        }
-
-        for e in a1 {
-            if !a2.contains(e) {
-                return false
-            }
-        }
-        return true
-    }
 }

@@ -48,6 +48,7 @@
 		B5EF143121791009008FCC5C /* UniqueElementsGraphInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF143021791009008FCC5C /* UniqueElementsGraphInitTests.swift */; };
 		B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */; };
 		B5EF1437217913F1008FCC5C /* EquatableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF1436217913F1008FCC5C /* EquatableTypes.swift */; };
+		B5F07B6B222EB43000824F08 /* ArraysHaveSameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		B5EF143021791009008FCC5C /* UniqueElementsGraphInitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphInitTests.swift; sourceTree = "<group>"; };
 		B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableTests.swift; sourceTree = "<group>"; };
 		B5EF1436217913F1008FCC5C /* EquatableTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableTypes.swift; sourceTree = "<group>"; };
+		B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysHaveSameElements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				B5EF1436217913F1008FCC5C /* EquatableTypes.swift */,
+				B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F07B6B222EB43000824F08 /* ArraysHaveSameElements.swift in Sources */,
 				7985B9201E5A4FCB00C100E7 /* SwiftGraphTests.swift in Sources */,
 				7985B91E1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift in Sources */,
 				55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */,
