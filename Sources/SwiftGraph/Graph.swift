@@ -135,12 +135,18 @@ extension Graph {
         edges.append([E]())
         return vertices.count - 1
     }
-    
-    /// Add an edge to the graph. It should take
+
+    /// Add an edge to the graph.
     ///
     /// - parameter e: The edge to add.
-    public func addEdge(_ e: E) {
+    /// - parameter directed: If false, undirected edges are created.
+    ///                       If true, a reversed edge is also created.
+    ///                       Default is false.
+    public func addEdge(_ e: E, directed: Bool = false) {
         edges[e.u].append(e)
+        if !directed {
+            edges[e.v].append(e.reversed())
+        }
     }
     
     /// Removes all edges in both directions between vertices at indexes from & to.

@@ -49,10 +49,7 @@ open class WeightedGraph<V: Equatable, W: Comparable & Codable>: Graph {
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
     public func addEdge(fromIndex: Int, toIndex: Int, weight:W, directed: Bool = false) {
-        addEdge(WeightedEdge<W>(u: fromIndex, v: toIndex, weight: weight))
-        if !directed {
-            addEdge(WeightedEdge<W>(u: toIndex, v: fromIndex, weight: weight))
-        }
+        addEdge(WeightedEdge<W>(u: fromIndex, v: toIndex, weight: weight), directed: directed)
     }
     
     /// This is a convenience method that adds a weighted edge between the first occurence of two vertices. It takes O(n) time.

@@ -22,6 +22,9 @@ public protocol Edge: CustomStringConvertible {
     var u: Int {get set}  //made modifiable for changing when removing vertices
     /// The destination vertex of the edge
     var v: Int {get set}  //made modifiable for changing when removing vertices
+
+    // Returns an edge with the origin and destination reversed
+    func reversed() -> Self
 }
 
 extension Edge where Self: Equatable {

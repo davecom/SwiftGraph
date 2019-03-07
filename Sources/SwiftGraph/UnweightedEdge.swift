@@ -30,4 +30,8 @@ public struct UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable 
     public var description: String {
         return "\(u) -> \(v)"
     }
+
+    public func reversed() -> UnweightedEdge {
+        return UnweightedEdge(u: v, v: u)
+    }
 }
