@@ -49,6 +49,7 @@
 		B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */; };
 		B5EF1437217913F1008FCC5C /* EquatableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF1436217913F1008FCC5C /* EquatableTypes.swift */; };
 		B5F07B6B222EB43000824F08 /* ArraysHaveSameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */; };
+		B5FE1C212231DA0C008BACAA /* UnionPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableTests.swift; sourceTree = "<group>"; };
 		B5EF1436217913F1008FCC5C /* EquatableTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableTypes.swift; sourceTree = "<group>"; };
 		B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysHaveSameElements.swift; sourceTree = "<group>"; };
+		B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionPerformanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +320,7 @@
 			children = (
 				B5DD6DA42171EEE1007EFF44 /* SearchPerformanceTests.swift */,
 				B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */,
+				B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */,
 			);
 			name = SwiftGraphPerformanceTests;
 			path = Tests/SwiftGraphPerformanceTests;
@@ -560,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EACB292172336900E527BD /* SearchPerformanceTests.swift in Sources */,
+				B5FE1C212231DA0C008BACAA /* UnionPerformanceTests.swift in Sources */,
 				B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
