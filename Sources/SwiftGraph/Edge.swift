@@ -26,10 +26,3 @@ public protocol Edge: CustomStringConvertible {
     // Returns an edge with the origin and destination reversed
     func reversed() -> Self
 }
-
-extension Edge where Self: Equatable {
-    //MARK: Operator Overloads
-    static public func ==(lhs: Self, rhs: Self) -> Bool {
-        return lhs.u == rhs.u && lhs.v == rhs.v
-    }
-}
