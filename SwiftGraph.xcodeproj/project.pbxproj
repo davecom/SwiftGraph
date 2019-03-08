@@ -50,6 +50,7 @@
 		B5EF1437217913F1008FCC5C /* EquatableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF1436217913F1008FCC5C /* EquatableTypes.swift */; };
 		B5F07B6B222EB43000824F08 /* ArraysHaveSameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */; };
 		B5FE1C212231DA0C008BACAA /* UnionPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */; };
+		B5F07B6D222EB4BD00824F08 /* WeightedGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		B5EF1436217913F1008FCC5C /* EquatableTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableTypes.swift; sourceTree = "<group>"; };
 		B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysHaveSameElements.swift; sourceTree = "<group>"; };
 		B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionPerformanceTests.swift; sourceTree = "<group>"; };
+		B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightedGraphTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 				B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */,
 				B52ABD37208955B500FBF10C /* UnionTests.swift */,
 				55F5EA5A2151E33100DFC301 /* SwiftGraphCodableTests.swift */,
+				B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */,
 			);
 			name = SwiftGraphTests;
 			path = Tests/SwiftGraphTests;
@@ -547,6 +550,7 @@
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */,
 				B5EF1437217913F1008FCC5C /* EquatableTypes.swift in Sources */,
+				B5F07B6D222EB4BD00824F08 /* WeightedGraphTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
 				B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */,
