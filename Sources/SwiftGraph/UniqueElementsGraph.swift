@@ -74,49 +74,6 @@ extension UniqueElementsGraph where E == UnweightedEdge {
         }
     }
 
-    /// Is there an edge from one vertex to another?
-    ///
-    /// - parameter from: The index of the starting edge.
-    /// - parameter to: The index of the ending edge.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: Int, to: Int) -> Bool {
-        return edgeExists(E(u: from, v: to))
-    }
-
-    /// Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.
-    ///
-    /// - parameter from: The first vertex.
-    /// - parameter to: The second vertex.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-//    public func edgeExists(from: V, to: V) -> Bool {
-//        if let u = indexOfVertex(from) {
-//            if let v = indexOfVertex(to) {
-//                return edgeExists(from: u, to: v)
-//            }
-//        }
-//        return false
-//    }
-
-    /// Only allow the edge to be added once
-    ///
-    /// - parameter from: The starting vertex's index.
-    /// - parameter to: The ending vertex's index.
-    /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(fromIndex u: Int, toIndex v: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: u, v: v), directed: directed)
-    }
-
-    /// Only allow the edge to be added once
-    ///
-    /// - parameter from: The starting vertex.
-    /// - parameter to: The ending vertex.
-    /// - parameter directed: Is the edge directed? (default `false`)
-    public func addEdge(from: V, to: V, directed: Bool = false) {
-        if let u = indexOfVertex(from), let v = indexOfVertex(to) {
-            addEdge(fromIndex: u, toIndex: v, directed: directed)
-        }
-    }
-
     /// Initialize an UniqueElementsGraph consisting of path.
     ///
     /// The resulting graph has the vertices in path and an edge between
