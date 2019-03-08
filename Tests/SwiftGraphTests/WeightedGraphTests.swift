@@ -11,6 +11,16 @@ import SwiftGraph
 
 class WeightedGraphTests: XCTestCase {
 
+    func testEdgeExists() {
+        let g = WeightedGraph<String, String>(vertices: ["A", "B"])
+        g.addEdge(from: "A", to: "B", weight: "AB", directed: true)
+        XCTAssertTrue(g.edgeExists(from: "A", to: "B"))
+        XCTAssertFalse(g.edgeExists(from: "B", to: "A"))
+        XCTAssertTrue(g.edgeExists(from: "A", to: "B", withWeight: "AB"))
+        XCTAssertFalse(g.edgeExists(from: "B", to: "A", withWeight: "AB"))
+        XCTAssertFalse(g.edgeExists(from: "B", to: "A", withWeight: "X"))
+    }
+
     func testWeights() {
         let g = WeightedGraph<String, String>(
             vertices: ["A", "B", "C"]

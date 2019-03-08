@@ -21,14 +21,11 @@ import XCTest
 
 class UnweightedGraphTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testEdgeExists() {
+        let g = UnweightedGraph<String>(vertices: ["A", "B"])
+        g.addEdge(from: "A", to: "B", directed: true)
+        XCTAssertTrue(g.edgeExists(from: "A", to: "B"))
+        XCTAssertFalse(g.edgeExists(from: "B", to: "A"))
     }
 
     func testPathInitializerUndirected() {

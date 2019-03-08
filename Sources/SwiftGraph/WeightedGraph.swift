@@ -52,7 +52,7 @@ extension Graph where E: WeightedEdgeProtocol {
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
-    public func addEdge(fromIndex: Int, toIndex: Int, weight:W, directed: Bool = false) {
+    public func addEdge(fromIndex: Int, toIndex: Int, weight: W, directed: Bool = false) {
         addEdge(E(u: fromIndex, v: toIndex, weight: weight), directed: directed)
     }
     
