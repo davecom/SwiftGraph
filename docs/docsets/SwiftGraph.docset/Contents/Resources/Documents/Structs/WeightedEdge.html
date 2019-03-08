@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Queue Class Reference</title>
+    <title>WeightedEdge Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/Queue" class="dashAnchor"></a>
-    <a title="Queue Class Reference"></a>
+    <a name="//apple_ref/swift/Struct/WeightedEdge" class="dashAnchor"></a>
+    <a title="WeightedEdge Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">SwiftGraph Docs</a> (70% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">SwiftGraph Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Queue Class Reference
+        WeightedEdge Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -129,14 +129,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Queue</h1>
+            <h1>WeightedEdge</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Queue</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">WeightedEdge</span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Edge.html">Edge</a></span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span> <span class="k">where</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                 </div>
               </div>
-            <p>Implements a queue - helper class that uses an array internally.</p>
+            <p>A weighted edge, who&rsquo;s weight subscribes to Comparable.</p>
 
           </section>
           <section class="section task-group-section">
@@ -145,9 +145,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph5QueueCACyxGycfc"></a>
-                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph5QueueCACyxGycfc">init()</a>
+                    <a name="/s:10SwiftGraph4EdgeP1uSivp"></a>
+                    <a name="//apple_ref/swift/Property/u" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph4EdgeP1uSivp">u</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -155,19 +155,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">u</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -175,9 +174,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph5QueueC7isEmptySbvp"></a>
-                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph5QueueC7isEmptySbvp">isEmpty</a>
+                    <a name="/s:10SwiftGraph4EdgeP1vSivp"></a>
+                    <a name="//apple_ref/swift/Property/v" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph4EdgeP1vSivp">v</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -185,19 +184,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">v</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L26-L28">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L24">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -205,9 +203,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph5QueueC4pushyyxF"></a>
-                    <a name="//apple_ref/swift/Method/push(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph5QueueC4pushyyxF">push(_:)</a>
+                    <a name="/s:10SwiftGraph12WeightedEdgeV6weightxvp"></a>
+                    <a name="//apple_ref/swift/Property/weight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph12WeightedEdgeV6weightxvp">weight</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -222,12 +220,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">push</span><span class="p">(</span><span class="n">_</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">weight</span><span class="p">:</span> <span class="kt">W</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L30-L32">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -235,9 +233,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph5QueueC3popxyF"></a>
-                    <a name="//apple_ref/swift/Method/pop()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph5QueueC3popxyF">pop()</a>
+                    <a name="/s:10SwiftGraph12WeightedEdgeV1u1v6weightACyxGSi_Sixtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(u:v:weight:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph12WeightedEdgeV1u1v6weightACyxGSi_Sixtcfc">init(u:v:weight:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -252,12 +250,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">pop</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">u</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">v</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="kt">W</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L34-L46">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L37-L41">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -265,9 +263,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph5QueueC5frontxvp"></a>
-                    <a name="//apple_ref/swift/Property/front" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph5QueueC5frontxvp">front</a>
+                    <a name="/s:10SwiftGraph12WeightedEdgeV8reversedACyxGyF"></a>
+                    <a name="//apple_ref/swift/Method/reversed()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph12WeightedEdgeV8reversedACyxGyF">reversed()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -282,12 +280,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">front</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reversed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">WeightedEdge</span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L48-L50">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L43-L45">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -295,9 +293,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph5QueueC5countSivp"></a>
-                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph5QueueC5countSivp">count</a>
+                    <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -305,29 +303,72 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L52-L54">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L48-L50">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Operator%20Overloads"></a>
+                <a name="//apple_ref/swift/Section/Operator Overloads" class="dashAnchor"></a>
+                <a href="#/Operator%20Overloads">
+                  <h3 class="section-name">Operator Overloads</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph5QueueC8containsySbxF"></a>
-                    <a name="//apple_ref/swift/Method/contains(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph5QueueC8containsySbxF">contains(_:)</a>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">WeightedEdge</span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">WeightedEdge</span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="k">where</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L53-L55">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph12WeightedEdgeV6Weighta"></a>
+                    <a name="//apple_ref/swift/Alias/Weight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph12WeightedEdgeV6Weighta">Weight</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -342,12 +383,45 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">contains</span><span class="p">(</span><span class="n">_</span> <span class="nv">thing</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Weight</span> <span class="o">=</span> <span class="kt">W</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L56-L62">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SL1loiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SL1loiySbx_xtFZ">&lt;(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">WeightedEdge</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">WeightedEdge</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L62-L64">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

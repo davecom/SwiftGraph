@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Protocols  Reference</title>
+    <title>Type Aliases  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
-    <a title="Protocols  Reference"></a>
+    <a name="//apple_ref/swift/Section/Type Aliases" class="dashAnchor"></a>
+    <a title="Type Aliases  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">SwiftGraph Docs</a> (70% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="index.html">SwiftGraph Reference</a>
         <img id="carat" src="img/carat.png" />
-        Protocols  Reference
+        Type Aliases  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -129,8 +129,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Protocols</h1>
-            <p>The following protocols are available globally.</p>
+            <h1>Type Aliases</h1>
+            <p>The following type aliases are available globally.</p>
 
           </section>
           <section class="section task-group-section">
@@ -139,81 +139,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftGraph0B0P"></a>
-                    <a name="//apple_ref/swift/Protocol/Graph" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph0B0P">Graph</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The protocl for all graphs.
-You should generally use one of its two canonical class implementations,
-<em>UnweightedGraph</em> and <em>WeightedGraph</em></p>
-
-                        <a href="Protocols/Graph.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Graph</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Graph.swift#L22-L30">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftGraph4EdgeP"></a>
-                    <a name="//apple_ref/swift/Protocol/Edge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph4EdgeP">Edge</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A protocol that all edges in a graph must conform to.</p>
-
-                        <a href="Protocols/Edge.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Edge</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Edge.swift#L20-L28">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftGraph20WeightedEdgeProtocolP"></a>
-                    <a name="//apple_ref/swift/Protocol/WeightedEdgeProtocol" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph20WeightedEdgeProtocolP">WeightedEdgeProtocol</a>
+                    <a name="/s:10SwiftGraph024UnweightedUniqueElementsB0a"></a>
+                    <a name="//apple_ref/swift/Alias/UnweightedUniqueElementsGraph" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph024UnweightedUniqueElementsB0a">UnweightedUniqueElementsGraph</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -223,18 +151,47 @@ You should generally use one of its two canonical class implementations,
                       <div class="abstract">
                         <p>Undocumented</p>
 
-                        <a href="Protocols/WeightedEdgeProtocol.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">WeightedEdgeProtocol</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UnweightedUniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt"><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt"><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L20-L25">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph022WeightedUniqueElementsB0a"></a>
+                    <a name="//apple_ref/swift/Alias/WeightedUniqueElementsGraph" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph022WeightedUniqueElementsB0a">WeightedUniqueElementsGraph</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">WeightedUniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt"><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt"><a href="Structs/WeightedEdge.html">WeightedEdge</a></span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
