@@ -24,6 +24,8 @@ public protocol Graph: class, CustomStringConvertible, Collection {
     associatedtype E: Edge & Equatable
     var vertices: [V] { get set }
     var edges: [[E]] { get set }
+
+    init(vertices: [V])
 }
 
 extension Graph {

@@ -17,19 +17,23 @@
 //  limitations under the License.
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-open class WeightedGraph<V: Equatable, W: Comparable & Codable>: Graph {
+open class WeightedGraph<V: Equatable, W: Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[WeightedEdge<W>]] = [[WeightedEdge<W>]]() //adjacency lists
     
     public init() {
     }
     
-    public init(vertices: [V]) {
+    required public init(vertices: [V]) {
         for vertex in vertices {
             _ = self.addVertex(vertex)
         }
     }
-    
+}
+
+extension Graph where E: WeightedEdgeProtocol {
+    public typealias W = E.Weight
+
     /// Find all of the neighbors of a vertex at a given index.
     ///
     /// - parameter index: The index for the vertex to find the neighbors of.
@@ -49,7 +53,7 @@ open class WeightedGraph<V: Equatable, W: Comparable & Codable>: Graph {
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
     public func addEdge(fromIndex: Int, toIndex: Int, weight:W, directed: Bool = false) {
-        addEdge(WeightedEdge<W>(u: fromIndex, v: toIndex, weight: weight), directed: directed)
+        addEdge(E(u: fromIndex, v: toIndex, weight: weight), directed: directed)
     }
     
     /// This is a convenience method that adds a weighted edge between the first occurence of two vertices. It takes O(n) time.
@@ -74,7 +78,7 @@ open class WeightedGraph<V: Equatable, W: Comparable & Codable>: Graph {
     }
 }
 
-public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & Codable> : WeightedGraph<V, W>, Codable {
+public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & Numeric & Codable> : WeightedGraph<V, W>, Codable {
     enum CodingKeys: String, CodingKey {
         case vertices = "vertices"
         case edges = "edges"
@@ -84,7 +88,7 @@ public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & 
         super.init()
     }
     
-    override public init(vertices: [V]) {
+    required public init(vertices: [V]) {
         super.init(vertices: vertices)
     }
 

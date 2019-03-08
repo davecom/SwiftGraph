@@ -25,7 +25,7 @@ open class UniqueElementsGraph<V: Equatable>: Graph {
     }
 
     /// Init the Graph with vertices, but removes duplicates. O(n^2)
-    public init(vertices: [V]) {
+    required public init(vertices: [V]) {
         for vertex in vertices {
             _ = self.addVertex(vertex) // make sure to call our version
         }
