@@ -119,8 +119,31 @@ extension Graph where E: WeightedEdgeProtocol {
         }
         return false
     }
-    
-    //Implement Printable protocol
+
+    /// Returns all the weights associated to the edges between two vertex indices.
+    ///
+    /// - Parameters:
+    ///   - from: The starting vertex index
+    ///   - to: The ending vertex index
+    /// - Returns: An array with all the weights associated to edges between the provided indexes.
+    public func weights(from: Int, to: Int) -> [W] {
+        return edges[from].filter { $0.v == to }.map { $0.weight }
+    }
+
+    /// Returns all the weights associated to the edges between two vertices.
+    ///
+    /// - Parameters:
+    ///   - from: The starting vertex
+    ///   - to: The ending vertex
+    /// - Returns: An array with all the weights associated to edges between the provided vertices.
+    public func weights(from: V, to: V) -> [W] {
+        if let u = indexOfVertex(from), let v = indexOfVertex(to) {
+            return edges[u].filter { $0.v == v }.map { $0.weight }
+        }
+        return []
+    }
+
+    // Implement Printable protocol
     public var description: String {
         var d: String = ""
         for i in 0..<vertices.count {
