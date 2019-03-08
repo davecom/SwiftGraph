@@ -106,8 +106,8 @@ extension Graph where E == UnweightedEdge {
     /// - parameter from: The index of the starting vertex of the edge.
     /// - parameter to: The index of the ending vertex of the edge.
     /// - returns: True if there is an edge from the starting vertex to the ending vertex.
-    public func edgeExists(from: Int, to: Int) -> Bool {
-        return edgeExists(E(u: from, v: to))
+    public func edgeExists(fromIndex: Int, toIndex: Int) -> Bool {
+        return edgeExists(E(u: fromIndex, v: toIndex))
     }
 
     /// Check whether there is an edge from one vertex to another vertex.
@@ -121,7 +121,7 @@ extension Graph where E == UnweightedEdge {
     public func edgeExists(from: V, to: V) -> Bool {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v)
+                return edgeExists(fromIndex: u, toIndex: v)
             }
         }
         return false

@@ -92,7 +92,7 @@ class SwiftGraphTests: XCTestCase {
         graph.addEdge(from: "4", to: "5", directed: false)
         
         graph.removeAllEdges(from: 2, to: 3, bidirectional: true)
-        XCTAssertFalse(graph.edgeExists(from: 2, to: 3))
-        XCTAssertFalse(graph.edgeExists(from: 3, to: 2))
+        XCTAssertFalse(graph.edgeExists(fromIndex: 2, toIndex: 3))
+        XCTAssertFalse(graph.edgeExists(fromIndex: 3, toIndex: 2))
     }
 }

@@ -73,8 +73,8 @@ extension Graph where E: WeightedEdgeProtocol {
     /// - parameter from: The index of the starting vertex of the edge.
     /// - parameter to: The index of the ending vertex of the edge.
     /// - returns: True if there is an edge from the starting vertex to the ending vertex.
-    public func edgeExists(from: Int, to: Int, withWeight weight: W) -> Bool {
-        return edgeExists(E(u: from, v: to, weight: weight))
+    public func edgeExists(fromIndex: Int, toIndex: Int, withWeight weight: W) -> Bool {
+        return edgeExists(E(u: fromIndex, v: toIndex, weight: weight))
     }
 
     /// Check whether there is an edge from one vertex to another vertex with a specific weight.
@@ -88,7 +88,7 @@ extension Graph where E: WeightedEdgeProtocol {
     public func edgeExists(from: V, to: V, withWeight weight: W) -> Bool {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v, withWeight: weight)
+                return edgeExists(fromIndex: u, toIndex: v, withWeight: weight)
             }
         }
         return false
@@ -99,8 +99,8 @@ extension Graph where E: WeightedEdgeProtocol {
     /// - parameter from: The index of the starting vertex of the edge.
     /// - parameter to: The index of the ending vertex of the edge.
     /// - returns: True if there is an edge from the starting vertex to the ending vertex.
-    public func edgeExists(from: Int, to: Int) -> Bool {
-        return edges[from].map({$0.v}).contains(to)
+    public func edgeExists(fromIndex: Int, toIndex: Int) -> Bool {
+        return edges[fromIndex].map({$0.v}).contains(toIndex)
     }
 
     /// Check whether there is an edge from one vertex to another vertex.
@@ -114,7 +114,7 @@ extension Graph where E: WeightedEdgeProtocol {
     public func edgeExists(from: V, to: V) -> Bool {
         if let u = indexOfVertex(from) {
             if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v)
+                return edgeExists(fromIndex: u, toIndex: v)
             }
         }
         return false
