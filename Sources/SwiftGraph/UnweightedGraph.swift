@@ -100,6 +100,32 @@ extension Graph where E == UnweightedEdge {
             addEdge(UnweightedEdge(u: u, v: v), directed: directed)
         }
     }
+
+    /// Check whether there is an edge from one vertex to another vertex.
+    ///
+    /// - parameter from: The index of the starting vertex of the edge.
+    /// - parameter to: The index of the ending vertex of the edge.
+    /// - returns: True if there is an edge from the starting vertex to the ending vertex.
+    public func edgeExists(from: Int, to: Int) -> Bool {
+        return edgeExists(E(u: from, v: to))
+    }
+
+    /// Check whether there is an edge from one vertex to another vertex.
+    ///
+    /// Note this will look at the first occurence of each vertex.
+    /// Also returns false if either of the supplied vertices cannot be found in the graph.
+    ///
+    /// - parameter from: The starting vertex of the edge.
+    /// - parameter to: The ending vertex of the edge.
+    /// - returns: True if there is an edge from the starting vertex to the ending vertex.
+    public func edgeExists(from: V, to: V) -> Bool {
+        if let u = indexOfVertex(from) {
+            if let v = indexOfVertex(to) {
+                return edgeExists(from: u, to: v)
+            }
+        }
+        return false
+    }
 }
 
 public final class CodableUnweightedGraph<V: Codable & Equatable> : UnweightedGraph<V>, Codable {

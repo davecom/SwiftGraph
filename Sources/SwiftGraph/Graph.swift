@@ -95,29 +95,6 @@ extension Graph {
         return nil
     }
     
-    /// Is there an edge from one vertex to another?
-    ///
-    /// - parameter from: The index of the starting edge.
-    /// - parameter to: The index of the ending edge.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: Int, to: Int) -> Bool {
-        return edges[from].map({$0.v}).contains(to)
-    }
-    
-    /// Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.
-    ///
-    /// - parameter from: The first vertex.
-    /// - parameter to: The second vertex.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: V, to: V) -> Bool {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v)
-            }
-        }
-        return false
-    }
-    
     /// Find the first occurence of a vertex.
     ///
     /// - parameter vertex: The vertex you are looking for.
@@ -239,6 +216,14 @@ extension Graph {
         if let i = indexOfVertex(vertex) {
             removeVertexAtIndex(i)
         }
+    }
+
+    /// Check whether an edge is in the graph or not.
+    ///
+    /// - parameter edge: The edge to find in the graph.
+    /// - returns: True if the edge exists, and false otherwise.
+    public func edgeExists(_ edge: E) -> Bool {
+        return edges[edge.u].contains(edge)
     }
 
     
