@@ -19,6 +19,8 @@ class WeightedGraphTests: XCTestCase {
         XCTAssertTrue(g.edgeExists(from: "A", to: "B", withWeight: "AB"))
         XCTAssertFalse(g.edgeExists(from: "B", to: "A", withWeight: "AB"))
         XCTAssertFalse(g.edgeExists(from: "B", to: "A", withWeight: "X"))
+        XCTAssertFalse(g.edgeExists(from: "A", to: "Y", withWeight: "AB"))
+        XCTAssertFalse(g.edgeExists(from: "X", to: "Y", withWeight: "AB"))
     }
 
     func testWeights() {

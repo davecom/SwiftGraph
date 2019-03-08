@@ -88,14 +88,14 @@ extension UniqueElementsGraph where E == UnweightedEdge {
     /// - parameter from: The first vertex.
     /// - parameter to: The second vertex.
     /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: V, to: V) -> Bool {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v)
-            }
-        }
-        return false
-    }
+//    public func edgeExists(from: V, to: V) -> Bool {
+//        if let u = indexOfVertex(from) {
+//            if let v = indexOfVertex(to) {
+//                return edgeExists(from: u, to: v)
+//            }
+//        }
+//        return false
+//    }
 
     /// Only allow the edge to be added once
     ///

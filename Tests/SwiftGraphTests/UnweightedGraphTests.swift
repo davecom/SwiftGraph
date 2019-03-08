@@ -26,6 +26,8 @@ class UnweightedGraphTests: XCTestCase {
         g.addEdge(from: "A", to: "B", directed: true)
         XCTAssertTrue(g.edgeExists(from: "A", to: "B"))
         XCTAssertFalse(g.edgeExists(from: "B", to: "A"))
+        XCTAssertFalse(g.edgeExists(from: "A", to: "Y"))
+        XCTAssertFalse(g.edgeExists(from: "X", to: "Y"))
     }
 
     func testPathInitializerUndirected() {
