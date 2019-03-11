@@ -14,7 +14,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftGraph Docs</a> (73% documented)</p>
+        <p><a href="index.html">SwiftGraph Docs</a> (70% documented)</p>
         <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -47,13 +47,7 @@
                 <a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/UnweightedEdge.html">UnweightedEdge</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/UnweightedGraph.html">UnweightedGraph</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/WeightedEdge.html">WeightedEdge</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/WeightedGraph.html">WeightedGraph</a>
@@ -61,22 +55,33 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/CompleteGraph.html">CompleteGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/StarGraph.html">StarGraph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSLR_SeR_SER_SjR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSQR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeCyxGGSi_SiSDySiAHGtSLRzSeRzSERzSjRzlF">pathDictToPath(from:to:pathDict:)</a>
+                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeVyxGGSi_SiSDySiAHGtSQRzlF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA4Edge_pGSi_SiSDySiAaF_pGtF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeCyq_GG_AA0gB0Cyxq_GtSQRzSLR_SeR_SER_SjR_r0_lF">printMST(edges:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeVyq_GG_AA0gB0Cyxq_GtSQRzSjR_r0_lF">printMST(edges:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeCyxGGSLRzSeRzSERzSjRzlF">totalWeight(_:)</a>
+                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeVyxGGSjRzlF">totalWeight(_:)</a>
               </li>
             </ul>
           </li>
@@ -89,6 +94,9 @@
               <li class="nav-group-task">
                 <a href="Protocols/Graph.html">Graph</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Protocols/WeightedEdgeProtocol.html">WeightedEdgeProtocol</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -96,6 +104,23 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Structs/PriorityQueue.html">PriorityQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/UnweightedEdge.html">UnweightedEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/WeightedEdge.html">WeightedEdge</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:10SwiftGraph024UnweightedUniqueElementsB0a">UnweightedUniqueElementsGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:10SwiftGraph022WeightedUniqueElementsB0a">WeightedUniqueElementsGraph</a>
               </li>
             </ul>
           </li>
@@ -132,12 +157,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">WeightedGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Graph.html">Graph</a></span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Numeric</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">WeightedGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Graph.html">Graph</a></span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedGraph.swift#L20-L78">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedGraph.swift#L20-L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -168,7 +193,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedGraph.swift#L80-L106">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedGraph.swift#L156-L188">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -203,7 +228,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L20-L32">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/Queue.swift#L20-L63">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -268,47 +293,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">E</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Graph.html">Graph</a></span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Edge.html">Edge</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L20-L86">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftGraph14UnweightedEdgeC"></a>
-                    <a name="//apple_ref/swift/Class/UnweightedEdge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph14UnweightedEdgeC">UnweightedEdge</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A basic unweighted edge.</p>
-
-                        <a href="Classes/UnweightedEdge.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UnweightedEdge</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Edge.html">Edge</a></span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedEdge.swift#L20-L33">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L23-L67">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -343,7 +333,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L20-L108">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L20-L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -374,42 +364,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L110-L136">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftGraph12WeightedEdgeC"></a>
-                    <a name="//apple_ref/swift/Class/WeightedEdge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph12WeightedEdgeC">WeightedEdge</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A weighted edge, who&rsquo;s weight subscribes to Comparable.</p>
-
-                        <a href="Classes/WeightedEdge.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">WeightedEdge</span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Classes/UnweightedEdge.html">UnweightedEdge</a></span><span class="p">,</span> <span class="kt">Comparable</span> <span class="k">where</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Numeric</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/WeightedEdge.swift#L20-L57">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UnweightedGraph.swift#L131-L163">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -419,7 +374,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2018-10-19)</p>
+          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-03-08)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
