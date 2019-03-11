@@ -24,11 +24,14 @@ open class UnweightedGraph<V: Equatable>: Graph {
     public init() {
     }
     
-    public init(vertices: [V]) {
+    required public init(vertices: [V]) {
         for vertex in vertices {
             _ = self.addVertex(vertex)
         }
     }
+}
+
+extension Graph where E == UnweightedEdge {
 
     /// Initialize an UnweightedGraph consisting of path.
     ///
@@ -43,7 +46,7 @@ open class UnweightedGraph<V: Equatable>: Graph {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in path.
     ///               Default is false.
-    public convenience init(withPath path: [V], directed: Bool = false) {
+    public init(withPath path: [V], directed: Bool = false) {
         self.init(vertices: path)
 
         guard path.count >= 2 else {
@@ -71,7 +74,7 @@ open class UnweightedGraph<V: Equatable>: Graph {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
     ///               Default is false.
-    public convenience init(withCycle cycle: [V], directed: Bool = false) {
+    public init(withCycle cycle: [V], directed: Bool = false) {
         self.init(withPath: cycle, directed: directed)
         if cycle.count > 0 {
             self.addEdge(fromIndex: cycle.count-1, toIndex: 0, directed: directed)
@@ -84,11 +87,7 @@ open class UnweightedGraph<V: Equatable>: Graph {
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(fromIndex: Int, toIndex: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: fromIndex, v: toIndex))
-        if !directed {
-            addEdge(UnweightedEdge(u: toIndex, v: fromIndex))
-        }
-        
+        addEdge(UnweightedEdge(u: fromIndex, v: toIndex), directed: directed)
     }
     
     /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
@@ -98,11 +97,34 @@ open class UnweightedGraph<V: Equatable>: Graph {
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(from: V, to: V, directed: Bool = false) {
         if let u = indexOfVertex(from), let v = indexOfVertex(to) {
-            addEdge(UnweightedEdge(u: u, v: v))
-            if !directed {
-                addEdge(UnweightedEdge(u: v, v: u))
+            addEdge(UnweightedEdge(u: u, v: v), directed: directed)
+        }
+    }
+
+    /// Check whether there is an edge from one vertex to another vertex.
+    ///
+    /// - parameter from: The index of the starting vertex of the edge.
+    /// - parameter to: The index of the ending vertex of the edge.
+    /// - returns: True if there is an edge from the starting vertex to the ending vertex.
+    public func edgeExists(fromIndex: Int, toIndex: Int) -> Bool {
+        return edgeExists(E(u: fromIndex, v: toIndex))
+    }
+
+    /// Check whether there is an edge from one vertex to another vertex.
+    ///
+    /// Note this will look at the first occurence of each vertex.
+    /// Also returns false if either of the supplied vertices cannot be found in the graph.
+    ///
+    /// - parameter from: The starting vertex of the edge.
+    /// - parameter to: The ending vertex of the edge.
+    /// - returns: True if there is an edge from the starting vertex to the ending vertex.
+    public func edgeExists(from: V, to: V) -> Bool {
+        if let u = indexOfVertex(from) {
+            if let v = indexOfVertex(to) {
+                return edgeExists(fromIndex: u, toIndex: v)
             }
         }
+        return false
     }
 }
 
@@ -116,7 +138,7 @@ public final class CodableUnweightedGraph<V: Codable & Equatable> : UnweightedGr
         super.init()
     }
     
-    override public init(vertices: [V]) {
+    required public init(vertices: [V]) {
         super.init(vertices: vertices)
     }
 

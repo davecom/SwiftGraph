@@ -13,7 +13,7 @@
     <a title="SwiftGraph  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftGraph Docs</a> (73% documented)</p>
+        <p><a href="index.html">SwiftGraph Docs</a> (70% documented)</p>
         <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -46,13 +46,7 @@
                 <a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/UnweightedEdge.html">UnweightedEdge</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/UnweightedGraph.html">UnweightedGraph</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/WeightedEdge.html">WeightedEdge</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/WeightedGraph.html">WeightedGraph</a>
@@ -60,22 +54,33 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/CompleteGraph.html">CompleteGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/StarGraph.html">StarGraph</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSLR_SeR_SER_SjR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSQR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeCyxGGSi_SiSDySiAHGtSLRzSeRzSERzSjRzlF">pathDictToPath(from:to:pathDict:)</a>
+                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeVyxGGSi_SiSDySiAHGtSQRzlF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA4Edge_pGSi_SiSDySiAaF_pGtF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeCyq_GG_AA0gB0Cyxq_GtSQRzSLR_SeR_SER_SjR_r0_lF">printMST(edges:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeVyq_GG_AA0gB0Cyxq_GtSQRzSjR_r0_lF">printMST(edges:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeCyxGGSLRzSeRzSERzSjRzlF">totalWeight(_:)</a>
+                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeVyxGGSjRzlF">totalWeight(_:)</a>
               </li>
             </ul>
           </li>
@@ -88,6 +93,9 @@
               <li class="nav-group-task">
                 <a href="Protocols/Graph.html">Graph</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Protocols/WeightedEdgeProtocol.html">WeightedEdgeProtocol</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -95,6 +103,23 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Structs/PriorityQueue.html">PriorityQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/UnweightedEdge.html">UnweightedEdge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/WeightedEdge.html">WeightedEdge</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:10SwiftGraph024UnweightedUniqueElementsB0a">UnweightedUniqueElementsGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:10SwiftGraph022WeightedUniqueElementsB0a">WeightedUniqueElementsGraph</a>
               </li>
             </ul>
           </li>
@@ -179,14 +204,14 @@
 <span class="n">cityGraph</span><span class="o">.</span><span class="nf">addEdge</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"Houston"</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="s">"Dallas"</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span><span class="mi">239</span><span class="p">)</span>
 </code></pre>
 
-<p>Convenience methods are used to add <code><a href="Classes/WeightedEdge.html">WeightedEdge</a></code> connections between various vertices.</p>
+<p>Convenience methods are used to add <code><a href="Structs/WeightedEdge.html">WeightedEdge</a></code> connections between various vertices.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="p">(</span><span class="nv">distances</span><span class="p">,</span> <span class="nv">pathDict</span><span class="p">)</span> <span class="o">=</span> <span class="n">cityGraph</span><span class="o">.</span><span class="nf">dijkstra</span><span class="p">(</span><span class="nv">root</span><span class="p">:</span> <span class="s">"New York"</span><span class="p">,</span> <span class="nv">startDistance</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 <span class="k">var</span> <span class="nv">nameDistance</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?]</span> <span class="o">=</span> <span class="nf">distanceArrayToVertexDict</span><span class="p">(</span><span class="nv">distances</span><span class="p">:</span> <span class="n">distances</span><span class="p">,</span> <span class="nv">graph</span><span class="p">:</span> <span class="n">cityGraph</span><span class="p">)</span>
 <span class="c1">// shortest distance from New York to San Francisco</span>
 <span class="k">let</span> <span class="nv">temp</span> <span class="o">=</span> <span class="n">nameDistance</span><span class="p">[</span><span class="s">"San Francisco"</span><span class="p">]</span> 
 <span class="c1">// path between New York and San Francisco</span>
 <span class="k">let</span> <span class="nv">path</span><span class="p">:</span> <span class="p">[</span><span class="kt">WeightedEdge</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">=</span> <span class="nf">pathDictToPath</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">cityGraph</span><span class="o">.</span><span class="nf">indexOfVertex</span><span class="p">(</span><span class="s">"New York"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="n">cityGraph</span><span class="o">.</span><span class="nf">indexOfVertex</span><span class="p">(</span><span class="s">"San Francisco"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="nv">pathDict</span><span class="p">:</span> <span class="n">pathDict</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">stops</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="n">cightGraph</span><span class="o">.</span><span class="nf">edgesToVertices</span><span class="p">(</span><span class="nv">edges</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">stops</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="n">cityGraph</span><span class="o">.</span><span class="nf">edgesToVertices</span><span class="p">(</span><span class="nv">edges</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
 </code></pre>
 
 <p>The shortest paths are found between various vertices in the graph using Dijkstra&rsquo;s algorithm.</p>
@@ -212,15 +237,15 @@
 <p>SwiftGraph contains many more useful features, but hopefully this example was a nice quickstart.</p>
 <h2 id='documentation' class='heading'>Documentation</h2>
 
-<p>There is a large amount of documentation in the source code using the latest Apple documentation technique—so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. We are looking <a href="https://github.com/davecom/SwiftGraph/issues/20">for a new HTML docs provider</a> since CocoaPods no longer offers that service. In addition, here&rsquo;s an overview of each of SwiftGraph&rsquo;s components:</p>
+<p>There is a large amount of documentation in the source code using the latest Apple documentation technique—so you should be able to just alt-click a method name to get a lot of great information about it in Xcode. We also use Jazzy to produce <a href="https://davecom.github.io/SwiftGraph">HTML Docs</a>. In addition, here&rsquo;s an overview of each of SwiftGraph&rsquo;s components:</p>
 <h3 id='edges' class='heading'>Edges</h3>
 
 <p>Edges connect the vertices in your graph to one another.</p>
 
 <ul>
 <li><code><a href="Protocols/Edge.html">Edge</a></code> (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer.</li>
-<li><code><a href="Classes/UnweightedEdge.html">UnweightedEdge</a></code> - This is a concrete implementation of <code><a href="Protocols/Edge.html">Edge</a></code> for unweighted graphs.</li>
-<li><code><a href="Classes/WeightedEdge.html">WeightedEdge</a></code> - A subclass of <code><a href="Classes/UnweightedEdge.html">UnweightedEdge</a></code> that adds weights. Weights are a generic type - they can be anything that implements <code>Comparable</code>, <code>Numeric</code> and <code>Codable</code>.  Typical weight types are <code>Int</code> and <code>Float</code>.</li>
+<li><code><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></code> - This is a concrete implementation of <code><a href="Protocols/Edge.html">Edge</a></code> for unweighted graphs.</li>
+<li><code><a href="Structs/WeightedEdge.html">WeightedEdge</a></code> - A subclass of <code><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></code> that adds weights. Weights are a generic type - they can be anything that implements <code>Comparable</code>, <code>Numeric</code> and <code>Codable</code>.  Typical weight types are <code>Int</code> and <code>Float</code>.</li>
 </ul>
 <h3 id='graphs' class='heading'>Graphs</h3>
 
@@ -252,8 +277,8 @@
 <li>Removing all edges between two indexes/vertices</li>
 <li>Removing a particular vertex (all other edge relationships are automatically updated at the same time (because the indices of their connections changes) so this is slow - O(v + e) where v is the number of vertices and e is the number of edges)</li>
 </ul></li>
-<li><code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> - A generic class implementation of <code><a href="Protocols/Graph.html">Graph</a></code> that adds convenience methods for adding and removing edges of type <code><a href="Classes/UnweightedEdge.html">UnweightedEdge</a></code>. <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> is generic over the type of the vertices.</li>
-<li><code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> - A generic class implementation of <code><a href="Protocols/Graph.html">Graph</a></code> that adds convenience methods for adding and removing edges of type <code><a href="Classes/WeightedEdge.html">WeightedEdge</a></code>. <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights. <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> is generic over the types of the vertices and its weights.</li>
+<li><code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> - A generic class implementation of <code><a href="Protocols/Graph.html">Graph</a></code> that adds convenience methods for adding and removing edges of type <code><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></code>. <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> is generic over the type of the vertices.</li>
+<li><code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> - A generic class implementation of <code><a href="Protocols/Graph.html">Graph</a></code> that adds convenience methods for adding and removing edges of type <code><a href="Structs/WeightedEdge.html">WeightedEdge</a></code>. <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights. <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> is generic over the types of the vertices and its weights.</li>
 <li><code><a href="Classes/CodableUnweightedGraph.html">CodableUnweightedGraph</a></code> and <code><a href="Classes/CodableWeightedGraph.html">CodableWeightedGraph</a></code> - Subclasses of <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> and <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> that add support for the <code>Codable</code> protocol. Their vertex and weight types must also be <code>Codable</code>. This allows serialization of graphs to formats like JSON.</li>
 <li><code><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></code> - an experimental subclass of <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> with support for union operations that ensures all vertices and edges in a graph are unique.</li>
 </ul>
@@ -279,7 +304,7 @@
 <p>An extension to <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> in <code>MST.swift</code> can find a minimum-spanning tree from a weighted graph.</p>
 
 <ul>
-<li><code>mst()</code> - Uses Jarnik&rsquo;s Algorithm (aka Prim&rsquo;s Algorithm) to find the tree made of minimum cumulative weight that connects all vertices in a weighted graph. This assumes the graph is completely undirected and connected. If the graph has directed edges, it may not return the right answer. Also, if the graph is not fully connected it will create the tree for the connected component that the starting vertex is a part of. Returns an array of <code><a href="Classes/WeightedEdge.html">WeightedEdge</a></code>s that compose the tree. Use utility functions <code>totalWeight()</code> and <code>printMST()</code> to examine the returned MST. Runs in O(n lg n) time.</li>
+<li><code>mst()</code> - Uses Jarnik&rsquo;s Algorithm (aka Prim&rsquo;s Algorithm) to find the tree made of minimum cumulative weight that connects all vertices in a weighted graph. This assumes the graph is completely undirected and connected. If the graph has directed edges, it may not return the right answer. Also, if the graph is not fully connected it will create the tree for the connected component that the starting vertex is a part of. Returns an array of <code><a href="Structs/WeightedEdge.html">WeightedEdge</a></code>s that compose the tree. Use utility functions <code>totalWeight()</code> and <code>printMST()</code> to examine the returned MST. Runs in O(n lg n) time.</li>
 </ul>
 
 <p>An extension to <code><a href="Protocols/Graph.html">Graph</a></code> in <code>Cycles.swift</code> finds all of the cycles in a graph.</p>
@@ -306,7 +331,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2018-10-19)</p>
+          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-03-08)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

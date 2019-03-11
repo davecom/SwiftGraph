@@ -495,7 +495,7 @@ public extension Graph {
 
 //MARK: `WeightedGraph` extension for doing dijkstra
 
-public extension WeightedGraph where W: Numeric {
+public extension WeightedGraph where W: Comparable & Numeric {
 
     /// Finds the shortest paths from some route vertex to every other vertex in the graph.
     ///

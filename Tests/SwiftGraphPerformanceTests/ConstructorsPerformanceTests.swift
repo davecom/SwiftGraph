@@ -37,29 +37,29 @@ class ConstructorsPerformanceTests: XCTestCase {
         }
     }
 
-    func testPathUniqueElementsGraphConstructor() {
+    func testPathUnweightedUniqueElementsGraphConstructor() {
         let array = Array(1...2999).map({ AnyEquatable(value: $0) })
         self.measure {
-            _ = UniqueElementsGraph<AnyEquatable>(withPath: array)
+            _ = UnweightedUniqueElementsGraph(withPath: array)
         }
     }
 
-    func testPathUniqueElementsGraphHashableConstructor() {
+    func testPathUnweightedUniqueElementsGraphHashableConstructor() {
         self.measure {
-            _ = UniqueElementsGraph<Int>(withPath: Array(1...2999))
+            _ = UnweightedUniqueElementsGraph<Int>(withPath: Array(1...2999))
         }
     }
 
-    func testCycleUniqueElementsGraphConstructor() {
+    func testCycleUnweightedUniqueElementsGraphConstructor() {
         self.measure {
-            _ = UniqueElementsGraph(withCycle: Array(1...2999))
+            _ = UnweightedUniqueElementsGraph(withCycle: Array(1...2999))
         }
     }
 
     func testCycleUniqueElementsHashableConstructor() {
         let array = Array(1...2999).map({ AnyEquatable(value: $0) })
         self.measure {
-            _ = UniqueElementsGraph(withCycle: array)
+            _ = UnweightedUniqueElementsGraph(withCycle: array)
         }
     }
 

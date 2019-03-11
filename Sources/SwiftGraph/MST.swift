@@ -18,7 +18,7 @@
 
 /// Extensions to WeightedGraph for building a Minimum-Spanning Tree (MST)
 
-public extension WeightedGraph {
+public extension WeightedGraph where W: Comparable {
     
     // Citation: Based on Algorithms 4th Edition by Sedgewick, Wayne pg 619
     

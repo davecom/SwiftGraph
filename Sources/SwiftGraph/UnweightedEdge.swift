@@ -25,9 +25,18 @@ public struct UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable 
         self.u = u
         self.v = v
     }
-    
-    //Implement Printable protocol
+
+    public func reversed() -> UnweightedEdge {
+        return UnweightedEdge(u: v, v: u)
+    }
+
+    // Implement Printable protocol
     public var description: String {
         return "\(u) -> \(v)"
+    }
+
+    // MARK: Operator Overloads
+    static public func ==(lhs: UnweightedEdge, rhs: UnweightedEdge) -> Bool {
+        return lhs.u == rhs.u && lhs.v == rhs.v
     }
 }
