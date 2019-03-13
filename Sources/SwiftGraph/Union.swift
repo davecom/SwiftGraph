@@ -29,7 +29,7 @@ public extension UniqueElementsGraph where E == UnweightedEdge {
     ///
     /// - Parameters:
     ///   - graphs: Array of graphs to build the union from.
-    public convenience init(unionOf graphs: [UniqueElementsGraph]) {
+    convenience init(unionOf graphs: [UniqueElementsGraph]) {
         self.init()
 
         guard let firstGraph = graphs.first else { return }
@@ -59,7 +59,7 @@ public extension UniqueElementsGraph where E == UnweightedEdge {
         }
     }
 
-    public convenience init(unionOf graphs: UniqueElementsGraph...) {
+    convenience init(unionOf graphs: UniqueElementsGraph...) {
         self.init(unionOf: graphs)
     }
 }
