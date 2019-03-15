@@ -53,7 +53,7 @@ extension Graph where E: WeightedEdgeProtocol {
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
     public func addEdge(fromIndex: Int, toIndex: Int, weight: W, directed: Bool = false) {
-        addEdge(E(u: fromIndex, v: toIndex, weight: weight), directed: directed)
+        addEdge(E(u: fromIndex, v: toIndex, directed: directed, weight: weight), directed: directed)
     }
     
     /// This is a convenience method that adds a weighted edge between the first occurence of two vertices. It takes O(n) time.
@@ -74,7 +74,7 @@ extension Graph where E: WeightedEdgeProtocol {
     /// - parameter to: The index of the ending vertex of the edge.
     /// - returns: True if there is an edge from the starting vertex to the ending vertex.
     public func edgeExists(fromIndex: Int, toIndex: Int, withWeight weight: W) -> Bool {
-        return edgeExists(E(u: fromIndex, v: toIndex, weight: weight))
+        return edgeExists(E(u: fromIndex, v: toIndex, directed: true, weight: weight))
     }
 
     /// Check whether there is an edge from one vertex to another vertex with a specific weight.

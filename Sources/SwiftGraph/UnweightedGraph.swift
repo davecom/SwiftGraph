@@ -87,7 +87,7 @@ extension Graph where E == UnweightedEdge {
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(fromIndex: Int, toIndex: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: fromIndex, v: toIndex), directed: directed)
+        addEdge(UnweightedEdge(u: fromIndex, v: toIndex, directed: directed), directed: directed)
     }
     
     /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
@@ -97,7 +97,7 @@ extension Graph where E == UnweightedEdge {
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(from: V, to: V, directed: Bool = false) {
         if let u = indexOfVertex(from), let v = indexOfVertex(to) {
-            addEdge(UnweightedEdge(u: u, v: v), directed: directed)
+            addEdge(UnweightedEdge(u: u, v: v, directed: directed), directed: directed)
         }
     }
 
@@ -107,7 +107,7 @@ extension Graph where E == UnweightedEdge {
     /// - parameter to: The index of the ending vertex of the edge.
     /// - returns: True if there is an edge from the starting vertex to the ending vertex.
     public func edgeExists(fromIndex: Int, toIndex: Int) -> Bool {
-        return edgeExists(E(u: fromIndex, v: toIndex))
+        return edgeExists(E(u: fromIndex, v: toIndex, directed: true))
     }
 
     /// Check whether there is an edge from one vertex to another vertex.

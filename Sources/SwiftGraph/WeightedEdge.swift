@@ -20,7 +20,7 @@
 public protocol WeightedEdgeProtocol {
     associatedtype Weight: Equatable
 
-    init(u: Int, v: Int, weight: Weight)
+    init(u: Int, v: Int, directed:Bool, weight: Weight)
     var weight: Weight { get }
 }
 
@@ -32,16 +32,18 @@ extension WeightedEdge: WeightedEdgeProtocol {
 public struct WeightedEdge<W: Equatable>: Edge, CustomStringConvertible, Equatable {
     public var u: Int
     public var v: Int
+    public var directed: Bool
     public var weight: W
     
-    public init(u: Int, v: Int, weight: W) {
+    public init(u: Int, v: Int, directed: Bool, weight: W) {
         self.u = u
         self.v = v
+        self.directed = directed
         self.weight = weight
     }
 
     public func reversed() -> WeightedEdge<W> {
-        return WeightedEdge(u: v, v: u, weight: weight)
+        return WeightedEdge(u: v, v: u, directed: directed, weight: weight)
     }
 
     //Implement Printable protocol

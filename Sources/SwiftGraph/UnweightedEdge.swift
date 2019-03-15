@@ -20,14 +20,16 @@
 public struct UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable {
     public var u: Int
     public var v: Int
+    public var directed: Bool
     
-    public init(u: Int, v: Int) {
+    public init(u: Int, v: Int, directed: Bool) {
         self.u = u
         self.v = v
+        self.directed = directed
     }
 
     public func reversed() -> UnweightedEdge {
-        return UnweightedEdge(u: v, v: u)
+        return UnweightedEdge(u: v, v: u, directed: directed)
     }
 
     // Implement Printable protocol
