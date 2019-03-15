@@ -39,6 +39,24 @@ extension Graph {
     public var edgeCount: Int {
         return edges.joined().count
     }
+
+    /// Returns a list of all the edges, undirected edges are only appended once.
+    public func edgeList() -> [E] {
+        var edges = self.edges
+        var edgeList = [E]()
+        for i in edges.indices {
+            let edgesForVertex = edges[i]
+            for j in edgesForVertex.indices {
+                let edge = edgesForVertex[j]
+                // We only want to append undirected edges once, so we do it when we find it on the
+                // vertex with lowest index.
+                if edge.directed || edge.v >= edge.u {
+                    edgeList.append(edge)
+                }
+            }
+        }
+        return edgeList
+    }
     
     /// Get a vertex by its index.
     ///
@@ -124,7 +142,7 @@ extension Graph {
     ///                       Default is false.
     public func addEdge(_ e: E, directed: Bool = false) {
         edges[e.u].append(e)
-        if !directed {
+        if !directed && e.u != e.v {
             edges[e.v].append(e.reversed())
         }
     }

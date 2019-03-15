@@ -82,7 +82,7 @@ class UnweightedGraphTests: XCTestCase {
 
         let g1Cycle = UnweightedGraph(withCycle:["Atlanta"])
         XCTAssertEqual(g1Cycle.vertices, ["Atlanta"], "g1Cycle: Expected only Atlanta vertex")
-        XCTAssertEqual(g1Cycle.edgeCount, 2, "g1Cycle: Expected 2 edges")
+        XCTAssertEqual(g1Cycle.edgeCount, 1, "g1Cycle: Expected 1 edge")
         XCTAssertTrue(g1Cycle.edgeExists(from: "Atlanta", to: "Atlanta"), "g1Cycle: Expected an edge from Atlanta to Atlanta")
 
         let g2Cycle = UnweightedGraph(withCycle:["Atlanta", "Boston"])
