@@ -74,6 +74,8 @@ extension Graph where E: WeightedEdgeProtocol {
     /// - parameter to: The index of the ending vertex of the edge.
     /// - returns: True if there is an edge from the starting vertex to the ending vertex.
     public func edgeExists(fromIndex: Int, toIndex: Int, withWeight weight: W) -> Bool {
+        // The directed property of this fake edge is ignored, since it's not taken into account
+        // for equality.
         return edgeExists(E(u: fromIndex, v: toIndex, directed: true, weight: weight))
     }
 
