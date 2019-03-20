@@ -8,13 +8,13 @@ SwiftGraph was originally created by me (David Kopec @davecom on GitHub) in 2014
 
 ## Uses
 
-SwiftGraph is being used in several real-world and hobby projects. The most notable that I am aware of is probably the [Wayfindr demo app](https://github.com/wayfindrltd/wayfindr-demo-ios), which is used for assisting vision impaired people with navigating environments. If you are using SwiftGraph in your application, we'd love to hear about it. Perhaps we can start a list here. in this document.
+SwiftGraph is being used in several real-world and hobby projects. The most notable that I am aware of is probably the [Wayfindr demo app](https://github.com/wayfindrltd/wayfindr-demo-ios), which is used for assisting vision impaired people with navigating environments. If you are using SwiftGraph in your application, we'd love to hear about it. Perhaps we can start a list in this document.
 
 ## Contributors
 
 SwiftGraph has been worked on by the following people:
 - David Kopec (@davecom) - I started the project in 2014 and I have been maintaining it ever since; I wrote most of the code between 2014-2017
-- Ferran Pujol Camins (@ferranpujolcamins) - Ferran got us setup with continuous integration, added the UniqueVerticesGraph class and its supporting machinery, refactored some of the search algorithms, cleaned up several miscellaneous sections, and is working on Graphviz support. He has been the primary force behind SwiftGraph in 2018-2019.
+- Ferran Pujol Camins (@ferranpujolcamins) - Ferran got us setup with continuous integration, added the `UniqueVerticesGraph` class and its supporting machinery, refactored some of the search algorithms, cleaned up several miscellaneous sections, and is working on Graphviz support. He has been the primary force behind SwiftGraph in 2018-2019.
 - Zev Eisenberg (@ZevEisenberg) - Added the original cycle detection algorithms.
 - Kevin Lundberg (@klundberg) - Added Carthage support.
 
