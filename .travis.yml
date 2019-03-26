@@ -32,6 +32,7 @@ matrix:
         # https://docs.travis-ci.com/user/installing-dependencies/#Installing-Projects-from-Source
         - PATH=$PATH:$PWD/swift/usr/bin/
       script: ./BuildScripts/linux_script.sh
+      before_script: ./BuildScripts/linux_check_test_generated.sh
 
     #- os: linux
     #  language: generic
