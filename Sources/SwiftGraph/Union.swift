@@ -54,7 +54,7 @@ public extension UniqueElementsGraph where E == UnweightedEdge {
             }
 
             for edge in g.edges.joined() {
-                addEdge(from: g[edge.u], to: g[edge.v], directed: true)
+                addEdge(edge)
             }
         }
     }

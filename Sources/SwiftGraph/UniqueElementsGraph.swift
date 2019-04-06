@@ -94,7 +94,7 @@ extension UniqueElementsGraph where E == UnweightedEdge {
             return
         }
 
-        let indices = path.map({ indexOfVertex($0)! })
+        let indices: [Int] = path.map({ vertices.firstIndex(of: $0)! })
         addEdgesForPath(withIndices: indices, directed: directed)
     }
 
@@ -120,49 +120,25 @@ extension UniqueElementsGraph where E == UnweightedEdge {
         guard cycle.count >= 2 else {
             if let v = cycle.first {
                 let index = addVertex(v)
-                addEdge(fromIndex: index, toIndex: index)
+                let ue = UnweightedEdge(u: index, v: index, directed: directed)
+                addEdge(ue)
             }
             return
         }
 
-        let indices = cycle.map({ indexOfVertex($0)! })
+        let indices: [Int] = cycle.map({ vertex -> Int in
+            
+            let index: Int = vertices.firstIndex(of: vertex)!
+            return index
+        })
         addEdgesForPath(withIndices: indices, directed: directed)
-        addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
+        let ue = UnweightedEdge(u: indices.last!, v: indices.first!, directed: directed)
+        addEdge(ue)
     }
 
 }
 
 extension UniqueElementsGraph where V: Hashable, E == UnweightedEdge {
-    public convenience init(withPath path: [V], directed: Bool = false) {
-        self.init()
-
-        guard path.count >= 2 else {
-            if let v = path.first {
-                _ = addVertex(v)
-            }
-            return
-        }
-
-        let indices = indicesForPath(path)
-        addEdgesForPath(withIndices: indices, directed: directed)
-    }
-
-
-    public convenience init(withCycle cycle: [V], directed: Bool = false) {
-        self.init()
-
-        guard cycle.count >= 2 else {
-            if let v = cycle.first {
-                let index = addVertex(v)
-                addEdge(fromIndex: index, toIndex: index)
-            }
-            return
-        }
-
-        let indices = indicesForPath(cycle)
-        addEdgesForPath(withIndices: indices, directed: directed)
-        addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
-    }
 
     private func indicesForPath(_ path: [V]) -> [Int] {
         var indices: [Int] = []

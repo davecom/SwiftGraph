@@ -72,7 +72,7 @@ extension Graph {
     /// - returns: The index of the vertex. Return nil if it can't find it.
     
     public func indexOfVertex(_ vertex: V) -> Int? {
-        if let i = vertices.index(of: vertex) {
+        if let i = vertices.firstIndex(of: vertex) {
             return i
         }
         return nil;
