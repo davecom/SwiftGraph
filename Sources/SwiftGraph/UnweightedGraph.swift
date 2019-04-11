@@ -46,16 +46,17 @@ extension Graph where E == UnweightedEdge {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in path.
     ///               Default is false.
-    public init(withPath path: [V], directed: Bool = false) {
-        self.init(vertices: path)
+    public static func withPath(_ path: [V], directed: Bool = false) -> Self {
+        let g = Self(vertices: path)
 
         guard path.count >= 2 else {
-            return
+            return g
         }
 
         for i in 0..<path.count - 1 {
-            self.addEdge(fromIndex: i, toIndex: i+1, directed: directed)
+            g.addEdge(fromIndex: i, toIndex: i+1, directed: directed)
         }
+        return g
     }
 
     /// Initialize an UnweightedGraph consisting of cycle.
@@ -64,8 +65,8 @@ extension Graph where E == UnweightedEdge {
     /// each pair of consecutive vertices in cycle,
     /// plus an edge between the last and the first vertices.
     ///
-    /// If path is an empty array, the resulting graph is the empty graph.
-    /// If path is an array with a single vertex, the resulting graph has the vertex
+    /// If cycle is an empty array, the resulting graph is the empty graph.
+    /// If cycle is an array with a single vertex, the resulting graph has the vertex
     /// and a single edge to itself if directed is true.
     /// If directed is false the resulting graph has the vertex and two edges to itself.
     ///
@@ -74,11 +75,12 @@ extension Graph where E == UnweightedEdge {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
     ///               Default is false.
-    public init(withCycle cycle: [V], directed: Bool = false) {
-        self.init(withPath: cycle, directed: directed)
+    public static func withCycle(_ cycle: [V], directed: Bool = false) -> Self {
+        let g = Self.withPath(cycle, directed: directed)
         if cycle.count > 0 {
-            self.addEdge(fromIndex: cycle.count-1, toIndex: 0, directed: directed)
+            g.addEdge(fromIndex: cycle.count-1, toIndex: 0, directed: directed)
         }
+        return g
     }
     
     /// This is a convenience method that adds an unweighted edge.

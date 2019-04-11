@@ -144,9 +144,9 @@ class UnionTests: XCTestCase {
     }
 
     func testAssociativity() {
-        let g1 = UnweightedUniqueElementsGraph(withPath:["A", "B"])
-        let g2 = UnweightedUniqueElementsGraph(withPath:["B", "C"])
-        let g3 = UnweightedUniqueElementsGraph(withPath:["C", "A"])
+        let g1 = UnweightedUniqueElementsGraph.withPath(["A", "B"])
+        let g2 = UnweightedUniqueElementsGraph.withPath(["B", "C"])
+        let g3 = UnweightedUniqueElementsGraph.withPath(["C", "A"])
 
         let g12 = UnweightedUniqueElementsGraph.unionOf(g1, g2)
         let g12_3 = UnweightedUniqueElementsGraph.unionOf(g12, g3)
@@ -166,9 +166,9 @@ class UnionTests: XCTestCase {
     }
 
     func testMultipleParameters() {
-        let g1 = UnweightedUniqueElementsGraph(withPath:["A", "B"])
-        let g2 = UnweightedUniqueElementsGraph(withPath:["B", "C"])
-        let g3 = UnweightedUniqueElementsGraph(withPath:["C", "A"])
+        let g1 = UnweightedUniqueElementsGraph.withPath(["A", "B"])
+        let g2 = UnweightedUniqueElementsGraph.withPath(["B", "C"])
+        let g3 = UnweightedUniqueElementsGraph.withPath(["C", "A"])
 
         let g = UnweightedUniqueElementsGraph.unionOf(g1, g2, g3)
 
