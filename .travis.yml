@@ -13,7 +13,9 @@ matrix:
       script: ./BuildScripts/osx_script.sh
       # Coverage delivery to codeclimate setup
       # codeclimate only shows us results of one run, so we just run it once on last xcode release.
-      before_script: ./BuildScripts/osx_coverage_before.sh
+      before_script:
+        - ./BuildScripts/osx_check_test_generated.sh
+        - ./BuildScripts/osx_coverage_before.sh
       after_script: ./BuildScripts/osx_coverage_after.sh
 
     - os: linux
@@ -26,4 +28,3 @@ matrix:
         # https://docs.travis-ci.com/user/installing-dependencies/#Installing-Projects-from-Source
         - PATH=$PATH:$PWD/swift/usr/bin/
       script: ./BuildScripts/linux_script.sh
-      before_script: ./BuildScripts/linux_check_test_generated.sh

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ev
 SWIFT_URL=$1
 
 wget ${SWIFT_URL} -O /tmp/swift.tar.gz
