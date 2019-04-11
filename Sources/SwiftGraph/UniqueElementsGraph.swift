@@ -87,15 +87,16 @@ extension UniqueElementsGraph where E == UnweightedEdge {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in path.
     ///               Default is false.
-    public convenience init(withPath path: [V], directed: Bool = false) {
-        self.init(vertices: path)
+    public static func withPath(_ path: [V], directed: Bool = false) -> UniqueElementsGraph {
+        let g = UniqueElementsGraph(vertices: path)
 
         guard path.count >= 2 else {
-            return
+            return g
         }
 
-        let indices = path.map({ indexOfVertex($0)! })
-        addEdgesForPath(withIndices: indices, directed: directed)
+        let indices = path.map({ g.indexOfVertex($0)! })
+        g.addEdgesForPath(withIndices: indices, directed: directed)
+        return g
     }
 
     /// Initialize an UniqueElementsGraph consisting of cycle.
@@ -114,54 +115,57 @@ extension UniqueElementsGraph where E == UnweightedEdge {
     ///   - directed: If false, undirected edges are created.
     ///               If true, edges are directed from vertex i to vertex i+1 in cycle.
     ///               Default is false.
-    public convenience init(withCycle cycle: [V], directed: Bool = false) {
-        self.init(vertices: cycle)
+    public static func withCycle(_ cycle: [V], directed: Bool = false) -> UniqueElementsGraph {
+        let g = UniqueElementsGraph(vertices: cycle)
 
         guard cycle.count >= 2 else {
             if let v = cycle.first {
-                let index = addVertex(v)
-                addEdge(fromIndex: index, toIndex: index)
+                let index = g.addVertex(v)
+                g.addEdge(fromIndex: index, toIndex: index)
             }
-            return
+            return g
         }
 
-        let indices = cycle.map({ indexOfVertex($0)! })
-        addEdgesForPath(withIndices: indices, directed: directed)
-        addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
+        let indices = cycle.map({ g.indexOfVertex($0)! })
+        g.addEdgesForPath(withIndices: indices, directed: directed)
+        g.addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
+        return g
     }
 
 }
 
 extension UniqueElementsGraph where V: Hashable, E == UnweightedEdge {
-    public convenience init(withPath path: [V], directed: Bool = false) {
-        self.init()
+    public static func withPath(_ path: [V], directed: Bool = false) -> UniqueElementsGraph {
+        let g = UniqueElementsGraph()
 
         guard path.count >= 2 else {
             if let v = path.first {
-                _ = addVertex(v)
+                _ = g.addVertex(v)
             }
-            return
+            return g
         }
 
-        let indices = indicesForPath(path)
-        addEdgesForPath(withIndices: indices, directed: directed)
+        let indices = g.indicesForPath(path)
+        g.addEdgesForPath(withIndices: indices, directed: directed)
+        return g
     }
 
 
-    public convenience init(withCycle cycle: [V], directed: Bool = false) {
-        self.init()
+    public static func withCycle(_ cycle: [V], directed: Bool = false) -> UniqueElementsGraph {
+        let g = UniqueElementsGraph()
 
         guard cycle.count >= 2 else {
             if let v = cycle.first {
-                let index = addVertex(v)
-                addEdge(fromIndex: index, toIndex: index)
+                let index = g.addVertex(v)
+                g.addEdge(fromIndex: index, toIndex: index)
             }
-            return
+            return g
         }
 
-        let indices = indicesForPath(cycle)
-        addEdgesForPath(withIndices: indices, directed: directed)
-        addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
+        let indices = g.indicesForPath(cycle)
+        g.addEdgesForPath(withIndices: indices, directed: directed)
+        g.addEdge(fromIndex: indices.last!, toIndex: indices.first!, directed: directed)
+        return g
     }
 
     private func indicesForPath(_ path: [V]) -> [Int] {
