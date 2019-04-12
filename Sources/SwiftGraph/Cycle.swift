@@ -2,7 +2,7 @@
 //  Cycle.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2017 David Kopec
+//  Copyright (c) 2017-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ public extension Graph {
     ///
     /// - parameter upToLength: Does the caller only want to detect cycles up to a certain length?
     /// - returns: a list of lists of vertices in cycles
-    public func detectCycles(upToLength maxK: Int = Int.max) -> [[V]] {
+    func detectCycles(upToLength maxK: Int = Int.max) -> [[V]] {
         var cycles = [[V]]() // store of all found cycles
         var openPaths: [[V]] = vertices.map{ [$0] } // initial open paths are single vertex lists
         
@@ -55,7 +55,7 @@ public extension Graph {
     ///
     /// - parameter upToLength: Does the caller only want to detect cycles up to a certain length?
     /// - returns: a list of lists of edges in cycles
-    public func detectCyclesAsEdges(upToLength maxK: Int = Int.max) -> [[E]] {
+    func detectCyclesAsEdges(upToLength maxK: Int = Int.max) -> [[E]] {
 
         var cycles = [[E]]() // store of all found cycles
         var openPaths: [PathTuple] = (0..<vertices.count).map{ ($0, []) } // initial open paths start at a vertex, and are empty

@@ -2,7 +2,7 @@
 //  WeightedEdge.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2017 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,16 +17,33 @@
 //  limitations under the License.
 
 
+public protocol WeightedEdgeProtocol {
+    associatedtype Weight: Equatable
+
+    init(u: Int, v: Int, directed:Bool, weight: Weight)
+    var weight: Weight { get }
+}
+
+extension WeightedEdge: WeightedEdgeProtocol {
+    public typealias Weight = W
+}
+
 /// A weighted edge, who's weight subscribes to Comparable.
-public struct WeightedEdge<W: Comparable & Codable>: Edge, CustomStringConvertible, Codable, Equatable, Comparable {
+public struct WeightedEdge<W: Equatable & Codable>: Edge, CustomStringConvertible, Equatable {
     public var u: Int
     public var v: Int
+    public var directed: Bool
     public var weight: W
     
-    public init(u: Int, v: Int, weight: W) {
+    public init(u: Int, v: Int, directed: Bool, weight: W) {
         self.u = u
         self.v = v
+        self.directed = directed
         self.weight = weight
+    }
+
+    public func reversed() -> WeightedEdge<W> {
+        return WeightedEdge(u: v, v: u, directed: directed, weight: weight)
     }
 
     //Implement Printable protocol
@@ -38,8 +55,11 @@ public struct WeightedEdge<W: Comparable & Codable>: Edge, CustomStringConvertib
     static public func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
         return lhs.u == rhs.u && lhs.v == rhs.v && lhs.weight == rhs.weight
     }
-    
-    static public func < <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+
+}
+
+extension WeightedEdge: Comparable where W: Comparable {
+    static public func < (lhs: WeightedEdge, rhs: WeightedEdge) -> Bool {
         return lhs.weight < rhs.weight
     }
 }

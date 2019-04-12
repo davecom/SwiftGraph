@@ -1,6 +1,6 @@
 # SwiftGraph
 
-[![Swift Versions](https://img.shields.io/badge/Swift-1%2C2%2C3%2C4-green.svg)](https://swift.org)
+[![Swift Versions](https://img.shields.io/badge/Swift-1%2C2%2C3%2C4%2C5-green.svg)](https://swift.org)
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/SwiftGraph.svg)](https://cocoapods.org/pods/SwiftGraph)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SPM Compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://swift.org/package-manager/)
@@ -17,7 +17,7 @@ It includes copious in-source documentation, unit tests, as well as search funct
 
 ## Installation
 
-SwiftGraph 2.0  and above requires Swift 4.2 (Xcode 10). Use SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph runs fine and is tested on Linux.
+SwiftGraph 3.0 requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph runs fine and is tested on Linux.
 
 ### CocoaPods
 
@@ -28,7 +28,7 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 2.0.0
+github "davecom/SwiftGraph" ~> 3.0.0
 ```
 
 ### Swift Package Manager (SPM)

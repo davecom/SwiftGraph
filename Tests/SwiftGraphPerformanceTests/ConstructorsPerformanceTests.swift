@@ -21,45 +21,45 @@ import XCTest
 
 class ConstructorsPerformanceTests: XCTestCase {
 
-    struct AnyEquatable<T: Equatable>: Equatable {
+    struct AnyEquatable<T: Equatable & Codable>: Equatable, Codable {
         let value: T
     }
 
     func testPathUnweightedGraphConstructor() {
         self.measure {
-            _ = UnweightedGraph(withPath: Array(1...999999))
+            _ = UnweightedGraph.withPath( Array(1...999999))
         }
     }
 
     func testCycleUnweightedGraphConstructor() {
         self.measure {
-            _ = UnweightedGraph(withCycle: Array(1...999999))
+            _ = UnweightedGraph.withCycle( Array(1...999999))
         }
     }
 
-    func testPathUniqueElementsGraphConstructor() {
+    func testPathUnweightedUniqueElementsGraphConstructor() {
         let array = Array(1...2999).map({ AnyEquatable(value: $0) })
         self.measure {
-            _ = UniqueElementsGraph<AnyEquatable>(withPath: array)
+            _ = UnweightedUniqueElementsGraph.withPath( array)
         }
     }
 
-    func testPathUniqueElementsGraphHashableConstructor() {
+    func testPathUnweightedUniqueElementsGraphHashableConstructor() {
         self.measure {
-            _ = UniqueElementsGraph<Int>(withPath: Array(1...2999))
+            _ = UnweightedUniqueElementsGraph<Int>.withPath( Array(1...2999))
         }
     }
 
-    func testCycleUniqueElementsGraphConstructor() {
+    func testCycleUnweightedUniqueElementsGraphConstructor() {
         self.measure {
-            _ = UniqueElementsGraph(withCycle: Array(1...2999))
+            _ = UnweightedUniqueElementsGraph.withCycle( Array(1...2999))
         }
     }
 
     func testCycleUniqueElementsHashableConstructor() {
         let array = Array(1...2999).map({ AnyEquatable(value: $0) })
         self.measure {
-            _ = UniqueElementsGraph(withCycle: array)
+            _ = UnweightedUniqueElementsGraph.withCycle( array)
         }
     }
 

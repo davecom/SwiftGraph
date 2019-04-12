@@ -2,7 +2,7 @@
 //  Sort.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2016 David Kopec
+//  Copyright (c) 2016-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ public extension Graph {
     /// Topologically sorts a `Graph` O(n)
     ///
     /// - returns: the sorted vertices, or nil if the graph cannot be sorted due to not being a DAG
-    public func topologicalSort() -> [V]? {
+    func topologicalSort() -> [V]? {
         var sortedVertices = [V]()
         let tsNodes = vertices.map{ TSNode<V>(vertex: $0, color: .white) }
         var notDAG = false
@@ -61,7 +61,7 @@ public extension Graph {
     
     /// Is the `Graph` a directed-acyclic graph (DAG)? O(n)
     /// Finds the answer based on the result of a topological sort.
-    public var isDAG: Bool {
+    var isDAG: Bool {
         guard let _ = topologicalSort() else { return false }
         return true
     }

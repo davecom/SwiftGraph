@@ -2,7 +2,7 @@
 //  SwiftPriorityQueue.swift
 //  SwiftPriorityQueue
 //
-//  Copyright (c) 2015-2017 David Kopec
+//  Copyright (c) 2015-2019 David Kopec
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +90,7 @@ public struct PriorityQueue<T: Comparable> {
     ///
     /// - parameter item: The item to remove the first occurrence of.
     public mutating func remove(_ item: T) {
-        if let index = heap.index(of: item) {
+        if let index = heap.firstIndex(of: item) {
             heap.swapAt(index, heap.count - 1)
             heap.removeLast()
             swim(index)

@@ -20,8 +20,8 @@ import XCTest
 @testable import SwiftGraph
 
 class SwiftGraphCodableTests: XCTestCase {
-    var expectedUnweightedGraph: CodableUnweightedGraph<String> {
-        let g: CodableUnweightedGraph<String> = CodableUnweightedGraph<String>()
+    var expectedUnweightedGraph: UnweightedGraph<String> {
+        let g: UnweightedGraph<String> = UnweightedGraph<String>()
         _ = g.addVertex("Atlanta")
         _ = g.addVertex("New York")
         _ = g.addVertex("Miami")
@@ -33,7 +33,7 @@ class SwiftGraphCodableTests: XCTestCase {
     }
     
     let expectedString = """
-     {"edges":[[{"u":0,"v":1}],[{"u":1,"v":0}]],"vertices":["New York","Miami"]}
+     {"edges":[[{"u":0,"v":1,"directed":false}],[{"u":1,"v":0,"directed":false}]],"vertices":["New York","Miami"]}
      """
     
     func testEncodableDecodable() {
@@ -53,11 +53,11 @@ class SwiftGraphCodableTests: XCTestCase {
             return
         }
         
-        let g2: CodableUnweightedGraph<String>
+        let g2: UnweightedGraph<String>
         do {
-            g2 = try JSONDecoder().decode(CodableUnweightedGraph<String>.self, from: jsonData2)
+            g2 = try JSONDecoder().decode(UnweightedGraph<String>.self, from: jsonData2)
         } catch {
-            XCTFail("JSONDecoder().decode(CodableUnweightedGraph<String>.self, from: jsonData) threw: \(error)")
+            XCTFail("JSONDecoder().decode(UnweightedGraph<String>.self, from: jsonData) threw: \(error)")
             return
         }
         XCTAssertEqual(g2.neighborsForVertex("Miami")!, g2.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miami and New York Connected bi-directionally")
@@ -74,9 +74,9 @@ struct SwiftGraphCodableTests_Vertex: Equatable, Hashable, Decodable, Encodable 
 }
 
 extension SwiftGraphCodableTests {
-    func cityGraph() -> CodableWeightedGraph<SwiftGraphCodableTests_Vertex, Int> {
+    func cityGraph() -> WeightedGraph<SwiftGraphCodableTests_Vertex, Int> {
         // pg 1016 Liang
-        let result = CodableWeightedGraph<SwiftGraphCodableTests_Vertex, Int>(vertices: [
+        let result = WeightedGraph<SwiftGraphCodableTests_Vertex, Int>(vertices: [
             SwiftGraphCodableTests_Vertex(int: 0, string: "Seattle"),
             SwiftGraphCodableTests_Vertex(int: 1, string: "San Francisco"),
             SwiftGraphCodableTests_Vertex(int: 2, string: "Los Angeles"),
@@ -123,7 +123,7 @@ extension SwiftGraphCodableTests {
     }
     
     
-    func validateDijkstra1(cityGraph: CodableWeightedGraph<SwiftGraphCodableTests_Vertex, Int>) {
+    func validateDijkstra1(cityGraph: WeightedGraph<SwiftGraphCodableTests_Vertex, Int>) {
         let vertexWithName = { (name: String) -> SwiftGraphCodableTests_Vertex in
             return cityGraph.vertices.filter({ $0.string == name }).first!
         }
@@ -224,11 +224,11 @@ extension SwiftGraphCodableTests {
             return
         }
         
-        let g2: CodableWeightedGraph<SwiftGraphCodableTests_Vertex, Int>
+        let g2: WeightedGraph<SwiftGraphCodableTests_Vertex, Int>
         do {
-            g2 = try JSONDecoder().decode(CodableWeightedGraph<SwiftGraphCodableTests_Vertex, Int>.self, from: jsonData2)
+            g2 = try JSONDecoder().decode(WeightedGraph<SwiftGraphCodableTests_Vertex, Int>.self, from: jsonData2)
         } catch {
-            XCTFail("JSONDecoder().decode(CodableWeightedGraph<SwiftGraphCodableTests_Vertex, Int>.self, from: jsonData) threw: \(error)")
+            XCTFail("JSONDecoder().decode(WeightedGraph<SwiftGraphCodableTests_Vertex, Int>.self, from: jsonData) threw: \(error)")
             return
         }
         self.validateDijkstra1(cityGraph: g2)

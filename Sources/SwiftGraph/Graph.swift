@@ -2,7 +2,7 @@
 //  Graph.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,14 +16,17 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-/// The protocl for all graphs.
+/// The protocol for all graphs.
 /// You should generally use one of its two canonical class implementations,
 /// *UnweightedGraph* and *WeightedGraph*
-public protocol Graph: class, CustomStringConvertible, Collection {
-    associatedtype V: Equatable
+public protocol Graph: class, CustomStringConvertible, Collection, Codable {
+    associatedtype V: Equatable & Codable
     associatedtype E: Edge & Equatable
     var vertices: [V] { get set }
     var edges: [[E]] { get set }
+
+    init(vertices: [V])
+    func addEdge(_ e: E, directed: Bool)
 }
 
 extension Graph {
@@ -35,6 +38,24 @@ extension Graph {
     /// How many edges are in the graph?
     public var edgeCount: Int {
         return edges.joined().count
+    }
+
+    /// Returns a list of all the edges, undirected edges are only appended once.
+    public func edgeList() -> [E] {
+        var edges = self.edges
+        var edgeList = [E]()
+        for i in edges.indices {
+            let edgesForVertex = edges[i]
+            for j in edgesForVertex.indices {
+                let edge = edgesForVertex[j]
+                // We only want to append undirected edges once, so we do it when we find it on the
+                // vertex with lowest index.
+                if edge.directed || edge.v >= edge.u {
+                    edgeList.append(edge)
+                }
+            }
+        }
+        return edgeList
     }
     
     /// Get a vertex by its index.
@@ -51,7 +72,7 @@ extension Graph {
     /// - returns: The index of the vertex. Return nil if it can't find it.
     
     public func indexOfVertex(_ vertex: V) -> Int? {
-        if let i = vertices.index(of: vertex) {
+        if let i = vertices.firstIndex(of: vertex) {
             return i
         }
         return nil;
@@ -93,29 +114,6 @@ extension Graph {
         return nil
     }
     
-    /// Is there an edge from one vertex to another?
-    ///
-    /// - parameter from: The index of the starting edge.
-    /// - parameter to: The index of the ending edge.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: Int, to: Int) -> Bool {
-        return edges[from].map({$0.v}).contains(to)
-    }
-    
-    /// Is there an edge from one vertex to another? Note this will look at the first occurence of each vertex. Also returns false if either of the supplied vertices cannot be found in the graph.
-    ///
-    /// - parameter from: The first vertex.
-    /// - parameter to: The second vertex.
-    /// - returns: A Bool that is true if such an edge exists, and false otherwise.
-    public func edgeExists(from: V, to: V) -> Bool {
-        if let u = indexOfVertex(from) {
-            if let v = indexOfVertex(to) {
-                return edgeExists(from: u, to: v)
-            }
-        }
-        return false
-    }
-    
     /// Find the first occurence of a vertex.
     ///
     /// - parameter vertex: The vertex you are looking for.
@@ -135,12 +133,18 @@ extension Graph {
         edges.append([E]())
         return vertices.count - 1
     }
-    
-    /// Add an edge to the graph. It should take
+
+    /// Add an edge to the graph.
     ///
     /// - parameter e: The edge to add.
-    public func addEdge(_ e: E) {
+    /// - parameter directed: If false, undirected edges are created.
+    ///                       If true, a reversed edge is also created.
+    ///                       Default is false.
+    public func addEdge(_ e: E, directed: Bool = false) {
         edges[e.u].append(e)
+        if !directed && e.u != e.v {
+            edges[e.v].append(e.reversed())
+        }
     }
     
     /// Removes all edges in both directions between vertices at indexes from & to.
@@ -231,6 +235,14 @@ extension Graph {
         if let i = indexOfVertex(vertex) {
             removeVertexAtIndex(i)
         }
+    }
+
+    /// Check whether an edge is in the graph or not.
+    ///
+    /// - parameter edge: The edge to find in the graph.
+    /// - returns: True if the edge exists, and false otherwise.
+    public func edgeExists(_ edge: E) -> Bool {
+        return edges[edge.u].contains(edge)
     }
 
     
