@@ -13,7 +13,7 @@
     <a title="SwiftGraph  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftGraph Docs</a> (70% documented)</p>
+        <p><a href="index.html">SwiftGraph Docs</a> (72% documented)</p>
         <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -30,12 +30,6 @@
           <li class="nav-group-name">
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Classes/CodableUnweightedGraph.html">CodableUnweightedGraph</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/CodableWeightedGraph.html">CodableWeightedGraph</a>
-              </li>
               <li class="nav-group-task">
                 <a href="Classes/Queue.html">Queue</a>
               </li>
@@ -68,19 +62,19 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSQR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSeRzSERzSHRzSeR_SER_SQR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeVyxGGSi_SiSDySiAHGtSQRzlF">pathDictToPath(from:to:pathDict:)</a>
+                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeVyxGGSi_SiSDySiAHGtSeRzSERzSQRzlF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA4Edge_pGSi_SiSDySiAaF_pGtF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeVyq_GG_AA0gB0Cyxq_GtSQRzSjR_r0_lF">printMST(edges:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeVyq_GG_AA0gB0Cyxq_GtSeRzSERzSQRzSeR_SER_SjR_r0_lF">printMST(edges:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeVyxGGSjRzlF">totalWeight(_:)</a>
+                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeVyxGGSeRzSERzSjRzlF">totalWeight(_:)</a>
               </li>
             </ul>
           </li>
@@ -131,7 +125,7 @@
             
             <h1 id='swiftgraph' class='heading'>SwiftGraph</h1>
 
-<p><a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-1%2C2%2C3%2C4-green.svg" alt="Swift Versions"></a>
+<p><a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-1%2C2%2C3%2C4%2C5-green.svg" alt="Swift Versions"></a>
 <a href="https://cocoapods.org/pods/SwiftGraph"><img src="https://img.shields.io/cocoapods/v/SwiftGraph.svg" alt="CocoaPods Version"></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage Compatible"></a>
 <a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat" alt="SPM Compatible"></a>
@@ -147,14 +141,14 @@
 <p>It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra&rsquo;s algorithm. Further, it includes utility functions for topological sort, Jarnik&rsquo;s algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), and enumerating all cycles.</p>
 <h2 id='installation' class='heading'>Installation</h2>
 
-<p>SwiftGraph 2.0  and above requires Swift 4.2 (Xcode 10). Use SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph runs fine and is tested on Linux.</p>
+<p>SwiftGraph 3.0 requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph supports GNU/Linux and is tested on it.</p>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p>Use the CocoaPod <code>SwiftGraph</code>.</p>
 <h3 id='carthage' class='heading'>Carthage</h3>
 
 <p>Add the following to your <code>Cartfile</code>:</p>
-<pre class="highlight plaintext"><code>github "davecom/SwiftGraph" ~&gt; 2.0.0
+<pre class="highlight plaintext"><code>github "davecom/SwiftGraph" ~&gt; 3.0.0
 </code></pre>
 <h3 id='swift-package-manager-spm' class='heading'>Swift Package Manager (SPM)</h3>
 
@@ -243,15 +237,15 @@
 <p>Edges connect the vertices in your graph to one another.</p>
 
 <ul>
-<li><code><a href="Protocols/Edge.html">Edge</a></code> (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer.</li>
+<li><code><a href="Protocols/Edge.html">Edge</a></code> (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer. All <code><a href="Protocols/Edge.html">Edge</a></code>s must be <code>Codable</code>.</li>
 <li><code><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></code> - This is a concrete implementation of <code><a href="Protocols/Edge.html">Edge</a></code> for unweighted graphs.</li>
-<li><code><a href="Structs/WeightedEdge.html">WeightedEdge</a></code> - A subclass of <code><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></code> that adds weights. Weights are a generic type - they can be anything that implements <code>Comparable</code>, <code>Numeric</code> and <code>Codable</code>.  Typical weight types are <code>Int</code> and <code>Float</code>.</li>
+<li><code><a href="Structs/WeightedEdge.html">WeightedEdge</a></code> - This is a concrete implementation of <code><a href="Protocols/Edge.html">Edge</a></code> for weighted graphs. Weights are a generic type - they can be anything that implements <code>Comparable</code>, <code>Numeric</code> and <code>Codable</code>.  Typical weight types are <code>Int</code> and <code>Float</code>.</li>
 </ul>
 <h3 id='graphs' class='heading'>Graphs</h3>
 
 <p>Graphs are the data structures at the heart of SwiftGraph. All vertices are assigned an integer index when they are inserted into a graph and it&rsquo;s generally faster to refer to them by their index than by the vertex&rsquo;s actual object.</p>
 
-<p>Graphs implement the standard Swift protocols <code>Collection</code> (for iterating through all vertices and for grabbing a vertex by its index through a subscript). For instance, the following example prints all vertices in a Graph on separate lines:</p>
+<p>Graphs implement the standard Swift protocols <code>Collection</code> (for iterating through all vertices and for grabbing a vertex by its index through a subscript) and <code>Codable</code> . For instance, the following example prints all vertices in a Graph on separate lines:</p>
 <pre class="highlight swift"><code><span class="k">for</span> <span class="n">v</span> <span class="k">in</span> <span class="n">g</span> <span class="p">{</span>  <span class="c1">// g is a Graph&lt;String&gt;</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="p">}</span>
@@ -264,7 +258,7 @@
 <p>Note: At this time, graphs are <em>not</em> thread-safe. However, once a graph is constructed, if you will only be doing lookups and searches through it (no removals of vertices/edges and no additions of vertices/edges) then you should be able to do that from multiple threads. A fully thread-safe graph implementation is a possible future direction.</p>
 
 <ul>
-<li><code><a href="Protocols/Graph.html">Graph</a></code> (Protocol) - This is the base protocol for all graphs.  Generally, you should use one of its canonical class implementations, <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> or <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code>, instead of rolling your own adopter, because they offer significant built-in functionality. The vertices in a <code><a href="Protocols/Graph.html">Graph</a></code> (defined as a generic at graph creation time) can be of any type that conforms to <code>Equatable</code>. <code><a href="Protocols/Graph.html">Graph</a></code> has methods for:
+<li><code><a href="Protocols/Graph.html">Graph</a></code> (Protocol) - This is the base protocol for all graphs.  Generally, you should use one of its canonical class implementations, <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> or <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code>, instead of rolling your own adopter, because they offer significant built-in functionality. The vertices in a <code><a href="Protocols/Graph.html">Graph</a></code> (defined as a generic at graph creation time) can be of any type that conforms to <code>Equatable</code> and <code>Codable</code>. All <code><a href="Protocols/Graph.html">Graph</a></code>s are <code>Codable</code>.  <code><a href="Protocols/Graph.html">Graph</a></code> has methods for:
 
 <ul>
 <li>Adding a vertex</li>
@@ -279,8 +273,7 @@
 </ul></li>
 <li><code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> - A generic class implementation of <code><a href="Protocols/Graph.html">Graph</a></code> that adds convenience methods for adding and removing edges of type <code><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></code>. <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> is generic over the type of the vertices.</li>
 <li><code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> - A generic class implementation of <code><a href="Protocols/Graph.html">Graph</a></code> that adds convenience methods for adding and removing edges of type <code><a href="Structs/WeightedEdge.html">WeightedEdge</a></code>. <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights. <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> is generic over the types of the vertices and its weights.</li>
-<li><code><a href="Classes/CodableUnweightedGraph.html">CodableUnweightedGraph</a></code> and <code><a href="Classes/CodableWeightedGraph.html">CodableWeightedGraph</a></code> - Subclasses of <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> and <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code> that add support for the <code>Codable</code> protocol. Their vertex and weight types must also be <code>Codable</code>. This allows serialization of graphs to formats like JSON.</li>
-<li><code><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></code> - an experimental subclass of <code><a href="Classes/UnweightedGraph.html">UnweightedGraph</a></code> with support for union operations that ensures all vertices and edges in a graph are unique.</li>
+<li><code><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></code> - a <code><a href="Protocols/Graph.html">Graph</a></code> implementation with support for union operations that ensures all vertices and edges in a graph are unique.</li>
 </ul>
 <h3 id='search' class='heading'>Search</h3>
 
@@ -291,6 +284,7 @@
 <li><code>dfs()</code> (method on <code><a href="Protocols/Graph.html">Graph</a></code>) - Finds a path from one vertex to another in a <code><a href="Protocols/Graph.html">Graph</a></code> using a depth-first search. Returns an array of <code><a href="Protocols/Edge.html">Edge</a></code>s going from the source vertex to the destination vertex or an empty array if no path could be found. A version of this method takes a function, <code>goalTest()</code>, that operates on a vertex and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first vertex that returns true from <code>goalTest()</code>.</li>
 <li><code>findAll()</code> Uses a breadth-first search to find all connected vertices from the starting vertex that return true when run through a <code>goalTest()</code> function. Paths to the connected vertices are returned in an array, which is empty if no vertices are found.</li>
 <li><code>dijkstra()</code> (method on <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code>) - Finds the shortest path from a starting vertex to every other vertex in a <code><a href="Classes/WeightedGraph.html">WeightedGraph</a></code>. Returns a tuple who&rsquo;s first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous <code><a href="Protocols/Edge.html">Edge</a></code> that gets them there in the shortest time from the staring vertex. Using this dictionary and the function <code>pathDictToPath()</code>, you can find the shortest path from the starting vertex to any other connected vertex. See the <code>dijkstra()</code> unit tests in <code>DijkstraGraphTests.swift</code> for a demo of this.</li>
+<li>Graph traversal versions of <code>bfs()</code> and <code>dfs()</code> that allow a visit function to execute at each stop</li>
 </ul>
 <h3 id='sort-amp-miscellaneous' class='heading'>Sort &amp; Miscellaneous</h3>
 
@@ -314,7 +308,7 @@
 </ul>
 <h2 id='authorship-license-amp-contributors' class='heading'>Authorship, License, &amp; Contributors</h2>
 
-<p>SwiftGraph is written by David Kopec and released under the Apache License (see <code>LICENSE</code>). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub. </p>
+<p>SwiftGraph is written by David Kopec and other contributors (see <code>CONTRIBUTORS.md</code>). It is released under the Apache License (see <code>LICENSE</code>). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub. </p>
 
 <p>I would like to thank all of the contributors who have helped improve SwiftGraph over the years, and have kept me motivated. Contributing to SwiftGraph, in-line with the Apache license, means also releasing your contribution under the same license as the original project. However, the Apache license is permissive, and you are free to include SwiftGraph in a commercial, closed source product as long as you give it &amp; its author credit (in fact SwiftGraph has already found its way into several products). See <code>LICENSE</code> for details.</p>
 <h2 id='future-direction' class='heading'>Future Direction</h2>
@@ -325,14 +319,14 @@
 <li>More utility functions</li>
 <li>A thread safe implementation of <code><a href="Protocols/Graph.html">Graph</a></code></li>
 <li>More extensive performance testing</li>
-<li>GraphML Support</li>
+<li>GraphML and Other Format Support</li>
 </ul>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-03-08)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-04-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

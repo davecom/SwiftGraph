@@ -1,404 +1,369 @@
 {
   "warnings": [
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Cycle.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Cycle.swift",
       "line": 52,
       "symbol": "Graph.Path",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Cycle.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Cycle.swift",
       "line": 53,
       "symbol": "Graph.PathTuple",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Edge.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Edge.swift",
+      "line": 25,
+      "symbol": "Edge.directed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Edge.swift",
       "line": 27,
       "symbol": "Edge.reversed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Graph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Graph.swift",
       "line": 23,
       "symbol": "Graph.V",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Graph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Graph.swift",
       "line": 24,
       "symbol": "Graph.E",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Graph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Graph.swift",
       "line": 25,
       "symbol": "Graph.vertices",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Graph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Graph.swift",
       "line": 26,
       "symbol": "Graph.edges",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Graph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Graph.swift",
       "line": 28,
       "symbol": "Graph.init(vertices:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Graph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Graph.swift",
       "line": 29,
       "symbol": "Graph.addEdge(_:directed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Queue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
       "line": 24,
       "symbol": "Queue.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Queue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
       "line": 26,
       "symbol": "Queue.isEmpty",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Queue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
       "line": 30,
       "symbol": "Queue.push(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Queue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
       "line": 34,
       "symbol": "Queue.pop()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Queue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
       "line": 48,
       "symbol": "Queue.front",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Queue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
       "line": 52,
       "symbol": "Queue.count",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Queue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
       "line": 56,
       "symbol": "Queue.contains(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Search.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Search.swift",
       "line": 570,
       "symbol": "Graph.edgesToVertices(edges:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Search.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Search.swift",
       "line": 597,
       "symbol": "pathDictToPath(from:to:pathDict:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Stack.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Stack.swift",
       "line": 22,
       "symbol": "Stack.isEmpty",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Stack.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Stack.swift",
       "line": 23,
       "symbol": "Stack.push(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Stack.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Stack.swift",
       "line": 24,
       "symbol": "Stack.pop()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/SwiftPriorityQueue.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/SwiftPriorityQueue.swift",
       "line": 37,
       "symbol": "PriorityQueue.init(ascending:startingValues:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/Union.swift",
-      "line": 62,
-      "symbol": "UniqueElementsGraph.init(unionOf:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Union.swift",
+      "line": 63,
+      "symbol": "UniqueElementsGraph.unionOf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
       "line": 19,
       "symbol": "UnweightedUniqueElementsGraph",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
       "line": 20,
       "symbol": "WeightedUniqueElementsGraph",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
       "line": 24,
       "symbol": "UniqueElementsGraph.vertices",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
       "line": 25,
       "symbol": "UniqueElementsGraph.edges",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
       "line": 27,
       "symbol": "UniqueElementsGraph.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
-      "line": 136,
-      "symbol": "UniqueElementsGraph.init(withPath:directed:)",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
+      "line": 138,
+      "symbol": "UniqueElementsGraph.withPath(_:directed:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
+      "line": 154,
+      "symbol": "UniqueElementsGraph.withCycle(_:directed:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UnweightedEdge.swift",
+      "line": 23,
+      "symbol": "UnweightedEdge.directed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UnweightedEdge.swift",
+      "line": 25,
+      "symbol": "UnweightedEdge.init(u:v:directed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
-      "line": 151,
-      "symbol": "UniqueElementsGraph.init(withCycle:directed:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedEdge.swift",
-      "line": 24,
-      "symbol": "UnweightedEdge.init(u:v:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedEdge.swift",
-      "line": 29,
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UnweightedEdge.swift",
+      "line": 31,
       "symbol": "UnweightedEdge.reversed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
       "line": 21,
       "symbol": "UnweightedGraph.vertices",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
       "line": 22,
       "symbol": "UnweightedGraph.edges",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
       "line": 24,
       "symbol": "UnweightedGraph.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
       "line": 27,
       "symbol": "UnweightedGraph.init(vertices:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
-      "line": 131,
-      "symbol": "CodableUnweightedGraph",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
-      "line": 137,
-      "symbol": "CodableUnweightedGraph.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
-      "line": 141,
-      "symbol": "CodableUnweightedGraph.init(vertices:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/UnweightedGraph.swift",
-      "line": 145,
-      "symbol": "CodableUnweightedGraph.init(fromGraph:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
       "line": 20,
       "symbol": "WeightedEdgeProtocol",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
       "line": 21,
       "symbol": "WeightedEdgeProtocol.Weight",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
       "line": 23,
-      "symbol": "WeightedEdgeProtocol.init(u:v:weight:)",
+      "symbol": "WeightedEdgeProtocol.init(u:v:directed:weight:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
       "line": 24,
       "symbol": "WeightedEdgeProtocol.weight",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
       "line": 28,
       "symbol": "WeightedEdge.Weight",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
       "line": 35,
+      "symbol": "WeightedEdge.directed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "line": 36,
       "symbol": "WeightedEdge.weight",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
-      "line": 37,
-      "symbol": "WeightedEdge.init(u:v:weight:)",
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "line": 38,
+      "symbol": "WeightedEdge.init(u:v:directed:weight:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
-      "line": 43,
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedEdge.swift",
+      "line": 45,
       "symbol": "WeightedEdge.reversed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 21,
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
+      "line": 22,
       "symbol": "WeightedGraph.vertices",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 22,
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
+      "line": 23,
       "symbol": "WeightedGraph.edges",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 24,
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
+      "line": 25,
       "symbol": "WeightedGraph.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 27,
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
+      "line": 28,
       "symbol": "WeightedGraph.init(vertices:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 35,
+      "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
+      "line": 59,
       "symbol": "Graph.W",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 156,
-      "symbol": "CodableWeightedGraph",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 162,
-      "symbol": "CodableWeightedGraph.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 166,
-      "symbol": "CodableWeightedGraph.init(vertices:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ferranpujolcamins/development/SwiftGraph/Sources/SwiftGraph/WeightedGraph.swift",
-      "line": 170,
-      "symbol": "CodableWeightedGraph.init(fromGraph:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/ferranpujolcamins/development/SwiftGraph"
+  "source_directory": "/Users/dave/Documents/Projects/SwiftGraph"
 }

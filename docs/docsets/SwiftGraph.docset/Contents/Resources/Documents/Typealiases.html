@@ -14,7 +14,7 @@
     <a title="Type Aliases  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftGraph Docs</a> (70% documented)</p>
+        <p><a href="index.html">SwiftGraph Docs</a> (72% documented)</p>
         <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -31,12 +31,6 @@
           <li class="nav-group-name">
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Classes/CodableUnweightedGraph.html">CodableUnweightedGraph</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/CodableWeightedGraph.html">CodableWeightedGraph</a>
-              </li>
               <li class="nav-group-task">
                 <a href="Classes/Queue.html">Queue</a>
               </li>
@@ -69,19 +63,19 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSHRzSQR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph25distanceArrayToVertexDict9distances5graphSDyxq_SgGSayAEG_AA08WeightedB0Cyxq_GtSeRzSERzSHRzSeR_SER_SQR_r0_lF">distanceArrayToVertexDict(distances:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeVyxGGSi_SiSDySiAHGtSQRzlF">pathDictToPath(from:to:pathDict:)</a>
+                <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA12WeightedEdgeVyxGGSi_SiSDySiAHGtSeRzSERzSQRzlF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftGraph14pathDictToPath4from2to0cD0SayAA4Edge_pGSi_SiSDySiAaF_pGtF">pathDictToPath(from:to:pathDict:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeVyq_GG_AA0gB0Cyxq_GtSQRzSjR_r0_lF">printMST(edges:graph:)</a>
+                <a href="Functions.html#/s:10SwiftGraph8printMST5edges5graphySayAA12WeightedEdgeVyq_GG_AA0gB0Cyxq_GtSeRzSERzSQRzSeR_SER_SjR_r0_lF">printMST(edges:graph:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeVyxGGSjRzlF">totalWeight(_:)</a>
+                <a href="Functions.html#/s:10SwiftGraph11totalWeightyxSgSayAA12WeightedEdgeVyxGGSeRzSERzSjRzlF">totalWeight(_:)</a>
               </li>
             </ul>
           </li>
@@ -156,12 +150,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UnweightedUniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt"><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt"><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UnweightedUniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt"><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt"><a href="Structs/UnweightedEdge.html">UnweightedEdge</a></span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -186,12 +180,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">WeightedUniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt"><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt"><a href="Structs/WeightedEdge.html">WeightedEdge</a></span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">WeightedUniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt"><a href="Classes/UniqueElementsGraph.html">UniqueElementsGraph</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt"><a href="Structs/WeightedEdge.html">WeightedEdge</a></span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;&gt;</span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/2.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -201,8 +195,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-03-08)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-04-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
