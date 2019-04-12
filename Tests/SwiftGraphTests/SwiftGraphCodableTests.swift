@@ -21,7 +21,7 @@ import XCTest
 
 class SwiftGraphCodableTests: XCTestCase {
     var expectedUnweightedGraph: UnweightedGraph<String> {
-        let g: UnweightedGraph<String> = UnweightedGraph<String>()
+        var g: UnweightedGraph<String> = UnweightedGraph<String>()
         _ = g.addVertex("Atlanta")
         _ = g.addVertex("New York")
         _ = g.addVertex("Miami")

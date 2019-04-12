@@ -32,7 +32,7 @@ class SwiftGraphTests: XCTestCase {
     }
     
     func testCitesInverseAfterRemove() {
-        let g: UnweightedGraph<String> = UnweightedGraph<String>()
+        var g: UnweightedGraph<String> = UnweightedGraph<String>()
         _ = g.addVertex("Atlanta")
         _ = g.addVertex("New York")
         _ = g.addVertex("Miami")
@@ -57,7 +57,7 @@ class SwiftGraphTests: XCTestCase {
     }
     
     func testCounts() {
-        let g: UnweightedGraph<String> = UnweightedGraph<String>()
+        var g: UnweightedGraph<String> = UnweightedGraph<String>()
         _ = g.addVertex("Atlanta")
         _ = g.addVertex("New York")
         _ = g.addVertex("Miami")
@@ -82,7 +82,7 @@ class SwiftGraphTests: XCTestCase {
     }
     
     func testRemoveAllEdges() {
-        let graph = UnweightedGraph(vertices: ["0", "1", "2", "3", "4", "5", "6"])
+        var graph = UnweightedGraph(vertices: ["0", "1", "2", "3", "4", "5", "6"])
         
         graph.addEdge(from: "0", to: "1", directed: false)
         graph.addEdge(from: "1", to: "2", directed: false)

@@ -118,14 +118,14 @@ There is a large amount of documentation in the source code using the latest App
 ### Edges
 Edges connect the vertices in your graph to one another.
 
-* `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer.
+* `Edge` (Protocol) - A protocol that all edges in a graph must conform to. An edge is a connection between two vertices in the graph. The vertices are specified by their index in the graph which is an integer. All `Edge`s must be `Codable`.
 * `UnweightedEdge` - This is a concrete implementation of `Edge` for unweighted graphs.
-* `WeightedEdge` - A subclass of `UnweightedEdge` that adds weights. Weights are a generic type - they can be anything that implements `Comparable`, `Numeric` and `Codable`.  Typical weight types are `Int` and `Float`.
+* `WeightedEdge` - This is a concrete implementation of `Edge` for weighted graphs. Weights are a generic type - they can be anything that implements `Comparable`, `Numeric` and `Codable`.  Typical weight types are `Int` and `Float`.
 
 ### Graphs
 Graphs are the data structures at the heart of SwiftGraph. All vertices are assigned an integer index when they are inserted into a graph and it's generally faster to refer to them by their index than by the vertex's actual object.
 
-Graphs implement the standard Swift protocols `Collection` (for iterating through all vertices and for grabbing a vertex by its index through a subscript). For instance, the following example prints all vertices in a Graph on separate lines:
+Graphs implement the standard Swift protocols `Collection` (for iterating through all vertices and for grabbing a vertex by its index through a subscript) and `Codable` . For instance, the following example prints all vertices in a Graph on separate lines:
 ```swift
 for v in g {  // g is a Graph<String>
     print(v)
@@ -138,7 +138,7 @@ print(g[23]) // g is a Graph<String>
 
 Note: At this time, graphs are *not* thread-safe. However, once a graph is constructed, if you will only be doing lookups and searches through it (no removals of vertices/edges and no additions of vertices/edges) then you should be able to do that from multiple threads. A fully thread-safe graph implementation is a possible future direction.
 
-* `Graph` (Protocol) - This is the base protocol for all graphs.  Generally, you should use one of its canonical class implementations, `UnweightedGraph` or `WeightedGraph`, instead of rolling your own adopter, because they offer significant built-in functionality. The vertices in a `Graph` (defined as a generic at graph creation time) can be of any type that conforms to `Equatable`. `Graph` has methods for:
+* `Graph` (Protocol) - This is the base protocol for all graphs.  Generally, you should use one of its canonical class implementations, `UnweightedGraph` or `WeightedGraph`, instead of rolling your own adopter, because they offer significant built-in functionality. The vertices in a `Graph` (defined as a generic at graph creation time) can be of any type that conforms to `Equatable` and `Codable`. All `Graph`s are `Codable`.  `Graph` has methods for:
   * Adding a vertex
   * Getting the index of a vertex
   * Finding the neighbors of an index/vertex
@@ -150,7 +150,6 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
   * Removing a particular vertex (all other edge relationships are automatically updated at the same time (because the indices of their connections changes) so this is slow - O(v + e) where v is the number of vertices and e is the number of edges)
 * `UnweightedGraph` - A generic class implementation of `Graph` that adds convenience methods for adding and removing edges of type `UnweightedEdge`. `UnweightedGraph` is generic over the type of the vertices.
 * `WeightedGraph` - A generic class implementation of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights. `WeightedGraph` is generic over the types of the vertices and its weights.
-* `CodableUnweightedGraph` and `CodableWeightedGraph` - Subclasses of `UnweightedGraph` and `WeightedGraph` that add support for the `Codable` protocol. Their vertex and weight types must also be `Codable`. This allows serialization of graphs to formats like JSON.
 * `UniqueElementsGraph` - an experimental subclass of `UnweightedGraph` with support for union operations that ensures all vertices and edges in a graph are unique.
 
 ### Search
@@ -159,6 +158,7 @@ Search methods are defined in extensions of `Graph` and `WeightedGraph` in `Sear
 * `dfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found. A version of this method takes a function, `goalTest()`, that operates on a vertex and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first vertex that returns true from `goalTest()`.
 * `findAll()` Uses a breadth-first search to find all connected vertices from the starting vertex that return true when run through a `goalTest()` function. Paths to the connected vertices are returned in an array, which is empty if no vertices are found.
 * `dijkstra()` (method on `WeightedGraph`) - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
+* Graph traversal versions of `bfs()` and `dfs()` that allow a visit function to execute at each stop
 
 ### Sort & Miscellaneous
 An extension to `Graph` in `Sort.swift` provides facilities for topological sort and detecting a DAG.
@@ -172,7 +172,7 @@ An extension to `Graph` in `Cycles.swift` finds all of the cycles in a graph.
 * `detectCycles()` - Uses an algorithm developed by Liu/Wang to find all of the cycles in a graph. Optionally, this method can take one parameter, `upToLength`, that specifies a length at which to stop searching for cycles. For instance, if `upToLength` is 3, `detectCycles()` will find all of the 1 vertex cycles (self-cycles, vertices with edges to themselves), and 3 vertex cycles (connection to another vertex and back again, present in all undirected graphs with more than 1 vertex). There is no such thing as a 2 vertex cycle.
 
 ## Authorship, License, & Contributors
-SwiftGraph is written by David Kopec and released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub. 
+SwiftGraph is written by David Kopec and other contributors (see `CONTRIBUTORS.md`). It is released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub. 
 
 I would like to thank all of the contributors who have helped improve SwiftGraph over the years, and have kept me motivated. Contributing to SwiftGraph, in-line with the Apache license, means also releasing your contribution under the same license as the original project. However, the Apache license is permissive, and you are free to include SwiftGraph in a commercial, closed source product as long as you give it & its author credit (in fact SwiftGraph has already found its way into several products). See `LICENSE` for details.
 
@@ -181,4 +181,4 @@ Future directions for this project to take could include:
 * More utility functions
 * A thread safe implementation of `Graph`
 * More extensive performance testing
-* GraphML Support
+* GraphML and Other Format Support

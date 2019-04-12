@@ -1,6 +1,20 @@
+### 3.0.0
+- **This is an API breaking refactor**
+- This version requires Swift 5.0 (Xcode 10.2)
+- `Graph` no longer conforms to `class` so structs can be `Graph`s (@davecom)
+- `Graph` and `Edge` are now `Codable` meaning all implementations must be as well including all vertex types, leading to the removal of `CodableUnweightedGraph` and `CodableWeightedGraph`, which are now unnecessary (@davecom)
+- New CONTRIBUTORS.md file containing some history (@davecom)
+- New search traversal methods (@ferranpujolcamins)
+- Improvements to `UniqueElementsGraph` (@ferranpujolcamins)
+- Useful constructors for testing (@ferranpujolcamins)
+- Improvements to `UniqueElementsGraph` tests (@ferranpujolcamins)
+- Refactor many aspects of `UnweightedGraph` and `WeightedGraph` into conditional conformance extensions to `Graph` and new protocols (@ferranpujolcamins)
+- Add new performance tests (@ferranpujolcamins)
+- Add direction back to `Edge` (@ferranpujolcamins)
+
 ### 2.0.0
 - **This is an API breaking refactor**
-- This version requires Swift 4.2 (Xcode 10)
+- This version requires Swift 4.2 (Xcode 10.1)
 - `Graph` is now a protocol instead of a class
 - `edgesToVertices()` is now a method on `Graph` instead of a free function
 - The `Edge` protocol has been significantly simplifieid

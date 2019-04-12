@@ -242,7 +242,7 @@ class DijkstraGraphTests: XCTestCase {
     }
     
     func testRemovalWithDijkstra() {
-        let cityGraph3 = cityGraph
+        var cityGraph3 = cityGraph
         cityGraph3.removeVertex("Kansas City")
         let (distances, pathDict) = cityGraph3.dijkstra(root: "Miami", startDistance: 0)
         let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph3)

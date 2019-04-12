@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftGraph'
-  s.version          = '2.0.0'
+  s.version          = '3.0.0'
   s.license          = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
   s.summary          = 'A Graph Data Structure in Pure Swift'
   s.homepage         = 'https://github.com/davecom/SwiftGraph'
