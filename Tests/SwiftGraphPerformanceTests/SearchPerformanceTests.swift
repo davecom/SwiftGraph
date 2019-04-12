@@ -21,7 +21,7 @@ import XCTest
 
 class SearchPerformanceTests: XCTestCase {
     let starGraph = StarGraph.build(withCenter: 0, andLeafs: Array(1...99999))
-    let pathGraph = UnweightedGraph(withPath: Array(0...99999))
+    let pathGraph = UnweightedGraph.withPath( Array(0...99999))
     let completeGraph = CompleteGraph.build(withVertices: Array(0...2499))
 
     // MARK: With Goal Test

@@ -22,17 +22,17 @@ import XCTest
 class UnionTests: XCTestCase {
 
     func testDisjointUnion() {
-        let g1 = UnweightedUniqueElementsGraph<Int>(withPath: Array(1...999))
-        let g2 = UnweightedUniqueElementsGraph<Int>(withPath: Array(1000...1999))
+        let g1 = UnweightedUniqueElementsGraph<Int>.withPath( Array(1...999))
+        let g2 = UnweightedUniqueElementsGraph<Int>.withPath( Array(1000...1999))
         self.measure {
-            _ = UnweightedUniqueElementsGraph<Int>(unionOf: g1, g2)
+            _ = UnweightedUniqueElementsGraph<Int>.unionOf(g1, g2)
         }
     }
 
     func testUnionWithSelf() {
-        let g = UnweightedUniqueElementsGraph<Int>(withPath: Array(1...999))
+        let g = UnweightedUniqueElementsGraph<Int>.withPath( Array(1...999))
         self.measure {
-            _ = UnweightedUniqueElementsGraph<Int>(unionOf: g, g, g, g)
+            _ = UnweightedUniqueElementsGraph<Int>.unionOf(g, g, g, g)
         }
     }
 }

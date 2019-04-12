@@ -32,7 +32,7 @@ class UnionTests: XCTestCase {
     }
 
     func testEmptyGraph() {
-        let g = UnweightedUniqueElementsGraph<Int>(unionOf: [])
+        let g = UnweightedUniqueElementsGraph<Int>.unionOf([])
         XCTAssertEqual(g.vertexCount, 0, "Expected 0 vertices on the empty graph.")
         XCTAssertEqual(g.edgeCount, 0, "Expected 0 edges on the empty graph.")
     }
@@ -43,7 +43,7 @@ class UnionTests: XCTestCase {
         let g2 = UnweightedUniqueElementsGraph(vertices: ["Boston", "Chicago"])
         g2.addEdge(from: "Boston", to: "Chicago", directed: false)
 
-        let u = UnweightedUniqueElementsGraph(unionOf: g1, g2)
+        let u = UnweightedUniqueElementsGraph.unionOf(g1, g2)
 
         XCTAssertEqual(u.vertices, ["Atlanta", "Boston", "Chicago"], "Expected vertices on the result graph to be Atlanta, Boston and Chicago.")
         XCTAssertEqual(u.edgeCount, 3, "Expected 3 edges on the result graph.")
@@ -58,7 +58,7 @@ class UnionTests: XCTestCase {
         let g2 = UnweightedUniqueElementsGraph(vertices: ["Atlanta", "Chicago"])
         g2.addEdge(from: "Atlanta", to: "Chicago", directed: false)
 
-        let u = UnweightedUniqueElementsGraph(unionOf: g1, g2)
+        let u = UnweightedUniqueElementsGraph.unionOf(g1, g2)
 
         XCTAssertEqual(u.vertices, ["Atlanta", "Boston", "Chicago"], "Expected vertices on the result graph to be Atlanta, Boston and Chicago.")
         XCTAssertEqual(u.edgeCount, 3, "Expected 3 edges on the result graph.")
@@ -73,7 +73,7 @@ class UnionTests: XCTestCase {
         let g2 = UnweightedUniqueElementsGraph(vertices: ["Chicago", "Denver"])
         g2.addEdge(from: "Chicago", to: "Denver", directed: false)
 
-        let u = UnweightedUniqueElementsGraph(unionOf: g1, g2)
+        let u = UnweightedUniqueElementsGraph.unionOf(g1, g2)
 
         XCTAssertEqual(u.vertices, ["Atlanta", "Boston", "Chicago", "Denver"], "Expected vertices on the result graph to be Atlanta, Boston, Chicago and Denver.")
         XCTAssertEqual(u.edgeCount, 3, "Expected 3 edges on the result graph.")
@@ -88,7 +88,7 @@ class UnionTests: XCTestCase {
         let g2 = UnweightedUniqueElementsGraph(vertices: ["Boston", "Chicago"])
         g2.addEdge(from: "Boston", to: "Chicago", directed: false)
 
-        let _ = UnweightedUniqueElementsGraph(unionOf: g1, g2)
+        let _ = UnweightedUniqueElementsGraph.unionOf(g1, g2)
 
         XCTAssertEqual(g1.vertices, ["Atlanta", "Boston"], "g1: Expected vertices to be Atlanta and Boston.")
         XCTAssertEqual(g1.edgeCount, 1, "g1: Expected exactly 1 edge")
@@ -105,13 +105,13 @@ class UnionTests: XCTestCase {
         let g = UnweightedUniqueElementsGraph<String>(vertices:["Atlanta", "Chicago"])
         g.addEdge(from: "Atlanta", to: "Chicago", directed: true)
         
-        let result1 = UnweightedUniqueElementsGraph(unionOf: eg, g)
+        let result1 = UnweightedUniqueElementsGraph.unionOf(eg, g)
         
         XCTAssertEqual(result1.vertices, g.vertices, "Expected same vertices after left union with empty graph")
         XCTAssertEqual(result1.edgeCount, 1, "Expected same edge count after left union with empty graph")
         XCTAssertTrue(result1.edgeExists(from: "Atlanta", to: "Chicago"), "Expected an edge from Chicago to Atlanta after left union with empty graph")
         
-        let result2 = UnweightedUniqueElementsGraph(unionOf: g, eg)
+        let result2 = UnweightedUniqueElementsGraph.unionOf(g, eg)
         
         XCTAssertEqual(result2.vertices, g.vertices, "Expected same vertices after right union with empty graph")
         XCTAssertEqual(result2.edgeCount, 1, "Expected same edge count after right union with empty graph")
@@ -122,7 +122,7 @@ class UnionTests: XCTestCase {
         let g = UnweightedUniqueElementsGraph(vertices: ["Atlanta", "Boston"])
         g.addEdge(from: "Atlanta", to: "Boston", directed: true)
 
-        let u = UnweightedUniqueElementsGraph(unionOf: g, g)
+        let u = UnweightedUniqueElementsGraph.unionOf(g, g)
         XCTAssertEqual(u.vertices, g.vertices, "Expected same vertices after union with self")
         XCTAssertEqual(u.edgeCount, 1, "Expected same edge count after union to self")
         XCTAssertTrue(u.edgeExists(from: "Atlanta", to: "Boston"), "Expected an edge from Atlanta to Boston")
@@ -134,8 +134,8 @@ class UnionTests: XCTestCase {
         let g2 = UnweightedUniqueElementsGraph(vertices: ["Boston", "Chicago"])
         g2.addEdge(from: "Boston", to: "Chicago", directed: false)
 
-        let u12 = UnweightedUniqueElementsGraph(unionOf: g1, g2)
-        let u21 = UnweightedUniqueElementsGraph(unionOf: g2, g1)
+        let u12 = UnweightedUniqueElementsGraph.unionOf(g1, g2)
+        let u21 = UnweightedUniqueElementsGraph.unionOf(g2, g1)
         // Both result graph must have the same vertices but they can be in different order.
         XCTAssertTrue(arraysHaveSameElements(u12.vertices, u21.vertices), "Expected same vertices for g1 ∪ g2 and g2 ∪ g1")
         XCTAssertTrue(arraysHaveSameElements(u12.neighborsForVertex("Atlanta")!, u21.neighborsForVertex("Atlanta")!), "Expected same neighbors of Atlanta in g1 ∪ g2 and g2 ∪ g1")
@@ -144,15 +144,15 @@ class UnionTests: XCTestCase {
     }
 
     func testAssociativity() {
-        let g1 = UnweightedUniqueElementsGraph(withPath:["A", "B"])
-        let g2 = UnweightedUniqueElementsGraph(withPath:["B", "C"])
-        let g3 = UnweightedUniqueElementsGraph(withPath:["C", "A"])
+        let g1 = UnweightedUniqueElementsGraph.withPath(["A", "B"])
+        let g2 = UnweightedUniqueElementsGraph.withPath(["B", "C"])
+        let g3 = UnweightedUniqueElementsGraph.withPath(["C", "A"])
 
-        let g12 = UnweightedUniqueElementsGraph(unionOf: g1, g2)
-        let g12_3 = UnweightedUniqueElementsGraph(unionOf: g12, g3)
+        let g12 = UnweightedUniqueElementsGraph.unionOf(g1, g2)
+        let g12_3 = UnweightedUniqueElementsGraph.unionOf(g12, g3)
 
-        let g23 = UnweightedUniqueElementsGraph(unionOf: g2, g3)
-        let g1_23 = UnweightedUniqueElementsGraph(unionOf: g1, g23)
+        let g23 = UnweightedUniqueElementsGraph.unionOf(g2, g3)
+        let g1_23 = UnweightedUniqueElementsGraph.unionOf(g1, g23)
 
         XCTAssertTrue(arraysHaveSameElements(g12_3.vertices, g1_23.vertices), "Expected same vertices for (g1 ∪ g2) ∪ g3 and g1 ∪ (g2 ∪ g3)")
 
@@ -166,11 +166,11 @@ class UnionTests: XCTestCase {
     }
 
     func testMultipleParameters() {
-        let g1 = UnweightedUniqueElementsGraph(withPath:["A", "B"])
-        let g2 = UnweightedUniqueElementsGraph(withPath:["B", "C"])
-        let g3 = UnweightedUniqueElementsGraph(withPath:["C", "A"])
+        let g1 = UnweightedUniqueElementsGraph.withPath(["A", "B"])
+        let g2 = UnweightedUniqueElementsGraph.withPath(["B", "C"])
+        let g3 = UnweightedUniqueElementsGraph.withPath(["C", "A"])
 
-        let g = UnweightedUniqueElementsGraph(unionOf: g1, g2, g3)
+        let g = UnweightedUniqueElementsGraph.unionOf(g1, g2, g3)
 
         XCTAssertEqual(g.vertices, ["A", "B", "C"], "g: Expected vertices to be A, B and C")
         XCTAssertTrue(g.edgeExists(from: "A", to: "B"), "g: Expected an edge from A to B")

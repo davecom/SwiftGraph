@@ -29,37 +29,38 @@ public extension UniqueElementsGraph where E == UnweightedEdge {
     ///
     /// - Parameters:
     ///   - graphs: Array of graphs to build the union from.
-    convenience init(unionOf graphs: [UniqueElementsGraph]) {
-        self.init()
+    static func unionOf(_ graphs: [UniqueElementsGraph]) -> UniqueElementsGraph{
+        let union = UniqueElementsGraph()
 
-        guard let firstGraph = graphs.first else { return }
+        guard let firstGraph = graphs.first else { return union }
         let others = graphs.dropFirst()
 
         // We know vertices in lhs are unique, so we call Graph.addVertex to avoid the uniqueness check of UniqueElementsGraph.addVertex.
         for vertex in firstGraph.vertices {
-            _ = addVertex(vertex)
+            _ = union.addVertex(vertex)
         }
 
         // When vertices are removed from Graph, edges might mutate,
         // so we need to add new copies of them for the result graph.
         for edge in firstGraph.edges.joined() {
-            addEdge(edge, directed: true)
+            union.addEdge(edge, directed: true)
         }
 
         for g in others {
             // Vertices in rhs might be equal to some vertex in lhs, so we need to add them
             // with self.addVertex to guarantee uniqueness.
             for vertex in g.vertices {
-                _ = addVertex(vertex)
+                _ = union.addVertex(vertex)
             }
 
             for edge in g.edges.joined() {
-                addEdge(edge)
+                union.addEdge(from: g[edge.u], to: g[edge.v], directed: true)
             }
         }
+        return union
     }
 
-    convenience init(unionOf graphs: UniqueElementsGraph...) {
-        self.init(unionOf: graphs)
+    static func unionOf(_ graphs: UniqueElementsGraph...) -> UniqueElementsGraph{
+        return unionOf(graphs)
     }
 }

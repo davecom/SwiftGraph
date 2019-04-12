@@ -249,7 +249,7 @@ class SwiftGraphSearchTests: XCTestCase {
     }
 
     func testTraverseDfsOnCycle() {
-        let g = UnweightedGraph(withCycle: ["A", "B", "C"], directed: true)
+        let g = UnweightedGraph.withCycle( ["A", "B", "C"], directed: true)
         let aIndex = g.indexOfVertex("A")!
 
         // First vertex is not fed to the reducer
@@ -438,7 +438,7 @@ class SwiftGraphSearchTests: XCTestCase {
     }
 
     func testTraverseBfsOnCycle() {
-        let g = UnweightedGraph(withCycle: ["A", "B", "C"], directed: true)
+        let g = UnweightedGraph.withCycle( ["A", "B", "C"], directed: true)
         let aIndex = g.indexOfVertex("A")!
 
         // First vertex is not fed to the reducer
