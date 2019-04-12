@@ -17,7 +17,7 @@ It includes copious in-source documentation, unit tests, as well as search funct
 
 ## Installation
 
-SwiftGraph 3.0 requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph runs fine and is tested on Linux.
+SwiftGraph 3.0 requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph supports GNU/Linux and is tested on it.
 
 ### CocoaPods
 
@@ -150,7 +150,7 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
   * Removing a particular vertex (all other edge relationships are automatically updated at the same time (because the indices of their connections changes) so this is slow - O(v + e) where v is the number of vertices and e is the number of edges)
 * `UnweightedGraph` - A generic class implementation of `Graph` that adds convenience methods for adding and removing edges of type `UnweightedEdge`. `UnweightedGraph` is generic over the type of the vertices.
 * `WeightedGraph` - A generic class implementation of `Graph` that adds convenience methods for adding and removing edges of type `WeightedEdge`. `WeightedGraph` also adds a method for returning a list of tuples containing all of the neighbor vertices of an index along with their respective weights. `WeightedGraph` is generic over the types of the vertices and its weights.
-* `UniqueElementsGraph` - an experimental subclass of `UnweightedGraph` with support for union operations that ensures all vertices and edges in a graph are unique.
+* `UniqueElementsGraph` - a `Graph` implementation with support for union operations that ensures all vertices and edges in a graph are unique.
 
 ### Search
 Search methods are defined in extensions of `Graph` and `WeightedGraph` in `Search.swift`.
