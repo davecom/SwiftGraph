@@ -2,7 +2,7 @@
 //  Edge.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A protocol that all edges in a graph must conform to.
-public protocol Edge: CustomStringConvertible {
+public protocol Edge: CustomStringConvertible & Codable {
     /// The origin vertex of the edge
     var u: Int {get set}  //made modifiable for changing when removing vertices
     /// The destination vertex of the edge

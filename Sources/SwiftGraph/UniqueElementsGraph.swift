@@ -16,11 +16,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-public typealias UnweightedUniqueElementsGraph<V: Equatable> = UniqueElementsGraph<V, UnweightedEdge>
-public typealias WeightedUniqueElementsGraph<V: Equatable, W: Equatable> = UniqueElementsGraph<V, WeightedEdge<W>>
+public typealias UnweightedUniqueElementsGraph<V: Equatable & Codable> = UniqueElementsGraph<V, UnweightedEdge>
+public typealias WeightedUniqueElementsGraph<V: Equatable & Codable, W: Equatable & Codable> = UniqueElementsGraph<V, WeightedEdge<W>>
 
 /// A subclass of UnweightedGraph that ensures there are no pairs of equal vertices and no repeated edges.
-open class UniqueElementsGraph<V: Equatable, E: Edge&Equatable>: Graph {
+open class UniqueElementsGraph<V: Equatable & Codable, E: Edge & Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[E]] = [[E]]() //adjacency lists
 

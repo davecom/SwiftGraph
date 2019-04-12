@@ -2,7 +2,7 @@
 //  UnweightedEdge.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A basic unweighted edge.
-public struct UnweightedEdge: Edge, CustomStringConvertible, Codable, Equatable {
+public struct UnweightedEdge: Edge, CustomStringConvertible, Equatable {
     public var u: Int
     public var v: Int
     public var directed: Bool

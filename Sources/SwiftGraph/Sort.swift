@@ -2,7 +2,7 @@
 //  Sort.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2016 David Kopec
+//  Copyright (c) 2016-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.

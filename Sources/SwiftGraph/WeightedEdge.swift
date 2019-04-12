@@ -2,7 +2,7 @@
 //  WeightedEdge.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2017 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ extension WeightedEdge: WeightedEdgeProtocol {
 }
 
 /// A weighted edge, who's weight subscribes to Comparable.
-public struct WeightedEdge<W: Equatable>: Edge, CustomStringConvertible, Equatable {
+public struct WeightedEdge<W: Equatable & Codable>: Edge, CustomStringConvertible, Equatable {
     public var u: Int
     public var v: Int
     public var directed: Bool
@@ -57,8 +57,6 @@ public struct WeightedEdge<W: Equatable>: Edge, CustomStringConvertible, Equatab
     }
 
 }
-
-extension WeightedEdge: Codable where W: Codable {}
 
 extension WeightedEdge: Comparable where W: Comparable {
     static public func < (lhs: WeightedEdge, rhs: WeightedEdge) -> Bool {

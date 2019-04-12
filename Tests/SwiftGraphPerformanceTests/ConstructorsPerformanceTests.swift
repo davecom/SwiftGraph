@@ -21,7 +21,7 @@ import XCTest
 
 class ConstructorsPerformanceTests: XCTestCase {
 
-    struct AnyEquatable<T: Equatable>: Equatable {
+    struct AnyEquatable<T: Equatable & Codable>: Equatable, Codable {
         let value: T
     }
 

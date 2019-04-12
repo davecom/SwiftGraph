@@ -2,7 +2,7 @@
 //  UnweightedGraph.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A subclass of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-open class UnweightedGraph<V: Equatable>: Graph {
+open class UnweightedGraph<V: Equatable & Codable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[UnweightedEdge]] = [[UnweightedEdge]]() //adjacency lists
     
@@ -129,39 +129,5 @@ extension Graph where E == UnweightedEdge {
             }
         }
         return false
-    }
-}
-
-public final class CodableUnweightedGraph<V: Codable & Equatable> : UnweightedGraph<V>, Codable {
-    enum CodingKeys: String, CodingKey {
-        case vertices = "vertices"
-        case edges = "edges"
-    }
-    
-    override public init() {
-        super.init()
-    }
-    
-    required public init(vertices: [V]) {
-        super.init(vertices: vertices)
-    }
-
-    public convenience init(fromGraph g: UnweightedGraph<V>) {
-        self.init()
-        vertices = g.vertices
-        edges = g.edges
-    }
-    
-    public required init(from decoder: Decoder) throws  {
-        super.init()
-        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.vertices = try rootContainer.decode([V].self, forKey: CodingKeys.vertices)
-        self.edges = try rootContainer.decode([[E]].self, forKey: CodingKeys.edges)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
-        try rootContainer.encode(self.vertices, forKey: CodingKeys.vertices)
-        try rootContainer.encode(self.edges, forKey: CodingKeys.edges)
     }
 }

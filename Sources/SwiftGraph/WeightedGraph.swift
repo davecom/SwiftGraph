@@ -2,7 +2,7 @@
 //  WeightedGraph.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// A subclass of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-open class WeightedGraph<V: Equatable, W: Equatable>: Graph {
+open class WeightedGraph<V: Equatable & Codable, W: Equatable & Codable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[WeightedEdge<W>]] = [[WeightedEdge<W>]]() //adjacency lists
     
@@ -152,39 +152,5 @@ extension Graph where E: WeightedEdgeProtocol {
             d += "\(vertices[i]) -> \(neighborsForIndexWithWeights(i))\n"
         }
         return d
-    }
-}
-
-public final class CodableWeightedGraph<V: Codable & Equatable, W: Comparable & Numeric & Codable> : WeightedGraph<V, W>, Codable {
-    enum CodingKeys: String, CodingKey {
-        case vertices = "vertices"
-        case edges = "edges"
-    }
-    
-    override public init() {
-        super.init()
-    }
-    
-    required public init(vertices: [V]) {
-        super.init(vertices: vertices)
-    }
-
-    public convenience init(fromGraph g: WeightedGraph<V, W>) {
-        self.init()
-        vertices = g.vertices
-        edges = g.edges
-    }
-    
-    public required init(from decoder: Decoder) throws  {
-        super.init()
-        let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.vertices = try rootContainer.decode([V].self, forKey: CodingKeys.vertices)
-        self.edges = try rootContainer.decode([[E]].self, forKey: CodingKeys.edges)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var rootContainer = encoder.container(keyedBy: CodingKeys.self)
-        try rootContainer.encode(self.vertices, forKey: CodingKeys.vertices)
-        try rootContainer.encode(self.edges, forKey: CodingKeys.edges)
     }
 }

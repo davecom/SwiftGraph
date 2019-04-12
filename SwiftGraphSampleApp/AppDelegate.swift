@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  SwiftGraph
 //
-//  Copyright (c) 2014-2016 David Kopec
+//  Copyright (c) 2014-2019 David Kopec
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -86,7 +86,7 @@ class NineTailView: NSView {
     }
 }
 
-enum Coin: String {
+enum Coin: String, Codable {
     case Heads = "heads"
     case Tails = "tails"
     mutating func flip() {
@@ -98,7 +98,7 @@ enum Coin: String {
     }
 }
 
-struct NineTailPosition: Equatable  {
+struct NineTailPosition: Equatable, Codable  {
     fileprivate var positionMatrix: [[Coin]]
     init(matrix: [[Coin]]) {
         positionMatrix = matrix
