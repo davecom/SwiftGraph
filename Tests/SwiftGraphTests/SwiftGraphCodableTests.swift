@@ -39,14 +39,12 @@ class SwiftGraphCodableTests: XCTestCase {
     func testEncodableDecodable() {
         let g = expectedUnweightedGraph
         
-        let jsonData: Data
         do {
-            jsonData = try JSONEncoder().encode(g)
+            _ = try JSONEncoder().encode(g)
         } catch {
             XCTFail("JSONEncoder().encode(g) threw: \(error)")
             return
         }
-        let jsonString = String(data: jsonData, encoding: .utf8)
 
         guard let jsonData2 = expectedString.data(using: .utf8) else {
             XCTFail("Unable to serialize expected JSON string into Data")
@@ -57,14 +55,20 @@ class SwiftGraphCodableTests: XCTestCase {
         do {
             g2 = try JSONDecoder().decode(UnweightedGraph<String>.self, from: jsonData2)
         } catch {
-            XCTFail("JSONDecoder().decode(UnweightedGraph<String>.self, from: jsonData) threw: \(error)")
+            XCTFail("JSONDecoder().decode(UnweightedGraph<String>.self, from: jsonData2) threw: \(error)")
             return
         }
         XCTAssertEqual(g2.neighborsForVertex("Miami")!, g2.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miami and New York Connected bi-directionally")
         //        XCTAssertEqual(g, expectedUnweightedGraph)
         let jsonData3 = try! JSONEncoder().encode(g2)
-        let jsonString2: String = String(data: jsonData3, encoding: .utf8)!
-        XCTAssertEqual(jsonString, jsonString2)
+        let g3: UnweightedGraph<String>
+        do {
+            g3 = try JSONDecoder().decode(UnweightedGraph<String>.self, from: jsonData3)
+        } catch {
+            XCTFail("JSONDecoder().decode(UnweightedGraph<String>.self, from: jsonData3) threw: \(error)")
+            return
+        }
+        XCTAssertEqual(g3.neighborsForVertex("Miami")!, g3.neighborsForVertex(g.neighborsForVertex("New York")![0])!, "Miami and New York Connected bi-directionally")
     }
 }
 
