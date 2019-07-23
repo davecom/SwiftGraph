@@ -17,6 +17,7 @@ SwiftGraph has been worked on by the following people:
 - Ferran Pujol Camins (@ferranpujolcamins) - Ferran got us setup with continuous integration, added the `UniqueVerticesGraph` class and its supporting machinery, refactored some of the search algorithms, cleaned up several miscellaneous sections, and is working on Graphviz support. He has been the primary force behind SwiftGraph in 2018-2019.
 - Zev Eisenberg (@ZevEisenberg) - Added the original cycle detection algorithms.
 - Kevin Lundberg (@klundberg) - Added Carthage support.
+- Ian Grossberg (@yoiang) - Helped with Codable support
 
 Thank you to everyone who has contributed, including those not listed, who made smaller contributions. If I forgot you and you made a significant contribution to SwiftGraph, please make a pull request to this document.
 
