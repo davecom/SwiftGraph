@@ -132,6 +132,58 @@ extension UniqueElementsGraph where E == UnweightedEdge {
         return g
     }
 
+    private struct QueueElement<V> {
+        let v: V
+        let previousIndex: Int
+    }
+
+    /// Construct a UniqueElementsGraph by repeatedly applying a recursion function to a vertex and adding them to the graph.
+    ///
+    /// The recursion function is only called on a vertex when visited for the first time.
+    ///
+    /// - Parameter recursion: A function that returns the neighbouring vertices for a given visited vertex.
+    /// - Parameter initialVertex: The first vertex to which the recursion function is applied.
+    public convenience init(fromRecursion recursion: (V) -> [V], startingWith initialVertex: V) {
+        self.init(fromRecursion: recursion, selectingVertex: { $0 }, startingWith: initialVertex)
+    }
+
+    /// Construct a UniqueElementsGraph by repeatedly applying a recursion function to some elements and adding the corresponding vertex to the graph.
+    ///
+    /// The recursion function is only called on an element when visited for the first time.
+    ///
+    /// - Parameter recursion: A function that returns the neighbouring elements for a given visited element.
+    /// - Parameter vertexFor: A function that returns the vertex that will be added to the graph for each visited element.
+    /// - Parameter initialElement: The first element to which the recursion function is applied.
+    public convenience init<T>(fromRecursion recursion: (T) -> [T], selectingVertex vertexFor: (T) -> V, startingWith initialElement: T) {
+        self.init()
+
+        let queue = Queue<QueueElement<T>>()
+
+        vertices.append(vertexFor(initialElement))
+        edges.append([E]())
+        recursion(initialElement).forEach { v in
+            queue.push(QueueElement(v: v, previousIndex: 0))
+        }
+
+        while !queue.isEmpty {
+            let element = queue.pop()
+            let (e, previousIndex) = (element.v, element.previousIndex)
+            let u = vertexFor(e)
+            let uIndex = indexOfVertex(u) ?? {
+                vertices.append(u)
+                edges.append([E]())
+
+                let uIndex = vertices.count - 1
+
+                recursion(e).forEach { v in
+                    queue.push(QueueElement(v: v, previousIndex: uIndex))
+                }
+                return uIndex
+            }()
+
+            addEdge(fromIndex: previousIndex, toIndex: uIndex, directed: true)
+        }
+    }
 }
 
 extension UniqueElementsGraph where V: Hashable, E == UnweightedEdge {
