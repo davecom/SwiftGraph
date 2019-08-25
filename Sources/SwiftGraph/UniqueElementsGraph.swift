@@ -143,8 +143,8 @@ extension UniqueElementsGraph where E == UnweightedEdge {
     ///
     /// - Parameter recursion: A function that returns the neighbouring vertices for a given visited vertex.
     /// - Parameter initialVertex: The first vertex to which the recursion function is applied.
-    public convenience init(fromRecursion recursion: (V) -> [V], startingWith initialVertex: V) {
-        self.init(fromRecursion: recursion, selectingVertex: { $0 }, startingWith: initialVertex)
+    public static func fromRecursion(_ recursion: (V) -> [V], startingWith initialVertex: V) -> UniqueElementsGraph {
+        return self.fromRecursion(recursion, selectingVertex: { $0 }, startingWith: initialVertex)
     }
 
     /// Construct a UniqueElementsGraph by repeatedly applying a recursion function to some elements and adding the corresponding vertex to the graph.
@@ -154,13 +154,13 @@ extension UniqueElementsGraph where E == UnweightedEdge {
     /// - Parameter recursion: A function that returns the neighbouring elements for a given visited element.
     /// - Parameter vertexFor: A function that returns the vertex that will be added to the graph for each visited element.
     /// - Parameter initialElement: The first element to which the recursion function is applied.
-    public convenience init<T>(fromRecursion recursion: (T) -> [T], selectingVertex vertexFor: (T) -> V, startingWith initialElement: T) {
-        self.init()
+    public static func fromRecursion<T>(_ recursion: (T) -> [T], selectingVertex vertexFor: (T) -> V, startingWith initialElement: T) -> UniqueElementsGraph {
+        let g = UniqueElementsGraph(vertices: [])
 
         let queue = Queue<QueueElement<T>>()
 
-        vertices.append(vertexFor(initialElement))
-        edges.append([E]())
+        g.vertices.append(vertexFor(initialElement))
+        g.edges.append([E]())
         recursion(initialElement).forEach { v in
             queue.push(QueueElement(v: v, previousIndex: 0))
         }
@@ -169,20 +169,22 @@ extension UniqueElementsGraph where E == UnweightedEdge {
             let element = queue.pop()
             let (e, previousIndex) = (element.v, element.previousIndex)
             let u = vertexFor(e)
-            let uIndex = indexOfVertex(u) ?? {
-                vertices.append(u)
-                edges.append([E]())
+            let uIndex = g.indexOfVertex(u) ?? {
+                g.vertices.append(u)
+                g.edges.append([E]())
 
-                let uIndex = vertices.count - 1
+                let uIndex = g.vertices.count - 1
 
                 recursion(e).forEach { v in
                     queue.push(QueueElement(v: v, previousIndex: uIndex))
                 }
                 return uIndex
-            }()
+                }()
 
-            addEdge(fromIndex: previousIndex, toIndex: uIndex, directed: true)
+            g.addEdge(fromIndex: previousIndex, toIndex: uIndex, directed: true)
         }
+
+        return g
     }
 }
 

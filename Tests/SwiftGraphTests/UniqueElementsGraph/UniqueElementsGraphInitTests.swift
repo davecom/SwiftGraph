@@ -228,7 +228,7 @@ class UnweightedUniqueElementsGraphInitTests: XCTestCase {
             return structure[i] ?? []
         }
 
-        let g = UniqueElementsGraph(fromRecursion: next, startingWith: 0)
+        let g = UniqueElementsGraph.fromRecursion(next, startingWith: 0)
         XCTAssertTrue(g.edgeExists(from: 0, to: 1))
         XCTAssertTrue(g.edgeExists(from: 0, to: 2))
         XCTAssertTrue(g.edgeExists(from: 0, to: 3))
@@ -280,7 +280,7 @@ class UnweightedUniqueElementsGraphInitTests: XCTestCase {
             )
         )
 
-        let g = UniqueElementsGraph(fromRecursion: next, selectingVertex: select, startingWith: tree)
+        let g = UniqueElementsGraph.fromRecursion(next, selectingVertex: select, startingWith: tree)
         XCTAssertTrue(g.edgeExists(from: 0, to: 1))
         XCTAssertTrue(g.edgeExists(from: 0, to: 6))
 
