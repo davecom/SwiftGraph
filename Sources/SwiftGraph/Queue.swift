@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// Implements a queue - helper class that uses an array internally.
-public class Queue<T: Equatable> {
+public class Queue<T> {
     private var container = [T]()
     private var head = 0
 
@@ -52,7 +52,9 @@ public class Queue<T: Equatable> {
     public var count: Int {
         return container.count - head
     }
+}
 
+extension Queue where T: Equatable {
     public func contains(_ thing: T) -> Bool {
         let content = container.dropFirst(head)
         if content.firstIndex(of: thing) != nil {
