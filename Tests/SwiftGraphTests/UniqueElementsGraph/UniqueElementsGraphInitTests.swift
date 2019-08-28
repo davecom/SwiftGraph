@@ -216,5 +216,88 @@ class UnweightedUniqueElementsGraphInitTests: XCTestCase {
         XCTAssertTrue(g6Cycle.edgeExists(from: "Boston", to: "Eugene"), "g6Cycle: Expected an edge from Boston to Eugene")
         XCTAssertTrue(g6Cycle.edgeExists(from: "Eugene", to: "Atlanta"), "g6Cycle: Expected an edge from Eugene to Atlanta")
     }
+
+    func testRecursionInitializerWithDictionary() {
+        let structure = [
+            0: [1, 2, 3],
+            1: [2, 3],
+            2: [0, 1]
+        ]
+
+        func next(_ i: Int) -> [Int] {
+            return structure[i] ?? []
+        }
+
+        let g = UniqueElementsGraph.fromRecursion(next, startingWith: 0)
+        XCTAssertTrue(g.edgeExists(from: 0, to: 1))
+        XCTAssertTrue(g.edgeExists(from: 0, to: 2))
+        XCTAssertTrue(g.edgeExists(from: 0, to: 3))
+
+        XCTAssertTrue(g.edgeExists(from: 1, to: 2))
+        XCTAssertTrue(g.edgeExists(from: 1, to: 3))
+
+        XCTAssertTrue(g.edgeExists(from: 2, to: 0))
+        XCTAssertTrue(g.edgeExists(from: 2, to: 1))
+
+        XCTAssertEqual(g.edgeCount, 7)
+        XCTAssertEqual(g.vertexCount, 4)
+    }
+
+    func testRecursionInitializerWithRecursiveEnum() {
+        indirect enum Tree {
+            case node(Int, Tree, Tree)
+            case leaf(Int)
+        }
+
+        func next(_ tree: Tree) -> [Tree] {
+            switch tree {
+            case .node(_, let lhs, let rhs):
+                return [lhs, rhs]
+            case .leaf:
+                return []
+            }
+        }
+
+        func select(_ tree: Tree) -> Int {
+            switch tree {
+            case .node(let i, _, _),
+                 .leaf(let i):
+                return i
+            }
+        }
+
+        let tree = Tree.node(
+            0,
+            .node(
+                1,
+                .leaf(2),
+                .node(3, .leaf(4), .leaf(5))
+            ),
+            .node(
+                6,
+                .node(7, .leaf(8), .leaf(9)),
+                .leaf(10)
+            )
+        )
+
+        let g = UniqueElementsGraph.fromRecursion(next, selectingVertex: select, startingWith: tree)
+        XCTAssertTrue(g.edgeExists(from: 0, to: 1))
+        XCTAssertTrue(g.edgeExists(from: 0, to: 6))
+
+        XCTAssertTrue(g.edgeExists(from: 1, to: 2))
+        XCTAssertTrue(g.edgeExists(from: 1, to: 3))
+
+        XCTAssertTrue(g.edgeExists(from: 3, to: 4))
+        XCTAssertTrue(g.edgeExists(from: 3, to: 5))
+
+        XCTAssertTrue(g.edgeExists(from: 6, to: 7))
+        XCTAssertTrue(g.edgeExists(from: 6, to: 10))
+
+        XCTAssertTrue(g.edgeExists(from: 7, to: 8))
+        XCTAssertTrue(g.edgeExists(from: 7, to: 9))
+
+        XCTAssertEqual(g.edgeCount, 10)
+        XCTAssertEqual(g.vertexCount, 11)
+    }
 }
 
