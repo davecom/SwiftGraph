@@ -42,7 +42,7 @@ extension Graph {
 
     /// Returns a list of all the edges, undirected edges are only appended once.
     public func edgeList() -> [E] {
-        var edges = self.edges
+        let edges = self.edges
         var edgeList = [E]()
         for i in edges.indices {
             let edgesForVertex = edges[i]
