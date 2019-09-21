@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1100"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -40,9 +40,18 @@
       buildConfiguration = "Performance Tests"
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      shouldUseLaunchSchemeArgsEnv = "YES"
       disableMainThreadChecker = "YES"
-      systemAttachmentLifetime = "keepNever"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      systemAttachmentLifetime = "keepNever">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7985B8FA1E5A4FB800C100E7"
+            BuildableName = "SwiftGraph.framework"
+            BlueprintName = "SwiftGraph"
+            ReferencedContainer = "container:SwiftGraph.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -55,17 +64,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7985B8FA1E5A4FB800C100E7"
-            BuildableName = "SwiftGraph.framework"
-            BlueprintName = "SwiftGraph"
-            ReferencedContainer = "container:SwiftGraph.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Performance Tests"
@@ -89,8 +87,6 @@
             ReferencedContainer = "container:SwiftGraph.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
