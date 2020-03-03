@@ -19,12 +19,12 @@
 public typealias UnweightedUniqueElementsGraph<V: Equatable & Codable> = UniqueElementsGraph<V, UnweightedEdge>
 public typealias WeightedUniqueElementsGraph<V: Equatable & Codable, W: Equatable & Codable> = UniqueElementsGraph<V, WeightedEdge<W>>
 
-/// An implementation Graph that ensures there are no pairs of equal vertices and no repeated edges.
+/// An implementation of Graph that ensures there are no pairs of equal vertices and no repeated edges.
 open class UniqueElementsGraph<V: Equatable & Codable, E: Edge & Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[E]] = [[E]]() //adjacency lists
 
-    public init() {
+    required public init() {
     }
 
     /// Init the Graph with vertices, but removes duplicates. O(n^2)
@@ -63,6 +63,13 @@ open class UniqueElementsGraph<V: Equatable & Codable, E: Edge & Equatable>: Gra
                 edges[e.v].append(reversedEdge)
             }
         }
+    }
+
+    public func copy() -> Self {
+        let newGraph = Self()
+        newGraph.vertices = vertices
+        newGraph.edges = edges
+        return newGraph
     }
 }
 
