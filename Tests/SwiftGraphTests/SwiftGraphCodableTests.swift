@@ -137,7 +137,7 @@ extension SwiftGraphCodableTests {
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
         
         //create map of distances to city names
-        var nameDistance: [SwiftGraphCodableTests_Vertex: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
+        let nameDistance: [SwiftGraphCodableTests_Vertex: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
         if let temp = nameDistance[vertexWithName("San Francisco")] {
             XCTAssertEqual(temp!, 3057, "San Francisco should be 3057 miles away.")
         } else {

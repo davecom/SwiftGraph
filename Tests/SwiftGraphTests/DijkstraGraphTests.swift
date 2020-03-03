@@ -95,7 +95,7 @@ class DijkstraGraphTests: XCTestCase {
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
 
         //create map of distances to city names
-        var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
+        let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
         if let temp = nameDistance["San Francisco"] {
             XCTAssertEqual(temp!, 3057, "San Francisco should be 3057 miles away.")
         } else {
@@ -168,7 +168,7 @@ class DijkstraGraphTests: XCTestCase {
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
         
         //create map of distances to city names
-        var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
+        let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph)
         if let temp = nameDistance["Seattle"] {
             XCTAssertEqual(temp!, 3455, "Seattle should be 3455 miles away.")
         } else {
@@ -207,7 +207,7 @@ class DijkstraGraphTests: XCTestCase {
         XCTAssertFalse(distances.isEmpty, "Dijkstra result set is empty.")
         
         //create map of distances to city names
-        var nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph2)
+        let nameDistance: [String: Int?] = distanceArrayToVertexDict(distances: distances, graph: cityGraph2)
         if let temp = nameDistance["Seattle"] {
             XCTAssertEqual(temp!, 2929, "Seattle should be 2929 miles away.")
         } else {
