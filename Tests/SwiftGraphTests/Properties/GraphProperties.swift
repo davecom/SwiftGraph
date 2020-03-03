@@ -26,7 +26,7 @@ extension Collection where Element: Hashable {
     }
 }
 
-func graphIsValid<G: Graph>(_ g: G) -> Bool {
+public func graphIsValid<G: Graph>(_ g: G) -> Bool {
     func eachVertexHasAnEdgesArray() -> Bool {
         g.edges.count == g.vertexCount
     }
@@ -52,7 +52,7 @@ func graphIsValid<G: Graph>(_ g: G) -> Bool {
         }
 }
 
-func uniqueElementsGraphIsValid<V, E>(_ g: UniqueElementsGraph<V, E>) -> Bool
+public func uniqueElementsGraphIsValid<V, E>(_ g: UniqueElementsGraph<V, E>) -> Bool
     where V: Hashable & Codable, E: Edge & Hashable {
 
         graphIsValid(g)
@@ -60,7 +60,7 @@ func uniqueElementsGraphIsValid<V, E>(_ g: UniqueElementsGraph<V, E>) -> Bool
             && g.edges.joined().allDistinct()
 }
 
-func pseudoForestIsValid<V, E>(_ g: DirectedPseudoForest<V, E>) -> Bool
+public func pseudoForestIsValid<V, E>(_ g: DirectedPseudoForest<V, E>) -> Bool
     where V: Hashable & Codable, E: Edge & Hashable {
 
         uniqueElementsGraphIsValid(g)
