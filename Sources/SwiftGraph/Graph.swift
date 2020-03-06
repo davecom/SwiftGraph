@@ -279,3 +279,30 @@ extension Graph {
     }
 }
 
+/// Checks that the adjacency lists that store the edges are valid and consistent.
+/// If this method returns false, the graph is ill-formed and its methods might crash.
+public func graphIsValid<G: Graph>(_ g: G) -> Bool {
+    func eachVertexHasAnEdgesArray() -> Bool {
+        g.edges.count == g.vertexCount
+    }
+
+    func edgeHasValidSourceAndTarget(_ e: G.E, sourceIndex i: Int) -> Bool {
+        e.u == i && e.v < g.vertexCount
+    }
+
+    func undirectedEdgeHasReversedEdgeInGraph(_ e: G.E) -> Bool {
+        if e.directed {
+            return g.edges[e.v].contains(e.reversed())
+        }
+        return true
+    }
+
+    return eachVertexHasAnEdgesArray()
+        && g.edges.enumerated().allSatisfy { arg in
+            let (i, edges) = arg
+            return edges.allSatisfy { e in
+                edgeHasValidSourceAndTarget(e, sourceIndex: i)
+                    && undirectedEdgeHasReversedEdgeInGraph(e)
+            }
+        }
+}

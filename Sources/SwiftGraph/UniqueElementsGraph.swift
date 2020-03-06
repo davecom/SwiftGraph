@@ -19,7 +19,12 @@
 public typealias UnweightedUniqueElementsGraph<V: Equatable & Codable> = UniqueElementsGraph<V, UnweightedEdge>
 public typealias WeightedUniqueElementsGraph<V: Equatable & Codable, W: Equatable & Codable> = UniqueElementsGraph<V, WeightedEdge<W>>
 
-/// An implementation of Graph that ensures there are no pairs of equal vertices and no repeated edges.
+/// An graph with no pairs of equal vertices and no repeated edges.
+///
+/// The methods of the class don't break the invariant. However, if you manually modify
+/// the `vertices` and `edges` property, or you build an instance through `Codable`'s init,
+/// the graph might not be valid, and its methods can crash. You can check the validity of
+/// the graph with the `isValid` method.
 open class UniqueElementsGraph<V: Equatable & Codable, E: Edge & Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[E]] = [[E]]() //adjacency lists
@@ -71,6 +76,18 @@ open class UniqueElementsGraph<V: Equatable & Codable, E: Edge & Equatable>: Gra
         newGraph.edges = edges
         return newGraph
     }
+}
+
+public func uniqueElementsGraphIsValid<V, E>(_ g: UniqueElementsGraph<V, E>) -> Bool where V: Equatable & Codable, E: Edge & Equatable {
+    graphIsValid(g)
+        && g.vertices.allDistinct()
+        && g.edges.joined().allDistinct()
+}
+
+public func uniqueElementsGraphIsValid<V, E>(_ g: UniqueElementsGraph<V, E>) -> Bool where V: Hashable & Codable, E: Edge & Equatable {
+    graphIsValid(g)
+        && g.vertices.allDistinct()
+        && g.edges.joined().allDistinct()
 }
 
 extension UniqueElementsGraph where E == UnweightedEdge {

@@ -1,5 +1,5 @@
 //
-//  DirectedPseudoForest.swift
+//  Utils.swift
 //  SwiftGraph
 //
 //  Copyright (c) 2020 Ferran Pujol Camins
@@ -18,11 +18,20 @@
 
 import Foundation
 
-// A subclass of `UniqueElementsGraph` where every vertex has at most one outgoing edge.
-open class DirectedPseudoForest<V: Equatable & Codable, E: Edge & Equatable>: UniqueElementsGraph<V, E> {
+extension Collection where Element: Equatable {
+    func allDistinct() -> Bool {
+        for i in indices {
+            let n = index(after: i)
+            for e in self[n...] {
+                if self[i] == e { return false }
+            }
+        }
+        return true
+    }
+}
 
-    public override func addEdge(_ e: E, directed: Bool = false) {
-        guard self.edgesForIndex(e.u).count == 0 else { return }
-        super.addEdge(e)
+extension Collection where Element: Hashable {
+    func allDistinct() -> Bool {
+        Set(self).count == count
     }
 }

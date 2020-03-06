@@ -29,7 +29,7 @@ extension UnweightedEdge: Arbitrary {
 }
 
 final class ArbitraryDirectedPseudoForest<V, E>: DirectedPseudoForest<V, E>, Arbitrary
-where V: Hashable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
+where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
 
     static var arbitrary: Gen<ArbitraryDirectedPseudoForest> {
 
@@ -39,15 +39,16 @@ where V: Hashable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
             forest.edges = forest.vertices.map { _ in c.generate() }
             return forest
         }
-        .suchThat { pseudoForestIsValid($0) }
+        .suchThat { directedPseudoForestIsValid($0) }
     }
 
     static func shrink(_ forest: ArbitraryDirectedPseudoForest) -> [ArbitraryDirectedPseudoForest] {
-        [V].shrink(forest.vertices).reversed().map { verticesToRemove -> ArbitraryDirectedPseudoForest<V, E> in
-            var newForest = forest.copy()
-            verticesToRemove.forEach { newForest.removeVertex($0) }
-            assert(graphIsValid(newForest))
-            return newForest
+        [V].shrink(forest.vertices).reversed().filter { $0.count > 0}
+            .map { verticesToRemove -> ArbitraryDirectedPseudoForest<V, E> in
+                var newForest = forest.copy()
+                verticesToRemove.forEach { newForest.removeVertex($0) }
+                assert(graphIsValid(newForest))
+                return newForest
         }
     }
 }

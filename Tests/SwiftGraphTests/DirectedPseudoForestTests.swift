@@ -21,16 +21,25 @@ import SwiftCheck
 import SwiftGraph
 
 class DirectedPseudoForestTests: XCTestCase {
-    func testAll() {
-        property("Adding a vertex does not invalidate the pseudoforest") <- forAll { (forest: ArbitraryDirectedPseudoForest<Int, UnweightedEdge>, v: Int) in
+
+    func testNonHashablePseudoForest() {
+        pseudoForestTest(NonHashableInt.self)
+    }
+
+    func testHashablePseudoForest() {
+        pseudoForestTest(Int.self)
+    }
+
+    func pseudoForestTest<V>(_: V.Type) where V: Equatable & Codable & Arbitrary {
+        property("Adding a vertex does not invalidate the pseudoforest") <- forAll { (forest: ArbitraryDirectedPseudoForest<V, UnweightedEdge>, v: V) in
             _ = forest.addVertex(v)
-            return pseudoForestIsValid(forest)
+            return directedPseudoForestIsValid(forest)
         }
 
-        property("Adding an edge does not invalidate the pseudoforest") <- forAll { (forest: ArbitraryDirectedPseudoForest<Int, UnweightedEdge>, newEdge: UnweightedEdge) in
+        property("Adding an edge does not invalidate the pseudoforest") <- forAll { (forest: ArbitraryDirectedPseudoForest<V, UnweightedEdge>, newEdge: UnweightedEdge) in
             return (forest.vertexCount > 0 && newEdge.u < forest.vertexCount && newEdge.v < forest.vertexCount) ==> {
                 forest.addEdge(newEdge)
-                return pseudoForestIsValid(forest)
+                return directedPseudoForestIsValid(forest)
             }
         }
     }

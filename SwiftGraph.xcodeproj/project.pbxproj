@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,13 @@
 		B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ABD37208955B500FBF10C /* UnionTests.swift */; };
 		B54FDA6E21729EFF00057C51 /* Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA6D21729EFF00057C51 /* Constructors.swift */; };
 		B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA702172A34D00057C51 /* ConstructorsTests.swift */; };
+		B57CA2572412616200CA8712 /* DirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */; };
+		B57CA2582412616200CA8712 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CA2562412616200CA8712 /* Utils.swift */; };
+		B5AAB26324116AB400C76248 /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = B5AAB26224116AB400C76248 /* SwiftCheck */; };
+		B5AAB26424116AFA00C76248 /* DirectedPseudoForestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD97A6240FFE53001B9C31 /* DirectedPseudoForestTests.swift */; };
+		B5AAB26524116AFD00C76248 /* ArbitraryDirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */; };
+		B5AD979E240FFE00001B9C31 /* DirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD979D240FFE00001B9C31 /* DirectedPseudoForest.swift */; };
+		B5CDBBCB24124E7E00B15165 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CDBBCA24124E7E00B15165 /* UtilsTests.swift */; };
 		B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
 		B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */; };
@@ -128,8 +135,14 @@
 		B51B460A2083E14200CD0463 /* Union.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Union.swift; path = ../Sources/SwiftGraph/Union.swift; sourceTree = "<group>"; };
 		B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableInitTests.swift; sourceTree = "<group>"; };
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
-		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constructors.swift; path = ../Sources/SwiftGraph/Constructors.swift; sourceTree = "<group>"; };
+		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructors.swift; sourceTree = "<group>"; };
 		B54FDA702172A34D00057C51 /* ConstructorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsTests.swift; sourceTree = "<group>"; };
+		B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectedPseudoForest.swift; path = SwiftGraph/DirectedPseudoForest.swift; sourceTree = SOURCE_ROOT; };
+		B57CA2562412616200CA8712 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Sources/SwiftGraph/Utils.swift; sourceTree = SOURCE_ROOT; };
+		B5AD979D240FFE00001B9C31 /* DirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectedPseudoForest.swift; path = SwiftGraph/DirectedPseudoForest.swift; sourceTree = SOURCE_ROOT; };
+		B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArbitraryDirectedPseudoForest.swift; sourceTree = "<group>"; };
+		B5AD97A6240FFE53001B9C31 /* DirectedPseudoForestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectedPseudoForestTests.swift; sourceTree = "<group>"; };
+		B5CDBBCA24124E7E00B15165 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsPerformanceTests.swift; sourceTree = "<group>"; };
 		B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniqueElementsGraph.swift; path = Sources/SwiftGraph/UniqueElementsGraph.swift; sourceTree = SOURCE_ROOT; };
 		B5D229BD207BF36900151820 /* UniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphTests.swift; sourceTree = "<group>"; };
@@ -156,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5AAB26324116AB400C76248 /* SwiftCheck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +206,9 @@
 		5589B4821C0E774F00D6664E /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
+				B54FDA6D21729EFF00057C51 /* Constructors.swift */,
+				B5AD979D240FFE00001B9C31 /* DirectedPseudoForest.swift */,
+				B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */,
 				5589B46B1C0E753E00D6664E /* Graph.swift */,
 				5589B46E1C0E756200D6664E /* UnweightedGraph.swift */,
 				5589B4711C0E757100D6664E /* WeightedGraph.swift */,
@@ -264,7 +281,7 @@
 				5589B4821C0E774F00D6664E /* Graphs */,
 				B58B0D732083DEC400A0E1AB /* Operations */,
 				5589B4831C0E775800D6664E /* Search */,
-				B54FDA6D21729EFF00057C51 /* Constructors.swift */,
+				B57CA2562412616200CA8712 /* Utils.swift */,
 				7985B8FD1E5A4FB800C100E7 /* SwiftGraphFramework.h */,
 				7985B8FE1E5A4FB800C100E7 /* Info.plist */,
 			);
@@ -274,7 +291,8 @@
 		7985B9091E5A4FB900C100E7 /* SwiftGraphTests */ = {
 			isa = PBXGroup;
 			children = (
-				B5EF1435217913E0008FCC5C /* Utils */,
+				B5AD97A1240FFE2D001B9C31 /* Arbitrary */,
+				B5EF1435217913E0008FCC5C /* TestUtils */,
 				B54FDA6F2172A30600057C51 /* Constructors */,
 				B523F2E82094F0A1006587ED /* UniqueElementsGraph */,
 				557F55E91F8AB247002AF0BF /* Info.plist */,
@@ -289,6 +307,8 @@
 				55F5EA5A2151E33100DFC301 /* SwiftGraphCodableTests.swift */,
 				B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */,
 				B5DEA65A223C4BC90005392F /* EdgeListTests.swift */,
+				B5AD97A6240FFE53001B9C31 /* DirectedPseudoForestTests.swift */,
+				B5CDBBCA24124E7E00B15165 /* UtilsTests.swift */,
 			);
 			name = SwiftGraphTests;
 			path = Tests/SwiftGraphTests;
@@ -322,6 +342,14 @@
 			name = Operations;
 			sourceTree = "<group>";
 		};
+		B5AD97A1240FFE2D001B9C31 /* Arbitrary */ = {
+			isa = PBXGroup;
+			children = (
+				B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */,
+			);
+			path = Arbitrary;
+			sourceTree = "<group>";
+		};
 		B5EACB09217230ED00E527BD /* SwiftGraphPerformanceTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,12 +361,12 @@
 			path = Tests/SwiftGraphPerformanceTests;
 			sourceTree = "<group>";
 		};
-		B5EF1435217913E0008FCC5C /* Utils */ = {
+		B5EF1435217913E0008FCC5C /* TestUtils */ = {
 			isa = PBXGroup;
 			children = (
 				B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */,
 			);
-			path = Utils;
+			path = TestUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +416,9 @@
 			dependencies = (
 			);
 			name = SwiftGraph;
+			packageProductDependencies = (
+				B5AAB26224116AB400C76248 /* SwiftCheck */,
+			);
 			productName = SwiftGraphFramework;
 			productReference = 7985B8FB1E5A4FB800C100E7 /* SwiftGraph.framework */;
 			productType = "com.apple.product-type.framework";
@@ -465,6 +496,9 @@
 				Base,
 			);
 			mainGroup = 55E61FF91A194C7F000A5F7B;
+			packageReferences = (
+				B5AAB26124116AB400C76248 /* XCRemoteSwiftPackageReference "SwiftCheck" */,
+			);
 			productRefGroup = 55E620031A194C80000A5F7B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -523,9 +557,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5AD979E240FFE00001B9C31 /* DirectedPseudoForest.swift in Sources */,
 				B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */,
 				7985B9241E5A503200C100E7 /* Graph.swift in Sources */,
 				7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */,
+				B57CA2572412616200CA8712 /* DirectedPseudoForest.swift in Sources */,
 				7985B9291E5A503200C100E7 /* Sort.swift in Sources */,
 				B51B460B2083E14200CD0463 /* Union.swift in Sources */,
 				7985B92B1E5A503200C100E7 /* Queue.swift in Sources */,
@@ -535,6 +571,7 @@
 				7985B9261E5A503200C100E7 /* WeightedGraph.swift in Sources */,
 				7985B9221E5A503200C100E7 /* UnweightedEdge.swift in Sources */,
 				7985B92A1E5A503200C100E7 /* Stack.swift in Sources */,
+				B57CA2582412616200CA8712 /* Utils.swift in Sources */,
 				7985B9281E5A503200C100E7 /* Search.swift in Sources */,
 				7985B9211E5A503200C100E7 /* Edge.swift in Sources */,
 				7985B9271E5A503200C100E7 /* SwiftPriorityQueue.swift in Sources */,
@@ -552,12 +589,15 @@
 				7985B91E1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift in Sources */,
 				55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */,
 				B52ABD39208955BD00FBF10C /* UnionTests.swift in Sources */,
+				B5AAB26424116AFA00C76248 /* DirectedPseudoForestTests.swift in Sources */,
 				B518BAB72232E8A40059DCB8 /* WeightedUniqueElementsGraphTests.swift in Sources */,
 				55E784281ED2971E003899D0 /* MSTTests.swift in Sources */,
 				B5100A4D208B97AA00C7A73A /* UnweightedGraphTests.swift in Sources */,
 				B5F07B6D222EB4BD00824F08 /* WeightedGraphTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
+				B5AAB26524116AFD00C76248 /* ArbitraryDirectedPseudoForest.swift in Sources */,
+				B5CDBBCB24124E7E00B15165 /* UtilsTests.swift in Sources */,
 				B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */,
 				55F5EA5B2151E33100DFC301 /* SwiftGraphCodableTests.swift in Sources */,
 				B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */,
@@ -724,7 +764,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftGraphSampleApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -740,12 +783,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftGraphSampleApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -766,7 +813,13 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SwiftGraph/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -794,12 +847,19 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SwiftGraph/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -815,7 +875,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
@@ -833,11 +899,18 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -851,7 +924,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
@@ -869,11 +948,18 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -950,7 +1036,13 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SwiftGraph/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -972,7 +1064,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
@@ -988,7 +1086,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftGraphSampleApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oaksnow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1006,7 +1107,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx watchsimulator watchos appletvsimulator appletvos iphonesimulator iphoneos";
@@ -1069,6 +1176,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5AAB26124116AB400C76248 /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B5AAB26224116AB400C76248 /* SwiftCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5AAB26124116AB400C76248 /* XCRemoteSwiftPackageReference "SwiftCheck" */;
+			productName = SwiftCheck;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 55E61FFA1A194C7F000A5F7B /* Project object */;
 }
