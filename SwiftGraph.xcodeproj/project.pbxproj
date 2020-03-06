@@ -57,6 +57,8 @@
 		B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */; };
 		B5F07B6B222EB43000824F08 /* ArraysHaveSameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */; };
 		B5F07B6D222EB4BD00824F08 /* WeightedGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */; };
+		B5F9EEAB2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */; };
+		B5F9EEAD2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */; };
 		B5FE1C212231DA0C008BACAA /* UnionPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +153,8 @@
 		B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableTests.swift; sourceTree = "<group>"; };
 		B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysHaveSameElements.swift; sourceTree = "<group>"; };
 		B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightedGraphTests.swift; sourceTree = "<group>"; };
+		B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArbitraryUniqueElementsGraph.swift; sourceTree = "<group>"; };
+		B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArbitraryUnweightedEdge.swift; sourceTree = "<group>"; };
 		B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionPerformanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -343,6 +347,8 @@
 			isa = PBXGroup;
 			children = (
 				B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */,
+				B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */,
+				B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */,
 			);
 			path = Arbitrary;
 			sourceTree = "<group>";
@@ -597,7 +603,9 @@
 				B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */,
 				55F5EA5B2151E33100DFC301 /* SwiftGraphCodableTests.swift in Sources */,
 				B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */,
+				B5F9EEAD2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift in Sources */,
 				B5EF143121791009008FCC5C /* UniqueElementsGraphInitTests.swift in Sources */,
+				B5F9EEAB2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift in Sources */,
 				B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */,
 				B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  ArbitraryDirectedPseudoForest.swift
+//  ArbitraryUniqueElementsGraph.swift
 //  SwiftGraph
 //
 //  Copyright (c) 2020 Ferran Pujol Camins
@@ -16,27 +16,24 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import Foundation
 import SwiftGraph
 import SwiftCheck
 
-final class ArbitraryDirectedPseudoForest<V, E>: DirectedPseudoForest<V, E>, Arbitrary
-where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
+final class ArbitraryUniqueElementsGraph<V, E>: UniqueElementsGraph<V, E>, Arbitrary where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
 
-    static var arbitrary: Gen<ArbitraryDirectedPseudoForest> {
-
-        Gen<ArbitraryDirectedPseudoForest>.compose { c in
-            let forest = ArbitraryDirectedPseudoForest<V, E>()
+    static var arbitrary: Gen<ArbitraryUniqueElementsGraph<V, E>> {
+        Gen<ArbitraryUniqueElementsGraph>.compose { c in
+            let forest = ArbitraryUniqueElementsGraph<V, E>()
             forest.vertices = c.generate()
             forest.edges = forest.vertices.map { _ in c.generate() }
             return forest
         }
-        .suchThat { directedPseudoForestIsValid($0) }
+        .suchThat { uniqueElementsGraphIsValid($0) }
     }
 
-    static func shrink(_ forest: ArbitraryDirectedPseudoForest) -> [ArbitraryDirectedPseudoForest] {
+    static func shrink(_ forest: ArbitraryUniqueElementsGraph) -> [ArbitraryUniqueElementsGraph] {
         [V].shrink(forest.vertices).reversed().filter { $0.count > 0}
-            .map { verticesToRemove -> ArbitraryDirectedPseudoForest<V, E> in
+            .map { verticesToRemove -> ArbitraryUniqueElementsGraph<V, E> in
                 var newForest = forest.copy()
                 verticesToRemove.forEach { newForest.removeVertex($0) }
                 assert(graphIsValid(newForest))
