@@ -19,6 +19,7 @@
 import XCTest
 import SwiftCheck
 import SwiftGraph
+import SwiftGraphGenerators
 
 class DirectedPseudoForestTests: XCTestCase {
 

@@ -19,9 +19,10 @@
 import SwiftGraph
 import SwiftCheck
 
-final class ArbitraryUniqueElementsGraph<V, E>: UniqueElementsGraph<V, E>, Arbitrary where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
+public final class ArbitraryUniqueElementsGraph<V, E>: UniqueElementsGraph<V, E>, Arbitrary
+    where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
 
-    static var arbitrary: Gen<ArbitraryUniqueElementsGraph<V, E>> {
+    public static var arbitrary: Gen<ArbitraryUniqueElementsGraph<V, E>> {
         Gen<ArbitraryUniqueElementsGraph>.compose { c in
             let forest = ArbitraryUniqueElementsGraph<V, E>()
             forest.vertices = c.generate()
@@ -31,7 +32,7 @@ final class ArbitraryUniqueElementsGraph<V, E>: UniqueElementsGraph<V, E>, Arbit
         .suchThat { uniqueElementsGraphIsValid($0) }
     }
 
-    static func shrink(_ forest: ArbitraryUniqueElementsGraph) -> [ArbitraryUniqueElementsGraph] {
+    public static func shrink(_ forest: ArbitraryUniqueElementsGraph) -> [ArbitraryUniqueElementsGraph] {
         [V].shrink(forest.vertices).reversed().filter { $0.count > 0}
             .map { verticesToRemove -> ArbitraryUniqueElementsGraph<V, E> in
                 var newForest = forest.copy()

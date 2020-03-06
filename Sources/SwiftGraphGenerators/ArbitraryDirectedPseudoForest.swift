@@ -20,10 +20,10 @@ import Foundation
 import SwiftGraph
 import SwiftCheck
 
-final class ArbitraryDirectedPseudoForest<V, E>: DirectedPseudoForest<V, E>, Arbitrary
-where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
+public final class ArbitraryDirectedPseudoForest<V, E>: DirectedPseudoForest<V, E>, Arbitrary
+    where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
 
-    static var arbitrary: Gen<ArbitraryDirectedPseudoForest> {
+    public static var arbitrary: Gen<ArbitraryDirectedPseudoForest> {
 
         Gen<ArbitraryDirectedPseudoForest>.compose { c in
             let forest = ArbitraryDirectedPseudoForest<V, E>()
@@ -34,7 +34,7 @@ where V: Equatable & Codable & Arbitrary, E: Edge & Hashable & Arbitrary {
         .suchThat { directedPseudoForestIsValid($0) }
     }
 
-    static func shrink(_ forest: ArbitraryDirectedPseudoForest) -> [ArbitraryDirectedPseudoForest] {
+    public static func shrink(_ forest: ArbitraryDirectedPseudoForest) -> [ArbitraryDirectedPseudoForest] {
         [V].shrink(forest.vertices).reversed().filter { $0.count > 0}
             .map { verticesToRemove -> ArbitraryDirectedPseudoForest<V, E> in
                 var newForest = forest.copy()

@@ -43,9 +43,7 @@
 		B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FDA702172A34D00057C51 /* ConstructorsTests.swift */; };
 		B57CA2572412616200CA8712 /* DirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */; };
 		B57CA2582412616200CA8712 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CA2562412616200CA8712 /* Utils.swift */; };
-		B5AAB26324116AB400C76248 /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = B5AAB26224116AB400C76248 /* SwiftCheck */; };
 		B5AAB26424116AFA00C76248 /* DirectedPseudoForestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD97A6240FFE53001B9C31 /* DirectedPseudoForestTests.swift */; };
-		B5AAB26524116AFD00C76248 /* ArbitraryDirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */; };
 		B5CDBBCB24124E7E00B15165 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CDBBCA24124E7E00B15165 /* UtilsTests.swift */; };
 		B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
@@ -57,8 +55,12 @@
 		B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */; };
 		B5F07B6B222EB43000824F08 /* ArraysHaveSameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */; };
 		B5F07B6D222EB4BD00824F08 /* WeightedGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */; };
-		B5F9EEAB2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */; };
-		B5F9EEAD2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */; };
+		B5F9EEE62412BEBA00AA7AE6 /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = B5F9EED02412BEBA00AA7AE6 /* SwiftCheck */; };
+		B5F9EEF12412BFD500AA7AE6 /* ArbitraryUniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */; };
+		B5F9EEF22412BFD800AA7AE6 /* ArbitraryUnweightedEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */; };
+		B5F9EEF32412BFDB00AA7AE6 /* ArbitraryDirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */; };
+		B5F9EEF52412C00000AA7AE6 /* SwiftGraphGenerators.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F9EEEE2412BEBA00AA7AE6 /* SwiftGraphGenerators.framework */; };
+		B5F9EEFA2412C05E00AA7AE6 /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = B5F9EEF92412C05E00AA7AE6 /* SwiftCheck */; };
 		B5FE1C212231DA0C008BACAA /* UnionPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7985B8FA1E5A4FB800C100E7;
 			remoteInfo = SwiftGraphFramework;
+		};
+		B5F9EEF62412C00200AA7AE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E61FFA1A194C7F000A5F7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5F9EECF2412BEBA00AA7AE6;
+			remoteInfo = SwiftGraphGenerators;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -140,7 +149,7 @@
 		B54FDA702172A34D00057C51 /* ConstructorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsTests.swift; sourceTree = "<group>"; };
 		B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectedPseudoForest.swift; path = Sources/SwiftGraph/DirectedPseudoForest.swift; sourceTree = SOURCE_ROOT; };
 		B57CA2562412616200CA8712 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Sources/SwiftGraph/Utils.swift; sourceTree = SOURCE_ROOT; };
-		B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArbitraryDirectedPseudoForest.swift; sourceTree = "<group>"; };
+		B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArbitraryDirectedPseudoForest.swift; path = ../Sources/SwiftGraphGenerators/ArbitraryDirectedPseudoForest.swift; sourceTree = "<group>"; };
 		B5AD97A6240FFE53001B9C31 /* DirectedPseudoForestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectedPseudoForestTests.swift; sourceTree = "<group>"; };
 		B5CDBBCA24124E7E00B15165 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsPerformanceTests.swift; sourceTree = "<group>"; };
@@ -153,8 +162,10 @@
 		B5EF143221791348008FCC5C /* UniqueElementsGraphHashableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableTests.swift; sourceTree = "<group>"; };
 		B5F07B6A222EB43000824F08 /* ArraysHaveSameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysHaveSameElements.swift; sourceTree = "<group>"; };
 		B5F07B6C222EB4BD00824F08 /* WeightedGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightedGraphTests.swift; sourceTree = "<group>"; };
-		B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArbitraryUniqueElementsGraph.swift; sourceTree = "<group>"; };
-		B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArbitraryUnweightedEdge.swift; sourceTree = "<group>"; };
+		B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArbitraryUniqueElementsGraph.swift; path = ../Sources/SwiftGraphGenerators/ArbitraryUniqueElementsGraph.swift; sourceTree = "<group>"; };
+		B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArbitraryUnweightedEdge.swift; path = ../Sources/SwiftGraphGenerators/ArbitraryUnweightedEdge.swift; sourceTree = "<group>"; };
+		B5F9EEEE2412BEBA00AA7AE6 /* SwiftGraphGenerators.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGraphGenerators.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5F9EEEF2412BEBA00AA7AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/ferranpujolcamins/development/SwiftGraph/SwiftGraphGenerators/Info.plist; sourceTree = "<absolute>"; };
 		B5FE1C202231DA0C008BACAA /* UnionPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionPerformanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,7 +182,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5AAB26324116AB400C76248 /* SwiftCheck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +189,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F9EEFA2412C05E00AA7AE6 /* SwiftCheck in Frameworks */,
+				B5F9EEF52412C00000AA7AE6 /* SwiftGraphGenerators.framework in Frameworks */,
 				7985B9041E5A4FB900C100E7 /* SwiftGraph.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +200,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EACB1D2172315E00E527BD /* SwiftGraph.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F9EEE52412BEBA00AA7AE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5F9EEE62412BEBA00AA7AE6 /* SwiftCheck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,10 +258,12 @@
 			isa = PBXGroup;
 			children = (
 				7985B8FC1E5A4FB800C100E7 /* SwiftGraph */,
+				B5F9EEF02412BEFE00AA7AE6 /* SwiftGraphGenerators */,
 				7985B9091E5A4FB900C100E7 /* SwiftGraphTests */,
 				B5EACB09217230ED00E527BD /* SwiftGraphPerformanceTests */,
 				55E620041A194C80000A5F7B /* SwiftGraphSampleApp */,
 				55E620031A194C80000A5F7B /* Products */,
+				B5F9EEF42412C00000AA7AE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,6 +274,7 @@
 				7985B8FB1E5A4FB800C100E7 /* SwiftGraph.framework */,
 				7985B9031E5A4FB900C100E7 /* SwiftGraphTests.xctest */,
 				B5EACB222172315E00E527BD /* SwiftGraphPerformanceTests.xctest */,
+				B5F9EEEE2412BEBA00AA7AE6 /* SwiftGraphGenerators.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,7 +315,6 @@
 		7985B9091E5A4FB900C100E7 /* SwiftGraphTests */ = {
 			isa = PBXGroup;
 			children = (
-				B5AD97A1240FFE2D001B9C31 /* Arbitrary */,
 				B5EF1435217913E0008FCC5C /* TestUtils */,
 				B54FDA6F2172A30600057C51 /* Constructors */,
 				B523F2E82094F0A1006587ED /* UniqueElementsGraph */,
@@ -343,16 +365,6 @@
 			name = Operations;
 			sourceTree = "<group>";
 		};
-		B5AD97A1240FFE2D001B9C31 /* Arbitrary */ = {
-			isa = PBXGroup;
-			children = (
-				B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */,
-				B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */,
-				B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */,
-			);
-			path = Arbitrary;
-			sourceTree = "<group>";
-		};
 		B5EACB09217230ED00E527BD /* SwiftGraphPerformanceTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +384,24 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
+		B5F9EEF02412BEFE00AA7AE6 /* SwiftGraphGenerators */ = {
+			isa = PBXGroup;
+			children = (
+				B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */,
+				B5F9EEAA2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift */,
+				B5F9EEAC2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift */,
+				B5F9EEEF2412BEBA00AA7AE6 /* Info.plist */,
+			);
+			path = SwiftGraphGenerators;
+			sourceTree = "<group>";
+		};
+		B5F9EEF42412C00000AA7AE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -380,6 +410,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7985B90D1E5A4FB900C100E7 /* SwiftGraphFramework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F9EEE72412BEBA00AA7AE6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +457,6 @@
 			);
 			name = SwiftGraph;
 			packageProductDependencies = (
-				B5AAB26224116AB400C76248 /* SwiftCheck */,
 			);
 			productName = SwiftGraphFramework;
 			productReference = 7985B8FB1E5A4FB800C100E7 /* SwiftGraph.framework */;
@@ -437,9 +473,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				B5F9EEF72412C00200AA7AE6 /* PBXTargetDependency */,
 				7985B9061E5A4FB900C100E7 /* PBXTargetDependency */,
 			);
 			name = SwiftGraphTests;
+			packageProductDependencies = (
+				B5F9EEF92412C05E00AA7AE6 /* SwiftCheck */,
+			);
 			productName = SwiftGraphFrameworkTests;
 			productReference = 7985B9031E5A4FB900C100E7 /* SwiftGraphTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -461,6 +501,27 @@
 			productName = SwiftGraphFrameworkTests;
 			productReference = B5EACB222172315E00E527BD /* SwiftGraphPerformanceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B5F9EECF2412BEBA00AA7AE6 /* SwiftGraphGenerators */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5F9EEEA2412BEBA00AA7AE6 /* Build configuration list for PBXNativeTarget "SwiftGraphGenerators" */;
+			buildPhases = (
+				B5F9EED22412BEBA00AA7AE6 /* Sources */,
+				B5F9EEE52412BEBA00AA7AE6 /* Frameworks */,
+				B5F9EEE72412BEBA00AA7AE6 /* Headers */,
+				B5F9EEE92412BEBA00AA7AE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftGraphGenerators;
+			packageProductDependencies = (
+				B5F9EED02412BEBA00AA7AE6 /* SwiftCheck */,
+			);
+			productName = SwiftGraphFramework;
+			productReference = B5F9EEEE2412BEBA00AA7AE6 /* SwiftGraphGenerators.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -500,7 +561,7 @@
 			);
 			mainGroup = 55E61FF91A194C7F000A5F7B;
 			packageReferences = (
-				B5AAB26124116AB400C76248 /* XCRemoteSwiftPackageReference "SwiftCheck" */,
+				B5F9EEF82412C05E00AA7AE6 /* XCRemoteSwiftPackageReference "SwiftCheck" */,
 			);
 			productRefGroup = 55E620031A194C80000A5F7B /* Products */;
 			projectDirPath = "";
@@ -510,6 +571,7 @@
 				7985B9021E5A4FB900C100E7 /* SwiftGraphTests */,
 				B5EACB0A2172315E00E527BD /* SwiftGraphPerformanceTests */,
 				55E620011A194C80000A5F7B /* SwiftGraphSampleApp */,
+				B5F9EECF2412BEBA00AA7AE6 /* SwiftGraphGenerators */,
 			);
 		};
 /* End PBXProject section */
@@ -539,6 +601,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5EACB1E2172315E00E527BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F9EEE92412BEBA00AA7AE6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -598,14 +667,11 @@
 				B5F07B6D222EB4BD00824F08 /* WeightedGraphTests.swift in Sources */,
 				7985B91D1E5A4FCB00C100E7 /* DijkstraGraphTests.swift in Sources */,
 				7985B91F1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift in Sources */,
-				B5AAB26524116AFD00C76248 /* ArbitraryDirectedPseudoForest.swift in Sources */,
 				B5CDBBCB24124E7E00B15165 /* UtilsTests.swift in Sources */,
 				B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */,
 				55F5EA5B2151E33100DFC301 /* SwiftGraphCodableTests.swift in Sources */,
 				B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */,
-				B5F9EEAD2412BCBB00AA7AE6 /* ArbitraryUnweightedEdge.swift in Sources */,
 				B5EF143121791009008FCC5C /* UniqueElementsGraphInitTests.swift in Sources */,
-				B5F9EEAB2412BC9100AA7AE6 /* ArbitraryUniqueElementsGraph.swift in Sources */,
 				B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */,
 				B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */,
 			);
@@ -618,6 +684,16 @@
 				B5EACB292172336900E527BD /* SearchPerformanceTests.swift in Sources */,
 				B5FE1C212231DA0C008BACAA /* UnionPerformanceTests.swift in Sources */,
 				B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F9EED22412BEBA00AA7AE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5F9EEF32412BFDB00AA7AE6 /* ArbitraryDirectedPseudoForest.swift in Sources */,
+				B5F9EEF12412BFD500AA7AE6 /* ArbitraryUniqueElementsGraph.swift in Sources */,
+				B5F9EEF22412BFD800AA7AE6 /* ArbitraryUnweightedEdge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +714,11 @@
 			isa = PBXTargetDependency;
 			target = 7985B8FA1E5A4FB800C100E7 /* SwiftGraph */;
 			targetProxy = B5EACB0C2172315E00E527BD /* PBXContainerItemProxy */;
+		};
+		B5F9EEF72412C00200AA7AE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5F9EECF2412BEBA00AA7AE6 /* SwiftGraphGenerators */;
+			targetProxy = B5F9EEF62412C00200AA7AE6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1126,6 +1207,125 @@
 			};
 			name = "Performance Tests";
 		};
+		B5F9EEEB2412BEBA00AA7AE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftGraphGenerators/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphGenerators;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B5F9EEEC2412BEBA00AA7AE6 /* Performance Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftGraphGenerators/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphGenerators;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Performance Tests";
+		};
+		B5F9EEED2412BEBA00AA7AE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftGraphGenerators/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oaksnow.SwiftGraphGenerators;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1179,10 +1379,28 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		B5F9EEEA2412BEBA00AA7AE6 /* Build configuration list for PBXNativeTarget "SwiftGraphGenerators" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5F9EEEB2412BEBA00AA7AE6 /* Debug */,
+				B5F9EEEC2412BEBA00AA7AE6 /* Performance Tests */,
+				B5F9EEED2412BEBA00AA7AE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B5AAB26124116AB400C76248 /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
+		B5F9EED12412BEBA00AA7AE6 /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.0;
+			};
+		};
+		B5F9EEF82412C05E00AA7AE6 /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
 			requirement = {
@@ -1193,9 +1411,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B5AAB26224116AB400C76248 /* SwiftCheck */ = {
+		B5F9EED02412BEBA00AA7AE6 /* SwiftCheck */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B5AAB26124116AB400C76248 /* XCRemoteSwiftPackageReference "SwiftCheck" */;
+			package = B5F9EED12412BEBA00AA7AE6 /* XCRemoteSwiftPackageReference "SwiftCheck" */;
+			productName = SwiftCheck;
+		};
+		B5F9EEF92412C05E00AA7AE6 /* SwiftCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F9EEF82412C05E00AA7AE6 /* XCRemoteSwiftPackageReference "SwiftCheck" */;
 			productName = SwiftCheck;
 		};
 /* End XCSwiftPackageProductDependency section */
