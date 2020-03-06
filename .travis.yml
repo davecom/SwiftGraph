@@ -5,7 +5,7 @@ env:
 matrix:
   include:
     - os: osx
-      osx_image: xcode10.2
+      osx_image: xcode11.3
       language: swift
       install:
         - ./BuildScripts/osx_install.sh
@@ -19,11 +19,12 @@ matrix:
       after_script: ./BuildScripts/osx_coverage_after.sh
 
     - os: linux
+      dist: bionic
       language: generic
-      # The only purpose of this var is that it's dispalyed in travis-ci.com so we can identify this job
-      env: SWIFT=5.0
+      # The only purpose of this var is that it's displayed in travis-ci.com so we can identify this job
+      env: SWIFT=5.1.4
       install:
-        - ./BuildScripts/linux_install.sh "https://swift.org/builds/swift-5.0-release/ubuntu1404/swift-5.0-RELEASE/swift-5.0-RELEASE-ubuntu14.04.tar.gz"
+        - ./BuildScripts/linux_install.sh "https://swift.org/builds/swift-5.1.4-release/ubuntu1804/swift-5.1.4-RELEASE/swift-5.1.4-RELEASE-ubuntu18.04.tar.gz"
         # According to Travis docs, PATH modification must be done here.
         # https://docs.travis-ci.com/user/installing-dependencies/#Installing-Projects-from-Source
         - PATH=$PATH:$PWD/swift/usr/bin/
