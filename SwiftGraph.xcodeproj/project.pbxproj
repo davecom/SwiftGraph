@@ -46,7 +46,6 @@
 		B5AAB26324116AB400C76248 /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = B5AAB26224116AB400C76248 /* SwiftCheck */; };
 		B5AAB26424116AFA00C76248 /* DirectedPseudoForestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD97A6240FFE53001B9C31 /* DirectedPseudoForestTests.swift */; };
 		B5AAB26524116AFD00C76248 /* ArbitraryDirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */; };
-		B5AD979E240FFE00001B9C31 /* DirectedPseudoForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD979D240FFE00001B9C31 /* DirectedPseudoForest.swift */; };
 		B5CDBBCB24124E7E00B15165 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CDBBCA24124E7E00B15165 /* UtilsTests.swift */; };
 		B5D022B1217357480079F17C /* ConstructorsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D022B0217357480079F17C /* ConstructorsPerformanceTests.swift */; };
 		B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D229BB207BF30100151820 /* UniqueElementsGraph.swift */; };
@@ -135,11 +134,10 @@
 		B51B460A2083E14200CD0463 /* Union.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Union.swift; path = ../Sources/SwiftGraph/Union.swift; sourceTree = "<group>"; };
 		B523F2E92094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueElementsGraphHashableInitTests.swift; sourceTree = "<group>"; };
 		B52ABD37208955B500FBF10C /* UnionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionTests.swift; sourceTree = "<group>"; };
-		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructors.swift; sourceTree = "<group>"; };
+		B54FDA6D21729EFF00057C51 /* Constructors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constructors.swift; path = ../Sources/SwiftGraph/Constructors.swift; sourceTree = "<group>"; };
 		B54FDA702172A34D00057C51 /* ConstructorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsTests.swift; sourceTree = "<group>"; };
-		B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectedPseudoForest.swift; path = SwiftGraph/DirectedPseudoForest.swift; sourceTree = SOURCE_ROOT; };
+		B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectedPseudoForest.swift; path = Sources/SwiftGraph/DirectedPseudoForest.swift; sourceTree = SOURCE_ROOT; };
 		B57CA2562412616200CA8712 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Sources/SwiftGraph/Utils.swift; sourceTree = SOURCE_ROOT; };
-		B5AD979D240FFE00001B9C31 /* DirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectedPseudoForest.swift; path = SwiftGraph/DirectedPseudoForest.swift; sourceTree = SOURCE_ROOT; };
 		B5AD97A2240FFE2D001B9C31 /* ArbitraryDirectedPseudoForest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArbitraryDirectedPseudoForest.swift; sourceTree = "<group>"; };
 		B5AD97A6240FFE53001B9C31 /* DirectedPseudoForestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectedPseudoForestTests.swift; sourceTree = "<group>"; };
 		B5CDBBCA24124E7E00B15165 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				B54FDA6D21729EFF00057C51 /* Constructors.swift */,
-				B5AD979D240FFE00001B9C31 /* DirectedPseudoForest.swift */,
 				B57CA2552412616200CA8712 /* DirectedPseudoForest.swift */,
 				5589B46B1C0E753E00D6664E /* Graph.swift */,
 				5589B46E1C0E756200D6664E /* UnweightedGraph.swift */,
@@ -557,7 +554,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5AD979E240FFE00001B9C31 /* DirectedPseudoForest.swift in Sources */,
 				B5D229BC207BF30100151820 /* UniqueElementsGraph.swift in Sources */,
 				7985B9241E5A503200C100E7 /* Graph.swift in Sources */,
 				7985B9251E5A503200C100E7 /* UnweightedGraph.swift in Sources */,
