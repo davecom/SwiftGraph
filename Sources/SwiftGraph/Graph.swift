@@ -291,7 +291,7 @@ public func graphIsValid<G: Graph>(_ g: G) -> Bool {
     }
 
     func undirectedEdgeHasReversedEdgeInGraph(_ e: G.E) -> Bool {
-        if e.directed {
+        if !e.directed {
             return g.edges[e.v].contains(e.reversed())
         }
         return true
