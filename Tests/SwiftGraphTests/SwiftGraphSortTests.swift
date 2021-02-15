@@ -23,6 +23,25 @@ class SwiftGraphSortTests: XCTestCase {
     // pg 1016 Liang
     let dressDAG: UnweightedGraph<String> = UnweightedGraph<String>(vertices: ["undershorts", "socks", "pants", "shoes", "watch", "belt", "shirt", "tie", "jacket"])
     
+    private func comesBefore<T: Equatable>(order: [T], a: T, b: T) -> Bool {
+        let aPos = order.firstIndex { (i) -> Bool in
+            return i == a
+        }
+        let bPos = order.firstIndex { (i) -> Bool in
+            return i == b
+        }
+        
+        guard let A = aPos, let B = bPos else { return false }
+        return A < B
+    }
+    
+    func testComesBefore() {
+        XCTAssertTrue(comesBefore(order: [5, 4, 3, 2, 1], a: 3, b: 1))
+        XCTAssertTrue(comesBefore(order: [5, 4, 3, 2, 1], a: 5, b: 2))
+        XCTAssertTrue(comesBefore(order: ["A", "B", "C"], a: "A", b: "C"))
+
+    }
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -56,5 +75,15 @@ class SwiftGraphSortTests: XCTestCase {
         }
         print(result)
         XCTAssertEqual(result.count, 9, "All items in sort.")
+        XCTAssertTrue(comesBefore(order: result, a: "undershorts", b: "shoes"))
+        XCTAssertTrue(comesBefore(order: result, a: "pants", b: "shoes"))
+        XCTAssertTrue(comesBefore(order: result, a: "socks", b: "shoes"))
+        XCTAssertTrue(comesBefore(order: result, a: "undershorts", b: "pants"))
+        XCTAssertTrue(comesBefore(order: result, a: "pants", b: "belt"))
+        XCTAssertTrue(comesBefore(order: result, a: "belt", b: "jacket"))
+        XCTAssertTrue(comesBefore(order: result, a: "shirt", b: "tie"))
+        XCTAssertTrue(comesBefore(order: result, a: "shirt", b: "belt"))
+        XCTAssertTrue(comesBefore(order: result, a: "tie", b: "jacket"))
+
     }
 }

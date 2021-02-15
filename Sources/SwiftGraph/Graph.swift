@@ -244,6 +244,17 @@ extension Graph {
     public func edgeExists(_ edge: E) -> Bool {
         return edges[edge.u].contains(edge)
     }
+    
+    /// Returns a graph of the same type with all edges reversed.
+    ///
+    /// - returns: Graph of the same type with all edges reversed.
+    public func reversed() -> Self {
+        let g = Self(vertices: self.vertices)
+        for e in self.edgeList() {
+            g.addEdge(e.reversed(), directed: e.directed)
+        }
+        return g
+    }
 
     
     // MARK: Implement Printable protocol

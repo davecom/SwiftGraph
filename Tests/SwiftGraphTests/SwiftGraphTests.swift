@@ -95,4 +95,44 @@ class SwiftGraphTests: XCTestCase {
         XCTAssertFalse(graph.edgeExists(fromIndex: 2, toIndex: 3))
         XCTAssertFalse(graph.edgeExists(fromIndex: 3, toIndex: 2))
     }
+    
+    func testCitesReversedDirected() {
+        let g = UnweightedGraph<String>(vertices: ["Atlanta", "New York", "Miami"])
+        g.addEdge(from: "Atlanta", to: "New York", directed: true)
+        g.addEdge(from: "Miami", to: "Atlanta", directed: true)
+        g.addEdge(from: "New York", to: "Miami", directed: true)
+        
+        XCTAssertTrue(g.edgeExists(from: "Atlanta", to: "New York"))
+        XCTAssertTrue(g.edgeExists(from: "Miami", to: "Atlanta"))
+        XCTAssertTrue(g.edgeExists(from: "New York", to: "Miami"))
+        
+        let r: UnweightedGraph<String> = g.reversed()
+        XCTAssertFalse(r.edgeExists(from: "Atlanta", to: "New York"))
+        XCTAssertFalse(r.edgeExists(from: "Miami", to: "Atlanta"))
+        XCTAssertFalse(r.edgeExists(from: "New York", to: "Miami"))
+        
+        XCTAssertTrue(r.edgeExists(from: "New York", to: "Atlanta"))
+        XCTAssertTrue(r.edgeExists(from: "Atlanta", to: "Miami"))
+        XCTAssertTrue(r.edgeExists(from: "Miami", to: "New York"))
+    }
+    
+    func testCitesReversedUndirected() {
+        let g = UnweightedGraph<String>(vertices: ["Atlanta", "New York", "Miami"])
+        g.addEdge(from: "Atlanta", to: "New York", directed: false)
+        g.addEdge(from: "Miami", to: "Atlanta", directed: false)
+        g.addEdge(from: "New York", to: "Miami", directed: false)
+        
+        XCTAssertTrue(g.edgeExists(from: "Atlanta", to: "New York"))
+        XCTAssertTrue(g.edgeExists(from: "Miami", to: "Atlanta"))
+        XCTAssertTrue(g.edgeExists(from: "New York", to: "Miami"))
+        
+        let r: UnweightedGraph<String> = g.reversed()
+        XCTAssertTrue(r.edgeExists(from: "Atlanta", to: "New York"))
+        XCTAssertTrue(r.edgeExists(from: "Miami", to: "Atlanta"))
+        XCTAssertTrue(r.edgeExists(from: "New York", to: "Miami"))
+        
+        XCTAssertTrue(r.edgeExists(from: "New York", to: "Atlanta"))
+        XCTAssertTrue(r.edgeExists(from: "Atlanta", to: "Miami"))
+        XCTAssertTrue(r.edgeExists(from: "Miami", to: "New York"))
+    }
 }
