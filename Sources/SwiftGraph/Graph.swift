@@ -244,7 +244,6 @@ extension Graph {
     public func edgeExists(_ edge: E) -> Bool {
         return edges[edge.u].contains(edge)
     }
-
     
     // MARK: Implement Printable protocol
     public var description: String {

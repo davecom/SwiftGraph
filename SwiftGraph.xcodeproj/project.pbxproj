@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		343882F925DF04E7007D2401 /* Reversed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343882F825DF04E7007D2401 /* Reversed.swift */; };
+		3438830525DF056C007D2401 /* SwiftGraphReversedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343882FD25DF0528007D2401 /* SwiftGraphReversedTests.swift */; };
 		55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF51F8ADA12001913F7 /* Cycle.swift */; };
 		55DCCBF81F8AE2F1001913F7 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCCBF71F8AE2F1001913F7 /* CycleTests.swift */; };
 		55E620081A194C80000A5F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E620071A194C80000A5F7B /* AppDelegate.swift */; };
@@ -93,6 +95,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		343882F825DF04E7007D2401 /* Reversed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Reversed.swift; path = Sources/SwiftGraph/Reversed.swift; sourceTree = SOURCE_ROOT; };
+		343882FD25DF0528007D2401 /* SwiftGraphReversedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGraphReversedTests.swift; sourceTree = "<group>"; };
 		553746441DA56CC500C0E0F6 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Sources/SwiftGraph/Sort.swift; sourceTree = SOURCE_ROOT; };
 		557F55E91F8AB247002AF0BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		5589B4621C0E72CC00D6664E /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Sources/SwiftGraph/Edge.swift; sourceTree = SOURCE_ROOT; };
@@ -284,6 +288,7 @@
 				7985B91A1E5A4FCB00C100E7 /* SwiftGraphSearchTests.swift */,
 				7985B91B1E5A4FCB00C100E7 /* SwiftGraphSortTests.swift */,
 				7985B91C1E5A4FCB00C100E7 /* SwiftGraphTests.swift */,
+				343882FD25DF0528007D2401 /* SwiftGraphReversedTests.swift */,
 				B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */,
 				B52ABD37208955B500FBF10C /* UnionTests.swift */,
 				55F5EA5A2151E33100DFC301 /* SwiftGraphCodableTests.swift */,
@@ -318,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				B51B460A2083E14200CD0463 /* Union.swift */,
+				343882F825DF04E7007D2401 /* Reversed.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 				7985B9211E5A503200C100E7 /* Edge.swift in Sources */,
 				7985B9271E5A503200C100E7 /* SwiftPriorityQueue.swift in Sources */,
 				55DCCBF61F8ADA12001913F7 /* Cycle.swift in Sources */,
+				343882F925DF04E7007D2401 /* Reversed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +567,7 @@
 				B5EF143321791348008FCC5C /* UniqueElementsGraphHashableTests.swift in Sources */,
 				55F5EA5B2151E33100DFC301 /* SwiftGraphCodableTests.swift in Sources */,
 				B523F2EA2094F0E2006587ED /* UniqueElementsGraphHashableInitTests.swift in Sources */,
+				3438830525DF056C007D2401 /* SwiftGraphReversedTests.swift in Sources */,
 				B5EF143121791009008FCC5C /* UniqueElementsGraphInitTests.swift in Sources */,
 				B54FDA712172A34D00057C51 /* ConstructorsTests.swift in Sources */,
 				B5D229BF207BF3A800151820 /* UniqueElementsGraphTests.swift in Sources */,
