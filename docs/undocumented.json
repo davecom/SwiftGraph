@@ -114,7 +114,7 @@
     },
     {
       "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/Queue.swift",
-      "line": 56,
+      "line": 58,
       "symbol": "Queue.contains(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -205,14 +205,14 @@
     },
     {
       "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
-      "line": 138,
+      "line": 192,
       "symbol": "UniqueElementsGraph.withPath(_:directed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dave/Documents/Projects/SwiftGraph/Sources/SwiftGraph/UniqueElementsGraph.swift",
-      "line": 154,
+      "line": 208,
       "symbol": "UniqueElementsGraph.withCycle(_:directed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"

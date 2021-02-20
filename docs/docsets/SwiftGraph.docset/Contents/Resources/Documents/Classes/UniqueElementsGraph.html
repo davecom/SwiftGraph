@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/UniqueElementsGraph" class="dashAnchor"></a>
     <a title="UniqueElementsGraph Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftGraph Docs</a> (72% documented)</p>
+        <p><a href="../index.html">SwiftGraph 3.1 Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -126,12 +134,16 @@
             <h1>UniqueElementsGraph</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UniqueElementsGraph</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">E</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Graph.html">Graph</a></span> <span class="k">where</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Edge.html">Edge</a></span></code></pre>
 
                 </div>
               </div>
             <p>An implementation Graph that ensures there are no pairs of equal vertices and no repeated edges.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L23-L67">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -161,7 +173,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -191,7 +203,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -221,7 +233,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L27-L28">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L27-L28">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -231,7 +243,7 @@
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0C8verticesACyxq_GSayxG_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(vertices:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C8verticesACyxq_GSayxG_tcfc">init(vertices:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C8verticesACyxq_GSayxG_tcfc">init(vertices:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -251,7 +263,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L31-L35">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L31-L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -261,7 +273,7 @@
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0C9addVertexySixF"></a>
                     <a name="//apple_ref/swift/Method/addVertex(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C9addVertexySixF">addVertex(_:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C9addVertexySixF">addVertex(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -304,7 +316,7 @@
                         <p>The index where the vertex was added, or the index of the equal vertex already belonging to the graph.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L41-L48">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L41-L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -314,7 +326,7 @@
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0C7addEdge_8directedyq__SbtF"></a>
                     <a name="//apple_ref/swift/Method/addEdge(_:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C7addEdge_8directedyq__SbtF">addEdge(_:directed:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0C7addEdge_8directedyq__SbtF">addEdge(_:<wbr>directed:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -367,7 +379,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L56-L66">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L56-L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -376,11 +388,13 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Extension%20to%20UniqueVerticesGraph%20with%20Union%20initializer"></a>
-                <a name="//apple_ref/swift/Section/Extension to UniqueVerticesGraph with Union initializer" class="dashAnchor"></a>
-                <a href="#/Extension%20to%20UniqueVerticesGraph%20with%20Union%20initializer">
-                  <h3 class="section-name">Extension to UniqueVerticesGraph with Union initializer</h3>
-                </a>
+                <a name="/Available%20where%20%60E%60%20%3D%3D%20%60UnweightedEdge%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `E` == `UnweightedEdge`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60E%60%20%3D%3D%20%60UnweightedEdge%60"></a>
+                  <h3 class="section-name"><p>Available where <code>E</code> == <code><a href="../Structs/UnweightedEdge.html">UnweightedEdge</a></code></p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -388,7 +402,7 @@
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE7unionOfyACyxAEGSayAGGFZ"></a>
                     <a name="//apple_ref/swift/Method/unionOf(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE7unionOfyACyxAEGSayAGGFZ">unionOf(_:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE7unionOfyACyxAEGSayAGGFZ">unionOf(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -433,7 +447,7 @@ the largest graph.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/Union.swift#L32-L61">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/Union.swift#L32-L61">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -443,7 +457,7 @@ the largest graph.</p>
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE7unionOfyACyxAEGAGd_tFZ"></a>
                     <a name="//apple_ref/swift/Method/unionOf(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE7unionOfyACyxAEGAGd_tFZ">unionOf(_:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE7unionOfyACyxAEGAGd_tFZ">unionOf(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -463,21 +477,17 @@ the largest graph.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/Union.swift#L63-L65">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/Union.swift#L63-L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE8withPath_8directedACyxAEGSayxG_SbtFZ"></a>
                     <a name="//apple_ref/swift/Method/withPath(_:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE8withPath_8directedACyxAEGSayxG_SbtFZ">withPath(_:directed:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE8withPath_8directedACyxAEGSayxG_SbtFZ">withPath(_:<wbr>directed:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -536,7 +546,7 @@ If path is an array with a single vertex, the resulting graph has that vertex an
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L90-L100">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L90-L100">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -546,7 +556,7 @@ If path is an array with a single vertex, the resulting graph has that vertex an
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE9withCycle_8directedACyxAEGSayxG_SbtFZ"></a>
                     <a name="//apple_ref/swift/Method/withCycle(_:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE9withCycle_8directedACyxAEGSayxG_SbtFZ">withCycle(_:directed:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE9withCycle_8directedACyxAEGSayxG_SbtFZ">withCycle(_:<wbr>directed:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -608,7 +618,145 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L118-L133">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L118-L133">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE13fromRecursion_12startingWithACyxAEGSayxGxXE_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/fromRecursion(_:startingWith:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE13fromRecursion_12startingWithACyxAEGSayxGxXE_xtFZ">fromRecursion(_:<wbr>startingWith:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Construct a UniqueElementsGraph by repeatedly applying a recursion function to a vertex and adding them to the graph.</p>
+
+<p>The recursion function is only called on a vertex when visited for the first time.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fromRecursion</span><span class="p">(</span><span class="n">_</span> <span class="nv">recursion</span><span class="p">:</span> <span class="p">(</span><span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">V</span><span class="p">],</span> <span class="n">startingWith</span> <span class="nv">initialVertex</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UniqueElementsGraph</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recursion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A function that returns the neighbouring vertices for a given visited vertex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>initialVertex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first vertex to which the recursion function is applied.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L146-L148">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE13fromRecursion_15selectingVertex12startingWithACyxAEGSayqd__Gqd__XE_xqd__XEqd__tlFZ"></a>
+                    <a name="//apple_ref/swift/Method/fromRecursion(_:selectingVertex:startingWith:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CA2A14UnweightedEdgeVRs_rlE13fromRecursion_15selectingVertex12startingWithACyxAEGSayqd__Gqd__XE_xqd__XEqd__tlFZ">fromRecursion(_:<wbr>selectingVertex:<wbr>startingWith:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Construct a UniqueElementsGraph by repeatedly applying a recursion function to some elements and adding the corresponding vertex to the graph.</p>
+
+<p>The recursion function is only called on an element when visited for the first time.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">fromRecursion</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">recursion</span><span class="p">:</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">T</span><span class="p">],</span> <span class="n">selectingVertex</span> <span class="nv">vertexFor</span><span class="p">:</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">V</span><span class="p">,</span> <span class="n">startingWith</span> <span class="nv">initialElement</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UniqueElementsGraph</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recursion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A function that returns the neighbouring elements for a given visited element.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vertexFor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A function that returns the vertex that will be added to the graph for each visited element.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>initialElement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first element to which the recursion function is applied.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L157-L188">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -616,13 +764,22 @@ If directed is false the resulting graph has the vertex and two edges to itself.
               </ul>
             </div>
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60V%60%3A%20%60Hashable%60%2C%20%60E%60%20%3D%3D%20%60UnweightedEdge%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `V`: `Hashable`, `E` == `UnweightedEdge`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60V%60%3A%20%60Hashable%60%2C%20%60E%60%20%3D%3D%20%60UnweightedEdge%60"></a>
+                  <h3 class="section-name"><p>Available where <code>V</code>: <code>Hashable</code>, <code>E</code> == <code><a href="../Structs/UnweightedEdge.html">UnweightedEdge</a></code></p>
+</h3>
+                </div>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0CAASHRzAA14UnweightedEdgeVRs_rlE8withPath_8directedACyxAEGSayxG_SbtFZ"></a>
                     <a name="//apple_ref/swift/Method/withPath(_:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CAASHRzAA14UnweightedEdgeVRs_rlE8withPath_8directedACyxAEGSayxG_SbtFZ">withPath(_:directed:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CAASHRzAA14UnweightedEdgeVRs_rlE8withPath_8directedACyxAEGSayxG_SbtFZ">withPath(_:<wbr>directed:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -642,7 +799,7 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L138-L151">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L192-L205">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -652,7 +809,7 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                     <code>
                     <a name="/s:10SwiftGraph014UniqueElementsB0CAASHRzAA14UnweightedEdgeVRs_rlE9withCycle_8directedACyxAEGSayxG_SbtFZ"></a>
                     <a name="//apple_ref/swift/Method/withCycle(_:directed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CAASHRzAA14UnweightedEdgeVRs_rlE9withCycle_8directedACyxAEGSayxG_SbtFZ">withCycle(_:directed:)</a>
+                    <a class="token" href="#/s:10SwiftGraph014UniqueElementsB0CAASHRzAA14UnweightedEdgeVRs_rlE9withCycle_8directedACyxAEGSayxG_SbtFZ">withCycle(_:<wbr>directed:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -672,7 +829,7 @@ If directed is false the resulting graph has the vertex and two edges to itself.
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/UniqueElementsGraph.swift#L154-L169">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/UniqueElementsGraph.swift#L208-L223">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -682,8 +839,8 @@ If directed is false the resulting graph has the vertex and two edges to itself.
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-04-12)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2021-02-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

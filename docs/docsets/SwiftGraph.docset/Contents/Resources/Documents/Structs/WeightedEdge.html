@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Struct/WeightedEdge" class="dashAnchor"></a>
     <a title="WeightedEdge Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftGraph Docs</a> (72% documented)</p>
+        <p><a href="../index.html">SwiftGraph 3.1 Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -126,12 +134,18 @@
             <h1>WeightedEdge</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">WeightedEdge</span><span class="o">&lt;</span><span class="kt">W</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Edge.html">Edge</a></span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span> <span class="k">where</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">WeightedEdge</span><span class="p">:</span> <span class="kt"><a href="../Protocols/WeightedEdgeProtocol.html">WeightedEdgeProtocol</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">WeightedEdge</span><span class="p">:</span> <span class="kt">Comparable</span> <span class="k">where</span> <span class="kt">W</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
 
                 </div>
               </div>
             <p>A weighted edge, who&rsquo;s weight subscribes to Comparable.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L32-L59">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -160,7 +174,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L22">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -189,7 +203,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L24">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L24">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -219,7 +233,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -249,7 +263,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -259,7 +273,7 @@
                     <code>
                     <a name="/s:10SwiftGraph12WeightedEdgeV1u1v8directed6weightACyxGSi_SiSbxtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(u:v:directed:weight:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftGraph12WeightedEdgeV1u1v8directed6weightACyxGSi_SiSbxtcfc">init(u:v:directed:weight:)</a>
+                    <a class="token" href="#/s:10SwiftGraph12WeightedEdgeV1u1v8directed6weightACyxGSi_SiSbxtcfc">init(u:<wbr>v:<wbr>directed:<wbr>weight:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -279,7 +293,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L38-L43">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L38-L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -309,7 +323,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L45-L47">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L45-L47">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -338,7 +352,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L50-L52">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L50-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -349,9 +363,11 @@
               <div class="task-name-container">
                 <a name="/Operator%20Overloads"></a>
                 <a name="//apple_ref/swift/Section/Operator Overloads" class="dashAnchor"></a>
-                <a href="#/Operator%20Overloads">
-                  <h3 class="section-name">Operator Overloads</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Operator%20Overloads"></a>
+                  <h3 class="section-name"><p>Operator Overloads</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -359,7 +375,7 @@
                     <code>
                     <a name="/s:SQ2eeoiySbx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -378,15 +394,11 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L55-L57">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L55-L57">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -412,7 +424,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,13 +432,22 @@
               </ul>
             </div>
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60W%60%3A%20%60Comparable%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `W`: `Comparable`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60W%60%3A%20%60Comparable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>W</code>: <code>Comparable</code></p>
+</h3>
+                </div>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
                     <a name="/s:SL1loiySbx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SL1loiySbx_xtFZ">&lt;(_:_:)</a>
+                    <a class="token" href="#/s:SL1loiySbx_xtFZ"><(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -445,7 +466,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/davecom/SwiftGraph/tree/3.0.0/Sources/SwiftGraph/WeightedEdge.swift#L62-L64">Show on GitHub</a>
+                        <a href="https://github.com/davecom/SwiftGraph/tree/3.1/Sources/SwiftGraph/WeightedEdge.swift#L62-L64">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -455,8 +476,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-04-12)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2021-02-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

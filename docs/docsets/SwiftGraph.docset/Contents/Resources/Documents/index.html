@@ -8,13 +8,21 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a title="SwiftGraph  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftGraph Docs</a> (72% documented)</p>
+        <p><a href="index.html">SwiftGraph 3.1 Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/davecom/SwiftGraph"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -138,17 +146,17 @@
 
 <p>SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, macOS, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.</p>
 
-<p>It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra&rsquo;s algorithm. Further, it includes utility functions for topological sort, Jarnik&rsquo;s algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), and enumerating all cycles.</p>
+<p>It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra&rsquo;s algorithm. Further, it includes utility functions for topological sort, Jarnik&rsquo;s algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), enumerating all cycles, and more.</p>
 <h2 id='installation' class='heading'>Installation</h2>
 
-<p>SwiftGraph 3.0 requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph supports GNU/Linux and is tested on it.</p>
+<p>SwiftGraph 3.0 and above requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph supports GNU/Linux and is tested on it.</p>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p>Use the CocoaPod <code>SwiftGraph</code>.</p>
 <h3 id='carthage' class='heading'>Carthage</h3>
 
 <p>Add the following to your <code>Cartfile</code>:</p>
-<pre class="highlight plaintext"><code>github "davecom/SwiftGraph" ~&gt; 3.0.0
+<pre class="highlight plaintext"><code>github "davecom/SwiftGraph" ~&gt; 3.1
 </code></pre>
 <h3 id='swift-package-manager-spm' class='heading'>Swift Package Manager (SPM)</h3>
 
@@ -226,7 +234,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>A breadth-first search is performed, starting from New York, for all cities in <code>cityGraph</code> that start with the letter <q>S.</q></p>
+<p>A breadth-first search is performed, starting from New York, for all cities in <code>cityGraph</code> that start with the letter &ldquo;S.&rdquo;</p>
 
 <p>SwiftGraph contains many more useful features, but hopefully this example was a nice quickstart.</p>
 <h2 id='documentation' class='heading'>Documentation</h2>
@@ -306,11 +314,15 @@
 <ul>
 <li><code>detectCycles()</code> - Uses an algorithm developed by Liu/Wang to find all of the cycles in a graph. Optionally, this method can take one parameter, <code>upToLength</code>, that specifies a length at which to stop searching for cycles. For instance, if <code>upToLength</code> is 3, <code>detectCycles()</code> will find all of the 1 vertex cycles (self-cycles, vertices with edges to themselves), and 3 vertex cycles (connection to another vertex and back again, present in all undirected graphs with more than 1 vertex). There is no such thing as a 2 vertex cycle.</li>
 </ul>
+
+<p>An extension to <code><a href="Protocols/Graph.html">Graph</a></code> in <code>Reversed.swift</code> reverses all of the edges in a graph.</p>
 <h2 id='authorship-license-amp-contributors' class='heading'>Authorship, License, &amp; Contributors</h2>
 
 <p>SwiftGraph is written by David Kopec and other contributors (see <code>CONTRIBUTORS.md</code>). It is released under the Apache License (see <code>LICENSE</code>). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub. </p>
 
 <p>I would like to thank all of the contributors who have helped improve SwiftGraph over the years, and have kept me motivated. Contributing to SwiftGraph, in-line with the Apache license, means also releasing your contribution under the same license as the original project. However, the Apache license is permissive, and you are free to include SwiftGraph in a commercial, closed source product as long as you give it &amp; its author credit (in fact SwiftGraph has already found its way into several products). See <code>LICENSE</code> for details.</p>
+
+<p>If you use SwiftGraph in your product, please let me know by getting in touch with me. It&rsquo;s just cool to know.</p>
 <h2 id='future-direction' class='heading'>Future Direction</h2>
 
 <p>Future directions for this project to take could include:</p>
@@ -325,8 +337,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2019-04-12)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://twitter.com/davekopec" target="_blank" rel="external">David</a>. All rights reserved. (Last updated: 2021-02-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
