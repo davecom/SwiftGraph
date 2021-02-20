@@ -178,6 +178,8 @@ SwiftGraph is written by David Kopec and other contributors (see `CONTRIBUTORS.m
 
 I would like to thank all of the contributors who have helped improve SwiftGraph over the years, and have kept me motivated. Contributing to SwiftGraph, in-line with the Apache license, means also releasing your contribution under the same license as the original project. However, the Apache license is permissive, and you are free to include SwiftGraph in a commercial, closed source product as long as you give it & its author credit (in fact SwiftGraph has already found its way into several products). See `LICENSE` for details.
 
+If you use SwiftGraph in your product, please let me know by getting in touch with me. It's just cool to know.
+
 ## Future Direction
 Future directions for this project to take could include:
 * More utility functions
