@@ -1,3 +1,9 @@
+### 3.1
+- Reverse a graph with `reversed()` (@mattpaletta)
+- Performance improvement to `topologicalSort()` (@dabbott)
+- Recursive initializers for `UniqueElementsGraph` (@ferranpujolcamins) 
+- A few `let` vs `var` warnings fixed
+
 ### 3.0.0
 - **This is an API breaking refactor**
 - This version requires Swift 5.0 (Xcode 10.2)

@@ -14,10 +14,12 @@ SwiftGraph is being used in several real-world and hobby projects. The most nota
 
 SwiftGraph has been worked on by the following people:
 - David Kopec (@davecom) - I started the project in 2014 and I have been maintaining it ever since; I wrote most of the code between 2014-2017
-- Ferran Pujol Camins (@ferranpujolcamins) - Ferran got us setup with continuous integration, added the `UniqueVerticesGraph` class and its supporting machinery, refactored some of the search algorithms, cleaned up several miscellaneous sections, and is working on Graphviz support. He has been the primary force behind SwiftGraph in 2018-2019.
-- Zev Eisenberg (@ZevEisenberg) - Added the original cycle detection algorithms.
+- Ferran Pujol Camins (@ferranpujolcamins) - Ferran got us setup with continuous integration, added the `UniqueVerticesGraph` class and its supporting machinery, refactored some of the search algorithms, cleaned up several miscellaneous sections, and is working on Graphviz support. He was the primary force behind SwiftGraph in 2018-2019.
+- Zev Eisenberg (@ZevEisenberg) - Added the original cycle detection algorithms and provided miscellaneous bug fixes.
 - Kevin Lundberg (@klundberg) - Added Carthage support.
 - Ian Grossberg (@yoiang) - Helped with Codable support
+- Devin Abbott (@dabbott) - Improved the performance of `topologicalSort()`
+- Matt Paletta (@mattpaletta) - Added `reversed()`
 
 Thank you to everyone who has contributed, including those not listed, who made smaller contributions. If I forgot you and you made a significant contribution to SwiftGraph, please make a pull request to this document.
 

@@ -13,11 +13,11 @@
 
 SwiftGraph is a pure Swift (no Cocoa) implementation of a graph data structure, appropriate for use on all platforms Swift supports (iOS, macOS, Linux, etc.). It includes support for weighted, unweighted, directed, and undirected graphs. It uses generics to abstract away both the type of the vertices, and the type of the weights.
 
-It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra's algorithm. Further, it includes utility functions for topological sort, Jarnik's algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), and enumerating all cycles.
+It includes copious in-source documentation, unit tests, as well as search functions for doing things like breadth-first search, depth-first search, and Dijkstra's algorithm. Further, it includes utility functions for topological sort, Jarnik's algorithm to find a minimum-spanning tree, detecting a DAG (directed-acyclic-graph), enumerating all cycles, and more.
 
 ## Installation
 
-SwiftGraph 3.0 requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph supports GNU/Linux and is tested on it.
+SwiftGraph 3.0 and above requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph supports GNU/Linux and is tested on it.
 
 ### CocoaPods
 
@@ -28,7 +28,7 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 3.0.0
+github "davecom/SwiftGraph" ~> 3.1
 ```
 
 ### Swift Package Manager (SPM)
@@ -170,6 +170,8 @@ An extension to `WeightedGraph` in `MST.swift` can find a minimum-spanning tree 
 
 An extension to `Graph` in `Cycles.swift` finds all of the cycles in a graph.
 * `detectCycles()` - Uses an algorithm developed by Liu/Wang to find all of the cycles in a graph. Optionally, this method can take one parameter, `upToLength`, that specifies a length at which to stop searching for cycles. For instance, if `upToLength` is 3, `detectCycles()` will find all of the 1 vertex cycles (self-cycles, vertices with edges to themselves), and 3 vertex cycles (connection to another vertex and back again, present in all undirected graphs with more than 1 vertex). There is no such thing as a 2 vertex cycle.
+
+An extension to `Graph` in `Reversed.swift` reverses all of the edges in a graph.
 
 ## Authorship, License, & Contributors
 SwiftGraph is written by David Kopec and other contributors (see `CONTRIBUTORS.md`). It is released under the Apache License (see `LICENSE`). You can find my email address on my GitHub profile page. I encourage you to submit pull requests and open issues here on GitHub. 

@@ -34,7 +34,7 @@ public extension Graph {
         var notDAG = false
 
         // Determine vertex neighbors in advance, so we have to do it once for each node.
-        var neighbors: [Set<Int>] = rangeOfVertices.map({ index in
+        let neighbors: [Set<Int>] = rangeOfVertices.map({ index in
             Set(edges[index].map({ $0.v }))
         })
         
