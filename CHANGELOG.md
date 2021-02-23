@@ -1,4 +1,4 @@
-### 3.1
+### 3.1.0
 - Reverse a graph with `reversed()` (@mattpaletta)
 - Performance improvement to `topologicalSort()` (@dabbott)
 - Recursive initializers for `UniqueElementsGraph` (@ferranpujolcamins) 
