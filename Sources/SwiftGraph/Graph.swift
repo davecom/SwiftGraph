@@ -19,8 +19,8 @@
 /// The protocol for all graphs.
 /// You should generally use one of its two canonical class implementations,
 /// *UnweightedGraph* and *WeightedGraph*
-public protocol Graph: CustomStringConvertible, Collection, Codable {
-    associatedtype V: Equatable & Codable
+public protocol Graph: CustomStringConvertible, Collection {
+    associatedtype V: Equatable
     associatedtype E: Edge & Equatable
     var vertices: [V] { get set }
     var edges: [[E]] { get set }
