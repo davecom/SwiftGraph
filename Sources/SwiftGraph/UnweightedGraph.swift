@@ -17,7 +17,7 @@
 //  limitations under the License.
 
 /// An implementation of Graph with some convenience methods for adding and removing UnweightedEdges. WeightedEdges may be added to an UnweightedGraph but their weights will be ignored.
-open class UnweightedGraph<V: Equatable & Codable>: Graph {
+open class UnweightedGraph<V: Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[UnweightedEdge]] = [[UnweightedEdge]]() //adjacency lists
     
@@ -27,6 +27,21 @@ open class UnweightedGraph<V: Equatable & Codable>: Graph {
     required public init(vertices: [V]) {
         for vertex in vertices {
             _ = self.addVertex(vertex)
+        }
+    }
+    
+    public enum Keys: CodingKey {
+        case vertices
+        case edges
+    }
+    
+    public required convenience init(from decoder: Decoder) throws where V: Decodable {
+        let container = try decoder.container(keyedBy: Keys.self)
+        let vertices = try container.decode([V].self, forKey: .vertices)
+        let edges: [[UnweightedEdge]] = try container.decode([[UnweightedEdge]].self, forKey: .edges)
+        self.init(vertices: vertices)
+        for edge in edges.lazy.flatMap({$0}) {
+            addEdge(edge, directed: edge.directed)
         }
     }
     
@@ -152,5 +167,16 @@ extension Graph where E == UnweightedEdge {
             }
         }
         return false
+    }
+}
+
+extension UnweightedGraph: Decodable where V: Decodable {
+}
+
+extension UnweightedGraph: Encodable where V: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(vertices, forKey: Keys.vertices)
+        try container.encode(edges, forKey: Keys.edges)
     }
 }

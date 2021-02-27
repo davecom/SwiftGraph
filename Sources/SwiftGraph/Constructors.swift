@@ -18,7 +18,7 @@
 
 /// A type used to construct an UnweightedGraph with vertices of type V that is isomorphic to a star graph.
 /// https://en.wikipedia.org/wiki/Star_(graph_theory)
-public enum StarGraph<V: Equatable & Codable> {
+public enum StarGraph<V: Equatable> {
 
     /// Constructs an undirected UnweightedGraph isomorphic to a star graph.
     ///
@@ -41,7 +41,7 @@ public enum StarGraph<V: Equatable & Codable> {
 
 /// A type used to construct UnweightedGraph with vertices of type V that is isomorphic to a complete graph.
 /// https://en.wikipedia.org/wiki/Complete_graph
-public enum CompleteGraph<V: Equatable & Codable> {
+public enum CompleteGraph<V: Equatable> {
 
     /// Constructs an undirected UnweightedGraph isomorphic to a complete graph.
     ///

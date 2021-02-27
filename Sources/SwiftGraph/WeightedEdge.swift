@@ -29,7 +29,7 @@ extension WeightedEdge: WeightedEdgeProtocol {
 }
 
 /// A weighted edge, who's weight subscribes to Comparable.
-public struct WeightedEdge<W: Equatable & Codable>: Edge, CustomStringConvertible, Equatable {
+public struct WeightedEdge<W: Equatable>: Edge, CustomStringConvertible, Equatable {
     public var u: Int
     public var v: Int
     public var directed: Bool
@@ -62,4 +62,10 @@ extension WeightedEdge: Comparable where W: Comparable {
     static public func < (lhs: WeightedEdge, rhs: WeightedEdge) -> Bool {
         return lhs.weight < rhs.weight
     }
+}
+
+extension WeightedEdge: Decodable where W: Decodable {
+}
+
+extension WeightedEdge: Encodable where W: Encodable {
 }

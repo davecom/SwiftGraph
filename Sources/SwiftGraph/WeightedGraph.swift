@@ -17,12 +17,27 @@
 //  limitations under the License.
 
 /// An implementation of Graph that has convenience methods for adding and removing WeightedEdges. All added Edges should have the same generic Comparable type W as the WeightedGraph itself.
-open class WeightedGraph<V: Equatable & Codable, W: Equatable & Codable>: Graph {
+open class WeightedGraph<V: Equatable, W: Equatable>: Graph {
     
     public var vertices: [V] = [V]()
     public var edges: [[WeightedEdge<W>]] = [[WeightedEdge<W>]]() //adjacency lists
     
     public init() {
+    }
+    
+    private enum Keys: CodingKey {
+        case vertices
+        case edges
+    }
+    
+    public required convenience init(from decoder: Decoder) throws where V: Decodable, W: Decodable {
+        let container = try decoder.container(keyedBy: Keys.self)
+        let vertices = try container.decode([V].self, forKey: .vertices)
+        let edges: [[WeightedEdge<W>]] = try container.decode([[WeightedEdge<W>]].self, forKey: .edges)
+        self.init(vertices: vertices)
+        for edge in edges.lazy.flatMap({$0}) {
+            addEdge(edge, directed: edge.directed)
+        }
     }
     
     required public init(vertices: [V]) {
@@ -176,5 +191,16 @@ extension Graph where E: WeightedEdgeProtocol {
             d += "\(vertices[i]) -> \(neighborsForIndexWithWeights(i))\n"
         }
         return d
+    }
+}
+
+extension WeightedGraph: Decodable where V: Decodable, W: Decodable {
+}
+
+extension WeightedGraph: Encodable where V: Encodable, W: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(vertices, forKey: Keys.vertices)
+        try container.encode(edges, forKey: Keys.edges)
     }
 }

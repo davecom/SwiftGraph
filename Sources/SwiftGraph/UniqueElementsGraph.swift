@@ -16,11 +16,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-public typealias UnweightedUniqueElementsGraph<V: Equatable & Codable> = UniqueElementsGraph<V, UnweightedEdge>
-public typealias WeightedUniqueElementsGraph<V: Equatable & Codable, W: Equatable & Codable> = UniqueElementsGraph<V, WeightedEdge<W>>
+public typealias UnweightedUniqueElementsGraph<V: Equatable> = UniqueElementsGraph<V, UnweightedEdge>
+public typealias WeightedUniqueElementsGraph<V: Equatable, W: Equatable> = UniqueElementsGraph<V, WeightedEdge<W>>
 
 /// An implementation Graph that ensures there are no pairs of equal vertices and no repeated edges.
-open class UniqueElementsGraph<V: Equatable & Codable, E: Edge & Equatable>: Graph {
+open class UniqueElementsGraph<V: Equatable, E: Edge & Equatable>: Graph {
     public var vertices: [V] = [V]()
     public var edges: [[E]] = [[E]]() //adjacency lists
 
@@ -31,6 +31,21 @@ open class UniqueElementsGraph<V: Equatable & Codable, E: Edge & Equatable>: Gra
     required public init(vertices: [V]) {
         for vertex in vertices {
             _ = self.addVertex(vertex) // make sure to call our version
+        }
+    }
+    
+    public enum Keys: CodingKey {
+        case vertices
+        case edges
+    }
+    
+    public required convenience init(from decoder: Decoder) throws where V: Decodable, E: Decodable {
+        let container = try decoder.container(keyedBy: Keys.self)
+        let vertices = try container.decode([V].self, forKey: .vertices)
+        let edges: [[E]] = try container.decode([[E]].self, forKey: .edges)
+        self.init(vertices: vertices)
+        for edge in edges.lazy.flatMap({$0}) {
+            addEdge(edge, directed: edge.directed)
         }
     }
     
@@ -236,5 +251,16 @@ extension UniqueElementsGraph where V: Hashable, E == UnweightedEdge {
             }
         }
         return indices
+    }
+}
+
+extension UniqueElementsGraph: Decodable where V: Decodable, E: Decodable {
+}
+
+extension UniqueElementsGraph: Encodable where V: Encodable, E: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(vertices, forKey: Keys.vertices)
+        try container.encode(edges, forKey: Keys.edges)
     }
 }
