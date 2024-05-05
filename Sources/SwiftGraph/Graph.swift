@@ -236,6 +236,28 @@ extension Graph {
             removeVertexAtIndex(i)
         }
     }
+    
+    /// How many edges end at the vertex at this index? Undirected edges are considered as ending at both vertices.
+    ///
+    /// - Parameter index: Index of the vertex.
+    /// - Returns: The count of edges that end at that vertex.
+    public func indegreeOfVertex(at index: Int) -> Int {
+        var count = 0
+        for edgesForVertex in edges {
+            for edge in edgesForVertex where edge.v == index {
+                count += 1
+            }
+        }
+        return count
+    }
+
+    /// How many edges start at the vertex at this index? Undirected edges are considered as starting at both vertices.
+    ///
+    /// - Parameter index: Index of the vertex.
+    /// - Returns: The count of edges that start at that vertex.
+    public func outdegreeOfVertex(at index: Int) -> Int {
+        edges[index].count
+    }
 
     /// Check whether an edge is in the graph or not.
     ///
