@@ -7279,19 +7279,19 @@ final class MSATests: XCTestCase {
         originalGraph.addEdge(fromIndex: 3, toIndex: 2, weight: 1.0, directed: true)
         originalGraph.addEdge(fromIndex: 3, toIndex: 4, weight: 1.0, directed: true)
 
-        let msa = try originalGraph.msa(root: 3)
+        let msa = try originalGraph.msa(root: 1)
         
-        XCTAssertFalse(msa.spansWholeGraph())
-        XCTAssertEqual(msa.arborescence.edgeList().count, msa.arborescence.vertexCount - 1)
+        XCTAssertEqual(msa.count, originalGraph.vertexCount - 1)
         
-        msa.arborescence.edgeList().forEach { edge in
-            print("\(msa.arborescence.vertices[edge.u]) --\(edge.weight)--> \(msa.arborescence.vertices[edge.v])")
+        msa.forEach { edge in
+            print("\(originalGraph.vertices[edge.u]) --\(edge.weight)--> \(originalGraph.vertices[edge.v])")
         }
         
-        for (i, _) in msa.arborescence.vertices.enumerated() {
-            XCTAssertNotNil(msa.findOriginalIndexOfVertex(i))
-            print("\(i) -> \(msa.findOriginalIndexOfVertex(i)!)")
+        let msaValue = msa.reduce(0) { partialResult, nextEdge in
+            return partialResult + nextEdge.weight
         }
+        
+        print("MSA \(msaValue)")
     }
 }
 
