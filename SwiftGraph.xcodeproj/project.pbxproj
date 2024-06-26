@@ -139,7 +139,7 @@
 		84BE1E9E2C1DD6590024C229 /* CompressedTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompressedTree.swift; sourceTree = "<group>"; };
 		84BE1E9F2C1DD6590024C229 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		84BE1EA12C1DD6590024C229 /* Gabow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gabow.swift; sourceTree = "<group>"; };
-		84BE1EA22C1DD6590024C229 /* MSA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSA.swift; sourceTree = "<group>"; };
+		84BE1EA22C1DD6590024C229 /* MSA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSA.swift; path = ../Sources/SwiftGraph/MSA.swift; sourceTree = "<group>"; };
 		84BE1EAD2C1DD80E0024C229 /* MSATests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSATests.swift; sourceTree = "<group>"; };
 		B5100A4B208B97A800C7A73A /* UnweightedGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnweightedGraphTests.swift; sourceTree = "<group>"; };
 		B518BAB62232E8A40059DCB8 /* WeightedUniqueElementsGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightedUniqueElementsGraphTests.swift; sourceTree = "<group>"; };
@@ -279,13 +279,13 @@
 		7985B8FC1E5A4FB800C100E7 /* SwiftGraph */ = {
 			isa = PBXGroup;
 			children = (
+				7985B8FE1E5A4FB800C100E7 /* Info.plist */,
+				7985B8FD1E5A4FB800C100E7 /* SwiftGraphFramework.h */,
 				5589B4811C0E774300D6664E /* Edges */,
 				5589B4821C0E774F00D6664E /* Graphs */,
 				B58B0D732083DEC400A0E1AB /* Operations */,
 				5589B4831C0E775800D6664E /* Search */,
 				B54FDA6D21729EFF00057C51 /* Constructors.swift */,
-				7985B8FD1E5A4FB800C100E7 /* SwiftGraphFramework.h */,
-				7985B8FE1E5A4FB800C100E7 /* Info.plist */,
 			);
 			path = SwiftGraph;
 			sourceTree = "<group>";
@@ -329,7 +329,8 @@
 				84BE1E9B2C1DD6590024C229 /* Data Structures */,
 				84BE1EA02C1DD6590024C229 /* Gabow */,
 			);
-			path = Arbok;
+			name = Arbok;
+			path = ../Sources/SwiftGraph/Arbok;
 			sourceTree = "<group>";
 		};
 		84BE1E9B2C1DD6590024C229 /* Data Structures */ = {
