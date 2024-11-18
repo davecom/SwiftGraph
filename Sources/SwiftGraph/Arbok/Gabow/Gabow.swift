@@ -257,7 +257,7 @@ internal final class Gabow<T> where T: AdditiveArithmetic & Comparable & Numeric
     }
    
     
-    internal func reconstruct(root: Int) -> [Int] {
+    internal func reconstruct(root: Int) -> [Gabow.Edge] {
         let n = self.chosen.count
         
         // build leafs arary (first chosen edge for each node)
@@ -282,7 +282,7 @@ internal final class Gabow<T> where T: AdditiveArithmetic & Comparable & Numeric
         ); // assert each node has an incoming edge
         #endif
         
-        var res: [Int] = .init()
+        var res: [Gabow.Edge] = .init()
         var del: [Bool] = .init(repeating: false, count: n)
         
         // we exploit here that parent has always higher index; -> larger index first results in top-to-bottom traversal
@@ -294,7 +294,7 @@ internal final class Gabow<T> where T: AdditiveArithmetic & Comparable & Numeric
                 
                 let edge = self.edges[ self.chosen[r] ]
                 if edge.to != root {
-                    res.append(self.chosen[r])
+                    res.append(self.edges[self.chosen[r]])
                 }
                 
                 let leafEdgePos = leaf[edge.to]

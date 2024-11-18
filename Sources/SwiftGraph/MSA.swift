@@ -21,13 +21,12 @@ public extension WeightedGraph where V: Hashable, W: Comparable & Numeric  {
         assert(root >= 0 && root < self.vertexCount)
 
         var reachable = Set<V>()
-        var directMap = [V: Int].init()
-        var inverseMap: [Int: Int] = .init()
-        var reachableVertexToIndexMap: [V: Int] = .init()
-        
+        var directMap = [V: Int].init() // directMap[K] = V means that the vertex K from `self` is found at index V in `reachableGraph`
+        var inverseMap: [Int: Int] = .init() // inverseMap[K] = V means that the edge at index K from `reachableGraph` is found at index V in `self`
+        var inverseVerticesMap: [Int: Int] = .init() // inverseMap[K] = V means that the vertex at index K from `reachableGraph` is found at index V in `self`
+    
         let _ = self.ivBfs(fromIndex: root) { vertexIndex, vertex in
             reachable.insert(vertex)
-            reachableVertexToIndexMap[vertex] = vertexIndex
             return false
         }
         
@@ -40,7 +39,12 @@ public extension WeightedGraph where V: Hashable, W: Comparable & Numeric  {
 
             reachable.enumerated().forEach { i, vertex in
                 directMap[vertex] = i
-                let _ = reachableGraph.addVertex(vertex)
+                let newIndexOfV = reachableGraph.addVertex(vertex)
+                
+                assert(reachableGraph.indexOfVertex(vertex) == directMap[vertex])
+                inverseVerticesMap[newIndexOfV] = self.indexOfVertex(vertex)
+                
+                assert(self[inverseVerticesMap[newIndexOfV]!] == vertex)
             }
                         
             allEdges.enumerated().forEach { i, edge in
@@ -54,24 +58,25 @@ public extension WeightedGraph where V: Hashable, W: Comparable & Numeric  {
                         weight: edge.weight,
                         directed: true
                     )
-                    
-                    inverseMap[reachableGraph.edgeCount-1] = i
                 }
             }
             
             return try reachableGraph.msaFromConnectedRoot(
                 directMap[self.vertices[root]]!
-            ).map { edgeID in
-                return allEdges[inverseMap[edgeID]!]
+            ).map { edge in
+                return WeightedEdge(
+                    u: inverseVerticesMap[edge.u]!,
+                    v: inverseVerticesMap[edge.v]!,
+                    directed: true,
+                    weight: edge.weight
+                )
             }
         } else {
-            return try msaFromConnectedRoot(root).map { edgeID in
-                return allEdges[edgeID]
-            }
+            return try msaFromConnectedRoot(root)
         }
     }
     
-    private func msaFromConnectedRoot(_ root: Int) throws -> [Int] {
+    private func msaFromConnectedRoot(_ root: Int) throws -> [WeightedGraph<V, W>.E] {
         let gabow = Gabow<W>(verticesCount: self.vertexCount)
         
         try self.edgeList().forEach { edge in
@@ -87,7 +92,9 @@ public extension WeightedGraph where V: Hashable, W: Comparable & Numeric  {
 
         assert(edges.count == self.vertexCount - 1)
 
-        return edges
+        return edges.map { gabowEdge in
+            return WeightedEdge(u: gabowEdge.from, v: gabowEdge.to, directed: true, weight: gabowEdge.weight)
+        }
     }
     
 }

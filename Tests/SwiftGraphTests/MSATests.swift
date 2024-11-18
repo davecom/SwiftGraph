@@ -7212,7 +7212,7 @@ final class MSATests: XCTestCase {
 
         let root = 0
                 
-        let answer = gabow.run(root: root)
+        let _ = gabow.run(root: root)
         let msaEdges = gabow.reconstruct(root: root)
         // Verify the number of edges in the result
         XCTAssertEqual(msaEdges.count, verticesCount - 1)
@@ -7292,6 +7292,78 @@ final class MSATests: XCTestCase {
         }
         
         print("MSA \(msaValue)")
+    }
+    
+    
+    func testMSAFromForest() throws {
+        let dependencyGraph = WeightedGraph<String, Float>()
+        
+        // MARK: FOREST 1
+        let selectACharm = dependencyGraph.addVertex("Select a charm topbar")
+        let dbLoader = dependencyGraph.addVertex("db loader")
+        let viewModel = dependencyGraph.addVertex("Memory charms viewModel")
+        
+        dependencyGraph.addEdge(.init(u: selectACharm, v: dbLoader, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: dbLoader, v: selectACharm, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: dbLoader, v: viewModel, directed: true, weight: 1.0), directed: true)
+        
+        // MARK: FOREST 2
+        let messHallBenchBinoculars = dependencyGraph.addVertex("mess.hall.bench.binoculars")
+        let recreationalAreaBinoculars = dependencyGraph.addVertex("recreational.area.crate.binoculars")
+        
+        let recreationalAreaBinocularsBottomBar = dependencyGraph.addVertex("recreational.area.crate.binoculars bottom bar")
+        let messHallBinocularsBottomBar = dependencyGraph.addVertex("mess.hall.bench.binoculars bottom bar")
+        
+        let recreationalAreaBinocularsOutline = dependencyGraph.addVertex("recreational.area.crate.binoculars outline")
+        let recreationalAreaBinocularsBoundingCircle = dependencyGraph.addVertex("recreational.area.crate.binoculars bounding circle")
+        
+        let messHallBinocularsOutline = dependencyGraph.addVertex("mess.hall.bench.binoculars outline")
+        let messHallBinocularsBoundingCircle = dependencyGraph.addVertex("mess.hall.bench.binoculars bounding circle")
+        
+        // "mess.hall.bench.binoculars bottom bar" -> { "recreational.area.crate.binoculars outline", "recreational.area.crate.binoculars bounding circle", "mess.hall.bench.binoculars bounding circle" };
+        dependencyGraph.addEdge(.init(u: messHallBinocularsBottomBar, v: recreationalAreaBinocularsOutline, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: messHallBinocularsBottomBar, v: recreationalAreaBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: messHallBinocularsBottomBar, v: messHallBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+        
+        //"mess.hall.bench.binoculars" -> { "recreational.area.crate.binoculars outline", "recreational.area.crate.binoculars bounding circle", "mess.hall.bench.binoculars bounding circle" };
+        dependencyGraph.addEdge(.init(u: messHallBenchBinoculars, v: recreationalAreaBinocularsOutline, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: messHallBenchBinoculars, v: recreationalAreaBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: messHallBenchBinoculars, v: messHallBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+
+        //"recreational.area.crate.binoculars bottom bar" -> { "recreational.area.crate.binoculars outline", "recreational.area.crate.binoculars bounding circle", "mess.hall.bench.binoculars bounding circle" };
+        dependencyGraph.addEdge(.init(u: recreationalAreaBinocularsBottomBar, v: recreationalAreaBinocularsOutline, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: recreationalAreaBinocularsBottomBar, v: recreationalAreaBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: recreationalAreaBinocularsBottomBar, v: messHallBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+
+        //"recreational.area.crate.binoculars" -> { "recreational.area.crate.binoculars outline", "recreational.area.crate.binoculars bounding circle", "mess.hall.bench.binoculars bounding circle" };
+        dependencyGraph.addEdge(.init(u: recreationalAreaBinoculars, v: recreationalAreaBinocularsOutline, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: recreationalAreaBinoculars, v: recreationalAreaBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+        dependencyGraph.addEdge(.init(u: recreationalAreaBinoculars, v: messHallBinocularsBoundingCircle, directed: true, weight: 1.0), directed: true)
+         
+        let msa = try? dependencyGraph.msa(root: selectACharm)
+        
+        var allMSAVertices: Set<String> = .init()
+        
+        msa?.forEach { edge in
+            allMSAVertices.insert(dependencyGraph[edge.u])
+            allMSAVertices.insert(dependencyGraph[edge.v])
+        }
+        
+        let msaGraph = WeightedGraph<String, Float>(vertices: Array(allMSAVertices))
+        msa?.forEach { msaEdge in
+            msaGraph.addEdge(from: dependencyGraph[msaEdge.u], to: dependencyGraph[msaEdge.v], weight: msaEdge.weight, directed: msaEdge.directed)
+        }
+        
+        msaGraph.edgeList().forEach { edge in
+            print("\(msaGraph[edge.u]) --> \(msaGraph[edge.v])")
+        }
+        
+        assert(msaGraph.isDAG)
+        
+        print("----------------------")
+        msa?.forEach { edge in
+            print("\(dependencyGraph[edge.u]) -> \(dependencyGraph[edge.v])")
+        }
     }
 }
 
