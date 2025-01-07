@@ -34,12 +34,9 @@ open class WeightedGraph<V: Equatable & Codable, W: Equatable & Codable>: Graph 
     /// Add an edge to the graph.
     ///
     /// - parameter e: The edge to add.
-    /// - parameter directed: If false, undirected edges are created.
-    ///                       If true, a reversed edge is also created.
-    ///                       Default is false.
-    public func addEdge(_ e: WeightedEdge<W>, directed: Bool) {
+    public func addEdge(_ e: WeightedEdge<W>) {
         edges[e.u].append(e)
-        if !directed && e.u != e.v {
+        if !e.directed && e.u != e.v {
             edges[e.v].append(e.reversed())
         }
     }
@@ -77,7 +74,7 @@ extension Graph where E: WeightedEdgeProtocol {
     /// - parameter directed: Is the edge directed? (default false)
     /// - parameter weight: the Weight of the edge to add.
     public func addEdge(fromIndex: Int, toIndex: Int, weight: W, directed: Bool = false) {
-        addEdge(E(u: fromIndex, v: toIndex, directed: directed, weight: weight), directed: directed)
+        addEdge(E(u: fromIndex, v: toIndex, directed: directed, weight: weight))
     }
     
     /// This is a convenience method that adds a weighted edge between the first occurence of two vertices. It takes O(n) time.

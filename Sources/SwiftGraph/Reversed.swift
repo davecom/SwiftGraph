@@ -25,7 +25,7 @@ extension Graph {
     public func reversed() -> Self {
         let g = Self(vertices: self.vertices)
         for e in self.edgeList() {
-            g.addEdge(e.reversed(), directed: e.directed)
+            g.addEdge(e.reversed())
         }
         return g
     }

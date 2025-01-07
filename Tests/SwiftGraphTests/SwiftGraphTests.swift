@@ -81,7 +81,7 @@ class SwiftGraphTests: XCTestCase {
         let arezzoIndex = g.addVertex("Arezzo")
         g.addEdge(from: "Atlanta", to: "New York", directed: true)
         let nyAtlantaEdge = UnweightedEdge(u: nyIndex, v: atlantaIndex, directed: true)
-        g.addEdge(nyAtlantaEdge, directed: true)
+        g.addEdge(nyAtlantaEdge)
         g.addEdge(from: "Miami", to: "Atlanta", directed: true)
         g.addEdge(from: "New York", to: "Miami", directed: false)
         g.addEdge(from: "Atlanta", to: "Miami", directed: true)
