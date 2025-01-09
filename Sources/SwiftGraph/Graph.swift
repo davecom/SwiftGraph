@@ -40,8 +40,9 @@ extension Graph {
         return edges.joined().count
     }
     
-    @available(*, deprecated, renamed: "addEdge", message: "Use the addEdge method without the additional directed parameter instead, as the Edge contains already the information about direction. A double specification can only result in inconsistencies and errors.")
-    func addEdge(_ e: E, directed: Bool) {
+
+    @available(*, deprecated, renamed: "addEdge(_:)", message: "Use the 'addEdge' method without the additional 'directed' parameter instead, as the Edge already contains the information about direction.")
+    func addEdge(_ e: E, directed: Bool){
         addEdge(e)
     }
 
