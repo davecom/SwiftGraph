@@ -16,8 +16,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import Foundation
-
 extension Graph {
     /// Returns a graph of the same type with all edges reversed.
     ///
