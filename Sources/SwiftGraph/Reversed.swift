@@ -16,8 +16,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import Foundation
-
 extension Graph {
     /// Returns a graph of the same type with all edges reversed.
     ///
@@ -25,7 +23,7 @@ extension Graph {
     public func reversed() -> Self {
         let g = Self(vertices: self.vertices)
         for e in self.edgeList() {
-            g.addEdge(e.reversed(), directed: e.directed)
+            g.addEdge(e.reversed())
         }
         return g
     }

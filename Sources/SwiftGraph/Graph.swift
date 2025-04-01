@@ -26,7 +26,7 @@ public protocol Graph: CustomStringConvertible, Collection, Codable {
     var edges: [[E]] { get set }
 
     init(vertices: [V])
-    func addEdge(_ e: E, directed: Bool)
+    func addEdge(_ e: E)
 }
 
 extension Graph {
@@ -38,6 +38,12 @@ extension Graph {
     /// How many edges are in the graph?
     public var edgeCount: Int {
         return edges.joined().count
+    }
+    
+
+    @available(*, deprecated, renamed: "addEdge(_:)", message: "Use the 'addEdge' method without the additional 'directed' parameter instead, as the Edge already contains the information about direction.")
+    func addEdge(_ e: E, directed: Bool){
+        addEdge(e)
     }
 
     /// Returns a list of all the edges, undirected edges are only appended once.
@@ -137,12 +143,9 @@ extension Graph {
     /// Add an edge to the graph.
     ///
     /// - parameter e: The edge to add.
-    /// - parameter directed: If false, undirected edges are created.
-    ///                       If true, a reversed edge is also created.
-    ///                       Default is false.
-    public mutating func addEdge(_ e: E, directed: Bool = false) {
+    public mutating func addEdge(_ e: E) {
         edges[e.u].append(e)
-        if !directed && e.u != e.v {
+        if !e.directed && e.u != e.v {
             edges[e.v].append(e.reversed())
         }
     }

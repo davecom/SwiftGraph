@@ -33,12 +33,9 @@ open class UnweightedGraph<V: Equatable & Codable>: Graph {
     /// Add an edge to the graph.
     ///
     /// - parameter e: The edge to add.
-    /// - parameter directed: If false, undirected edges are created.
-    ///                       If true, a reversed edge is also created.
-    ///                       Default is false.
-    public func addEdge(_ e: UnweightedEdge, directed: Bool) {
+    public func addEdge(_ e: UnweightedEdge) {
         edges[e.u].append(e)
-        if !directed && e.u != e.v {
+        if !e.directed && e.u != e.v {
             edges[e.v].append(e.reversed())
         }
     }
@@ -112,7 +109,7 @@ extension Graph where E == UnweightedEdge {
     /// - parameter to: The ending vertex's index.
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(fromIndex: Int, toIndex: Int, directed: Bool = false) {
-        addEdge(UnweightedEdge(u: fromIndex, v: toIndex, directed: directed), directed: directed)
+        addEdge(UnweightedEdge(u: fromIndex, v: toIndex, directed: directed))
     }
     
     /// This is a convenience method that adds an unweighted, undirected edge between the first occurence of two vertices. It takes O(n) time.
@@ -122,7 +119,7 @@ extension Graph where E == UnweightedEdge {
     /// - parameter directed: Is the edge directed? (default `false`)
     public func addEdge(from: V, to: V, directed: Bool = false) {
         if let u = indexOfVertex(from), let v = indexOfVertex(to) {
-            addEdge(UnweightedEdge(u: u, v: v, directed: directed), directed: directed)
+            addEdge(UnweightedEdge(u: u, v: v, directed: directed))
         }
     }
 
