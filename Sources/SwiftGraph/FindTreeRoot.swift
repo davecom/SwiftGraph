@@ -59,8 +59,9 @@ extension Graph {
         let unionFind = UnionFind(elements: [Int](self.vertices.indices))
         
         for vertex in 0..<self.vertices.count {
+            let rootVertex = unionFind.find(vertex)
             for neighbor in self.edges[vertex] {
-                let rootVertex = unionFind.find(vertex)
+                assert(neighbor.u == vertex)
                 let rootNeighbor = unionFind.find(neighbor.v)
                 
                 if rootVertex == rootNeighbor {

@@ -22,7 +22,6 @@ public extension WeightedGraph where V: Hashable, W: Comparable & Numeric  {
 
         var reachable = Set<V>()
         var directMap = [V: Int].init() // directMap[K] = V means that the vertex K from `self` is found at index V in `reachableGraph`
-        var inverseMap: [Int: Int] = .init() // inverseMap[K] = V means that the edge at index K from `reachableGraph` is found at index V in `self`
         var inverseVerticesMap: [Int: Int] = .init() // inverseMap[K] = V means that the vertex at index K from `reachableGraph` is found at index V in `self`
     
         let _ = self.ivBfs(fromIndex: root) { vertexIndex, vertex in

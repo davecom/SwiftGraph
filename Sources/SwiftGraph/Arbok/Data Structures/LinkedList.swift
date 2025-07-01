@@ -397,9 +397,7 @@ internal final class LinkedList<T> {
     @discardableResult public func removeLast() -> T {
         assert(!isEmpty, "In function \(#function), attempted to remove last element from an empty list. Aborting.")
         guard let tail = self.tail else {
-            #if DEBUG
             fatalError("In function \(#function), attempted to remove last element from an empty list. Aborting.")
-            #endif
         }
         
         let removedValue = remove(node: tail)
