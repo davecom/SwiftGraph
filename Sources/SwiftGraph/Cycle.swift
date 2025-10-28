@@ -35,11 +35,15 @@ public extension Graph {
         while openPaths.count > 0 {
             let openPath = openPaths.removeFirst() // queue pop()
             if openPath.count > maxK { return cycles } // do we want to stop at a certain length k
-            if let tail = openPath.last, let head = openPath.first, let neighbors = neighborsForVertex(tail) {
+            if let tail = openPath.last,
+               let head = openPath.first,
+               let headIndex = indexOfVertex(head),
+               let neighbors = neighborsForVertex(tail) {
                 for neighbor in neighbors {
                     if neighbor == head {
                         cycles.append(openPath + [neighbor]) // found a cycle
-                    } else if !openPath.contains(neighbor) && indexOfVertex(neighbor)! > indexOfVertex(head)! {
+                    } else if let neighborIndex = indexOfVertex(neighbor),
+                              !openPath.contains(neighbor) && neighborIndex > headIndex {
                         openPaths.append(openPath + [neighbor]) // another open path to explore
                     }
                 }
