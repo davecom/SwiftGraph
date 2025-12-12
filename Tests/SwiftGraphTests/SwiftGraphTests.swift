@@ -16,6 +16,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+import Foundation
 import XCTest
 @testable import SwiftGraph
 
@@ -131,5 +132,44 @@ class SwiftGraphTests: XCTestCase {
         graph.removeAllEdges(from: 2, to: 3, bidirectional: true)
         XCTAssertFalse(graph.edgeExists(fromIndex: 2, toIndex: 3))
         XCTAssertFalse(graph.edgeExists(fromIndex: 3, toIndex: 2))
+    }
+
+    // a trivial smoke test to exercise the methods added to Graph to
+    // perform exhaustive searches for paths.
+    func testExhaustivePathCounting() throws {
+        let graph = try getAoCGraph()
+        guard let fftIndex = graph.indexOfVertex("fft") else {
+            XCTFail("Bad graph, no fft")
+            return
+        }
+        guard let dacIndex = graph.indexOfVertex("dac") else {
+            XCTFail("Bad graph, no dac")
+            return
+        }
+        guard let outIndex = graph.indexOfVertex("out") else {
+            XCTFail("Bad graph, no out")
+            return
+        }
+        guard let svrIndex = graph.indexOfVertex( "svr" ) else {
+            XCTFail("Bad graph, no svr")
+            return
+        }
+        var visited: Set<Int> = [svrIndex, outIndex]
+        XCTAssertEqual(0, graph.countPaths(fromIndex: dacIndex, toIndex: fftIndex, visited: &visited))
+        let outReachability = graph.reachabilityOf(outIndex)
+        visited = [svrIndex, fftIndex]
+        XCTAssertEqual(2,
+                       graph.countPaths(fromIndex: dacIndex,
+                                        toIndex: outIndex,
+                                        visited: &visited,
+                                        reachability: outReachability))
+    }
+
+    fileprivate func getAoCGraph() throws -> UnweightedGraph<String> {
+        // this is the sample graph for part 2 of the 2025 Advent of Code challenge, day 11.
+        let serializedGraph = """
+            {"vertices":["hhh","ddd","fft","ccc","svr","fff","eee","aaa","bbb","hub","ggg","dac","tty","out"],"edges":[[{"u":0,"v":13,"directed":true}],[{"u":1,"v":9,"directed":true}],[{"u":2,"v":3,"directed":true}],[{"u":3,"v":1,"directed":true},{"u":3,"v":6,"directed":true}],[{"u":4,"v":7,"directed":true},{"u":4,"v":8,"directed":true}],[{"u":5,"v":10,"directed":true},{"u":5,"v":0,"directed":true}],[{"u":6,"v":11,"directed":true}],[{"u":7,"v":2,"directed":true}],[{"u":8,"v":12,"directed":true}],[{"u":9,"v":5,"directed":true}],[{"u":10,"v":13,"directed":true}],[{"u":11,"v":5,"directed":true}],[{"u":12,"v":3,"directed":true}],[]]}
+            """
+        return try JSONDecoder().decode(UnweightedGraph<String>.self, from: serializedGraph.data(using: .utf8)!)
     }
 }
