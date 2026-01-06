@@ -346,7 +346,7 @@ extension Graph {
     /// - parameter fromIndex: the index of the starting vertex
     /// - parameter toIndex: the index of the destination vertex
     /// - parameter visited: a set of vertex indices which will be considered to have been visited already
-    /// - returns: the number of paths that exist going from the start to the destinatin
+    /// - returns: the number of paths that exist going from the start to the destination
     public func countPaths(fromIndex startIndex: Int, toIndex endIndex: Int, visited: inout Set<Int>) -> Int {
         if startIndex == endIndex { return 1 }
         visited.insert(startIndex)
@@ -365,7 +365,7 @@ extension Graph {
     /// - parameter toIndex: the index of the destination vertex
     /// - parameter visited: a set of vertex indices which will be considered to have been visited already
     /// - parameter reachability: a dictionary mapping vertex indices to a Boolean indicating whether a path exists (`true`) or does not exist (`false`) from that vertex to the destination
-    /// - returns: the number of paths that exist going from the start to the destinatin
+    /// - returns: the number of paths that exist going from the start to the destination
     public func countPaths(fromIndex startIndex: Int,
                     toIndex endIndex: Int,
                     visited: inout Set<Int>,
