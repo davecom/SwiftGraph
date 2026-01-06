@@ -303,3 +303,91 @@ extension Graph {
     }
 }
 
+extension Graph {
+    /// Find all of the neighbors of a vertex at a given index.
+    ///
+    /// - parameter index: The index for the vertex to find the neighbors of.
+    /// - returns: An array of the neighbor vertex indices.
+    public func neighborIndicesForIndex(_ index: Int) -> [Int] {
+        return edges[index].map({$0.v})
+    }
+
+    /// Find out if a route exists from one vertex to another, using a DFS.
+    ///
+    /// - parameter fromIndex: The index of the starting vertex.
+    /// - parameter toIndex: The index of the ending vertex.
+    /// - returns: `true` if a path exists
+    public func pathExists(fromIndex: Int, toIndex: Int) -> Bool {
+        var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
+        var stack: [Int] = []
+        stack.append(fromIndex)
+        while !stack.isEmpty {
+            if let v = stack.popLast() {
+                if visited[v] {
+                    continue
+                }
+                visited[v] = true
+                if v == toIndex {
+                    // we've found the destination
+                    return true
+                }
+                for e in edgesForIndex(v) {
+                    if !visited[e.v] {
+                        stack.append(e.v)
+                    }
+                }
+            }
+        }
+        return false // no solution found
+    }
+
+    /// This is an exhaustive search to find out how many paths there are between two vertices.
+    ///
+    /// - parameter fromIndex: the index of the starting vertex
+    /// - parameter toIndex: the index of the destination vertex
+    /// - parameter visited: a set of vertex indices which will be considered to have been visited already
+    /// - returns: the number of paths that exist going from the start to the destination
+    public func countPaths(fromIndex startIndex: Int, toIndex endIndex: Int, visited: inout Set<Int>) -> Int {
+        if startIndex == endIndex { return 1 }
+        visited.insert(startIndex)
+        var total = 0
+        for n in neighborIndicesForIndex(startIndex) where !visited.contains(n) {
+            total += countPaths(fromIndex: n, toIndex: endIndex, visited: &visited)
+        }
+        visited.remove(startIndex)
+        return total
+    }
+
+    /// This is an exhaustive search to find out how many paths there are between two vertices.
+    /// The search is optimized by not bothering to compute paths for known dead ends.
+    ///
+    /// - parameter fromIndex: the index of the starting vertex
+    /// - parameter toIndex: the index of the destination vertex
+    /// - parameter visited: a set of vertex indices which will be considered to have been visited already
+    /// - parameter reachability: a dictionary mapping vertex indices to a Boolean indicating whether a path exists (`true`) or does not exist (`false`) from that vertex to the destination
+    /// - returns: the number of paths that exist going from the start to the destination
+    public func countPaths(fromIndex startIndex: Int,
+                    toIndex endIndex: Int,
+                    visited: inout Set<Int>,
+                    reachability: [Int: Bool]) -> Int {
+        if startIndex == endIndex { return 1 }
+        guard reachability[startIndex] ?? false else { return 0 }
+        visited.insert(startIndex)
+        var total = 0
+        for n in neighborIndicesForIndex(startIndex) where !visited.contains(n) && (reachability[n] ?? false) {
+            total += countPaths(fromIndex: n, toIndex: endIndex, visited: &visited, reachability: reachability)
+        }
+        visited.remove(startIndex)
+        return total
+    }
+
+    /// Computes whether or not a given vertex (by index) is reachable, for every vertex in the graph.
+    public func reachabilityOf(_ index: Int) -> [Int: Bool] {
+        var answers: [Int: Bool] = [:]
+        for vi in vertices.indices {
+            answers[vi] = pathExists(fromIndex: vi, toIndex: index)
+        }
+        return answers
+    }
+
+}
