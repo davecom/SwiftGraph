@@ -150,7 +150,7 @@ class SwiftGraphTests: XCTestCase {
             XCTFail("Bad graph, no out")
             return
         }
-        guard let svrIndex = graph.indexOfVertex( "svr" ) else {
+        guard let svrIndex = graph.indexOfVertex("svr") else {
             XCTFail("Bad graph, no svr")
             return
         }

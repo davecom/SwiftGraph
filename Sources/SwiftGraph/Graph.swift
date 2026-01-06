@@ -317,13 +317,13 @@ extension Graph {
     /// - parameter fromIndex: The index of the starting vertex.
     /// - parameter toIndex: The index of the ending vertex.
     /// - returns: `true` if a path exists
-    func pathExists(fromIndex: Int, toIndex: Int) -> Bool {
+    public func pathExists(fromIndex: Int, toIndex: Int) -> Bool {
         var visited: [Bool] = [Bool](repeating: false, count: vertexCount)
         var stack: [Int] = []
         stack.append(fromIndex)
         while !stack.isEmpty {
-            if let v: Int = stack.popLast() {
-                if (visited[v]) {
+            if let v = stack.popLast() {
+                if visited[v] {
                     continue
                 }
                 visited[v] = true
@@ -347,7 +347,7 @@ extension Graph {
     /// - parameter toIndex: the index of the destination vertex
     /// - parameter visited: a set of vertex indices which will be considered to have been visited already
     /// - returns: the number of paths that exist going from the start to the destinatin
-    func countPaths(fromIndex startIndex: Int, toIndex endIndex: Int, visited: inout Set<Int>) -> Int {
+    public func countPaths(fromIndex startIndex: Int, toIndex endIndex: Int, visited: inout Set<Int>) -> Int {
         if startIndex == endIndex { return 1 }
         visited.insert(startIndex)
         var total = 0
@@ -382,7 +382,7 @@ extension Graph {
     }
 
     /// Computes whether or not a given vertex (by index) is reachable, for every vertex in the graph.
-    func reachabilityOf(_ index: Int) -> [Int: Bool] {
+    public func reachabilityOf(_ index: Int) -> [Int: Bool] {
         var answers: [Int: Bool] = [:]
         for vi in vertices.indices {
             answers[vi] = pathExists(fromIndex: vi, toIndex: index)
