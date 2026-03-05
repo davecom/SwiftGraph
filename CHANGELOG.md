@@ -1,7 +1,7 @@
-###4.0.0
+### 4.0.0
 - **This is an API breaking change due to addEdge() changes**
 - addEdge(_ e: E, directed: Bool) deprecated in favor of just addEdge(_ e: E) since Edge already has a *directed* property (@Vithanco)
-- Fix generic paramter name shadowing for Swift 6 compatibility
+- Fix generic parameter name shadowing for Swift 6 compatibility
 - Count paths between vertices (@sbeitzel)
 - Improve performance of detectCycles() (@automaciej)
 - Indegree and Outdegree methods (@TizianoCoroneo)
