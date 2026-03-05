@@ -16,6 +16,10 @@ It includes copious in-source documentation, unit tests, as well as search funct
 
 SwiftGraph 3.0 and above requires Swift 5 (Xcode 10.2). Use SwiftGraph 2.0 for Swift 4.2 (Xcode 10.1) support, SwiftGraph 1.5.1 for Swift 4.1 (Xcode 9), SwiftGraph 1.4.1 for Swift 3 (Xcode 8), SwiftGraph 1.0.6 for Swift 2 (Xcode 7), and SwiftGraph 1.0.0 for Swift 1.2 (Xcode 6.3) support. SwiftGraph supports GNU/Linux and is tested on it.
 
+### Swift Package Manager (SPM)
+
+Use this repository as your dependency.
+
 ### CocoaPods
 
 Use the CocoaPod `SwiftGraph`.
@@ -25,12 +29,8 @@ Use the CocoaPod `SwiftGraph`.
 Add the following to your `Cartfile`:
 
 ```
-github "davecom/SwiftGraph" ~> 3.1
+github "davecom/SwiftGraph" ~> 4.0
 ```
-
-### Swift Package Manager (SPM)
-
-Use this repository as your dependency.
 
 ### Manual
 

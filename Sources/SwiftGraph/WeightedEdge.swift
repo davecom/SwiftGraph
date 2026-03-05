@@ -52,7 +52,7 @@ public struct WeightedEdge<W: Equatable & Codable>: Edge, CustomStringConvertibl
     }
     
     //MARK: Operator Overloads
-    static public func == <W>(lhs: WeightedEdge<W>, rhs: WeightedEdge<W>) -> Bool {
+    static public func == <WT>(lhs: WeightedEdge<WT>, rhs: WeightedEdge<WT>) -> Bool {
         return lhs.u == rhs.u && lhs.v == rhs.v && lhs.weight == rhs.weight
     }
 

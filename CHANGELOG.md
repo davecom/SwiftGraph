@@ -1,3 +1,11 @@
+###4.0.0
+- **This is an API breaking change due to addEdge() changes**
+- addEdge(_ e: E, directed: Bool) deprecated in favor of just addEdge(_ e: E) since Edge already has a *directed* property (@Vithanco)
+- Fix generic paramter name shadowing for Swift 6 compatibility
+- Count paths between vertices (@sbeitzel)
+- Improve performance of detectCycles() (@automaciej)
+- Indegree and Outdegree methods (@TizianoCoroneo)
+
 ### 3.1.0
 - Reverse a graph with `reversed()` (@mattpaletta)
 - Performance improvement to `topologicalSort()` (@dabbott)

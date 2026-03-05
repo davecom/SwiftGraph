@@ -129,8 +129,8 @@ extension UniqueElementsGraph where E == UnweightedEdge {
         return g
     }
 
-    private struct QueueElement<V> {
-        let v: V
+    private struct QueueElement<VT> {
+        let v: VT
         let previousIndex: Int
     }
 

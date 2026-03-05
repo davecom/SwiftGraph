@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftGraph'
-  s.version          = '3.1'
+  s.version          = '4.0'
   s.license          = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
   s.summary          = 'A Graph Data Structure in Pure Swift'
   s.homepage         = 'https://github.com/davecom/SwiftGraph'
@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '2.0'
   s.source_files = 'Sources/SwiftGraph/*.swift'
   s.requires_arc = true
-  s.swift_versions = ['5.0', '5.1', '5.2', '5.3']
+  s.swift_versions = ['5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '6.0', '6.1']
 end
