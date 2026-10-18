@@ -101,8 +101,8 @@ let isADAG = cityGraph.isDAG
 ```
 `isADAG` is `false` because `cityGraph` is not found to be a Directed Acyclic Graph.
 ```swift
-let result = cityGraph.findAll(from: "New York") { v in
-    return v.characters.first == "S"
+let result = cityGraph.findAllBfs(from: "New York") { v in
+    return v.first == "S"
 }
 ```
 A breadth-first search is performed, starting from New York, for all cities in `cityGraph` that start with the letter "S."
@@ -153,7 +153,7 @@ Note: At this time, graphs are *not* thread-safe. However, once a graph is const
 Search methods are defined in extensions of `Graph` and `WeightedGraph` in `Search.swift`.
 * `bfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a breadth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found. A version of this method takes a function, `goalTest()`, that operates on a vertex and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first vertex that returns true from `goalTest()`.
 * `dfs()` (method on `Graph`) - Finds a path from one vertex to another in a `Graph` using a depth-first search. Returns an array of `Edge`s going from the source vertex to the destination vertex or an empty array if no path could be found. A version of this method takes a function, `goalTest()`, that operates on a vertex and returns a boolean to indicate whether it is a goal for the search. It returns a path to the first vertex that returns true from `goalTest()`.
-* `findAll()` Uses a breadth-first search to find all connected vertices from the starting vertex that return true when run through a `goalTest()` function. Paths to the connected vertices are returned in an array, which is empty if no vertices are found.
+* `findAllBfs()` Uses a breadth-first search to find all connected vertices from the starting vertex that return true when run through a `goalTest()` function. Paths to the connected vertices are returned in an array, which is empty if no vertices are found.
 * `dijkstra()` (method on `WeightedGraph`) - Finds the shortest path from a starting vertex to every other vertex in a `WeightedGraph`. Returns a tuple who's first element is an array of the distances to each vertex in the graph arranged by index. The second element of the tuple is a dictionary mapping graph indices to the previous `Edge` that gets them there in the shortest time from the staring vertex. Using this dictionary and the function `pathDictToPath()`, you can find the shortest path from the starting vertex to any other connected vertex. See the `dijkstra()` unit tests in `DijkstraGraphTests.swift` for a demo of this.
 * Graph traversal versions of `bfs()` and `dfs()` that allow a visit function to execute at each stop
 
